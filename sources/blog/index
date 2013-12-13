@@ -1,4 +1,20 @@
 #title Welcome
+* 13年12月13日 周五 10:45
+
+** 站点备份改成了 github
+
+之前是保存在 YUNIO 上面，感觉自己算是蛮早的一批 YUNIO 用户，分到的免费空
+间还是很大的，只是连接很不方便。
+
+虽然各个平台上都有客户端，但是其连接配置从我使用到现在换了好几种，也不算
+稳定，经常要重连确认本地、远程版本什么的，那还不如直接改成 github 算了。
+
+反正站点也是完全公开的，
+
+*** [[CategoryThisSite][CategoryThisSite]] / [[2013-12#p0][Permalink]] 
+
+<!-- date: 2013-12-13T10:45:15+0800 -->
+
 * 13年11月9日 周六 10:44
 
 ** 生活中的值得与不值得
@@ -487,49 +503,4 @@ http://v.youku.com/v_show/id_XNTAzNDU2MjA4.html ，其实说的很多很多都�
 *** [[CategoryReading][CategoryReading]] / [[2013-07#p0][Permalink]]
 
 <!-- date: 2013-07-05T22:35:07+0800 -->
-
-* 13年6月13日 周四 14:54
-
-** [iOS] 为 App 提供打开邮件附件的支持
-
-不多说了，先描述使用场景，比如在邮件有附件，或其他 App 中有各种类型的文档，
-长按文档标识系统会从底部弹出使用某某某打开，比如使用微信等等。
-
-这种官方的说法是文档交互，需要这样编程处理
-[[https://developer.apple.com/library/ios/#documentation/FileManagement/Conceptual/DocumentInteraction_TopicsForIOS/Articles/RegisteringtheFileTypesYourAppSupports.html#//apple_ref/doc/uid/TP40010411-SW1][Document Interaction Programming Topics for iOS]]，简单点就是在 App 的 Info.plist 里面
-添加以下就可以在系统弹出框里看到使用某某某打开了:
-
-<src>
-<dict>
-   <key>CFBundleTypeName</key>
-   <string>My File Format</string>
-   <key>CFBundleTypeIconFiles</key>
-       <array>
-           <string>MySmallIcon.png</string>
-           <string>MyLargeIcon.png</string>
-       </array>
-   <key>LSItemContentTypes</key>
-       <array>
-           <string>com.example.myformat</string>
-       </array>
-   <key>LSHandlerRank</key>
-   <string>Owner</string>
-</dict>
-</src>
-
-这其实算是使用文件作为数据交换，需要指定 app 所支持的类型，这篇总览介绍
-了阿婆是如何对待文件类型的 [[https://developer.apple.com/library/mac/#documentation/FileManagement/Conceptual/understanding_utis/understand_utis_conc/understand_utis_conc.html#//apple_ref/doc/uid/TP40001319-CH202-CHDHIJDE][Uniform Type Identifiers Overview]]，系统定义的
-UTI 有这些 [[https://developer.apple.com/library/mac/#documentation/Miscellaneous/Reference/UTIRef/Articles/System-DeclaredUniformTypeIdentifiers.html][System-Declared Uniform Type Identifiers]]。
-
-在代码里面是在 Application Delegate 的
-[[http://developer.apple.com/library/ios/#documentation/uikit/reference/UIApplicationDelegate_Protocol/Reference/Reference.html][application:openURL:sourceApplication:annotation:]] 响应的，添加这个函数就
-可以支持了，它会在 willFinishLaunchingWithOptions 以及
-didFinishLaunchingWithOptions 之后运行。
-
-参考自 ''''StackOverflow 的
-[[http://stackoverflow.com/questions/2774343/how-do-i-associate-file-types-with-an-iphone-application][How do I associate file types with an iPhone application?]]，噢噢噢~~~
-
-*** [[CategoryProgramming][CategoryProgramming]] / [[2013-06#p0][Permalink]]
-
-<!-- date: 2013-06-13T14:54:02+0800 -->
 
