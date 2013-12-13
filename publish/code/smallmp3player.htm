@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!-- Created by htmlize-1.16 in css mode. -->
+<html>
+  <head>
+    <title>smallmp3player.txt</title>
+    <style type="text/css">
+    <!--
+      body {
+        color: #d9d9d9;
+        background-color: #000000;
+      }
+      .builtin {
+        /* font-lock-builtin-face */
+        color: #b0c4de;
+      }
+      .comment {
+        /* font-lock-comment-face */
+        color: #ff7f24;
+      }
+      .comment-delimiter {
+      }
+      .function-name {
+        /* font-lock-function-name-face */
+        color: #87cefa;
+      }
+      .keyword {
+        /* font-lock-keyword-face */
+        color: #00ffff;
+      }
+      .string {
+        /* font-lock-string-face */
+        color: #ffa07a;
+      }
+      .variable-name {
+        /* font-lock-variable-name-face */
+        color: #eedd82;
+      }
+      a {
+        color: inherit;
+        background-color: inherit;
+        font: inherit;
+        text-decoration: inherit;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+    -->
+    </style>
+  </head>
+  <body>
+    <pre>
+<span class="comment-delimiter"># </span><span class="comment">simple mp3 playback, usage: mp3 volume
+</span><span class="function-name">MP3</span>()
+{
+    <span class="comment-delimiter"># </span><span class="comment">first set the mp3_dir
+</span>    <span class="variable-name">mp3_dir</span>=/mnt/d/music
+
+    <span class="comment-delimiter"># </span><span class="comment">printf the disc squance and name
+</span>    <span class="variable-name">num</span>=1
+    <span class="builtin">printf</span> <span class="string">" NUM \t DISC\n"</span>
+    <span class="keyword">for</span> file<span class="keyword"> in</span> $(ls $<span class="variable-name">mp3_dir</span>)
+    <span class="keyword">do</span>
+            <span class="builtin">printf</span> <span class="string">" %3d \t %s\n"</span> $<span class="variable-name">num</span> $(<span class="builtin">echo</span> $<span class="variable-name">file</span> | cut -d<span class="string">'/'</span> -f 1)
+            ((num = num + 1))
+    <span class="keyword">done</span>
+
+    <span class="comment-delimiter"># </span><span class="comment">get the selected disc
+</span>    <span class="builtin">printf</span> <span class="string">'\nPlease enter your selected disc: '</span>
+    <span class="builtin">read</span> disc
+    <span class="variable-name">selected</span>=$(ls $<span class="variable-name">mp3_dir</span> | head -n $<span class="variable-name">disc</span> | tail -n 1)
+    <span class="builtin">echo</span> <span class="string">"Selected disc $disc $(echo $selected | cut -d'/' -f 1)"</span>
+
+    <span class="comment-delimiter"># </span><span class="comment">playback the mp3
+</span>    find $<span class="variable-name">mp3_dir</span>/$<span class="variable-name">selected</span> -name <span class="string">"*.mp3"</span> &gt; ~/.mpg321.list
+    mpg321 -o alsa --quiet --random --list ~/.mpg321.list -g $<span class="variable-name">1</span> &amp;
+}
+<span class="builtin">alias</span> <span class="variable-name">mp3</span>=<span class="string">'MP3 $1'</span>
+<span class="builtin">alias</span> <span class="variable-name">nosong</span>=<span class="string">'killall mpg321'</span>
+</pre>
+  </body>
+</html>

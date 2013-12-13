@@ -1,0 +1,115 @@
+ 
+#title Archive for March, 2007
+
+#p4
+* 3月22日 周四 23:04
+
+** Smart compile command
+
+在学校，编程往往是为了做习题，每当想法完成，只需要简单的 compile。但在
+EMACS 里面，compile 函数却被分成了两部分：先是得定义待会编译时使用的命令，
+然后再运行它，真是复杂。
+
+看看下面的函数，对于简单的文件往往只需要一步就可以完成，举手之劳。
+
+<src type="elisp">
+(defun sucha-smart-compile ()
+  "Simply compile your file according to the file type."
+  (interactive)
+  (save-some-buffers t)
+  (let
+      ((compile-command nil)
+       (alist
+	(list '("\\.c$" .  "gcc")
+	      '("\\.cc$" . "g++")
+	      '("\\.cpp$" . "g++"))))
+    (while (not (null alist))
+      (if (string-match (caar alist) (buffer-file-name))
+	  (setq compile-command
+		(concat (cdar alist) " " (buffer-file-name))))
+	(setq alist (cdr alist)))
+
+    (if (null compile-command)
+	 (setq compile-command
+	       (read-from-minibuffer "Compile command: ")))
+    (compile compile-command)))
+</src>
+
+我们可以将真正的 compile 函数和上面的函数分别绑定在不同的按键上，需要的
+时候可以根据情况选用，方便极了。不同的文件后缀名使用不同的编译命令，还可
+以自己如上添加。
+
+*** [[CategoryProgramming][CategoryProgramming]] / [[2007-03#p4][Permalink]] 
+
+<!-- date: 2007-03-22T23:04:32+0800 -->
+
+
+
+#p3
+* 3月14日 周三 08:44
+
+** 主页换风格
+
+趁先在有时间，给主页换了下风格，暂时在 Opera 里看着还好，但是在 IE 里就
+有点看不下去了，不知道在 Firefox 上会怎样，希望不会太差劲吧。
+
+今年换了域名，接着换了风格，也该歇一下了，哈。
+
+*** [[CategoryThisSite][CategoryThisSite]] / [[2007-03#p3][Permalink]] 
+
+<!-- date: 2007-03-14T08:44:47+0800 -->
+
+
+
+#p2
+* 3月12日 周一 18:52
+
+** 堕落
+
+来到学校后反而堕落了，在家时还几乎天天为考车试而忙，早睡早起，除了春节那
+几天，天天都出车，但是到了这里，一切都变了。
+
+最近寝室其实都很忙，大部分兄弟的成绩都下来了，考得都不错，可是一想到自己，
+压力就大了……
+
+*** [[CategoryLife][CategoryLife]] / [[2007-03#p2][Permalink]] 
+
+<!-- date: 2007-03-12T18:52:56+0800 -->
+
+
+
+#p1
+* 3月10日 周六 08:52
+
+** 换域名喽
+
+本站换域名喽，地址是 [[http://suchang.net][suchang.net]]，欢迎访问，:)
+
+P.S: 更换了下地址。
+
+*** [[CategoryThisSite][CategoryThisSite]] / [[2007-03#p1][Permalink]] 
+
+<!-- date: 2007-03-10T08:52:43+0800 -->
+
+
+
+#p0
+* 3月5日 周一 20:46
+
+** 车证到手
+
+车证终于到手了，练习了那么长时间，绷紧的神经终于可以放松一下，不过返校的
+时间也到了。
+
+早上考桩试，心里真的有点怕怕，倒车的时候，看桩的眼睛都有点花，不过还好，
+一切顺利，一桩就过关。要是家里有车就好了，可以直接上路，还没看过驾驶证是
+什么样子。
+
+说到心里怕怕，被同学耻笑了一下，可是有压力才有动力。
+
+*** [[CategoryLife][CategoryLife]] / [[2007-03#p0][Permalink]] 
+
+<!-- date: 2007-03-05T20:46:51+0800 -->
+
+
+

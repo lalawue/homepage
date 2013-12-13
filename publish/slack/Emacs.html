@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+  <head>
+    <title>Sucha's Homepage - Emacs</title>
+    <meta name="generator" content="emacs-wiki.el" />
+    <meta http-equiv="Content-Type" content=" text/html; charset=utf-8" />
+    <meta name="author" content="Sucha" />
+    <meta name="copyright" content="GFDL, http://www.gnu.org/licenses/fdl.html" />
+    <meta name="keywords" content="Sucha, Suchang, programming, GNU, Unix, Linux, Slackware, Emacs, elisp" />
+    <meta name="description" content="Sucha's homepage and blog" />
+    <link rel="made" href="mailto:suchaaa@gmail.com" />
+    <link rel="shortcut icon" href="../images/ico.png" />
+    <link rel="stylesheet" type="text/css" href="../styles/site.css" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="../blog/rss.xml" />
+    <!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="../styles/ie.css" /><![endif]-->
+  </head>
+  <body>
+    <div id="body">
+      <div id="text">
+	<h1>Sucha's Homepage ~ Emacs</h1>
+	<!-- Page published by Emacs Wiki begins here -->
+<h2>EMACS</h2>
+
+<p>
+最近更新: 2008-07-02
+
+</p>
+
+<p>
+Emacs 拥有几乎无限的可扩展能力，如果你稍微懂一点 elisp，将更能体会这种感觉。和<a href="http://202.38.99.17/%7ehuxw/">&#32;RobinH.ood</a> 一样，我更愿意将她看成是一个操作系统，而不仅仅只是一个文本编辑器。
+
+</p>
+
+<p>
+<strong>本页目录</strong>
+
+</p>
+
+<dl class="contents">
+<dt class="contents">
+<a href="#sec-1">简单介绍</a>
+</dt>
+<dt class="contents">
+<a href="#sec-2">Emacs 的历史</a>
+</dt>
+<dt class="contents">
+<a href="#sec-3">一些有用的设置</a>
+</dt>
+<dd>
+<dl class="contents">
+<dt class="contents">
+<a href="#sec-4">Compile function</a>
+</dt>
+<dt class="contents">
+<a href="#sec-5">Tags and speedbar</a>
+</dt>
+<dt class="contents">
+<a href="#sec-6">CSCOPE &#38; GTAGS</a>
+</dt>
+<dt class="contents">
+<a href="#sec-7">hippie-expend</a>
+</dt>
+</dl>
+</dd>
+<dt class="contents">
+<a href="#sec-8">资源链接</a>
+</dt>
+<dd>
+<dl class="contents">
+<dt class="contents">
+<a href="#sec-9">外文站点</a>
+</dt>
+<dt class="contents">
+<a href="#sec-10">中文站点</a>
+</dt>
+<dt class="contents">
+<a href="#sec-11">一些 elisp 的教程</a>
+</dt>
+</dl>
+</dd>
+</dl>
+
+
+
+<h3><a id="sec-1">简单介绍</a></h3>
+
+<p>
+不妨看一下<a href="http://learn.tsinghua.edu.cn/homepage/2001315450/emacs.html">王垠主页</a>和<a href="http://liyu2000.nease.net/webpage/Emacs.html">李宇主页</a>上的 Emacs 部分，介绍得很详细，在这里我可以偷懒了，:)
+
+</p>
+
+<h3><a id="sec-2">Emacs</a> 的历史</h3>
+
+<p>
+刚开始使用 Linux 那会儿，只顾着摆弄 Emacs，却没有注意到其实 Emacs 是一个很有历史的软件，比我的岁数还要大！直到有一天看了 <a href="http://liyu2000.nease.net/webpage/WelcomePage.html">Liyu</a> 的主页上的 Emacs 历史介绍，才发觉 Emacs 的来头真是不小。
+
+</p>
+
+<ol>
+<li><a href="http://www.emacswiki.org">EmacsWiki</a> 上介绍 <a href="http://www.emacswiki.org/cgi-bin/wiki/EmacsHistory">Emacs&#32;历史</a>的文章
+</li>
+<li><a href="http://www.emacswiki.org/cgi-bin/wiki/JamieZawinski">JamieZawinski</a> 写的 <a href="http://www.jwz.org/doc/emacs-timeline.html">Emacs&#32;Timeline</a>, 这是一个<a href="http://www.aisee.com/graph_of_the_month/emacs.gif">图形化的版本</a >
+</li>
+</ol>
+
+<h3><a id="sec-3">一些有用的设置</a></h3>
+
+<h4><a id="sec-4">Compile</a> function</h4>
+
+<p>
+很多时候，我们编程只是为了做习题，所以往往只需要编译一两个文件，用到
+Makefile 的时候并不多，而 Emacs 原配的 compile 命令对于小小的编译工作稍
+显麻烦，得先设置编译命令，之后再运行。
+
+</p>
+
+<p>
+下面的函数可以根据预设的文件类型选用不同的编译器编译当前正在编辑的文件，
+对于做题等等非常有帮助，省了不少力气。还可以很方便地如法炮制不同的匹配。
+
+</p>
+
+<pre class="source"><span class="comment-delimiter">;; </span><span class="comment">C-f5, &#35774;&#32622;&#32534;&#35793;&#21629;&#20196;&#65292;&#29992; Emacs &#21407;&#26469;&#30340; compile 
+</span><span class="comment-delimiter">;; </span><span class="comment">f5, &#20445;&#23384;&#24403;&#21069;&#31383;&#21475;&#24182;&#36873;&#29992;&#19981;&#21516;&#30340;&#32534;&#35793;&#22120;&#32534;&#35793;&#65292;&#21487;&#22914;&#27861;&#24448;&#19978;&#28155;&#21152;&#21305;&#37197;
+</span>(<span class="keyword">defun</span> <span class="function-name">sucha-smart-compile</span> ()
+  <span class="doc">"Simply compile your file according to the file type."</span>
+  (interactive)
+  (save-some-buffers t)
+  (<span class="keyword">let</span>
+      ((compile-command nil)
+       (alist
+        (list '(<span class="string">"\\.c$"</span> .  <span class="string">"gcc"</span>)
+              '(<span class="string">"\\.cc$"</span> . <span class="string">"g++"</span>)
+              '(<span class="string">"\\.cpp$"</span> . <span class="string">"g++"</span>))))
+    (<span class="keyword">while</span> (not (null alist))
+      (<span class="keyword">if</span> (string-match (caar alist) (buffer-file-name))
+          (setq compile-command
+                (concat (cdar alist) <span class="string">" "</span> (buffer-file-name))))
+        (setq alist (cdr alist)))
+
+    (<span class="keyword">if</span> (null compile-command)
+         (setq compile-command
+               (read-from-minibuffer <span class="string">"Compile command: "</span>)))
+    (compile compile-command)))
+(global-set-key [C-f5] 'compile)
+(global-set-key [f5] 'sucha-smart-compile)
+</pre>
+
+
+
+<h4><a id="sec-5">Tags</a> and speedbar</h4>
+
+<p>
+Emacs 本身就提供了许多代码浏览的工具，对我来说，Emacs + Speedbar + TAGS 就已经很好用了。下面是一些方便查找、跳转 TAGS 的函数和快捷键。
+
+</p>
+
+<pre class="source"><span class="comment-delimiter">;; </span><span class="comment">&#29983;&#25104; TAGS, adong &#25552;&#20379; (in LinuxForum GNU Emacs/XEmacs)
+</span><span class="comment-delimiter">;; </span><span class="comment">find -name "*.[ch]*" | xargs etags -a
+</span>
+<span class="comment-delimiter">;; </span><span class="comment">&#26597;&#25214; TAGS &#25991;&#20214;
+</span>(global-set-key [(f7)] 'visit-tags-table)
+
+<span class="comment-delimiter">;; </span><span class="comment">&#20197;&#19979;&#30001; zslevin &#25552;&#20379;(LinuxForum GNU Emacs/XEmacs)
+</span>
+<span class="comment-delimiter">;; </span><span class="comment">C-. &#22312;&#21478;&#19968;&#31383;&#21475;&#22788;&#26597;&#30475;&#20809;&#26631;&#22788;&#30340; tag
+</span><span class="comment-delimiter">;; </span><span class="comment">C-, &#21482;&#30041;&#19979;&#24403;&#21069;&#26597;&#30475;&#20195;&#30721;&#30340;&#31383;&#21475;&#65288;&#20851;&#38381;&#26597;&#30475; tag &#30340;&#23567;&#31383;&#65289;
+</span><span class="comment-delimiter">;; </span><span class="comment">M-. &#26597;&#25214;&#20809;&#26631;&#22788;&#30340; tag&#65292;&#24182;&#36339;&#36716;
+</span><span class="comment-delimiter">;; </span><span class="comment">M-, &#36339;&#22238;&#21407;&#26469;&#26597;&#25214; tag &#30340;&#22320;&#26041;
+</span><span class="comment-delimiter">;; </span><span class="comment">C-M-, &#25552;&#31034;&#35201;&#26597;&#25214;&#30340; tag&#65292;&#24182;&#36339;&#36716;
+</span><span class="comment-delimiter">;; </span><span class="comment">C-return, &#26597;&#25214; tag &#33258;&#21160;&#34917;&#20840;
+</span>
+(global-set-key [(control .)] '(<span class="keyword">lambda</span> () (interactive) (lev/find-tag t)))
+(global-set-key [(control ,)] 'delete-other-windows)
+(global-set-key [(meta .)] 'lev/find-tag)
+(global-set-key [(meta ,)] 'pop-tag-mark)
+(global-set-key (kbd <span class="string">"C-M-,"</span>) 'find-tag)
+(global-set-key [(shift return)] 'complete-tag)
+
+(<span class="keyword">defun</span> <span class="function-name">lev/find-tag</span> (<span class="type">&amp;optional</span> show-only)
+  <span class="doc">"Show tag in other window with no prompt in minibuf."</span>
+  (interactive)
+  (<span class="keyword">let</span> ((default (funcall (or find-tag-default-function
+                              (get major-mode 'find-tag-default-function)
+                              'find-tag-default))))
+    (<span class="keyword">if</span> show-only
+        (<span class="keyword">progn</span> (find-tag-other-window default)
+               (shrink-window (- (window-height) 12)) <span class="comment-delimiter">;; </span><span class="comment">&#38480;&#21046;&#20026; 12 &#34892;
+</span>               (recenter 1)
+               (other-window 1))
+      (find-tag default))))
+</pre>
+
+
+而 Speedbar 根本不用设置，我个人只是不大喜欢它默认使用 image 的方式和过快的更新速度，只要重新设置一下就可以了。Speedbar 里面也提供很好用的快捷键，C-h m 就可以看到很多说明。
+
+</p>
+
+<pre class="source">(setq speedbar-update-speed 3)
+(setq speedbar-use-images nil)  <span class="comment-delimiter">;; </span><span class="comment">clear face, :)
+</span></pre>
+
+
+
+
+<h4><a id="sec-6">CSCOPE</a> &#38; GTAGS</h4>
+
+<p>
+当你需要处理更大量的代码时，可以考虑使用 CSCOPE 和 GTAGS 来浏览代码，在
+使用上也不会很复杂，这两个工具我都有用过一段时间，最后一直是在使用
+GTAGS，它的效率更好一些。
+
+</p>
+
+<p>
+一些配置和使用上的文章请点击下面的链接：
+
+</p>
+
+<ul>
+<li><a href="../blog/2008-06.html#p1">GTAGS&#32;和&#32;company-mode</a>，有关 GTAGS 配置和非常炫的补全前端
+</li>
+<li><a href="../blog/2008-03.html#p0">CSCOPE&#32;和&#32;GTAGS</a>，有关 CSCOPE 配置的，这是较早使用 CSCOPE 时留下的记录
+</li>
+</ul>
+
+<p>
+不管是 GTAGS 还是 CSCOPE，都和 TAGS 类似，浏览前需要生成 TAG 文件，对一些
+文件编辑之后也需要更新相应的 TAG 文件，否则会出现搜索上的误差。
+
+</p>
+
+<h4><a id="sec-7">hippie</a>-expend</h4>
+
+<p>
+自从我使用过 hippie-expend 之后，我就决定将 dabbrev-expand 的默认按键用来
+绑定 hippie-expend，这将大大节省你的重复性体力劳动。
+
+</p>
+
+<p>
+hippie-expend 和 dabbrev-expand 一样，也是对当前的输入字符进行自动扩展，
+但是它的功能更多，因为它根据的是你定义的 hippie-expend-try－
+functions-list 这个变量里各个函数的顺序来进行尝试性扩展的，因此“适用范围
+”要比 dabbrev-expand 大得多，除了尝试 dabbrev-&#42; 系列，还可以自定义其
+他方面，下面是我从 <a href="http://www.linuxforum.net/">LinuxForum</a> 上面抄过来的设置：
+
+</p>
+
+<pre class="source"><span class="comment-delimiter">;; </span><span class="comment">&#23450;&#20041;&#20320;&#30340; hippie-expend-try&#65293;functions-list
+</span>(setq hippie-expand-try-functions-list
+      '( <span class="comment-delimiter">;;</span><span class="comment">senator-complete-symbol
+</span>        try-expand-dabbrev
+        try-expand-dabbrev-visible
+        try-expand-dabbrev-all-buffers
+        try-expand-dabbrev-from-kill
+        try-complete-file-name-partially
+        try-complete-file-name
+        try-expand-all-abbrevs
+        try-expand-list
+        try-expand-line
+        try-complete-lisp-symbol-partially
+        try-complete-lisp-symbol))
+<span class="comment-delimiter">;; </span><span class="comment">&#32465;&#23450;&#25353;&#38190;
+</span>(global-set-key [(meta ?/)] 'hippie-expend)
+</pre>
+
+
+这个函数在平常的使用中频率还是很高的，特别是编程的时候，既能省力又保证不
+会出错。
+
+</p>
+
+<h3><a id="sec-8">资源链接</a></h3>
+
+<p>
+下面是我知道的有关 Emacs 的资料站点和个人主页，以及一些教程。
+
+</p>
+
+<h4><a id="sec-9">外文站点</a></h4>
+
+<p>
+<a href="http://www.gnu.org/software/emacs/emacs.html">Emacs</a>: GNU Emacs 的主页<br />
+<a href="http://www.xemacs.org/">XEmacs</a>: XEmacs 的主页
+
+</p>
+
+<p>
+<a href="http://www.emacswiki.org/">www.emacswiki.org</a>: Emacs 和 XEmacs 的 wiki 站点， 强烈推荐<br />
+<a href="http://www.dotemacs.de/">www.dotemacs.de</a>: 一个教你如何配置 .emacs 的站点
+
+</p>
+
+<p>
+<a href="http://www.damtp.cam.ac.uk/user/sje30/emacs/ell.html">Emacs&#32;Lisp&#32;List</a>:  这里保留了一份维护者已知的 Emacs lisp 文件列表<br />
+<a href="http://tiny-tools.sourceforge.net/">Emacs&#32;Tiny&#32;Tools</a>: 如题，用于 Emacs 的小工具
+
+</p>
+
+<h4><a id="sec-10">中文站点</a></h4>
+
+<p>
+<a href="http://www.emacs.cn/">Emacs&#32;中文站点:</a> Emacs 的中文站点，Wiki 建站，资源膨胀中……<br />
+<a href="http://www.gnu.org/software/chinese/manual/TUTORIAL.cn">Emacs&#32;快速指南</a>: Emacs 菜单->Help->Emacs Tutorial(choose language...)，选择语言<br />
+<a href="http://zhdotemacs.sourceforge.net/emacs/index.html">Emacs&#32;中文化指南</a>: 中文使用者当然不能错过了
+
+</p>
+
+<p>
+<a href="http://learn.tsinghua.edu.cn/homepage/2001315450/emacs.html">Shredder</a>: 王垠个人主页的 Emacs 部分<br/>
+<a href="http://liyu2000.nease.net/webpage/Emacs.html">Liyu</a>: 李宇个人主页的 Emacs 部分<br/>
+<a href="http://learn.tsinghua.edu.cn/homepage/2003214890/publish/GNU/emacs.html">Xueruini</a>: 薛瑞尼个人主页的 Emacs 部分
+
+</p>
+
+<p>
+<a href="http://ann77.stu.cdut.edu.cn/Emacs/EmacsIndex.html">ChunYe&#32;Wang</a>: 王纯业个人主页的 Emacs 部分<br/>
+<a href="http://202.38.99.17/%7ehuxw/">RobinH.ood</a>: RobinH.ood 的个人网站
+
+</p>
+
+<h4><a id="sec-11">一些</a> elisp 的教程</h4>
+
+<p>
+<a href="../doc/elisp_html_node.tar.gz">GNU&#32;Emacs&#32;Lisp&#32;Reference&#32;Manual</a><br />
+<a href="../doc/emacs-lisp-intro.html">An&#32;Introduction&#32;to&#32;Programming&#32;in&#32;Emacs&#32;Lisp</a>
+</p>      <!-- Page published by Emacs Wiki ends here -->
+      <div id="foot">
+	2004-<script language="javascript">var d = new
+	Date();document.write(d.getFullYear())</script> &copy;
+	Sucha. Powered by EmacsWiki.
+      </div><!-- foot -->
+      </div><!-- text -->
+      <div id="sidebar">
+	<p class="header">Here</p>
+	<ul>
+	  <li><a href="../index.html">Home</a></li>
+	  <li><a href="index.html">Front</a></li>
+	  <li><a href="../scratch/ThisSite.html">This Site</a></li>
+	  <li><a href="../live/AboutMe.html">About Me</a></li>
+	  <li><a href="../scratch/EmacsWiki.html">Emacs Wiki</a></li>
+	</ul>
+	<p class="header">Categories</p>
+	<ul>
+	  <li><a href="../blog/index.html">Blog</a></li>
+	  <li><a href="../live/index.html">Life</a></li>
+	  <li><a href="../cs/index.html">Lab</a></li>
+	  <li><a href="../slack/index.html">Slackware</a></li>
+	  <li><a href="../muse/index.html">Muse</a></li>
+	  <li><a href="../scratch/index.html">Scratch</a></li>
+	</ul>
+	<p class="header">Search</p><!-- Google Search -->
+	<form id="searchform" method="get"
+	      action="http://www.google.com/search" >
+	  <p><input id="searchtext" type="text" name="q" value="" /></p>
+          <p><input type="hidden" name="ie" value="utf-8" /></p>
+	  <p><input type="hidden" name="oe" value="utf-8" /></p>
+	  <p><input type="hidden" name="hl" value="zh-CN" /></p>
+ 	  <p><input type="hidden" name="domains" value="suchang.net" /></p>
+          <p><input name="si" type="hidden" value="suchang.net" /></p>
+          <p><input type="hidden" name="sitesearch" value="suchang.net" /></p>
+	</form>
+	<p class="header">Contact</p>
+	<ul>
+	  <li><a href="mailto:suchaaa@gmail.com">Email Me</a></li>
+	</ul>
+      </div><!-- sidebar -->
+    </div><!-- body -->
+  </body>
+</html>

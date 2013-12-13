@@ -1,0 +1,138 @@
+/* By sucha in Apirl, 2006 */
+
+/* initial section */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    width: 100%;
+    background-color: #9ec5c9;
+}
+
+
+/* body section */
+
+body {
+    width: 100%;
+    font: 14px/1.5 "Luxi Serif", Verdana, helvetica, sans-serif;    
+}
+
+#body {
+    background-color: transparent;
+}
+
+
+/* sidebar section*/
+
+#sidebar {
+    width: 15%;
+    float: right;
+    position: absolute;
+    margin-left: 74%;
+    margin-top: 12%;
+}
+
+#sidebar ul {
+    list-style-type: none;
+}
+
+#sidebar p.header {
+    color: #526568;
+    margin-top: 1.5em;
+    margin-bottom: .7em;
+    font-size: 105%;
+    font-weight: bold;
+}
+
+
+/* text section */
+
+#content {
+    width: 45%;
+    float: left;
+    position: absolute;
+    margin-top: 9%;
+    margin-bottom: 0.5em;
+    margin-left: 21%;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-bottom: 0.5em;
+    border: 1px solid gray;
+    background-color: #efefef;
+}
+
+#text p {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 1.7em;
+    margin-right: 1.5em;
+}
+
+#news {
+    margin-top: 1.5em;
+    margin-bottom: 1em;
+    color: #ec7373;
+    font-weight: bold;
+}
+
+#text-link {
+    margin-top: 1.7em;
+    text-align: right;
+}
+
+#foot {
+    color: silver;
+    margin-top: 2.3em;
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 85%;
+    font-weight: bold;
+    font-style: oblique;
+    text-align: center;
+    position: relative;
+    clear: both;
+}
+
+#bored a {
+    color: #7da5b0;
+    left: 0;
+    bottom: 0;
+    padding-left: 2px;
+    position: absolute;
+    font-size: 80%;
+    text-decoration: none;
+}
+
+#bored a:hover {
+    color: gray;
+    text-decoration: none;
+}
+
+
+/* headline section */
+
+h1 {
+    color: #63787b;
+    text-align: center;
+    margin-top: 0.35in;
+    margin-bottom: 0.2in;
+    padding-bottom: 0.6em;
+    font-size: 1.7em;
+    font-weight: bold;
+    font-family: "Bookman Old Style", serif;
+}
+
+/* link section */
+
+a { 
+    color: #0061c4;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:hover {
+    color: black;
+    text-decoration: underline;
+}

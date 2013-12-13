@@ -1,0 +1,1125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+  <head>
+    <title>Sucha's Homepage - Slack Book</title>
+    <meta name="generator" content="emacs-wiki.el" />
+    <meta http-equiv="Content-Type" content=" text/html; charset=utf-8" />
+    <meta name="author" content="Sucha" />
+    <meta name="copyright" content="GFDL, http://www.gnu.org/licenses/fdl.html" />
+    <meta name="keywords" content="Sucha, Suchang, programming, GNU, Unix, Linux, Slackware, Emacs, elisp" />
+    <meta name="description" content="Sucha's homepage and blog" />
+    <link rel="made" href="mailto:suchaaa@gmail.com" />
+    <link rel="shortcut icon" href="../images/ico.png" />
+    <link rel="stylesheet" type="text/css" href="../styles/site.css" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="../blog/rss.xml" />
+    <!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="../styles/ie.css" /><![endif]-->
+  </head>
+  <body>
+    <div id="body">
+      <div id="text">
+	<h1>Sucha's Homepage ~ Slack Book</h1>
+	<!-- Page published by Emacs Wiki begins here -->
+<h2>Slackware Linux Essentials</h2>
+
+<p>
+Slackware Linux Essentials 已经成了 Slackware 官方的读本，下面是我选择翻译的几章。
+
+</p>
+
+<p>
+<strong>本页目录</strong>
+
+</p>
+
+<dl class="contents">
+<dt class="contents">
+<a href="#sec-1">第16章 Vi</a>
+</dt>
+<dd>
+<dl class="contents">
+<dt class="contents">
+<a href="#sec-2">16.1 启动 vi</a>
+</dt>
+<dt class="contents">
+<a href="#sec-3">16.2 模式</a>
+</dt>
+<dd>
+<dl class="contents">
+<dt class="contents">
+<a href="#sec-4">16.2.1 命令模式</a>
+</dt>
+<dt class="contents">
+<a href="#sec-5">16.2.2 插入模式</a>
+</dt>
+</dl>
+</dd>
+<dt class="contents">
+<a href="#sec-6">16.3 打开文件</a>
+</dt>
+<dt class="contents">
+<a href="#sec-7">16.4 保存文件</a>
+</dt>
+<dt class="contents">
+<a href="#sec-8">16.5 退出 vi</a>
+</dt>
+<dt class="contents">
+<a href="#sec-9">16.6 配置 vi</a>
+</dt>
+<dt class="contents">
+<a href="#sec-10">16.7 Vi 按键</a>
+</dt>
+</dl>
+</dd>
+<dt class="contents">
+<a href="#sec-11">第17章 Emacs</a>
+</dt>
+<dd>
+<dl class="contents">
+<dt class="contents">
+<a href="#sec-12">17.1 启动 Emacs</a>
+</dt>
+<dd>
+<dl class="contents">
+<dt class="contents">
+<a href="#sec-13">17.1.1 命令按键</a>
+</dt>
+</dl>
+</dd>
+<dt class="contents">
+<a href="#sec-14">17.2 缓冲区</a>
+</dt>
+<dt class="contents">
+<a href="#sec-15">17.3 模式</a>
+</dt>
+<dd>
+<dl class="contents">
+<dt class="contents">
+<a href="#sec-16">17.3.1 打开文件</a>
+</dt>
+</dl>
+</dd>
+<dt class="contents">
+<a href="#sec-17">17.4 基本编辑</a>
+</dt>
+<dt class="contents">
+<a href="#sec-18">17.5 保存文件</a>
+</dt>
+<dd>
+<dl class="contents">
+<dt class="contents">
+<a href="#sec-19">17.5.1 离开 Emacs</a>
+</dt>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt class="contents">
+<a href="#sec-20">第18章 Slackware 包管理</a>
+</dt>
+<dd>
+<dl class="contents">
+<dt class="contents">
+<a href="#sec-21">18.1 包格式总览</a>
+</dt>
+<dt class="contents">
+<a href="#sec-22">18.2 包实用程序</a>
+</dt>
+<dd>
+<dl class="contents">
+<dt class="contents">
+<a href="#sec-23">18.2.1 pkgtool</a>
+</dt>
+<dt class="contents">
+<a href="#sec-24">18.2.2 installpkg</a>
+</dt>
+<dt class="contents">
+<a href="#sec-25">18.2.3 removepkg</a>
+</dt>
+<dt class="contents">
+<a href="#sec-26">18.2.4 upgradepkg</a>
+</dt>
+<dt class="contents">
+<a href="#sec-27">18.2.5 rpm2tgz/rpm2targz</a>
+</dt>
+</dl>
+</dd>
+<dt class="contents">
+<a href="#sec-28">18.3 制作包</a>
+</dt>
+<dd>
+<dl class="contents">
+<dt class="contents">
+<a href="#sec-29">18.3.1 explodepkg</a>
+</dt>
+<dt class="contents">
+<a href="#sec-30">18.3.2 makepkg</a>
+</dt>
+<dt class="contents">
+<a href="#sec-31">18.3.3 <nop>SlackBuild</nop> 脚本</a>
+</dt>
+</dl>
+</dd>
+<dt class="contents">
+<a href="#sec-32">18.4 制作 Tags 和 Tagfiles（用于安装）</a>
+</dt>
+</dl>
+</dd>
+</dl>
+
+
+
+
+<h3><a id="sec-1">第</a>16章 Vi</h3>
+
+<p>
+vi(1) 是标准 Unix 系统的文本编辑程序，虽然如今掌握它已不像从前那样必要了，但是仍然是一个很有益的目标。vi 有好几个版本（或者说是克隆），包括 vi，elvis，vile，和 vim。它们中的任何一个都可以在各种版本的 Unix 上获得，在 Linux 上也一样。所有的这些版本包括同样的基本特性设置和命令，所以学好一个版本后将很容易学会其他。如今各种 Linux 发行版和类 Unix 系统拥有多种多样的文本编辑器，许多人已经不再使用 vi。但 vi 仍然是 Unix 和类 Unix 系统最普遍的文本编辑器。掌握 vi 意味着（当你）只有一个强大的文本编辑器时处于 Unix 环境不会感到不适。
+
+</p>
+
+<p>
+vi 拥有包括语法高亮，格式代码，强大的搜索代换工具，宏，等等一系列强大的功能。这些功能使得它对编程者，网站开发者，等等相似工作的人们具有特殊的吸引力。系统管理员会欣赏（vi）与 shell 完美的集成和自动化作业。
+
+</p>
+
+<p>
+在 Slackware Linux 里，缺省的 vi 版本是 elivis。其他的版本 —— 包括 vim 和 gvim —— 在你装了相应的包后都可以得到。gvim 是 vim 在 X 窗口下的版本，包括工具栏，弹出菜单，和对话框。
+
+</p>
+
+<h4><a id="sec-2">16</a>.1 启动 vi</h4>
+
+<p>
+vi 可以以多种方式从命令行启动。最简单的格式就是：
+
+</p>
+
+<pre class="source">% vi
+</pre>
+
+
+图 16-1.一个 vi 的进程。
+
+</p>
+
+<p>
+这样会使 vi 以一个空的缓冲区启动。此时，你会看到一个屏幕的空格。现在正处于命令模式，等待你去做什么东西。16.2 节将讨论 vi 的各种模式。为了退出 vi，如下输入：
+
+</p>
+
+<pre class="source">:q
+</pre>
+
+
+假设没有对文件作任何改动，这个命令会让 vi 退出。如果文件已经有了改动，它会警告你已经做了改动同时告诉你如何忽视它们。放弃改动意味着在"q"的后面加个惊叹号就像这样：
+
+</p>
+
+<pre class="source">:q!
+</pre>
+
+
+惊叹号通常意味着强制执行。我们过会儿将会讨论它和其他的按键组合更多的细节。
+
+</p>
+
+<p>
+你还可以用打开一个已经存在文件的方式打开 vi。比如，如下打开/etc/resolv.conf 文件：
+
+</p>
+
+<pre class="source">% vi /etc/resolv.conf
+</pre>
+
+
+最后，可以让 vi 从文件的某一行启动。这对编程人员特别有用，当出错信息显示他们程序的某一行发生了错误时。比如，你可以如下启动 vi 定位于/usr/src/linux/init/main.c 第 47 行：
+
+</p>
+
+<pre class="source">% vi +47 /usr/src/linux/init/main.c
+</pre>
+
+
+vi 会显示打开的文件并将光标定位在指定的行。如果你指定的行数超出了文件的行数，vi 会将光标置于最后一行。这对编程人员特别有用，他们可以直接跳到文件出错的地方而不用搜索它。
+
+</p>
+
+<h4><a id="sec-3">16</a>.2 模式</h4>
+
+<p>
+vi 运转于用来完成各式任务的多种模式中。当你第一次打开 vi，将处于命令模式。从这里开始，你可以输入各种命令来控制文本，在文件里移动，保存，退出，和变换模式。在插入模式中编辑文本。你可以用大量按键在模式间快速移动，这会在稍后介绍。
+
+</p>
+
+<h5><a id="sec-4">16</a>.2.1 命令模式</h5>
+
+<p>
+你首先被置于命令模式。在这个模式中，你不能直接输入或编辑已经存在的文本。尽管如此，你可以处理文本，搜索，离开，保存，加载新文件，等等。这里仅仅希望对命令模式做一个介绍。对各种模式的描述，在第 16.7 节。
+
+</p>
+
+<p>
+或许在命令模式中最为常用的命令就是变换到插入模式。这可以由敲击 i 键来完成。光标改变了形状，然后在屏幕底部出现 -- 插入 --（注意并不是所有的 vi 克隆都会这样）。从那儿开始，你所有的按键都被输入到当前缓冲区并在屏幕上显示。为了回到命令模式，按一下 ESCAPE 键。
+
+</p>
+
+<p>
+命令模式还是你在文件里移动时所处的模式。在一些系统里，你可以使用方向键去移动。在其他的系统里，你需要使用更传统的按键"hjkl"。这有一份如何使用按键移动的清单：
+
+</p>
+
+<pre class="example">h	向左移动一个字符
+j	向下移动一个字符
+k	向上移动一个字符
+l	向右移动一个字符
+</pre>
+
+<p>
+简单按下一个键可以移动。就像你待会儿将看到的，这些按键可以和数字结合起来使移动更为快捷。
+
+</p>
+
+<p>
+你在命令模式里使用的许多命令都以一个冒号开头。比如，退出就是 :q，就像前面讨论过的一样。冒号简单地指出那是一个命令，如"q"告诉 vi 去退出。其他的命令是一个字母后加一个可选择的数字。这些命令前面并没有冒号，且通常用于处理文本。
+
+</p>
+
+<p>
+比如，从文本里完全删除一行只需敲击 dd。这会移除光标所在的一行。给出命令 4dd 将告诉 vi 移除光标所在行和其下三行。一般来说，数字告诉 vi 将命令重复多少次。
+
+</p>
+
+<p>
+你可以将数字和控制移动的按键组合使得一次可以移动多个字符。比如，10k 会在屏幕里向上移动十行。
+
+</p>
+
+<p>
+命令模式同样可以用于剪切和粘贴，插入文本，同时在当前缓冲区读入其他的文件。复制文本由 y 键完成（y 代表拉回［yank］）。复制当前行由敲击 yy 完成，同时可以在前面甜数字拉回多行。然后，移动到要复制的地方敲击 p。文本将被粘贴在当前行的下面。
+
+</p>
+
+<p>
+剪切文本由 dd 完成，然后 p 被用于将剪切的文本粘贴回文件。从其他的文件载入文本是一个简单的步骤。只需敲击 :r，紧跟一个空格和包含被插入文本的文件名。文件的内容将被粘贴进当前缓冲区光标下一行。更棒的 vi 克隆甚至包含和 shell 差不多的文件名补全。
+
+</p>
+
+<p>
+最后将谈到的搜索也使用它（命令模式）。命令模式允许简单的搜索，而复杂的搜索－替换命令将使用一种强大的正则表达式。对正则表达式完整的讨论在本章范围之外，所以这样将仅仅提到搜索的简单方式。
+
+</p>
+
+<p>
+简单的搜索由敲击 / 键完成，接着输入需要搜索的文字。vi 会从光标处向文件尾做匹配，找到后就停止。注意不正确的匹配同样会让 vi 停止。比如，对"the"的搜索会使得 vi 在"then"，"therefore"，等等地方停止。这是因为这些词都匹配"the"。
+
+</p>
+
+<p>
+vi 找到第一个匹配后，你可以通过简单敲击 / 键接着回车继续下一个匹配。同样可以通过用 ? 替代斜杠在文件中向后做匹配，在文件中向后做"the"的匹配可通过敲击 ?the 完成。
+
+</p>
+
+<h5><a id="sec-5">16</a>.2.2 插入模式</h5>
+
+<p>
+插入和替换文本在插入模式里完成。就如前面讨论过的，你可以通过敲击 i 从命令模式进入到插入模式。接着，所有你打的文字都被输入到当前缓冲区中。敲击 ESCAPE 键将回到命令模式。
+
+</p>
+
+<p>
+替换文本可通过几种方式完成。在命令模式里，敲击 r 就可以替换在光标下的一个字符。只需输入新的字符然后它将替换光标下面的那个。接着立刻回到命令模式。敲击 R 将让你替换如你所需的字符。只要敲击 ESCAPE 就可以离开替换模式回到命令模式。
+
+</p>
+
+<p>
+还有另外一个将插入和替换结合在一起的方式。在命令模式中敲击 INSERT 键会将你带进插入模式。当你在插入模式中时，键盘上的 INSERT 键将插入和替换结合在了一起。一旦敲击它将让你实现替换。再次敲击它将让你插入文本。
+
+</p>
+
+<h4><a id="sec-6">16</a>.3 打开文件</h4>
+
+<p>
+vi 允许你从命令模式里打开文件有如在命令行里指定打开的文件。如下打开/etc/lilo.conf 文件：
+
+</p>
+
+<pre class="source">:e /etc/lilo.conf
+</pre>
+
+
+如果你在当前缓冲区做了改变而没有保存，vi 会提示。你仍然可以不用保存当前缓冲区就打开文件，只需敲击 :e!，后接一个空格然后是文件名。通常，命令后紧跟叹号可以禁止 vi 的警告。
+
+</p>
+
+<p>
+如果你希望重打开当前的文件，你可以通过简单的敲击 e! 来完成。当你将文件搞得一团糟并希望重新打开它时特别有用。
+
+</p>
+
+<p>
+一些 vi 的克隆（比如，vim）允许同时打开多个缓冲区。比如，当另一个文件已经打开了时，打开主目录下的文件 09-vi.sgml，我会输入：
+
+</p>
+
+<pre class="source">:split ~/09-vi.sgml
+</pre>
+
+
+新文件在屏幕的上半部分显示，而旧文件在屏幕的下半部显示。有许多命令可以处理分屏，其中某些来自 Emacs，man page 里有相应的介绍。注意许多 vi 克隆并不支持分屏，所以并不是什么地方都可以使用。
+
+</p>
+
+<h4><a id="sec-7">16</a>.4 保存文件</h4>
+
+<p>
+在 vi 里有许多方式来保存文件。如果你想将当前的缓冲区保存到一个随机文件，可以输入：
+
+</p>
+
+<pre class="source">:w randomness
+</pre>
+
+
+当你已经保存过文件后，再次保存它只需简单敲击 :w。所有的改变都将写入文件。当你保存了文件后，又将回到命令模式。如果你想保存文件然后离开vi（一个很平常的操作），只需敲击 :wq。那会告诉 vi 保存当前文件同时退出回到 shell。
+
+</p>
+
+<p>
+有时，你想保存一个只读文件。只需在写入命令后加叹号，如下：
+
+</p>
+
+<pre class="source">:w!
+</pre>
+
+
+不管怎样，仍有你不能写入的文件（比如，你试图编辑一个不属于你的文件）。当这种事情发生时，vi 会告诉你无法保存文件。如果你真的想要编辑这个文件，你不得不以 root 或（更好的是）文件拥有者的身份来编辑它。
+
+</p>
+
+<h4><a id="sec-8">16</a>.5 退出 vi</h4>
+
+<p>
+退出 vi 的一个方式是通过（敲击） :wq，这会在退出前保存当前缓冲区。你也可以用 :q 或（更常用） :q! 不保存退出。后者当你对文件做了改动却不想保存时将用到。
+
+</p>
+
+<p>
+有时，你的机器会当掉或 vi 会崩溃。不管怎样，elvis 和 vim 都会采取措施将对缓冲区的破坏减至最小。两个编辑器都会在必要时将打开的缓冲区保存到一个一个临时文件。文件通常与打开的文件名字相似，前面多加一个点。这样会使文件隐藏。
+
+</p>
+
+<p>
+一旦在编辑器正常退出，临时文件将被移除。这意味着某些东西崩溃后临时的拷贝仍在。当你回过头来再次编辑文件，会得到做相应行动的提示。大多数情况下，大部分未保存的东西都可以被恢复。elvis 同样会给你发一封电子邮件（来自Graceland，够古怪的了 :）告诉你一个备份的拷贝仍在。
+
+</p>
+
+<h4><a id="sec-9">16</a>.6 配置 vi</h4>
+
+<p>
+你那特别的 vi 克隆可用多种方式配置。
+
+</p>
+
+<p>
+在命令模式中，大量命令可用来输入配置 vi，依你的喜好输入。取决于你的编辑器，你可以打开特性让编程更容易些（像语法高亮，自动缩进，等等），建立宏自动完成任务，打开文本置换，等等。
+
+</p>
+
+<p>
+这些命令的绝大部分都可以放进你主目录的一个配置文件里。elvis 读取 .exrc 文件，而 vi 读取 .vimrc 文件。大多数在命令模式里输入的配置命令都可以放到配置文件里。包括设置信息，置换文本，宏，等等。
+
+</p>
+
+<p>
+讨论所有的选项及对于不同编辑器的区别是一个复杂的主题。更多的信息，为你首选的 vi 编辑器查看 man page 或网页。一些编辑器（像 vim）在编辑器内部有多方面的帮助文件，或者一些相似的东西，可以通过 :help 命令得到。你还可以查看 O'Reilly 出版，由 Lamb 和 Robbins 写的书 《Learning the vi Editor》。
+
+</p>
+
+<p>
+Linux 下一般的程序缺省使用 vi 打开文本文件。比如，编辑你的 crontabs 会缺省使用 vi 打开。如果你不喜欢 vi 并希望用另外一个编辑器去代替，只需设置 VISUAL 环境变量成你希望的编辑器。关于环境变量的更多信息，看《第八章环境变量》。如果你希望确保每次登录后自己喜欢的编辑器成为缺省值，将VISUAL
+的设定加到 .bash_profile 或 .bashrc 文件里。
+
+</p>
+
+<h4><a id="sec-10">16</a>.7 Vi 按键</h4>
+
+<p>
+这个章节是许多 vi 常用命令的快速参考。一些命令已在前面的章节讨论过，而许多是新的。
+
+</p>
+
+<p>
+表 16-1。移动
+<pre class="example">操作		按键
+向左，向下，向上，向右	h, j, k, l
+移动到行末		$
+移动到行首		^
+移动到文件尾		G
+移动到文件头		:1
+移动到第 47 行		:47
+</pre>
+
+<p>
+表 16-2。编辑
+<pre class="example">操作		按键
+移去一行		dd
+移去 5 行	5dd
+替换一个字符	r
+移去一个字符	x
+移去 10 个字符	10x
+撤销最后一次操作	u
+连接当前行和下一行	J
+新文本替换旧文本，全局性	%s'old'new'g（？）
+</pre>
+
+<p>
+表 16-3。查找
+<pre class="example">操作		按键
+向前查找&quot;asdf&quot;	/asdf
+向后查找&quot;asdf&quot;	?asdf
+重复向前查找	/
+重复向后查找	?
+重复同个方向的查找	n
+重复相反方向的查找	N
+</pre>
+
+<p>
+表 16-4。保存和退出
+<pre class="example">退出		:q
+退出但不保存	:q!
+写入然后退出	:wq
+写入，但不退出	:w
+重新打开当前文件	:e!
+打开文件 hejaz	:e hejaz
+将文件 asdf 读入缓冲区	:r asdf
+将 ls 的输出读入缓冲区	:r !ls
+</pre>
+
+<h3><a id="sec-11">第</a>17章 Emacs</h3>
+
+<p>
+当 vi （还有它的克隆）毫无疑问地成为类 Unix 系统里普遍存在的编辑器时，Emacs 来得正好。与 vi 使用各种"模式"不同，它使用 Control 和 Alt 键的组合来输入命令，和你在字处理程序和其他应用程序里使用 Control 和 Alt 键的组合去执行相应的功能方式相同。（然而［Emacs 的］命令相当一致应该值得赞扬；因此当许多现代的应用程序使用 Ctrl-C/ X/ V 来复制，剪切和粘贴时，Emacs 使用不同的按键或者事实上一个稍微有点不同的机制来完成这些。）
+
+</p>
+
+<p>
+同样的跟一个（优秀的）编辑器同时除此以外什么都不是的 vi 不同，Emacs 是一个有着近乎无穷可扩展能力的程序。Emacs（绝大部分）用 Lisp 写成，那是一种强大的具有奇异性能的编程语言，每种用它写成的的程序自动拥有自己的 Lisp 解释器。这意味着用户可以扩展 Emacs，或者实际上“在 Emacs 里”写一个完整 的新程序。
+
+</p>
+
+<p>
+因此，Emacs 不仅仅只是一个编辑器而已。存在着很多可获得的 Emacs 附加程序包（许多结合进了［Emacs］程序的源码），来提供各种各样的功能。许多程序包和文本编辑有关，提供除在 Emacs 基本作业之外，但不仅仅停留在此的功能。比如那几个电子制表软件，还有数据库，游戏，电子邮件和新闻组客户端（最棒的是 Gnus），等等。
+
+</p>
+
+<p>
+Emacs 有两个主要的版本：GNU Emacs（这就是 Slackware 里的那个）和 XEmacs。后者不是 Emacs 运行在 X 下的版本。事实上，Emacs 和 XEmacs 两者运行于 X 和运行于控制台一样的好。XEmacs 曾作为整理 Emacs 代码的一个工程启动。当前，两个版本都处于积极的开发中，而且事实上两个开发团队有着很多相互的影响。在当前的章节里，无论你使用 Emacs 还是 XEmacs 都不重要，它们的区别与普通用户无关。
+
+</p>
+
+<h4><a id="sec-12">17</a>.1 启动 Emacs</h4>
+
+<p>
+Emacs 能从 shell 启动只需简单地键入 emacs。当你运行 X 时，Emacs 会（通常）启动它的 X 窗口，通常还有一个 menu bar［目录条］在顶部，在那儿你可以找到一些最为重要的功能。在启动时，Emacs 会首先显示一个欢迎信息，几秒钟后会将你放到*scratch* ［草稿］缓冲区里。（看 17.2 节.）
+
+</p>
+
+<p>
+<emacs.png>
+
+</p>
+
+<p>
+你还可以用编辑存在的文件的方式启动 Emacs，只需键入
+
+</p>
+
+<pre class="source">% emacs /etc/resolv.conf
+</pre>
+
+
+这会使得 Emacs 启动时去加载这个特别的文件，跳过欢迎信息。
+
+</p>
+
+<h5><a id="sec-13">17</a>.1.1 命令按键</h5>
+
+<p>
+和上面提到的一样，Emacs 使用 Control 和 Alt 键的组合作为命令。通常的惯例是把这些分别写成 C-letter［C-字母］和 M-letter。所以 C-x 意味着 Control+x，M-x 意味着 Alt+x。（字母 M 用来代替 A 是因为原来的按键不是 Alt 键而是 Meta 键，Meta 键已经几乎从计算机键盘里消失了，因此在 Emacs 里 Alt 键代替了它的作用。）
+
+</p>
+
+<p>
+许多 Emacs 命令由按键们的组合和它们的序列组成。举个例子，C-x C-x（就是 Control+x 紧接着 Control-c）离开 Emacs，C-x C-s 保存当前文件。牢记 C-x C-b 和 C-x b 是不同的。前者意味着 Control-x 紧接着 Control-b，而后者意味着 Control-x 接着仅仅只是 'b'。
+
+</p>
+
+<h4><a id="sec-14">17</a>.2 缓冲区</h4>
+
+<p>
+在 Emacs 里，*buffers* 的概念是要点。你打开的每一个文件都被加载进它自己的缓冲区。除此外，Emacs 拥有一些特殊的缓冲区，不是用来装载文件而是别的东西。这些特殊的缓冲区通常有着用星号打头和结尾的名字。比如，Emacs 第一次启动时显示的缓冲区，是叫做 <em>scratch</em> 的缓冲区。在*scratch* 缓
+冲区里，你可以像平常那样写入文字，但是当 Emacs 关闭的时候写入那里的东西不会被保存。
+
+</p>
+
+<p>
+还有另外一个你需要知道的特殊的缓冲区，叫做 minibuffer。这个缓冲区仅有一行组成，同时一直在屏幕上：恰好在 Emacs 窗口里的最下一行，在当前缓冲区状态条下面。minibuffer 是 Emacs 向用户显示消息的地方，同时也是一些需要用户输入的命令执行的地方。比如，当你打开一个文件，Emacs 会在 minibuffer 询问它的名字。
+
+</p>
+
+<p>
+从一个缓冲区切换到另一个缓冲区可以用命令 C-x b 来完成。它会提示你缓冲区的名字（一个缓冲区的名字通常是你正在编辑的文件的名字），然后它会给一个缺省的选择，通常是你切换或创建当前缓冲区之前呆过的缓冲区。只要敲击回车就会切换到那个缺省的缓冲区。
+
+</p>
+
+<p>
+如果你想切换到另外一个缓冲区而不是 Emacs 提供的缺省，只需敲击它的名字。注意你可以在这里使用 Tab 补全： 输入缓冲区名字的前几个字母然后敲击 Tab；接着 Emacs 会补全缓冲区的名字。Tab 补全在 Emacs 任何可行的地方都可以使用。
+
+</p>
+
+<p>
+你可以通过敲击 C-x C-b 来得到一份打开的缓冲区清单。这个命令通常会将屏幕一分为二，在上半部分显示你正在工作的缓冲区，而下半部分显示一个叫做*Buffer List* 的新缓冲区。这个缓冲区包含了一分所有缓冲区的清单，它们的容量和模式，还有文件，如果有的话，还显示那些正在访问的缓冲区（在 Emacs 里就是这样叫的）。你可以通过敲击 C-x 1 来去掉这个分屏。
+
+</p>
+
+<p>
+<strong>注意</strong>	在 X 下，缓冲区清单同样可以在目录栏中的缓冲区目录里得到。
+
+</p>
+
+<h4><a id="sec-15">17</a>.3 模式</h4>
+
+<p>
+Emacs 里的每一个缓冲区都有一个相应的模式。这个模式和 vi 里的模式思想很不相同：一个模式告诉你处于一个什么样的缓冲区中。比如，text-mode 用于平常的文本文件，但是还有像给编辑 C 程序的 c-mode 模式，给编辑 shell 脚本的 sh-mode，给编辑 LaTex 文件的 latex-mode，给编辑 email 和新闻组消息的 mail-mode，等等。一个模式提供实用的特别的定制和功能给你当前编辑的此种文件。甚至为一种模式重新定义按键和按键命令也是可以的。比如，在文本模式里，Tab 键只是简单的跳到紧靠着的一个 tab 长度的地方，但在许多编程语言环境中，Tab 键缩进当前行取决于当前行所处块的深度。
+
+</p>
+
+<p>
+上面提到的模式都叫主模式。每个缓冲区拥有一个确切的主模式。另外，一个缓冲区可以有一个或多个副模式。一个副模式给当前一定的编辑工作提供有用的额外的特性。比如，如果你敲击插入键，就像你希望的那样唤起了 overwrite-mode，。同样还有 auto-fill-mode，它被结合进了 text-mode 还有 latex-mode: 它使得你打的每一行字在达到某个字数后起用新行。没有 auto-fill-mode，你得敲击 M-q 去划齐一个段落。（你还可以在编辑一些发现没有被很好的划齐文字后，使用这个命令来重新划齐。）
+
+</p>
+
+<h5><a id="sec-16">17</a>.3.1 打开文件</h5>
+
+<p>
+在 Emacs 里打开一个文件，敲击
+
+</p>
+
+<pre class="source">C-x C-f
+</pre>
+
+
+Emacs 会问你文件的名字，向你提供一些缺省的路径（通常是 ~/ ）。当你输入文件名（你可以使用 Tab 补全）敲击回车后，Emacs 会在新的缓冲区里打开文件并在屏幕上显示其内容。
+
+</p>
+
+<p>
+<strong>注意</strong>	如果 Emacs 没有将文件载入当前的缓冲区，它会自动创建一个新的缓冲区。
+
+</p>
+
+<p>
+为了在 emacs 里创建一个新文件，你不能马上就进行打字。你首先得为此创建一个新缓冲区，接着给出一个文件名。用 C-x C-f 并输入一个文件名来完成，就像你打开一个存在的文件那样。Emacs 会注意到你打开的是不存在的文件，然后创建一个新的缓冲区同时在 minibuffer 里提示 "(New file)"。
+
+</p>
+
+<p>
+当你敲击 C-x C-f 然后输入一个目录名而不是一个文件名时，Emacs 会创建一个新的缓冲区来显示那个目录下所有文件的清单。将光标移动到你寻找的文件并回车，Emacs 会打开它。（事实上在这你还可以做得更多，比如删除、重命名和移动文件，等等。Emacs 现在处于 dired-mode 模式，基本上就是一个简单的文件管理器。）
+
+</p>
+
+<p>
+当你敲击了 C-x C-f 后突然改变了主意，可以敲击 C-g 去撤销刚才的行动。C-g 几乎在任何你想撤销的，已经执行但不想结束的行动或命令的地方都有用。
+
+</p>
+
+<h4><a id="sec-17">17</a>.4 基本编辑</h4>
+
+<p>
+当你已经打开了一个文件，自然可以利用光标在里面移动。光标的按键 PgUp，PgDn 就像你希望的那样工作。Home 和 End 跳转到行的开头和结尾。（在旧一点的版本里，它们实际上跳转到缓冲区的开头和结尾。）无论如何，还有 Control 和 Meta(Alt)键的组合去移动光标［原文将按键的组合比喻成小型爵士乐团］。因为你不需要为此将手臂移动到键盘的另一部分，当你习惯后将很快捷。像这些最为重要的命令在表格 17-1 里列出来了。
+
+</p>
+
+<p>
+表格 17-1。Emacs 基本编辑命令
+
+</p>
+
+<pre class="example">命令     结果
+C-b	往后移动一个字符
+C-f	往前移动一个字符
+C-n	往下移动一行
+C-p	往上移动一行
+C-a	移动到行的开头
+C-e	移动到行的结尾
+M-b	往后移动一个词
+M-f	往前移动一个词
+M-}	往前移动一个段落
+M-{	往后移动一个段落
+M-a	往后移动一句
+M-e	往前移动一句
+C-d	删除光标下的字符
+M-d	删除当前光标后的字符
+C-v	往下移动一屏（也就是，PgDn）
+M-v	往上移动一屏（也就是，PgUp）
+M-&lt;	移动到缓冲区的开头
+M-&gt;	移动到缓冲区的结尾
+C-_	撤销最后的改变（可以被重复）；注意实际上你得使用
+	Shift+Control+hyphen 来完成这个命令。
+C-k	删除到行末
+C-s	往前搜索
+C-r	往后搜索
+</pre>
+
+<p>
+注意许多的 Meta 命令和 Control 命令是相似的除非是操作一些巨大的单元：C-f 往前移动一个字符，M-f 往前移动一整个词，等等。
+
+</p>
+
+<p>
+同样还要注意 M-< 和 M－> 需要你分别按下 Shift+Alt+comma 和 Shift+Alt+dot ，就像 < 和 > 用 Shift+comma 和 Shift+dot 操作一样。（除非你使用一个非标准的 US 键盘设计。）
+
+</p>
+
+<p>
+注意 C-k 删除 （kills，通常都这么说的[在 Emacs 里]）光标下直到行末的所有字符，除了这一行它本身（也就是，没有删除最后［删除完后剩下的］新的一行）。它仅仅删除这一行直到光标之后没有文字。换句话话说，为了删除一整行，你得将光标移到行的开头，然后敲击 C-k 两次：一次用来删除当前行的文字，一次用来删除行本身。
+
+</p>
+
+<h4><a id="sec-18">17</a>.5 保存文件</h4>
+
+<p>
+为了保存文件，敲击
+
+</p>
+
+<pre class="source">C-x C-s
+</pre>
+
+
+Emacs 不会向你询问一个文件名，缓冲区会被保存在它原来加载的那个文件上。如果你想将文本保存到其他的文件，敲击
+
+</p>
+
+<pre class="source">C-x C-w
+</pre>
+
+
+如果你在运行期间第一次保存这个文件，正常情况下 Emacs 会将你的旧版文件保存成备份文件，就是同样的名字后边加了个符号：若你正编辑一个文件“cars.txt”，Emacs 会创建一个备份"cars.txt~"。
+
+</p>
+
+<p>
+这个备份文件是你打开的这个文件［未操作前］的一个拷贝。当你工作时，Emacs 也会有规律地为你正在操作的文件创建一个 auto-save ［自动保存的］拷贝，文件名加上散列符号：#cars.txt#。这个文件会在你使用 C-x C-s 保存后被删除。
+
+</p>
+
+<p>
+当你已经编辑好了一个文件，需要关闭缓冲区保存它只需敲击
+
+</p>
+
+<pre class="source">C-x k
+</pre>
+
+
+接着 Emacs 会询问你想要关闭哪一个缓冲区，缺省为当前的缓冲区，也可以选择后敲击回车。如果你还不没保存文件，Emacs 会询问你是否真的想要关闭缓冲区。
+
+</p>
+
+<h5><a id="sec-19">17</a>.5.1 离开 Emacs</h5>
+
+<p>
+当你已经用 Emacs 完成了工作，敲击
+
+</p>
+
+<pre class="source">C-x C-c
+</pre>
+
+
+离开 Emacs。如果你还有任何没有保存的文件，Emacs 会告诉你，然后依次询问是否许想要保存。如果你对其中的任何一个回答不，Emacs 会询问作为最后的证实然后退出。
+
+</p>
+
+<h3><a id="sec-20">第</a>18章 Slackware 包管理</h3>
+
+<p>
+一个软件包就是对准备好可以安装的相关程序所打的包。当你下载一个源代码存档，你得手动配置，编译，然后安装。而有了软件包，这些都已经为你做好了。你所需要做的一切就是安装这个包。软件包另一个易于使用的特性就是可以很容易的移除和升级它们，如果你希望的话。Slackware 里的程序可以满足你对包管理的所有需求。你可以很容易地安装，移除，升级，制作，和检查这些包。
+
+</p>
+
+<p>
+流传着这样的谬论，自从 RedHat 开创了 RedHat 包管理器，Slackware 还没有包管理工具。这简直不能偏离事实更远了。Slackware 一直包含着包管理器，甚至在 RedHat 存在前。虽然不如 rpm （或者是 deb）般拥有大量特性或到处存在，pkgtool 及其相关程序的任何一点有如 rpm 般易于安装。关于 pkgtool 的事实并不是它并不存在，而是它根本不做依赖性检查。
+
+</p>
+
+<p>
+似乎许多 Linux 社区里的人认为一个包管理器按照定义必须要包含依赖性检查。喔，那根本不是事实，就好像 Slackware 必定不做那样。这并不是说Slackware 的包没有依赖性，倒不如说它的包管理器没有检查它们。依赖性管理留给了系统管理员，而那正是我们喜欢的方式。
+
+</p>
+
+<h4><a id="sec-21">18</a>.1 包格式总览</h4>
+
+<p>
+在学习实用程序前，你应该先熟悉 Slackware 包格式。在 Slackware 里，一个包就是简单的用 gzip 压缩过的 tar 存档文件。包建立在会从 root 目录里解压之上。
+
+</p>
+
+<p>
+这是一个虚构的程序和它的包例子：
+
+</p>
+
+<pre class="example">./
+usr/
+usr/bin/
+usr/bin/makehejaz
+usr/doc/
+usr/doc/makehejaz-1.0/
+usr/doc/makehejaz-1.0/COPYING
+usr/doc/makehejaz-1.0/README
+usr/man/
+usr/man/man1
+usr/man/man1/makehejaz.1.gz
+install/
+install/doinst.sh
+</pre>
+
+<p>
+包系统会在 root 目录解压这个文件并安装它。包数据库会创建一个包含这个包的内容的条目，以便之后能够升级或移除。
+
+</p>
+
+<p>
+注意 install/ 子目录。这是一个特别的目录，包含一个叫做 doinst.sh 的安装后脚本。如果包系统找到这个文件，它会在安装完包后执行它。
+
+</p>
+
+<p>
+其他的脚本会被嵌入到这个包中，不过这会在之后的第 18.3.2 节做更多的介绍。
+
+</p>
+
+<h4><a id="sec-22">18</a>.2 包实用程序</h4>
+
+<p>
+包管理系统拥有 4 个主要的程序。它们执行安装，移除，和升级包。
+
+</p>
+
+<h5><a id="sec-23">18</a>.2.1 pkgtool</h5>
+
+<p>
+pkgtool(8) 是一个菜单驱动的程序，允许安装和移除包。它的主要菜单会在图18-1 显示。
+
+</p>
+
+<p>
+图 18-1。Pkgtool 的主菜单。
+
+</p>
+
+<p>
+安装可在当前目录，其他的目录或从软盘执行。简单地选择你想要的安装方式然后 pkgtool 会搜索那个位置合法的包来安装。
+
+</p>
+
+<p>
+你也会看到一个已经安装的包的清单，就像图 18-2 显示的。
+
+</p>
+
+<p>
+图 18-2。Pkgtool 显示模式
+
+</p>
+
+<p>
+如果你想移除包，选择移除选项然后一个已经安装的包的清单会呈现在你面前。标上你想要移除的那些然后选择 OK。pkgtool 会移除它们。
+
+</p>
+
+<p>
+一些用户更喜欢这个程序而不是命令行下的那些。尽管如此，必须注意命令行下的程序提供更多的选项。同样，升级包只在命令行下的程序集里提供。
+
+</p>
+
+<h5><a id="sec-24">18</a>.2.2 installpkg</h5>
+
+<p>
+installpkg(8) 处理系统里新包的安装。语法如下：
+
+</p>
+
+<pre class="source"><span class="comment-delimiter"># </span><span class="comment">installpkg option package_name
+</span></pre>
+
+
+installpkg 提供三个选项。一次只能用一个选项。
+
+</p>
+
+<p>
+表 18-1。安装选项
+
+</p>
+
+<pre class="example">选项	效果
+-m	在当前目录执行一个 makepkg 操作。
+-warn	显示如果你安装这个特别的包将发生什么。这在生产系统很有用，你将
+	会在安装前精确地看到发生了什么。
+-r	在当前目录及其下递归地安装所有的包。包名可以使用通配符，在递归
+	安装时有如搜索时的屏蔽。
+</pre>
+
+<p>
+如果在 installpkg 前你改变了 ROOT 环境变量，路径会被用于 root 目录。这在为你的 root 目录建立新驱动将很有用。它们将典型地安装于 /mnt 或其他目录而不是 /。
+
+</p>
+
+<p>
+已经安装的包数据信息存放于 /var/log/packages。那仅仅只是一个平常的文本文件，一个包一个。如果包拥有安装后脚本，它会被写入/var/logscripts/。
+
+</p>
+
+<p>
+你可以对包名特别指定或使用通配符。小心 installpkg 不会告诉你将覆盖一个已经安装的包。它将简单恰好的安装在那个旧的上面。如果你想要确保旧包被安全地移除，使用 upgradepkg。
+
+</p>
+
+<h5><a id="sec-25">18</a>.2.3 removepkg</h5>
+
+<p>
+removepkg(8) 处理从系统移除已经安装过的包。语法就像下面这样：
+
+</p>
+
+<pre class="source"><span class="comment-delimiter"># </span><span class="comment">removepkg option package_name
+</span></pre>
+
+
+removepkg 拥有四个选项。一次只能用一个。
+
+</p>
+
+<p>
+表 18-2。removepkg 选项
+
+</p>
+
+<pre class="example">选项		   效果
+-copy		   包被复制到了保留包目录。这会创建一个包原来的目录结
+		   构但并不移除它。
+-keep		   保留移动过程中创建的临时文件。仅在调试中有用。
+-preserve	   包被移除，但同时被复制到了保留包目录。
+-warn		   显示如果移除包将发生什么。
+</pre>
+
+<p>
+如果在 removepkg 前你改变了 ROOT 环境变量，路径会被用于 root 目录。这在为你的 root 目录建立新驱动将很有用。它们将典型地安装于 /mnt 或其他目录而不是 /。
+
+</p>
+
+<p>
+removepkg 检查其他已经安装了的包但仅仅移除你唯一指定的包文件。它同时还为特别的包检查安装后脚本同时移除它创建的符号链接。
+
+</p>
+
+<p>
+在移除过程中，将显示状态报告。移除后，包数据信息被移动到了 /var/log/removed_packages 同时安装后脚本被移除到了 /var/log/removed_scripts。
+
+</p>
+
+<p>
+就像 installpkg 一样，你可以为包名特别指定或使用通配符。
+
+</p>
+
+<h5><a id="sec-26">18</a>.2.4 upgradepkg</h5>
+
+<p>
+upgradepkg(8) 将升级一个已经安装的 Slackware 包。语法如下：
+
+</p>
+
+<pre class="source"><span class="comment-delimiter"># </span><span class="comment">upgradepkg package_name
+</span></pre>
+
+
+或者
+
+</p>
+
+<pre class="source"><span class="comment-delimiter"># </span><span class="comment">upgradepkg old_package_name%new_package_name
+</span></pre>
+
+
+upgradepkg 用于先安装新包然后移除旧包，然后将旧包清除出系统。如果升级后的包名已经改变，使用百分号语法指定旧包（已经安装的包）和新包（你升级后的包）。
+
+</p>
+
+<p>
+如果在 upgradepkg 前你改变了 ROOT 环境变量，路径会被用于 root 目录。这在为你的 root 目录建立新驱动将很有用。它们将典型地安装于 /mnt 或其他目录而不是 /。
+
+</p>
+
+<p>
+upgradepkg 不是没有缺点的。你应该随时为你的配置文件做备份。如果它们被移除或覆盖了，你将会为修复工作寻求一个原来文件的拷贝。
+
+</p>
+
+<p>
+有如 installpkg 和 removepkg，你可以为包名特别指定会使用通配符。
+
+</p>
+
+<h5><a id="sec-27">18</a>.2.5 rpm2tgz/rpm2targz</h5>
+
+<p>
+Red Hat 包管理器是当今流行的包管理系统。许多发行版提供 RPM 格式的产品。因为这不是我们自己的格式，所以不推荐大家依靠它们。尽管如此，有些东西只能依靠 RPM 格式得到（甚至源代码）。
+
+</p>
+
+<p>
+我们提供一个可以将 RPM 包转换成本地 .tgz 格式的程序。它允许你解压包（可能将和 explodepkg 一起）到一个临时目录然后检查它的内容。
+
+</p>
+
+<p>
+rpm2tgz 程序将创建一个以 .tgz 为扩展名的 Slackware 包，而 rpm2targz 创建一个以 .tar.gz 为扩展名的存档。
+
+</p>
+
+<h4><a id="sec-28">18</a>.3 制作包</h4>
+
+<p>
+制作 Slackware 包要么容易要么困难。制作包没有特别的方法。唯一的必要条件是包必须是一个 gzip 压缩过的 tar 文档同时如果有一个安装后脚本，它必须是 /install/doinst.sh。
+
+</p>
+
+<p>
+如果你对为自己管理的系统或网络制作包感兴趣，你应该看一下在 Slackware 源码目录树里面的各种制作脚本。那有几种我们制作包的方法。
+
+</p>
+
+<h5><a id="sec-29">18</a>.3.1 explodepkg</h5>
+
+<p>
+explodepkg(8) 将以 installpkg 同样的方式解包，但并不安装同时也不在包数据库里记录。它仅仅在当前目录里面解包。
+
+</p>
+
+<p>
+如果你查看一下 Slackware 的源码目录树，将会看到我们如何使用这个命令来“组织”包。这些包都含有一个与最终包相似的骨骼。他们拥有所有必要的文件名（大小为零），权限，所有权。安装脚本将从源码目录输出（cat）包的内容到包安装目录。
+
+</p>
+
+<h5><a id="sec-30">18</a>.3.2 makepkg</h5>
+
+<p>
+makepkg(8) 可以将当前目录打包成一个合法的 Slackware 包。它会去搜寻目录树里所有的符号连接，并为了在包安装过程中创建它们向安装后脚本加上一个创建块。它同样会警告在包目录树里任何零大小的文件。
+
+</p>
+
+<p>
+这个命令典型地运用于你创建了的包目录树。
+
+</p>
+
+<h5><a id="sec-31">18</a>.3.3 SlackBuild</nop> 脚本</h5>
+
+<p>
+Slackware 包按需要通过不同的方式制作。不是所有由编程人员编写的软件包都用同样的方式编译。许多的编译选项并不包含在 Slackware 使用的包里。也许你需要其中的一些功能；因此有必要编译自己的包。幸运的是在许多的 Slackware源码包里，你可以找到 SlackBuild 脚本。
+
+</p>
+
+<p>
+那么什么是 SlackBuild 脚本？SlackBuild 脚本就是以 root 身份来配置，编译，然后创建 Slackware 包的可执行的 shell 脚本。你可以在源码目录里自由修改这些脚本然后运行它们来为缺省的 Slackware 包创建你自己的的版本。
+
+</p>
+
+<h4><a id="sec-32">18</a>.4 制作 Tags 和 Tagfiles（用于安装）</h4>
+
+<p>
+Slackware 安装程序处理系统里软件包的安装。有一些文件可以告诉安装程序哪些包必须安装，哪些可供选择，而哪些缺省由安装程序自己选择。
+
+</p>
+
+<p>
+一个 tagfile 就是在软件系列目录里的第一层名叫 tagfile 的文件。它列出特定磁盘设备里的包和它们的状态。这些状态可以是：
+
+</p>
+
+<p>
+表 18－3。Tagfile 状态选项
+<pre class="example">选项		  含义
+ADD		  这个包为特殊的系统操作所必须
+SKP		  这个包会被自动忽略
+REC		  这个包不是必须的，但建议使用
+OPT		  这个包可供选择
+</pre>
+
+<p>
+格式很简单：
+<pre class="example">包名：状态
+</pre>
+
+<p>
+一个包一行。原来每个软件系列的 tagfiles 被存成 tagfile.org。所以如果你搞乱了你自己的，可以恢复原来的那个。
+
+</p>
+
+<p>
+许多管理人员更喜欢编写他们自己的 tagfiles 然后启动安装程序选择“完全”。安装程序会读取 tagfiles 然后依据内容来安装。如果你使用 REC 或者 OPT，（程序）会向用户出现对话框询问是否想要那个包。所以，建议你为自动安装写 tagfiles 时仅使用 ADD 和 SKP。
+
+</p>
+
+<p>
+确保你的 tagfiles 被写入到和原来那个同样的位置。或者如果你有定制的 tagfiles可以特别指定一个定制的 tagfile 路径。
+</p>      <!-- Page published by Emacs Wiki ends here -->
+      <div id="foot">
+	2004-<script language="javascript">var d = new
+	Date();document.write(d.getFullYear())</script> &copy;
+	Sucha. Powered by EmacsWiki.
+      </div><!-- foot -->
+      </div><!-- text -->
+      <div id="sidebar">
+	<p class="header">Here</p>
+	<ul>
+	  <li><a href="../index.html">Home</a></li>
+	  <li><a href="index.html">Front</a></li>
+	  <li><a href="../scratch/ThisSite.html">This Site</a></li>
+	  <li><a href="../live/AboutMe.html">About Me</a></li>
+	  <li><a href="../scratch/EmacsWiki.html">Emacs Wiki</a></li>
+	</ul>
+	<p class="header">Categories</p>
+	<ul>
+	  <li><a href="../blog/index.html">Blog</a></li>
+	  <li><a href="../live/index.html">Life</a></li>
+	  <li><a href="../cs/index.html">Lab</a></li>
+	  <li><a href="../slack/index.html">Slackware</a></li>
+	  <li><a href="../muse/index.html">Muse</a></li>
+	  <li><a href="../scratch/index.html">Scratch</a></li>
+	</ul>
+	<p class="header">Search</p><!-- Google Search -->
+	<form id="searchform" method="get"
+	      action="http://www.google.com/search" >
+	  <p><input id="searchtext" type="text" name="q" value="" /></p>
+          <p><input type="hidden" name="ie" value="utf-8" /></p>
+	  <p><input type="hidden" name="oe" value="utf-8" /></p>
+	  <p><input type="hidden" name="hl" value="zh-CN" /></p>
+ 	  <p><input type="hidden" name="domains" value="suchang.net" /></p>
+          <p><input name="si" type="hidden" value="suchang.net" /></p>
+          <p><input type="hidden" name="sitesearch" value="suchang.net" /></p>
+	</form>
+	<p class="header">Contact</p>
+	<ul>
+	  <li><a href="mailto:suchaaa@gmail.com">Email Me</a></li>
+	</ul>
+      </div><!-- sidebar -->
+    </div><!-- body -->
+  </body>
+</html>

@@ -1,0 +1,229 @@
+
+#title Archive for June, 2008
+
+#p1
+* 6月8日 周日 22:40
+
+** GTAGS 和 company-mode
+
+xcscope.el 的搜索实在是太慢了，慢到我用 grep 都可以立马定位到的东西，它却
+还要搜索半天，在定位匹配到的 buffer 里，几乎是看着它一条一条打印出来的，
+而我要搜索的代码，又哪里算是大工程。
+
+与 xcscope.el 相反的是，gtags.el 的搜索是相当快的，之前我也有说过
+[[2008-03#p0][CSCOPE 和 GTAGS]] 相比较的问题，当时对 gtags.el 的感觉就是使用太不人性化
+了，在搜索结果的条目里面，我总要 C-e 才能看到上下文，对我来说是太不方便
+了，但是它的性能我是觉得很满意的。
+
+还好让我找到了 xgtags.el，让我不需要在 xcscope.el 和 xgtags.el 中做出抉
+择，它有着 xcscope.el 界面，但却使用 gtags 做 tag 搜索引擎，兼顾
+xcscope.el 的界面人性化和 gtags.el 的效率。
+
+[[http://home.tiscali.de/mgidde/Emacs.html][xgtags.el 的主页]] [1]
+
+
+接着我把当年呼出 xcscope 的按键绑定都移到了 xgtags 上。一部分定义在
+c-mode-base-map 中，另外一部分定义在 xgtags-mode-map 中，要不然似乎会引
+起冲突。
+
+我设置成在 c-mode 或 c++-mode 下按 F7 后，于当前文件夹下生成 GTAGS 和相关
+文件。注意最好是在项目的顶层目录，因为 gtags 默认一层一层往上查找 GTAGS
+的，若你在项目的子目录中生成 GTAGS，它不会往上层目录查找 GTAGS，因此会失
+去一些 tag 索引。
+
+在 c-mode 或 c++-mode 中的按键安排如下：
+
+ - C-. 在整个工程中查找当前光标下的 tag 定义
+ - C-, 相当于 C-x 1
+ - M-. 在整个工程中查找符号
+ - M-, 在整个工程中查找匹配项
+ - C-M-. 在整个工程中查找该 tag 的引用，相当于 cscope 中的
+   find-function-calling-this-function，但不限于 function
+ - C-M-, 相当于 M-x grep-find 命令，有高亮结果并跳转到的功能 
+ - C-M-/ 在整个工程中查找 tag
+ - M-p 回到查找的起点
+
+在我设定的 xgtags 输出查找结果的小 buffer 中，按键安排如下：
+
+ - k、j 上下移动选择匹配项，这是它原来定义的
+ - C-k、C-j 上下移动选择匹配项
+ - M-p 跳转到最初查找的地方
+ - SPC 在下面大窗中查看更多的上下文
+
+<src type="elisp">
+(require 'xgtags)
+
+(add-hook
+ 'c-mode-common-hook
+ (lambda ()
+
+   (xgtags-mode 1)
+
+   ;; c base mode keys
+   ;; 
+   (define-key c-mode-base-map [f7] 'sucha-generate-gtags-files)
+   (define-key c-mode-base-map [(meda .)] 'xgtags-find-symbol)
+   (define-key c-mode-base-map (kbd "M-p") 'xgtags-pop-stack))
+t)
+
+(defun sucha-generate-gtags-files ()
+  "Generate gtags reference file for global."
+  (interactive)
+  (cd
+   (read-from-minibuffer
+    "directory: "
+    default-directory))
+  (shell-command "gtags --gtagslabel gtags")
+  (xgtags-make-complete-list))
+
+;; xgtags mode map
+;; 
+(define-key xgtags-mode-map [(control .)] 'xgtags-find-tag-from-here)
+(define-key xgtags-mode-map [(control ,)] 'delete-other-windows)
+(define-key xgtags-mode-map [(meta .)] 'xgtags-find-symbol)
+(define-key xgtags-mode-map [(meta ,)] 'xgtags-find-pattern)
+(define-key xgtags-mode-map (kbd "C-M-.") 'xgtags-find-rtag)
+(define-key xgtags-mode-map (kbd "C-M-,") 'grep-find)
+(define-key xgtags-mode-map (kbd "C-M-/") 'xgtags-find-tag)
+(define-key xgtags-mode-map (kbd "M-p") 'xgtags-pop-stack)
+
+
+;; xgtags-select-mode-hook
+;; 
+(add-hook
+ 'xgtags-select-mode-hook
+ '(lambda ()
+    (define-key xgtags-select-mode-map [(control f)] 'forward-char)
+    (define-key xgtags-select-mode-map [(control b)] 'backward-char)
+    (define-key xgtags-select-mode-map [(meta p)] 'xgtags-pop-stack)
+    (define-key xgtags-select-mode-map (kbd "SPC")
+      'sucha-xgtags-select-tag-other-window))
+ )
+
+(defun sucha-xgtags-select-tag-other-window ()
+  "Selete gtag tag other window."
+  (interactive)
+  (xgtags-select-tag-near-point)
+  (delete-other-windows)
+  (split-window-vertically 12)
+  (switch-to-buffer "*xgtags*"))
+</src>
+
+
+还对 xgtags 的界面做了一些设置，突出匹配的 tag 上下文。
+
+<src type="elisp">
+(custom-set-faces
+
+ ;; xgtags faces
+ ;; 
+ '(xgtags-file-face ((t (:foreground "salmon3" :weight bold))))
+ '(xgtags-match-face ((((class color) (background dark)) (:foreground "green3"))))
+ '(xgtags-line-number-face ((((class color) (background dark)) (:foreground "maroon3"))))
+ '(xgtags-line-face ((((class color) (background dark)) (:foreground "yellow3"))))
+ '(xgtags-file-selected-face ((t (:foreground "salmon3" :weight bold))))
+ '(xgtags-match-selected-face ((t (:foreground "green2" :weight bold))))
+ '(xgtags-line-selected-face ((t (:foreground "yellow2" :weight bold))))
+ '(xgtags-line-number-selected-face ((t (:foreground "maroon2" :weight bold))))
+)
+</src>
+
+贴完了配置代码，不得不提一下 company-mode，非常炫的补全前端，
+
+建议访问一下[[http://nschum.de/src/emacs/company-mode/][company-mode 的主页]]，点击“preview demo”观看演示视频。作为一个
+补全前端，它可以利用诸如 dabbrev、elisp、semanticdb、或是其他自建的分析后
+端作为当前缓冲区搜索补全的引擎，我在我的 c-mode 或c++-mode 中，设置使用
+xgtags 生成的 completes-list 作为 company-mode 的后端。
+
+请访问 [[http://www.emacswiki.org/cgi-bin/emacs-en/CompanyMode][emacs-wiki 中利用 gtags 作为 company-mode 的后端]]，将这部分拷贝作为
+文件，命名为 company-gtags-completions.el，放在 emacs 的 load-path 中，可
+以和 company-mode 的文件放在一起，我就是这样做的。
+
+以下部分需要打开 gtags.el 的支持，按键配置如下：
+
+ - tab 和原来 c-mode 和 c++-mode 中的 tab 一样，仅为 indent
+ - M-j 在弹出的列表中往下选择匹配项
+ - M-k 在弹出的列表中往上选择匹配项
+ - M-SPC 匹配尽可能多的东西，不是全部
+ - M-RET 匹配当前项，选择当前项
+
+<src type="elisp">
+;; company mode, better completion
+;; 
+(add-to-list 'load-path
+             (expand-file-name "~/.elisp/company/"))
+(require 'company-mode)
+(require 'company-bundled-completions)  ; mass install
+(require 'company-gtags-completions)
+
+;; 我自己的 completion rules
+;;
+(defun sucha-install-company-completion-rules ()
+  "gtags and dabbref completions for C and C++ mode"
+  (company-clear-completion-rules)
+
+;;   (company-install-dabbrev-completions)
+  (company-install-file-name-completions)
+  (eval-after-load 'company-gtags-completions
+    '(company-install-gtags-completions))
+  )
+
+(add-hook
+ 'c-mode-common-hook
+ (lambda ()
+
+   (company-mode 1)
+   (sucha-install-company-completion-rules) ; refers to the function
+ )
+t)
+
+;; company mode map
+;; 
+(define-key company-mode-map [(tab)] 'indent-for-tab-command)
+(define-key company-mode-map [(meta j)] 'company-cycle)
+(define-key company-mode-map [(meta k)] 'company-cycle-backwards)
+(define-key company-mode-map [(backtab)] 'company-expand-common)
+(define-key company-mode-map (kbd "M-SPC") 'company-expand-anything)
+(define-key company-mode-map [(meta return)] 'company-expand-common) 
+</src>
+
+company-mode 的主页上说需要使用 emacs22，实际上 company-mode 在 emacs23
+中也是可以使用的，至少我也是这样用的。在使用 emacs 的过程中，当有新的想
+法，或出现问题的时候，除了 google，TheEmacsWiki 也应该是最先考虑的，毕竟
+里面货多啊。
+
+[1] 是 xgtags.el 的主页，不是 xcscope.el 的，2008/06/17
+
+*** [[CategoryProgramming][CategoryProgramming]] / [[2008-06#p1][Permalink]] 
+
+<!-- date: 2008-06-08T22:40:48+0800 -->
+
+
+
+#p0
+* 6月2日 周一 23:23
+
+** 无题
+
+地震过去一段时间了，只感觉能做的非常有限，仅仅是捐了力所能及的钱物。说起
+地震的那天，在福州是一点感觉都没有，那时因为上班时间，忙着弄手头的事情，
+都没时间上网看报道。
+
+下班回到家才发现事情的严重性，赶紧联系各地的同学，还好，大家都平安，虽然
+成都、西安的同学在短信联系的时候还睡在操场上，但听到他们平安的消息，心里
+稍稍安定下来。之后是上网看新闻以及视频报道，看得夜深了都睡不着……
+
+前段时间在福州感觉到了一次[[http://news.163.com/08/0306/22/46CSHN3U0001124J.html][地震]]，那时我正在洗澡，突然间头晕目眩，有那么一
+两秒的时间，当时我以为自己晕掉了，怀疑是上班太累，平常睡得太晚，身体憔悴
+所致，之后我甚至自己晃了几下，都未能重复之前的感觉，那种怪怪的味道。直到
+第二天，在公司听他们说起昨晚的地震，才联系起来。
+
+地震似乎是不可预测的，在地震发生期间那么短的时间里，人的反应、人的思考，
+能做的很有限，或者只能期望于预防性的建筑设计了，否则都只是事后的事情。
+
+*** [[CategoryLife][CategoryLife]] / [[2008-06#p0][Permalink]] 
+
+<!-- date: 2008-06-02T23:23:33+0800 -->
+
+
+

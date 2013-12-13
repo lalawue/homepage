@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+  <head>
+    <title>Sucha's Blog - Archive for June, 2008</title>
+    <meta name="generator" content="emacs-wiki-journal.el" />
+    <meta http-equiv="Content-Type" content=" text/html; charset=utf-8" />
+    <meta name="author" content="Sucha" />
+    <meta name="copyright" content="GFDL, http://www.gnu.org/licenses/fdl.html" />
+    <meta name="keywords" content="Sucha, Suchang, programming, GNU, Unix, Linux, Slackware, Emacs, elisp" />
+    <meta name="description" content="Sucha's blog" />
+    <link rev="made" href="mailto:suchaaa@gmail.com" />
+    <link rel="shortcut icon" href="../images/ico.png" />
+    <link rel="stylesheet" type="text/css" href="../styles/blog.css" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml" />
+    <!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="../styles/ie.css" /><![endif]-->
+  </head>
+  <body>
+    <div id="body">
+      <div id="text">
+	<h1>Sucha's Blog ~ Archive for June, 2008</h1>
+	<!-- Page published by Emacs Wiki begins here -->
+<h2><a id="p1">6月8日 周日 22:40</a></h2>
+
+<h3>GTAGS 和 company-mode</h3>
+
+<p>
+xcscope.el 的搜索实在是太慢了，慢到我用 grep 都可以立马定位到的东西，它却
+还要搜索半天，在定位匹配到的 buffer 里，几乎是看着它一条一条打印出来的，
+而我要搜索的代码，又哪里算是大工程。
+
+</p>
+
+<p>
+与 xcscope.el 相反的是，gtags.el 的搜索是相当快的，之前我也有说过
+<a href="2008-03.html#p0">CSCOPE&#32;和&#32;GTAGS</a> 相比较的问题，当时对 gtags.el 的感觉就是使用太不人性化
+了，在搜索结果的条目里面，我总要 C-e 才能看到上下文，对我来说是太不方便
+了，但是它的性能我是觉得很满意的。
+
+</p>
+
+<p>
+还好让我找到了 xgtags.el，让我不需要在 xcscope.el 和 xgtags.el 中做出抉
+择，它有着 xcscope.el 界面，但却使用 gtags 做 tag 搜索引擎，兼顾
+xcscope.el 的界面人性化和 gtags.el 的效率。
+
+</p>
+
+<p>
+<a href="http://home.tiscali.de/mgidde/Emacs.html">xgtags.el&#32;的主页</a> <sup><a id="fnr.1" href="#fn.1">1</a></sup>
+
+</p>
+
+<p>
+接着我把当年呼出 xcscope 的按键绑定都移到了 xgtags 上。一部分定义在
+c-mode-base-map 中，另外一部分定义在 xgtags-mode-map 中，要不然似乎会引
+起冲突。
+
+</p>
+
+<p>
+我设置成在 c-mode 或 c++-mode 下按 F7 后，于当前文件夹下生成 GTAGS 和相关
+文件。注意最好是在项目的顶层目录，因为 gtags 默认一层一层往上查找 GTAGS
+的，若你在项目的子目录中生成 GTAGS，它不会往上层目录查找 GTAGS，因此会失
+去一些 tag 索引。
+
+</p>
+
+<p>
+在 c-mode 或 c++-mode 中的按键安排如下：
+
+</p>
+
+<ul>
+<li>C-. 在整个工程中查找当前光标下的 tag 定义
+</li>
+<li>C-, 相当于 C-x 1
+</li>
+<li>M-. 在整个工程中查找符号
+</li>
+<li>M-, 在整个工程中查找匹配项
+</li>
+<li>C-M-. 在整个工程中查找该 tag 的引用，相当于 cscope 中的
+   find-function-calling-this-function，但不限于 function
+</li>
+<li>C-M-, 相当于 M-x grep-find 命令，有高亮结果并跳转到的功能 
+</li>
+<li>C-M-/ 在整个工程中查找 tag
+</li>
+<li>M-p 回到查找的起点
+</li>
+</ul>
+
+<p>
+在我设定的 xgtags 输出查找结果的小 buffer 中，按键安排如下：
+
+</p>
+
+<ul>
+<li>k、j 上下移动选择匹配项，这是它原来定义的
+</li>
+<li>C-k、C-j 上下移动选择匹配项
+</li>
+<li>M-p 跳转到最初查找的地方
+</li>
+<li>SPC 在下面大窗中查看更多的上下文
+</li>
+</ul>
+
+<pre class="source">(<span class="keyword">require</span> '<span class="constant">xgtags</span>)
+
+(add-hook
+ 'c-mode-common-hook
+ (<span class="keyword">lambda</span> ()
+
+   (xgtags-mode 1)
+
+   <span class="comment-delimiter">;; </span><span class="comment">c base mode keys
+</span>   <span class="comment-delimiter">;; </span><span class="comment">
+</span>   (define-key c-mode-base-map [f7] 'sucha-generate-gtags-files)
+   (define-key c-mode-base-map [(meda .)] 'xgtags-find-symbol)
+   (define-key c-mode-base-map (kbd <span class="string">"M-p"</span>) 'xgtags-pop-stack))
+t)
+
+(<span class="keyword">defun</span> <span class="function-name">sucha-generate-gtags-files</span> ()
+  <span class="doc">"Generate gtags reference file for global."</span>
+  (interactive)
+  (cd
+   (read-from-minibuffer
+    <span class="string">"directory: "</span>
+    default-directory))
+  (shell-command <span class="string">"gtags --gtagslabel gtags"</span>)
+  (xgtags-make-complete-list))
+
+<span class="comment-delimiter">;; </span><span class="comment">xgtags mode map
+</span><span class="comment-delimiter">;; </span><span class="comment">
+</span>(define-key xgtags-mode-map [(control .)] 'xgtags-find-tag-from-here)
+(define-key xgtags-mode-map [(control ,)] 'delete-other-windows)
+(define-key xgtags-mode-map [(meta .)] 'xgtags-find-symbol)
+(define-key xgtags-mode-map [(meta ,)] 'xgtags-find-pattern)
+(define-key xgtags-mode-map (kbd <span class="string">"C-M-."</span>) 'xgtags-find-rtag)
+(define-key xgtags-mode-map (kbd <span class="string">"C-M-,"</span>) 'grep-find)
+(define-key xgtags-mode-map (kbd <span class="string">"C-M-/"</span>) 'xgtags-find-tag)
+(define-key xgtags-mode-map (kbd <span class="string">"M-p"</span>) 'xgtags-pop-stack)
+
+
+<span class="comment-delimiter">;; </span><span class="comment">xgtags-select-mode-hook
+</span><span class="comment-delimiter">;; </span><span class="comment">
+</span>(add-hook
+ 'xgtags-select-mode-hook
+ '(<span class="keyword">lambda</span> ()
+    (define-key xgtags-select-mode-map [(control f)] 'forward-char)
+    (define-key xgtags-select-mode-map [(control b)] 'backward-char)
+    (define-key xgtags-select-mode-map [(meta p)] 'xgtags-pop-stack)
+    (define-key xgtags-select-mode-map (kbd <span class="string">"SPC"</span>)
+      'sucha-xgtags-select-tag-other-window))
+ )
+
+(<span class="keyword">defun</span> <span class="function-name">sucha-xgtags-select-tag-other-window</span> ()
+  <span class="doc">"Selete gtag tag other window."</span>
+  (interactive)
+  (xgtags-select-tag-near-point)
+  (delete-other-windows)
+  (split-window-vertically 12)
+  (switch-to-buffer <span class="string">"*xgtags*"</span>))
+</pre>
+
+
+
+还对 xgtags 的界面做了一些设置，突出匹配的 tag 上下文。
+
+</p>
+
+<pre class="source">(custom-set-faces
+
+ <span class="comment-delimiter">;; </span><span class="comment">xgtags faces
+</span> <span class="comment-delimiter">;; </span><span class="comment">
+</span> '(xgtags-file-face ((t (<span class="builtin">:foreground</span> <span class="string">"salmon3"</span> <span class="builtin">:weight</span> bold))))
+ '(xgtags-match-face ((((class color) (background dark)) (<span class="builtin">:foreground</span> <span class="string">"green3"</span>))))
+ '(xgtags-line-number-face ((((class color) (background dark)) (<span class="builtin">:foreground</span> <span class="string">"maroon3"</span>))))
+ '(xgtags-line-face ((((class color) (background dark)) (<span class="builtin">:foreground</span> <span class="string">"yellow3"</span>))))
+ '(xgtags-file-selected-face ((t (<span class="builtin">:foreground</span> <span class="string">"salmon3"</span> <span class="builtin">:weight</span> bold))))
+ '(xgtags-match-selected-face ((t (<span class="builtin">:foreground</span> <span class="string">"green2"</span> <span class="builtin">:weight</span> bold))))
+ '(xgtags-line-selected-face ((t (<span class="builtin">:foreground</span> <span class="string">"yellow2"</span> <span class="builtin">:weight</span> bold))))
+ '(xgtags-line-number-selected-face ((t (<span class="builtin">:foreground</span> <span class="string">"maroon2"</span> <span class="builtin">:weight</span> bold))))
+)
+</pre>
+
+
+贴完了配置代码，不得不提一下 company-mode，非常炫的补全前端，
+
+</p>
+
+<p>
+建议访问一下<a href="http://nschum.de/src/emacs/company-mode/">company-mode&#32;的主页</a>，点击“preview demo”观看演示视频。作为一个
+补全前端，它可以利用诸如 dabbrev、elisp、semanticdb、或是其他自建的分析后
+端作为当前缓冲区搜索补全的引擎，我在我的 c-mode 或c++-mode 中，设置使用
+xgtags 生成的 completes-list 作为 company-mode 的后端。
+
+</p>
+
+<p>
+请访问 <a href="http://www.emacswiki.org/cgi-bin/emacs-en/CompanyMode">emacs-wiki&#32;中利用&#32;gtags&#32;作为&#32;company-mode&#32;的后端</a>，将这部分拷贝作为
+文件，命名为 company-gtags-completions.el，放在 emacs 的 load-path 中，可
+以和 company-mode 的文件放在一起，我就是这样做的。
+
+</p>
+
+<p>
+以下部分需要打开 gtags.el 的支持，按键配置如下：
+
+</p>
+
+<ul>
+<li>tab 和原来 c-mode 和 c++-mode 中的 tab 一样，仅为 indent
+</li>
+<li>M-j 在弹出的列表中往下选择匹配项
+</li>
+<li>M-k 在弹出的列表中往上选择匹配项
+</li>
+<li>M-SPC 匹配尽可能多的东西，不是全部
+</li>
+<li>M-RET 匹配当前项，选择当前项
+</li>
+</ul>
+
+<pre class="source"><span class="comment-delimiter">;; </span><span class="comment">company mode, better completion
+</span><span class="comment-delimiter">;; </span><span class="comment">
+</span>(add-to-list 'load-path
+             (expand-file-name <span class="string">"~/.elisp/company/"</span>))
+(<span class="keyword">require</span> '<span class="constant">company-mode</span>)
+(<span class="keyword">require</span> '<span class="constant">company-bundled-completions</span>)  <span class="comment-delimiter">; </span><span class="comment">mass install
+</span>(<span class="keyword">require</span> '<span class="constant">company-gtags-completions</span>)
+
+<span class="comment-delimiter">;; </span><span class="comment">&#25105;&#33258;&#24049;&#30340; completion rules
+</span><span class="comment-delimiter">;;</span><span class="comment">
+</span>(<span class="keyword">defun</span> <span class="function-name">sucha-install-company-completion-rules</span> ()
+  <span class="doc">"gtags and dabbref completions for C and C++ mode"</span>
+  (company-clear-completion-rules)
+
+<span class="comment-delimiter">;;   </span><span class="comment">(company-install-dabbrev-completions)
+</span>  (company-install-file-name-completions)
+  (<span class="keyword">eval-after-load</span> 'company-gtags-completions
+    '(company-install-gtags-completions))
+  )
+
+(add-hook
+ 'c-mode-common-hook
+ (<span class="keyword">lambda</span> ()
+
+   (company-mode 1)
+   (sucha-install-company-completion-rules) <span class="comment-delimiter">; </span><span class="comment">refers to the function
+</span> )
+t)
+
+<span class="comment-delimiter">;; </span><span class="comment">company mode map
+</span><span class="comment-delimiter">;; </span><span class="comment">
+</span>(define-key company-mode-map [(tab)] 'indent-for-tab-command)
+(define-key company-mode-map [(meta j)] 'company-cycle)
+(define-key company-mode-map [(meta k)] 'company-cycle-backwards)
+(define-key company-mode-map [(backtab)] 'company-expand-common)
+(define-key company-mode-map (kbd <span class="string">"M-SPC"</span>) 'company-expand-anything)
+(define-key company-mode-map [(meta return)] 'company-expand-common) 
+</pre>
+
+
+company-mode 的主页上说需要使用 emacs22，实际上 company-mode 在 emacs23
+中也是可以使用的，至少我也是这样用的。在使用 emacs 的过程中，当有新的想
+法，或出现问题的时候，除了 google，<a href="http://www.emacswiki.org/cgi-bin/wiki/SiteMap">TheEmacsWiki</a> 也应该是最先考虑的，毕竟
+里面货多啊。
+
+</p>
+
+<p>
+<sup>[<a id="fn.1" href="#fnr.1">1</a>]</sup> 是 xgtags.el 的主页，不是 xcscope.el 的，2008/06/17
+
+</p>
+
+<h4><a href="CategoryProgramming.html">CategoryProgramming</a> / <a href="2008-06.html#p1">Permalink</a> </h4>
+
+<p>
+<!-- date: 2008-06-08T22:40:48+0800 -->
+
+</p>
+
+<h2><a id="p0">6月2日 周一 23:23</a></h2>
+
+<h3>无题</h3>
+
+<p>
+地震过去一段时间了，只感觉能做的非常有限，仅仅是捐了力所能及的钱物。说起
+地震的那天，在福州是一点感觉都没有，那时因为上班时间，忙着弄手头的事情，
+都没时间上网看报道。
+
+</p>
+
+<p>
+下班回到家才发现事情的严重性，赶紧联系各地的同学，还好，大家都平安，虽然
+成都、西安的同学在短信联系的时候还睡在操场上，但听到他们平安的消息，心里
+稍稍安定下来。之后是上网看新闻以及视频报道，看得夜深了都睡不着……
+
+</p>
+
+<p>
+前段时间在福州感觉到了一次<a href="http://news.163.com/08/0306/22/46CSHN3U0001124J.html">地震</a>，那时我正在洗澡，突然间头晕目眩，有那么一
+两秒的时间，当时我以为自己晕掉了，怀疑是上班太累，平常睡得太晚，身体憔悴
+所致，之后我甚至自己晃了几下，都未能重复之前的感觉，那种怪怪的味道。直到
+第二天，在公司听他们说起昨晚的地震，才联系起来。
+
+</p>
+
+<p>
+地震似乎是不可预测的，在地震发生期间那么短的时间里，人的反应、人的思考，
+能做的很有限，或者只能期望于预防性的建筑设计了，否则都只是事后的事情。
+
+</p>
+
+<h4><a href="CategoryLife.html">CategoryLife</a> / <a href="2008-06.html#p0">Permalink</a> </h4>
+
+<p>
+<!-- date: 2008-06-02T23:23:33+0800 -->
+
+</p>
+
+<!-- Page published by Emacs Wiki ends here -->
+<div id="foot">2004-<script language="javascript">var d = new
+	Date();document.write(d.getFullYear())</script> &copy;
+	Sucha. Powered by EmacsWikiJournal.
+</div>
+</div><!-- sidebar -->
+  <div id="sidebar">
+      <p class="header">Here</p>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="index.html">Front</a></li>
+        <li><a href="../scratch/ThisSite.html">This Site</a></li>
+        <li><a href="../live/AboutMe.html">About Me</a></li>
+        <li><a href="../cs/EmacsWikiJournal.html">Emacs Wiki Journal</a></li>
+      </ul>
+
+      <p class="header">Calendar</p>
+      <div class="calendar"><table><caption>July 2012</caption><thead><tr><th>Su</th><th>Mo</th><th>Tu</th><th>We</th><th>Th</th><th>Fr</th><th>Sa</th></tr></thead><tr></tr><tr><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr><tr><td>8</td><td>9</td><td>10</td><td><a title="主页重新开通" href="2012-07.html#p0">11</a></td><td>12</td><td>13</td><td>14</td></tr><tr><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td></tr><tr><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td></tr><tr><td>29</td><td>30</td><td>31</td></tr></table></div>
+
+      <p class="header">Search</p><!-- Google Search -->
+      <form id="searchform" method="get"
+	    action="http://www.google.com/search" >
+	<p><input id="searchtext" type="text" name="q" value="" /></p>
+	<p><input type="hidden" name="ie" value="utf-8" /></p>
+	<p><input type="hidden" name="oe" value="utf-8" /></p>
+	<p><input type="hidden" name="hl" value="zh-CN" /></p>
+	<p><input type="hidden" name="domains" value="suchang.net" /></p>
+	<p><input name="si" type="hidden" value="suchang.net" /></p>
+	<p><input type="hidden" name="sitesearch" value="suchang.net" /></p>
+      </form>
+
+      
+      <p class="header">Feeds &#38; Contact</p>
+        <ul>
+          <li><a id="rss_feeds" href="rss.xml">RSS</a></li>
+          <li><a href="mailto:suchaaa@gmail.com">Mail me</a></li>
+        </ul>
+
+      <p class="header">Categories</p>
+      <ul>
+        <li><a href="CategoryLinux.html">GNU/Linux</a></li>
+        <li><a href="CategoryProgramming.html">Programming</a></li>
+        <li><a href="CategoryLife.html">Life &#38; essay</a></li>
+        <li><a href="CategoryReading.html">Reading</a></li>
+	<li><a href="CategoryThisSite.html">This Site</a></li>
+        <li><a href="CategoryMisc.html">Misc</a></li>
+      </ul>
+
+      <p class="header">Links</p>
+      <ul>
+	    <li><a href="http://blog.csdn.net/g9yuayon/">G9</a></li>
+        <li><a href="http://mrjamie.cc/">Jamie</a></li>
+        <li><a href="http://www.ftchinese.com/column/007000002">朝九晚五</a></li>
+        <li><a href="http://blog.codingnow.com/">CloudWu</a></li>
+	    <li><a href="http://www.mindmeters.com/blogind.asp?id=253">All About S</a></li>
+        <li><a href="http://www.drunkpiano-liuyu.net/">DrunkPiano</a></li>
+	    <li><a href="http://ditu.google.cn/maps?hl=zh-CN&ll=22.626687,110.186691&spn=0.101883,0.15398&t=h&brcurrent=3,0x36adc425dfd47083:0xd77004f2b5f175d6,0,0x36adb6981be5ba57:0xbb22df1016a0dd2e%3B5,0,0&z=13">Yulin in Google Maps</a></li>
+      </ul>
+
+      <p class="header">Archives</p>
+      <div class="archive_links"><ul><li><a href="2012-07.html">July 2012</a></li><li><a href="2012-06.html">June 2012</a></li><li><a href="2012-05.html">May 2012</a></li><li><a href="2012-04.html">April 2012</a></li><li><a href="2012-03.html">March 2012</a></li><li><a href="2012-02.html">February 2012</a></li><li><a href="2012-01.html">January 2012</a></li><li><a href="2011-12.html">December 2011</a></li><li><a href="2011-11.html">November 2011</a></li><li><a href="2011-10.html">October 2011</a></li><li><a href="2011-09.html">September 2011</a></li><li><a href="2011-08.html">August 2011</a></li><li><a href="2011-04.html">April 2011</a></li><li><a href="2011-02.html">February 2011</a></li><li><a href="2011-01.html">January 2011</a></li><li><a href="2010-12.html">December 2010</a></li><li><a href="2010-11.html">November 2010</a></li><li><a href="2010-09.html">September 2010</a></li><li><a href="2009-07.html">July 2009</a></li><li><a href="2009-06.html">June 2009</a></li><li><a href="2009-05.html">May 2009</a></li><li><a href="2009-04.html">April 2009</a></li><li><a href="2009-02.html">February 2009</a></li><li><a href="2009-01.html">January 2009</a></li><li><a href="2008-12.html">December 2008</a></li><li><a href="2008-11.html">November 2008</a></li><li><a href="2008-10.html">October 2008</a></li><li><a href="2008-09.html">September 2008</a></li><li><a href="2008-08.html">August 2008</a></li><li><a href="2008-07.html">July 2008</a></li><li><a href="2008-06.html">June 2008</a></li><li><a href="2008-05.html">May 2008</a></li><li><a href="2008-04.html">April 2008</a></li><li><a href="2008-03.html">March 2008</a></li><li><a href="2008-02.html">February 2008</a></li><li><a href="2008-01.html">January 2008</a></li><li><a href="2007-10.html">October 2007</a></li><li><a href="2007-07.html">July 2007</a></li><li><a href="2007-06.html">June 2007</a></li><li><a href="2007-05.html">May 2007</a></li><li><a href="2007-04.html">April 2007</a></li><li><a href="2007-03.html">March 2007</a></li><li><a href="2007-02.html">February 2007</a></li><li><a href="2007-01.html">January 2007</a></li><li><a href="2006-12.html">December 2006</a></li><li><a href="2006-11.html">November 2006</a></li><li><a href="2006-10.html">October 2006</a></li><li><a href="2006-09.html">September 2006</a></li><li><a href="2006-08.html">August 2006</a></li><li><a href="2006-07.html">July 2006</a></li><li><a href="2006-06.html">June 2006</a></li><li><a href="2006-05.html">May 2006</a></li><li><a href="2006-04.html">April 2006</a></li><li><a href="2006-03.html">March 2006</a></li><li><a href="2006-02.html">February 2006</a></li><li><a href="2006-01.html">January 2006</a></li><li><a href="2005-12.html">December 2005</a></li><li><a href="2005-11.html">November 2005</a></li><li><a href="2005-10.html">October 2005</a></li><li><a href="2005-09.html">September 2005</a></li><li><a href="2005-08.html">August 2005</a></li><li><a href="2005-07.html">July 2005</a></li><li><a href="2005-06.html">June 2005</a></li><li><a href="2005-05.html">May 2005</a></li><li><a href="2005-04.html">April 2005</a></li><li><a href="2005-03.html">March 2005</a></li><li><a href="2005-02.html">February 2005</a></li><li><a href="2005-01.html">January 2005</a></li><li><a href="2004-12.html">December 2004</a></li><li><a href="2004-11.html">November 2004</a></li><li><a href="2004-10.html">October 2004</a></li><li><a href="2004-09.html">September 2004</a></li></ul></div>
+
+    </div><!-- sidebar -->
+   </div> <!-- body -->
+  </body>
+</html>

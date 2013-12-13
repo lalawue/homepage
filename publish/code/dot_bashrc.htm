@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!-- Created by htmlize-1.16 in css mode. -->
+<html>
+  <head>
+    <title>.bashrc</title>
+    <style type="text/css">
+    <!--
+      body {
+        color: #d9d9d9;
+        background-color: #000000;
+      }
+      .builtin {
+        /* font-lock-builtin-face */
+        color: #b0c4de;
+      }
+      .comment {
+        /* font-lock-comment-face */
+        color: #ff7f24;
+      }
+      .comment-delimiter {
+      }
+      .function-name {
+        /* font-lock-function-name-face */
+        color: #87cefa;
+      }
+      .keyword {
+        /* font-lock-keyword-face */
+        color: #00ffff;
+      }
+      .string {
+        /* font-lock-string-face */
+        color: #ffa07a;
+      }
+      .variable-name {
+        /* font-lock-variable-name-face */
+        color: #eedd82;
+      }
+      a {
+        color: inherit;
+        background-color: inherit;
+        font: inherit;
+        text-decoration: inherit;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+    -->
+    </style>
+  </head>
+  <body>
+    <pre>
+<span class="comment-delimiter"># </span><span class="comment">sucha's bashrc, created in Jun 12, 2005
+</span>
+<span class="comment-delimiter">#####################################################################</span><span class="comment">
+</span><span class="comment-delimiter">#</span><span class="comment">
+</span><span class="comment-delimiter"># </span><span class="comment">Command Settings
+</span>
+<span class="builtin">alias</span> <span class="variable-name">ls</span>=<span class="string">'ls --color=auto'</span>
+<span class="builtin">alias</span> <span class="variable-name">cp</span>=<span class="string">'cp -ri'</span>
+<span class="builtin">alias</span> <span class="variable-name">rm</span>=<span class="string">'rm -ri'</span>
+
+<span class="comment-delimiter"># </span><span class="comment">open the cdrom and close it in 5 sec 
+</span><span class="builtin">alias</span> <span class="variable-name">ocd</span>=<span class="string">'eject &amp;&amp; sleep 5 &amp;&amp; eject -t'</span>
+
+<span class="comment-delimiter"># </span><span class="comment">for jasspa's MicroEmacs, "auto" load last edit
+</span><span class="builtin">alias</span> <span class="variable-name">me</span>=<span class="string">'me -c'</span>
+
+<span class="comment-delimiter"># </span><span class="comment">for tcc -run
+</span><span class="builtin">alias</span> ,=<span class="string">'tcc -run'</span> 
+
+<span class="comment-delimiter"># </span><span class="comment">cd OLDPATH
+</span><span class="function-name">CD</span>()
+{
+    <span class="keyword">case</span> <span class="string">"$1"</span><span class="keyword"> in</span>
+        ,) <span class="builtin">builtin</span> cd $<span class="variable-name">OLDPWD</span>;;
+        *) <span class="builtin">builtin</span> cd $<span class="variable-name">1</span>;;
+    <span class="keyword">esac</span>        
+}
+<span class="builtin">alias</span> <span class="variable-name">cd</span>=<span class="string">'CD $1'</span>
+
+<span class="comment-delimiter"># </span><span class="comment">for view pics
+</span><span class="builtin">alias</span> <span class="variable-name">pics</span>=<span class="string">'w3mimages.sh'</span>
+
+<span class="comment-delimiter"># </span><span class="comment">created a tar.gz ball from a dir, and utgz a tar.gz ball
+</span><span class="function-name">TGZ</span>()
+{
+     tar czvf $(<span class="builtin">echo</span> <span class="string">"$1"</span> | cut -d/ -f1).tar.gz  $<span class="variable-name">1</span>
+}
+<span class="builtin">alias</span> <span class="variable-name">tgz</span>=<span class="string">'TGZ'</span>
+<span class="builtin">alias</span> <span class="variable-name">utgz</span>=<span class="string">'tar xzvf'</span>
+
+<span class="comment-delimiter"># </span><span class="comment">created a bz2 ball from a dir, and ubz2 a bz2 ball
+</span><span class="function-name">BZ2</span>()
+{
+     tar cjvf $(<span class="builtin">echo</span> <span class="string">"$1"</span> | cut -d/ -f1).tar.bz2  $<span class="variable-name">1</span>
+}
+<span class="builtin">alias</span> <span class="variable-name">bz2</span>=<span class="string">'BZ2'</span>
+<span class="builtin">alias</span> <span class="variable-name">ubz2</span>=<span class="string">'tar jxvf'</span> 
+
+<span class="comment-delimiter"># </span><span class="comment">use the dict
+</span><span class="function-name">DICT</span>()
+{
+     dict -h localhost $<span class="variable-name">1</span> | iconv -f GBK -t UTF-8 | less
+}
+<span class="builtin">alias</span> <span class="variable-name">lk</span>=<span class="string">'DICT'</span>
+
+<span class="comment-delimiter"># </span><span class="comment">simple mp3 playback, usage: mp3 volume
+</span><span class="function-name">MP3</span>()
+{
+     <span class="comment-delimiter"># </span><span class="comment">first set the mp3_dir
+</span>     <span class="variable-name">mp3_dir</span>=/mnt/d/music
+
+     <span class="comment-delimiter"># </span><span class="comment">printf the disc squance and name
+</span>     <span class="variable-name">num</span>=1
+     <span class="builtin">printf</span> <span class="string">" NUM \t DISC\n"</span>
+     <span class="keyword">for</span> file<span class="keyword"> in</span> $(ls $<span class="variable-name">mp3_dir</span>)
+     <span class="keyword">do</span>
+          <span class="builtin">printf</span> <span class="string">" %3d \t %s\n"</span> $<span class="variable-name">num</span> $(<span class="builtin">echo</span> $<span class="variable-name">file</span> | cut -d<span class="string">'/'</span> -f 1)
+          ((num = num + 1))
+     <span class="keyword">done</span>
+
+     <span class="comment-delimiter"># </span><span class="comment">get the selected disc
+</span>     <span class="builtin">printf</span> <span class="string">'\nPlease enter your selected disc: '</span>
+     <span class="builtin">read</span> disc
+     <span class="variable-name">selected</span>=$(ls $<span class="variable-name">mp3_dir</span> | head -n $<span class="variable-name">disc</span> | tail -n 1)
+     <span class="builtin">echo</span> <span class="string">"Selected disc $disc $(echo $selected | cut -d'/' -f 1)"</span>
+
+     <span class="comment-delimiter"># </span><span class="comment">playback the mp3
+</span>     find $<span class="variable-name">mp3_dir</span>/$<span class="variable-name">selected</span> -name <span class="string">"*.mp3"</span> &gt; ~/.mpg321.list
+     mpg321 -o alsa --quiet --random --list ~/.mpg321.list -g $<span class="variable-name">1</span> &amp;
+}
+<span class="builtin">alias</span> <span class="variable-name">mp3</span>=<span class="string">'MP3 $1'</span>
+<span class="builtin">alias</span> <span class="variable-name">nosong</span>=<span class="string">'killall mpg321'</span>
+
+<span class="comment-delimiter">#####################################################################</span><span class="comment">
+</span><span class="comment-delimiter">#</span><span class="comment">
+</span><span class="comment-delimiter"># </span><span class="comment">Environment Settings
+</span><span class="comment-delimiter">#</span><span class="comment">
+</span><span class="comment-delimiter"># </span><span class="comment">1. set user's PATH
+</span><span class="comment-delimiter"># </span><span class="comment">2. turn off the biff
+</span><span class="comment-delimiter"># </span><span class="comment">3. parivate cvs environment
+</span>
+<span class="comment-delimiter"># </span><span class="comment">set the PATH, add my private program
+</span><span class="variable-name">PATH</span>=<span class="string">"$PATH:$HOME/bin/"</span>
+
+<span class="comment-delimiter"># </span><span class="comment">turn off the biff
+</span>biff n
+
+<span class="comment-delimiter"># </span><span class="comment">my cvs environment
+</span><span class="variable-name">CVSROOT</span>=$<span class="variable-name">HOME</span>/workport/.MyCVS
+<span class="variable-name">CVSEDITOR</span>=vim
+<span class="builtin">export</span> CVSROOT CVSEDITOR
+</pre>
+  </body>
+</html>

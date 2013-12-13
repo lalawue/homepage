@@ -1,0 +1,67 @@
+<!-- Page published by Emacs Wiki ends here -->
+<div id="foot">2004-<script language="javascript">var d = new
+	Date();document.write(d.getFullYear())</script> &copy;
+	Sucha. Powered by EmacsWikiJournal.
+</div>
+</div><!-- sidebar -->
+  <div id="sidebar">
+      <p class="header">Here</p>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="index.html">Front</a></li>
+        <li><a href="../scratch/ThisSite.html">This Site</a></li>
+        <li><a href="../live/AboutMe.html">About Me</a></li>
+        <li><a href="../cs/EmacsWikiJournal.html">Emacs Wiki Journal</a></li>
+      </ul>
+
+      <p class="header">Calendar</p>
+      <lisp>(emacs-wiki-journal-insert-calendar)</lisp>
+
+      <p class="header">Search</p><!-- Google Search -->
+      <form id="searchform" method="get"
+	    action="http://www.google.com/search" >
+	<p><input id="searchtext" type="text" name="q" value="" /></p>
+	<p><input type="hidden" name="ie" value="utf-8" /></p>
+	<p><input type="hidden" name="oe" value="utf-8" /></p>
+	<p><input type="hidden" name="hl" value="zh-CN" /></p>
+	<p><input type="hidden" name="domains" value="suchang.net" /></p>
+	<p><input name="si" type="hidden" value="suchang.net" /></p>
+	<p><input type="hidden" name="sitesearch" value="suchang.net" /></p>
+      </form>
+
+      
+      <p class="header">Feeds &#38; Contact</p>
+        <ul>
+          <li><a id="rss_feeds" href="rss.xml">RSS</a></li>
+          <li><a href="mailto:suchaaa@gmail.com">Mail me</a></li>
+        </ul>
+
+      <p class="header">Categories</p>
+      <ul>
+        <li><a href="CategoryLinux.html">GNU/Linux</a></li>
+        <li><a href="CategoryProgramming.html">Programming</a></li>
+        <li><a href="CategoryLife.html">Life &#38; essay</a></li>
+        <li><a href="CategoryReading.html">Reading</a></li>
+	<li><a href="CategoryThisSite.html">This Site</a></li>
+        <li><a href="CategoryMisc.html">Misc</a></li>
+      </ul>
+
+      <p class="header">Links</p>
+      <ul>
+	    <li><a href="http://blog.csdn.net/g9yuayon/">G9</a></li>
+        <li><a href="http://mrjamie.cc/">Jamie</a></li>
+        <li><a href="http://www.ftchinese.com/column/007000002">朝九晚五</a></li>
+        <li><a href="http://blog.codingnow.com/">CloudWu</a></li>
+        <li><a href="http://emacser.com/">Emacser</a></li>
+	    <li><a href="http://www.mindmeters.com/blogind.asp?id=253">All About S</a></li>
+        <li><a href="http://www.drunkpiano-liuyu.net/">DrunkPiano</a></li>
+	    <li><a href="http://ditu.google.cn/maps?hl=zh-CN&ll=22.626687,110.186691&spn=0.101883,0.15398&t=h&brcurrent=3,0x36adc425dfd47083:0xd77004f2b5f175d6,0,0x36adb6981be5ba57:0xbb22df1016a0dd2e%3B5,0,0&z=13">Yulin in Google Maps</a></li>
+      </ul>
+
+      <p class="header">Archives</p>
+      <lisp>(emacs-wiki-journal-generate-archive-links)</lisp>
+
+    </div><!-- sidebar -->
+   </div> <!-- body -->
+  </body>
+</html>

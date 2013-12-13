@@ -1,0 +1,3479 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>万圣节文件I</TITLE>
+<META NAME="Template" CONTENT="C:\MSOffice\Templates\Reports\Professional Report.dot">
+<link rel="stylesheet" type="text/css" href="a.css" tppabs="http://home.jjinfo.com/personal/linuxboy/css/a.css">
+</head>
+<body background="bg.jpg" tppabs="http://home.jjinfo.com/personal/linuxboy/images/bg.jpg" LINK="#0000ff" VLINK="#800080">
+
+<CENTER><FONT SIZE=5 COLOR="green"><B>{ 万圣节文件I -- 1.10}</B></FONT></CENTER><P>
+
+<P>
+<font color="blue">
+原文:
+<a href="javascript:if(confirm('../../../../../../www.opensource.org/halloween.html  /n/nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  /n/nDo you want to open it from the server-'))window.location='http://www.opensource.org/halloween.html'" tppabs="http://www.opensource.org/halloween.html">http://www.opensource.org/halloween.html</a>
+.
+
+<br>翻译: Brian Lin, foxman@okstation.com
+</font>
+
+<P>
+<B><FONT FACE="Helvetica Black" SIZE=7>开放原始码软体</P></B></FONT>
+<FONT FACE="Helvetica" SIZE=6><P>一个(新的?)开发方法学</P></FONT>
+<FONT COLOR="green">
+{ 
+万圣节文件主文是微软内部策略备忘录, 关於如何对Linux/Open Source现象做反应.
+<P>
+
+(本文已改名为``万圣节文件I''; 还有个续集, 
+``<a href="javascript:if(confirm('../../../../../../home.jjinfo.com/personal/linuxboy/halloween/halloween2.html  /n/nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  /n/nDo you want to open it from the server-'))window.location='http://home.jjinfo.com/personal/linuxboy/halloween/halloween2.html'" tppabs="http://home.jjinfo.com/personal/linuxboy/halloween/halloween2.html">万圣节文件II</a>'', 
+是第二份备忘录, 明白得指名Linux.)<P>
+
+微软已经公开确认这份备忘录的真实性,
+但狡赖仅为工程师的研究, 并非微软的政策.
+
+<P>
+不过, 在结尾的共同作者列中, 有好些是已知在微软内部的重要关键人物,
+而且该文读起来犹如该研究有公司顶级管理人员的支援;
+它可能甚至被运用为政策白皮书用以引起Bill Gate的注意
+(作者<a href="#comment6">似乎有预期</a>Gates会读).<P>
+
+不管是那种状况, 它提供我们非常有价值的观点, 来看微软轻视开放原始码的心理
+-- 也就是, 您会看到, 一个由狡滑及团体近视的奇异组合.
+
+<P>
+
+仅管有人推测这是份蓄意的泄漏, 不过看起来不太可能.
+这份文件太受诅咒; 部份内容甚至可在美国司法部门上,
+被用来当成反竞争业务的证据. 此外, 第一次接触时, 作者"拒绝证实或否认",
+因此可以考虑微软事前并没有蓄意搞这一套.
+<P>
+
+既然作者多方引用我对开放原始码团体动力的分析
+(<a href="javascript:if(confirm('../../../../../../www.tuxedo.org/~esr/writings/cathedral-bazaar  /n/nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  /n/nDo you want to open it from the server-'))window.location='http://www.tuxedo.org/~esr/writings/cathedral-bazaar'" tppabs="http://www.tuxedo.org/~esr/writings/cathedral-bazaar">The
+Cathedral and the Bazaar</a>及<a href="javascript:if(confirm('../../../../../../www.tuxedo.org/~esr/writings/homesteading  /n/nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  /n/nDo you want to open it from the server-'))window.location='http://www.tuxedo.org/~esr/writings/homesteading'" tppabs="http://www.tuxedo.org/~esr/writings/homesteading">Homesteading
+the Noosphere</a>), 
+那麽看来由我来代表这个团体的反应应该算是合理的. :-)<p>
+
+<B>引用索引:</B><P>
+
+本文有些实在值得引用的,
+因此直接连接到它们所在之处.
+知道一下``OSS''是作者对``Open Source Software''的缩写会有点帮助.  
+FUD, 是微软特色战略, 在此文有
+<a href="javascript:if(confirm('../../../../../../home.jjinfo.com/personal/linuxboy/halloween/fuddef.html  /n/nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  /n/nDo you want to open it from the server-'))window.location='http://home.jjinfo.com/personal/linuxboy/halloween/fuddef.html'" tppabs="http://home.jjinfo.com/personal/linuxboy/halloween/fuddef.html">
+说明
+</a>.<P>
+
+<BLOCKQUOTE><FONT COLOR="red">
+<a href="#quote1">*</a>
+OSS摆出一付姿态直接威胁微软短期的收入及平台, 特别是伺服器领域.
+此外, 在OSS中, 其平起平坐的本质及自由理念的交换已经使其自身受益,
+程度达到我们目前版权模式无法驭越的高点,
+因此可以说是长期开发者心智分享的威胁.
+
+</FONT></BLOCKQUOTE>
+
+<BLOCKQUOTE><FONT COLOR="red">
+<a href="#quote2">*</a>
+最近的个案研究(网际网路)提供了非常引人注目的证据...
+即商业品质可被OSS计划所达成/超越.
+</FONT></BLOCKQUOTE>
+
+<BLOCKQUOTE><FONT COLOR="red">
+<a href="#quote3">*</a>
+...要了解如何与OSS竞争, 我们必须专研一种运作方式, 而不是针对一家公司.
+</FONT></BLOCKQUOTE>
+
+<BLOCKQUOTE><FONT COLOR="red">
+<a href="#quote4">*</a>
+OSS是长期可信的... FUD战略无法用於与之战斗.
+</FONT></BLOCKQUOTE>
+
+<BLOCKQUOTE><FONT COLOR="red">
+<a href="#quote5">*</a>
+Linux及其它OSS支持者正使其累进更多的可信证明,
+即OSS至少与商业替代品一样的强建 - 如果没有超过的话.
+网际网路提供了一个理想, 高度可见的展示台给OSS界.
+</FONT></BLOCKQUOTE>
+
+<BLOCKQUOTE><FONT COLOR="red">
+<a href="#quote6">*</a>
+Linux被用於重要任务上, 商业环境下,
+而拥有极佳的大众口碑. ...
+Linux性能表现远超其它UNIXes ...
+Linux正在逐步地接管x86 UNIX市场 ...
+</FONT></BLOCKQUOTE>
+
+<BLOCKQUOTE><FONT COLOR="red">
+<a href="#quote7">*</a>
+只要服务/协定是有用的, Linux就能蠃.
+</FONT></BLOCKQUOTE>
+
+<BLOCKQUOTE><FONT COLOR="red">
+<a href="#quote9">*</a>
+OSS计划已经在许多伺服器应用上有稳固的基础,
+因为拥有广  地有用工具, 简单的协定.
+利用污染这些协定, 及开发新而复杂的协定,
+我们可以防堵OSS计划进入市场.
+</FONT></BLOCKQUOTE>
+
+<BLOCKQUOTE><FONT COLOR="red">
+<a href="#quote8">*</a>
+OSS计划在集合与驾驭数千人团体IQ的处理能力实在惊人.
+更可怕的, OSS福音在网际网路传播上的规模, 远远快过及大过我们的规模.
+</FONT></BLOCKQUOTE>
+
+<B>如何阅读本文件:</B><P>
+
+注解为绿色, 用括弧包起来的, 是我说的(<a href="javascript:if(confirm('../../../../../../www.tuxedo.org/~esr  /n/nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  /n/nDo you want to open it from the server-'))window.location='http://www.tuxedo.org/~esr'" tppabs="http://www.tuxedo.org/~esr">Eric S. Raymond</a>).  
+我将我认为在文中属於关键点的转成<FONT COLOR="red">红色</FONT>.
+我在这些点上有加一些注解; 您可以透过以下这些标记略过这些注解.
+<P>
+
+<A HREF="#quote1">1</A>
+<A HREF="#comment2">2</A>
+<A HREF="#quote2">3</A>
+<A HREF="#quote3">4</A>
+<A HREF="#comment5">5</A>
+<A HREF="#comment6">6</A>
+<A HREF="#comment7">7</A>
+<A HREF="#comment8">8</A>
+<A HREF="#comment9">9</A>
+<A HREF="#quote4">10</A>
+<A HREF="#comment11">11</A>
+<A HREF="#quote5">12</A>
+<A HREF="#comment13">13</A>
+<A HREF="#comment14">14</A>
+<A HREF="#comment15">15</A>
+<A HREF="#comment16">16</A>
+<A HREF="#comment17">17</A>
+<A HREF="#comment18">18</A>
+<A HREF="#comment19">19</A>
+<A HREF="#quote6">20</A>
+<A HREF="#quote7">21</A>
+<A HREF="#comment22">22</A>
+<A HREF="#comment23">23</A>
+<A HREF="#comment24">24</A>
+<A HREF="#comment25">25</A>
+<A HREF="#quote8">26</A>
+<A HREF="#quote9">27</A>
+<A HREF="#comment28">28</A>
+
+<P>
+我将全文留着不动(甚至没有改正错字),
+因此您可以读到Bill Gates会读到的关於Open Source的所有相关.
+本文很长, 但请坚持下去(译注: 译者英文版看了五个小时才看完, 因为还要思考内容). 
+然而反思一下, 这是很值得的 -- 有好几个令人惊讶的洞察力深藏在其中.
+
+<P>
+
+<B>威胁评价:</B><P>
+
+我认为在备忘录中, 最过火最超过最危险的战略莫过於具体的阴险字眼
+``<FONT COLOR="red">解效协定(de-commoditize protocols)</FONT>''.<P>
+
+如果出版本文没有其它作用的话,
+我希望它至少唤醒大众竞争封杀的问题,
+消费者选择性的腐蚀问题,
+更高的价格,
+及这个战略所意含的垄断锁住消费者.
+
+<P>
+
+就如同微软尝试绑架Java, 及试图搞砸"写一次, 四处跑"的科技浅力,
+如此禄人之心可知之.
+
+<P>
+
+我对此点有<a href="#comment25">广  讨论</a>.
+为如何制止这种战略有效, 我相信open-source支持者必须开始强调以下几点: 
+
+<P>
+
+<OL>
+<LI>买主喜欢在廉价的市场中.  卖主不喜欢.<P>
+
+<LI>廉价服务及协定对消费者来说有利; 比较便宜, 更多的竞争, 更多的选择.<P>
+
+<LI>"解效(De-commoditizing)"协定意谓减少选择, 价格升高, 及镇压竞争.<P>
+
+<LI>因此, 微软如果胜利, <strong>消费者一定输</strong>.<P>
+
+<LI>开放原始码推动 -- 的确<em>有赖於</em> -- 廉价服务及协定.
+ 因此对消费的利益是相协调的.<P>
+
+</OL>
+
+<B>历史: (译注: 此处仅为Eric S. Raymond的变动记录, 原可舍去, 留此保持完整性, 因此不翻译了)</B><P>
+
+The first (1.1) annotated version of the VinodV memorandum was
+prepared over the weekend of 31 Oct-1 Nov 1998.  It is in recognition
+of the date, and my fond hope that publishing it will help realize
+Microsoft's worst nightmares, that I named it the ``Halloween
+Document"'.<P>
+
+The 1.2 version featured cleanup of non-ASCII characters.<P>
+
+The 1.3 version noted Microsoft's acknowledgement of authenticity.<P>
+
+The 1.4 version added a bit more analysis and the section on 
+Threat Assessment.<P>
+
+The 1.5 version added some bits to the preamble.<P>
+
+The 1.6 version added more to <a href="#comment19">one of the
+comments</a>.<P>
+
+The 1.7 version added the reference to the Fuzz papers.<P>
+
+The 1.8 version added a link to the <a href="javascript:if(confirm('../../../../../../home.jjinfo.com/personal/linuxboy/halloween/halloween2.html  /n/nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  /n/nDo you want to open it from the server-'))window.location='http://home.jjinfo.com/personal/linuxboy/halloween/halloween2.html'" tppabs="http://home.jjinfo.com/personal/linuxboy/halloween/halloween2.html">Halloween II</a>
+document.<P>
+
+The 1.9 version adds a <a href="#comment28">note about HTTP-DAV support</a>.<P>
+
+The 1.10 version adds more on the ``who do you sue?'' question.<P>
+}
+</FONT>
+</FONT><FONT FACE="冼  " LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY"></P>
+</FONT><FONT FACE="冼  " LANG="ZH-CN" SIZE=5><P ALIGN="JUSTIFY">&nbsp;</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>	<!-- originally there were 6 more of this -->
+<DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=5><P ALIGN="JUSTIFY">Vinod Valloppillil (VinodV)</P>
+<P ALIGN="JUSTIFY">Aug 11, 1998 -- v1.00</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Microsoft Confidential</P>
+</FONT><FONT FACE="冼  " LANG="ZH-CN" SIZE=5><P ALIGN="JUSTIFY"></P></DIR>
+</DIR>
+</DIR>
+
+</FONT><FONT FACE="冼  " LANG="ZH-CN" COLOR="black"><P><A NAME="_Toc427495714"></FONT><FONT FACE="Helvetica Black" COLOR="black">Table of Contents</A></P>
+</FONT><B><FONT FACE="冼  " LANG="ZH-CN" SIZE=3><P></FONT><FONT SIZE=3>Table of Contents&#9;</B></FONT><A HREF="#_Toc427495714">*</A>
+<B><FONT SIZE=3><P>主题摘要&#9;</B></FONT><A HREF="#_Toc427495715">*</A></P>
+<B><FONT SIZE=3><P>开放原始码软体&#9;</B></FONT><A HREF="#_Toc427495716">*</A></P><DIR>
+
+<FONT SIZE=3><P>什麽是开放原始码软体?&#9;</FONT><A HREF="#_Toc427495717">*</A></P>
+<FONT SIZE=3><P>软体版权分类&#9;</FONT><A HREF="#_Toc427495718">*</A></P>
+<FONT SIZE=3><P>开放原始码软体对微软来说非常重要&#9;</FONT><A HREF="#_Toc427495719">*</A></P>
+<FONT SIZE=3><P>历史&#9;</FONT><A HREF="#_Toc427495720">*</A></P></DIR>
+
+<B><FONT SIZE=3><P>开放原始码处理过程&#9;</B></FONT><A HREF="#_Toc427495721">*</A></P><DIR>
+
+<FONT SIZE=3><P>开放原始码开发团队&#9;</FONT><A HREF="#_Toc427495722">*</A></P>
+<FONT SIZE=3><P>OSS开发整合&#9;</FONT><A HREF="#_Toc427495723">*</A></P>
+<FONT SIZE=3><P>平行开发&#9;</FONT><A HREF="#_Toc427495724">*</A></P>
+<FONT SIZE=3><P>平行除错&#9;</FONT><A HREF="#_Toc427495725">*</A></P>
+<FONT SIZE=3><P>冲突解决&#9;</FONT><A HREF="#_Toc427495726">*</A></P>
+<FONT SIZE=3><P>动机&#9;</FONT><A HREF="#_Toc427495727">*</A></P>
+<FONT SIZE=3><P>程式码分歧&#9;</FONT><A HREF="#_Toc427495728">*</A></P></DIR>
+
+<B><FONT SIZE=3><P>开放原始码强度&#9;</B></FONT><A HREF="#_Toc427495729">*</A></P><DIR>
+
+<FONT SIZE=3><P>OSS成长特性&#9;</FONT><A HREF="#_Toc427495730">*</A></P>
+<FONT SIZE=3><P>长期可信度&#9;</FONT><A HREF="#_Toc427495731">*</A></P>
+<FONT SIZE=3><P>平行除错&#9;</FONT><A HREF="#_Toc427495732">*</A></P>
+<FONT SIZE=3><P>平行发展&#9;</FONT><A HREF="#_Toc427495733">*</A></P>
+<FONT SIZE=3><P>OSS = `完美' API福音/文件&#9;</FONT><A HREF="#_Toc427495734">*</A></P>
+<FONT SIZE=3><P>新版速度&#9;</FONT><A HREF="#_Toc427495735">*</A></P></DIR>
+
+<B><FONT SIZE=3><P>OSS弱点&#9;</B></FONT><A HREF="#_Toc427495736">*</A></P><DIR>
+
+<FONT SIZE=3><P>管理价格&#9;</FONT><A HREF="#_Toc427495737">*</A></P>
+<FONT SIZE=3><P>处理议题&#9;</FONT><A HREF="#_Toc427495738">*</A></P>
+<FONT SIZE=3><P>组织可信度&#9;</FONT><A HREF="#_Toc427495739">*</A></P></DIR>
+
+<B><FONT SIZE=3><P>OSS公司经营模式&#9;</B></FONT><A HREF="#_Toc427495740">*</A></P><DIR>
+
+<FONT SIZE=3><P>第二线服务&#9;</FONT><A HREF="#_Toc427495741">*</A></P>
+<FONT SIZE=3><P>没有领导者 -- 市场叁赛权&#9;</FONT><A HREF="#_Toc427495742">*</A></P>
+<FONT SIZE=3><P>廉价下游提供者&#9;</FONT><A HREF="#_Toc427495743">*</A></P>
+<FONT SIZE=3><P>有力的鼓动家 -- 先动手再说, $$往後再谈&#9;</FONT><A HREF="#_Toc427495744">*</A></P></DIR>
+
+<B><FONT SIZE=3><P>Linux&#9;</B></FONT><A HREF="#_Toc427495745">*</A></P><DIR>
+
+<FONT SIZE=3><P>什麽是Linux?&#9;</FONT><A HREF="#_Toc427495746">*</A></P>
+<FONT SIZE=3><P>Linux是真实可信的作业系统 + 发展过程&#9;</FONT><A HREF="#_Toc427495747">*</A></P>
+<FONT SIZE=3><P>Linux在伺服器中是中短期的威胁&#9;</FONT><A HREF="#_Toc427495748">*</A></P>
+<FONT SIZE=3><P>Linux不太可能是桌上系统的威胁&#9;</FONT><A HREF="#_Toc427495749">*</A></P>
+<FONT SIZE=3><P>击败Linux&#9;</FONT><A HREF="#_Toc427495750">*</A></P></DIR>
+
+<B><FONT SIZE=3><P>Netscape&#9;</B></FONT><A HREF="#_Toc427495751">*</A></P><DIR>
+
+<FONT SIZE=3><P>组织 &amp; 版权&#9;</FONT><A HREF="#_Toc427495752">*</A></P>
+<FONT SIZE=3><P>强处&#9;</FONT><A HREF="#_Toc427495753">*</A></P>
+<FONT SIZE=3><P>弱点&#9;</FONT><A HREF="#_Toc427495754">*</A></P>
+<FONT SIZE=3><P>预测&#9;</FONT><A HREF="#_Toc427495755">*</A></P></DIR>
+
+<B><FONT SIZE=3><P>Apache&#9;</B></FONT><A HREF="#_Toc427495756">*</A></P><DIR>
+
+<FONT SIZE=3><P>历史&#9;</FONT><A HREF="#_Toc427495757">*</A></P>
+<FONT SIZE=3><P>组织&#9;</FONT><A HREF="#_Toc427495758">*</A></P>
+<FONT SIZE=3><P>强处&#9;</FONT><A HREF="#_Toc427495759">*</A></P>
+<FONT SIZE=3><P>弱点&#9;</FONT><A HREF="#_Toc427495760">*</A></P>
+<FONT SIZE=3><P>IBM &amp; Apache&#9;</FONT><A HREF="#_Toc427495761">*</A></P></DIR>
+
+<B><FONT SIZE=3><P>其它OSS计划&#9;</B></FONT><A HREF="#_Toc427495762">*</A></P>
+<B><FONT SIZE=3><P>Microsoft的反应&#9;</B></FONT><A HREF="#_Toc427495763">*</A></P><DIR>
+
+<FONT SIZE=3><P>产品弱点&#9;</FONT><A HREF="#_Toc427495764">*</A></P>
+<FONT SIZE=3><P>撷取OSS好处 -- 开发者智慧分享&#9;</FONT><A HREF="#_Toc427495765">*</A></P>
+<FONT SIZE=3><P>撷取OSS好处 -- 微软内部作业&#9;</FONT><A HREF="#_Toc427495766">*</A></P>
+<FONT SIZE=3><P>延展OSS好处 -- 服务公共建设&#9;</FONT><A HREF="#_Toc427495767">*</A></P>
+<FONT SIZE=3><P>减弱OSS攻击&#9;</FONT><A HREF="#_Toc427495768">*</A></P></DIR>
+
+<B><FONT SIZE=3><P>其它相关链结&#9;</B></FONT><A HREF="#_Toc427495769">*</A></P>
+<B><FONT SIZE=3><P>感谢&#9;</B></FONT><A HREF="#_Toc427495770">*</A></P>
+<B><FONT SIZE=3><P>校订记录&#9;</B></FONT><A HREF="#_Toc427495771">*</A></P>
+<FONT FACE="冼  " LANG="ZH-CN" SIZE=6></P>
+</FONT><FONT FACE="冼  " LANG="ZH-CN" SIZE=3><P>&nbsp;</P>
+</FONT><FONT FACE="Helvetica Black" SIZE=6><P>开放原始码软体</P>
+</FONT><FONT FACE="Helvetica" SIZE=5><P>一个(新的?)开发方法学</P>
+</FONT><FONT FACE="冼  " LANG="ZH-CN" COLOR="black"><P><A NAME="_Toc427495715"></FONT>
+<FONT FACE="Helvetica Black" COLOR="black">主题摘要</A></P><DIR>
+<DIR>
+<DIR>
+
+</FONT><P ALIGN="JUSTIFY">开放原始码软体(OSS)
+是个开发过程, 呈现了快速开发, 新增功能及修正既有系统错误的方式.
+近年来, 随着网际网路的成长, OSS计划已达成传统商业计划所能成就的深度及复杂,
+如作业系统及重任伺服器.
+</P>
+<P ALIGN="JUSTIFY"><FONT COLOR="red">因而, 
+<A NAME="quote1">
+OSS摆出一付姿态直接威胁微软短期的收入及平台, 特别是伺服器领域.
+此外, 在OSS中, 其平起平坐的本质及自由理念的交换已经使其自身受益,
+程度达到我们目前版权模式无法驭越的高点,
+因此可以说是长期开发者心智分享的威胁.
+</A></FONT>  </P>
+<FONT COLOR="green">{
+好, 这说明了微软在这个要命关头可没有睡着.
+}</FONT>
+<P ALIGN="JUSTIFY">不过,
+其它OSS处理的弱点, 提供微软一条途径, 来收取其关键特性的好处,
+诸如架构改善(如storage+), 整合性(如schemas), 易用性, 及组织支援.
+</P>
+<FONT COLOR="green">{
+这份摘要建议很有趣, 因为它与後面
+<A HREF="#decommoditize">解效协定(de-commoditizing protocols)</a>
+中不相一致.
+}</FONT>
+
+</DIR>
+</DIR>
+</DIR>
+
+</FONT><FONT FACE="冼  " LANG="ZH-CN" COLOR="black"><P><A NAME="_Toc427495716"></FONT>
+<FONT FACE="Helvetica Black" COLOR="black">开放原始码软体</A></P>
+</FONT><FONT FACE="冼  " LANG="ZH-CN" SIZE=4><P><A NAME="_Toc427495717"></FONT>
+<FONT FACE="Helvetica Black" SIZE=4>什麽是OSS?</A></P><DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+开放原始码软体(OSS)是一套软体产品, 同时可获得并发行原始码及执行码,
+通常免费.
+OSS通常与"shareware"或"freeware"混淆,
+不过它们之间在<u>版权</u>模式及产品处理上有很大的不同.
+</P>
+<P ALIGN="JUSTIFY"> </P>
+</FONT><FONT FACE="冼  " LANG="ZH-CN" SIZE=4></DIR>
+</DIR>
+</DIR>
+
+<P><A NAME="_Toc427495718"></FONT><FONT FACE="Helvetica Black"
+SIZE=4>软体版权分类</A></P></FONT>
+<P ALIGN="RIGHT"><TABLE BORDER CELLSPACING=1 CELLPADDING=7 WIDTH=516>
+<TR><TD WIDTH="22%" VALIGN="TOP">
+<B><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">软体型态</B></FONT></TD>
+<TD WIDTH="17%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="8%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="10%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="10%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="14%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="22%" VALIGN="TOP">
+<B><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">Commerical Software</B></FONT></TD>
+<TD WIDTH="17%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="8%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="10%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="10%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="14%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="22%" VALIGN="TOP" HEIGHT=32>
+<B><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">Trial Software</B></FONT></TD>
+<TD WIDTH="17%" VALIGN="MIDDLE" BGCOLOR="#ffffff" HEIGHT=32>
+<B><FONT FACE="Helvetica" SIZE=5><P ALIGN="CENTER">X</P>
+</B></FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="CENTER">(Non-full featured)</FONT></TD>
+<TD WIDTH="8%" VALIGN="MIDDLE" BGCOLOR="#ffffff" HEIGHT=32>
+<B><FONT FACE="Helvetica" SIZE=5><P ALIGN="CENTER">X</B></FONT></TD>
+<TD WIDTH="10%" VALIGN="TOP" HEIGHT=32><P></P></TD>
+<TD WIDTH="10%" VALIGN="TOP" HEIGHT=32><P></P></TD>
+<TD WIDTH="9%" VALIGN="TOP" HEIGHT=32><P></P></TD>
+<TD WIDTH="14%" VALIGN="TOP" HEIGHT=32><P></P></TD>
+<TD WIDTH="9%" VALIGN="TOP" HEIGHT=32><P></P></TD>
+</TR>
+<TR><TD WIDTH="22%" VALIGN="TOP">
+<B><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">Non-Commercial Use</B></FONT></TD>
+<TD WIDTH="17%" VALIGN="MIDDLE" BGCOLOR="#ffffff">
+<B><FONT FACE="Helvetica" SIZE=5><P ALIGN="CENTER">X</P>
+</B></FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="CENTER">(Usage dependent)</FONT></TD>
+<TD WIDTH="8%" VALIGN="MIDDLE" BGCOLOR="#ffffff">
+<B><FONT FACE="Helvetica" SIZE=5><P ALIGN="CENTER">X</B></FONT></TD>
+<TD WIDTH="10%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="10%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="14%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="22%" VALIGN="TOP">
+<B><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">Shareware</B></FONT></TD>
+<TD WIDTH="17%" VALIGN="MIDDLE" BGCOLOR="#ffffff">
+<B><FONT FACE="Helvetica" SIZE=5><P ALIGN="CENTER">X</B></FONT><FONT FACE="Helvetica" SIZE=3>-(Unenforced licensing)</FONT></TD>
+<TD WIDTH="8%" VALIGN="MIDDLE" BGCOLOR="#ffffff">
+<B><FONT FACE="Helvetica" SIZE=5><P ALIGN="CENTER">X</B></FONT></TD>
+<TD WIDTH="10%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="10%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="14%" VALIGN="TOP">&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="22%" VALIGN="TOP">
+<B><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">Royalty-free binaries </B>("Freeware")</FONT></TD>
+<TD WIDTH="17%" VALIGN="MIDDLE" BGCOLOR="#ffffff">
+<B><FONT FACE="Helvetica" SIZE=5><P ALIGN="CENTER">X</B></FONT></TD>
+<TD WIDTH="8%" VALIGN="MIDDLE" BGCOLOR="#ffffff">
+<B><FONT FACE="Helvetica" SIZE=5><P ALIGN="CENTER">X</B></FONT></TD>
+<TD WIDTH="10%" VALIGN="MIDDLE" BGCOLOR="#ffffff">
+<B><FONT FACE="Helvetica" SIZE=5><P ALIGN="CENTER">X</B></FONT></TD>
+<TD WIDTH="10%" VALIGN="MIDDLE">&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="MIDDLE">&nbsp;</TD>
+<TD WIDTH="14%" VALIGN="MIDDLE">&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="MIDDLE">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="22%" VALIGN="TOP">
+<B><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">Royalty-free libraries</B></FONT></TD>
+<TD WIDTH="17%" VALIGN="MIDDLE" BGCOLOR="#ffffff">
+<B><FONT FACE="Helvetica" SIZE=5><P ALIGN="CENTER">X</B></FONT></TD>
+<TD WIDTH="8%" VALIGN="MIDDLE" BGCOLOR="#ffffff">
+<B><FONT FACE="Helvetica" SIZE=5><P ALIGN="CENTER">X</B></FONT></TD>
+<TD WIDTH="10%" VALIGN="MIDDLE" BGCOLOR="#ffffff">
+<B><FONT FACE="Helvetica" SIZE=5><P ALIGN="CENTER">X</B></FONT></TD>
+<TD WIDTH="10%" VALIGN="MIDDLE" BGCOLOR="#ffffff">
+<B><FONT FACE="Helvetica" SIZE=5><P ALIGN="CENTER">X</B></FONT></TD>
+<TD WIDTH="9%" VALIGN="MIDDLE">&nbsp;</TD>
+<TD WIDTH="14%" VALIGN="MIDDLE">&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="MIDDLE">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="22%" VALIGN="TOP">
+<B><FONT FACE="Helvetica" SIZE=3><P>Open Source </B>(BSD-Style)</FONT></TD>
+<TD WIDTH="17%" VALIGN="MIDDLE" BGCOLOR="#ffffff">
+<B><FONT FACE="Helvetica" SIZE=5><P ALIGN="CENTER">X</B></FONT></TD>
+<TD WIDTH="8%" VALIGN="MIDDLE" BGCOLOR="#ffffff">
+<B><FONT FACE="Helvetica" SIZE=5><P ALIGN="CENTER">X</B></FONT></TD>
+<TD WIDTH="10%" VALIGN="MIDDLE" BGCOLOR="#ffffff">
+<B><FONT FACE="Helvetica" SIZE=5><P ALIGN="CENTER">X</B></FONT></TD>
+<TD WIDTH="10%" VALIGN="MIDDLE" BGCOLOR="#ffffff">
+<B><FONT FACE="Helvetica" SIZE=5><P ALIGN="CENTER">X</B></FONT></TD>
+<TD WIDTH="9%" VALIGN="MIDDLE" BGCOLOR="#ffffff">
+<B><FONT FACE="Helvetica" SIZE=5><P ALIGN="CENTER">X</B></FONT></TD>
+<TD WIDTH="14%" VALIGN="MIDDLE">&nbsp;</TD>
+<TD WIDTH="9%" VALIGN="MIDDLE">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="22%" VALIGN="TOP">
+<B><FONT FACE="Helvetica" SIZE=3><P>Open Source </B>(Apache Style)</FONT></TD>
+<TD WIDTH="17%" VALIGN="MIDDLE" BGCOLOR="#ffffff">
+<B><FONT FACE="Helvetica" SIZE=5><P ALIGN="CENTER">X</B></FONT></TD>
+<TD WIDTH="8%" VALIGN="MIDDLE" BGCOLOR="#ffffff">
+<B><FONT FACE="Helvetica" SIZE=5><P ALIGN="CENTER">X</B></FONT></TD>
+<TD WIDTH="10%" VALIGN="MIDDLE" BGCOLOR="#ffffff">
+<B><FONT FACE="Helvetica" SIZE=5><P ALIGN="CENTER">X</B></FONT></TD>
+<TD WIDTH="10%" VALIGN="MIDDLE" BGCOLOR="#ffffff">
+<B><FONT FACE="Helvetica" SIZE=5><P ALIGN="CENTER">X</B></FONT></TD>
+<TD WIDTH="9%" VALIGN="MIDDLE" BGCOLOR="#ffffff">
+<B><FONT FACE="Helvetica" SIZE=5><P ALIGN="CENTER">X</B></FONT></TD>
+<TD WIDTH="14%" VALIGN="MIDDLE" BGCOLOR="#ffffff">
+<B><FONT FACE="Helvetica" SIZE=5><P ALIGN="CENTER">X</B></FONT></TD>
+<TD WIDTH="9%" VALIGN="MIDDLE">&nbsp;</TD>
+</TR>
+<TR><TD WIDTH="22%" VALIGN="TOP">
+<B><FONT FACE="Helvetica" SIZE=3><P>Open Source </B>(Linux/GNU style)</FONT></TD>
+<TD WIDTH="17%" VALIGN="MIDDLE" BGCOLOR="#ffffff">
+<B><FONT FACE="Helvetica" SIZE=5><P ALIGN="CENTER">X</B></FONT></TD>
+<TD WIDTH="8%" VALIGN="MIDDLE" BGCOLOR="#ffffff">
+<B><FONT FACE="Helvetica" SIZE=5><P ALIGN="CENTER">X</B></FONT></TD>
+<TD WIDTH="10%" VALIGN="MIDDLE" BGCOLOR="#ffffff">
+<B><FONT FACE="Helvetica" SIZE=5><P ALIGN="CENTER">X</B></FONT></TD>
+<TD WIDTH="10%" VALIGN="MIDDLE" BGCOLOR="#ffffff">
+<B><FONT FACE="Helvetica" SIZE=5><P ALIGN="CENTER">X</B></FONT></TD>
+<TD WIDTH="9%" VALIGN="MIDDLE" BGCOLOR="#ffffff">
+<B><FONT FACE="Helvetica" SIZE=5><P ALIGN="CENTER">X</B></FONT></TD>
+<TD WIDTH="14%" VALIGN="MIDDLE" BGCOLOR="#ffffff">
+<B><FONT FACE="Helvetica" SIZE=5><P ALIGN="CENTER">X</B></FONT></TD>
+<TD WIDTH="9%" VALIGN="MIDDLE" BGCOLOR="#ffffff">
+<B><FONT FACE="Helvetica" SIZE=5><P ALIGN="CENTER">X</B></FONT></TD>
+</TR>
+<TR><TD WIDTH="22%" VALIGN="BOTTOM" HEIGHT=119>
+<B><FONT FACE="Helvetica" SIZE=3><P>License Feature</B></FONT></TD>
+<TD WIDTH="17%" VALIGN="TOP" HEIGHT=119>
+<B><FONT FACE="Helvetica" SIZE=3><P>Zero Price Avenue</B></FONT></TD>
+<TD WIDTH="8%" VALIGN="TOP" HEIGHT=119>
+<B><FONT FACE="Helvetica" SIZE=3><P>Redistributable</B></FONT></TD>
+<TD WIDTH="10%" VALIGN="TOP" HEIGHT=119>
+<B><FONT FACE="Helvetica" SIZE=3><P>Unlimited Usage</B></FONT></TD>
+<TD WIDTH="10%" VALIGN="TOP" HEIGHT=119>
+<B><FONT FACE="Helvetica" SIZE=3><P>Source Code Available</B></FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" HEIGHT=119>
+<B><FONT FACE="Helvetica" SIZE=3><P>Source Code Modifiable</B></FONT></TD>
+<TD WIDTH="14%" VALIGN="TOP" HEIGHT=119>
+<B><FONT FACE="Helvetica" SIZE=3><P>Public "Check-ins" to core codebase</B></FONT></TD>
+<TD WIDTH="9%" VALIGN="TOP" HEIGHT=119>
+<B><FONT FACE="Helvetica" SIZE=3><P>All derivatives must be free</B></FONT></TD>
+</TR>
+</TABLE>
+</P>
+
+<FONT FACE="冼  " LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">&nbsp;</P><DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+版权目录表中包含:</P></DIR>
+</DIR>
+</DIR>
+
+
+<UL>
+
+<UL>
+<B><P ALIGN="JUSTIFY"><LI>商业软体</LI></P></UL>
+</UL>
+<DIR>
+<DIR>
+<DIR>
+<DIR>
+
+</B><P ALIGN="JUSTIFY">
+商业软体是微软的奶油面包. 它一定要买, 不能够再发行,
+而且使用者只能有可执行码.
+</P></DIR>
+</DIR>
+</DIR>
+</DIR>
+
+
+<UL>
+
+<UL>
+<B><P ALIGN="JUSTIFY"><LI>限制功能试用软体</LI></P></UL>
+</UL>
+<DIR>
+<DIR>
+<DIR>
+<DIR>
+
+</B><P ALIGN="JUSTIFY">试用软体通常是功能受限的商业软体版本,
+可自由散播, 期望刺激购买欲. 一般是60天失效的产品.
+</P></DIR>
+</DIR>
+</DIR>
+</DIR>
+
+
+<UL>
+
+<UL>
+<B><P ALIGN="JUSTIFY"><LI>共享软体</LI></P></UL>
+</UL>
+<DIR>
+<DIR>
+<DIR>
+<DIR>
+
+</B><P ALIGN="JUSTIFY">共享软体是全部功能均可用, 可自由散播,
+但版权要求最终个人用户及公司团体要购买. 许多网际网路工具(像"WinZip")
+就利用共享软体做为发行管道.
+</P></DIR>
+</DIR>
+</DIR>
+</DIR>
+
+
+<UL>
+
+<UL>
+<B><P ALIGN="JUSTIFY"><LI>非商业使用</LI></P></UL>
+</UL>
+<DIR>
+<DIR>
+<DIR>
+<DIR>
+
+</B><P ALIGN="JUSTIFY">非商业使用软体是可自由取得及散播,
+非营利机构可免费使用. 公司团体等等必须购买.
+例如Netscape Navigator.
+</P></DIR>
+</DIR>
+</DIR>
+</DIR>
+
+
+<UL>
+
+<UL>
+<B><P ALIGN="JUSTIFY"><LI>免费可执行软体</LI></P></UL>
+</UL>
+<DIR>
+<DIR>
+<DIR>
+<DIR>
+
+</B><P ALIGN="JUSTIFY">免费可执行软体可免费使用及散播, 但仅以可执行档发行.
+Internet Exploder及NetMeating可适用於此.
+</P></DIR>
+</DIR>
+</DIR>
+</DIR>
+
+<UL>
+
+<UL>
+<B><P ALIGN="JUSTIFY"><LI>免费函数库</LI></P></UL>
+</UL>
+<DIR>
+<DIR>
+<DIR>
+<DIR>
+
+</B><P ALIGN="JUSTIFY">免费函数库是软体产品物件档及原始码均可自由使用并散播,
+但终端用户不得修改为适用於自己使用.
+典型例子是class libraries, header files.
+</P></DIR>
+</DIR>
+</DIR>
+</DIR>
+
+
+<UL>
+
+<UL>
+<B><P ALIGN="JUSTIFY"><LI>开放原始码(BSD格调)</LI></P></UL>
+</UL>
+<DIR>
+<DIR>
+<DIR>
+<DIR>
+
+</B><P ALIGN="JUSTIFY">一小群封闭的发展者发展BSD格调的开放原始码产品,
+允许免费使用散播可执行档及原始码.
+<FONT COLOR="red">使用者被允许可修改程式码,
+开发团队通常并不向外界取用资源.
+</FONT></P></DIR>
+</DIR>
+</DIR>
+</DIR>
+
+
+<UL>
+
+<UL>
+<B><P ALIGN="JUSTIFY"><LI>开放原始码(Apache格调)</LI></P></UL>
+</UL>
+<DIR>
+<DIR>
+<DIR>
+<DIR>
+
+</B><P ALIGN="JUSTIFY">Apache取BSD格调开放原始码模式,
+并延展成为 
+<FONT COLOR="red">允许外界团体加入自用的程式.</FONT></P></DIR>
+</DIR>
+</DIR>
+</DIR>
+
+
+<UL>
+
+<UL>
+<B><P ALIGN="JUSTIFY"><LI>开放原始码(CopyLeft, Linux-style)</LI></P></UL>
+</UL>
+<DIR>
+<DIR>
+<DIR>
+<DIR>
+
+</B><P ALIGN="JUSTIFY">CopyLeft或GPL(General Public License)软体
+把开放原始码版权向前更推进<u>重要的</u>一步.
+当BSD及Apache形式的软体允许使用者"分歧"程式及自行加上版权条文
+(例如商业化), GPL版权要求所有延展出来的工作必须也是GPL版权.
+"您可以自由地修改程式, 只要您的延展的工作也是可自由修改的."
+</P></DIR>
+</DIR>
+</DIR>
+</DIR>
+</FONT>
+<FONT COLOR="green"><A NAME="comment2">{
+很有趣的事, 可见到它们如何将最後三种分开来分类,
+在open-source界一般视之为一同.
+<P>
+对我们来说, open-source版权及授权给使用者及支援厂商是最主要的,
+特定的开发业务并不特别附在我们的版权形式中.
+另一方面来说, 在微软的分类中, 其分类的基础是由谁来写出这些主核心程式.
+<P>
+
+这倒是反应出大部份现实中的中心观点,
+并反应出备忘录作者缺乏想像及了解,
+它并不完全了解分散式开发的传统,
+这实在是一点都不惊讶...
+}</A></FONT><P>
+
+<FONT FACE="冼  " LANG="ZH-CN" SIZE=4><P><A NAME="_Toc427495719"></FONT>
+<FONT FACE="Helvetica Black" SIZE=4>开放原始码软体对微软来说有很重要的意义</A></P><DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+本文主要专注於OSS. OSS完全不同於其它形式的版权(特别是"共享软体"),
+尤其是在两个非常重要的方面:
+</P></DIR>
+</DIR>
+</DIR>
+
+<OL>
+<DIR>
+<DIR>
+
+<OL>
+
+<P ALIGN="JUSTIFY"><LI>始终可以完全免费地取的核心程式码
+</LI></P>
+<P ALIGN="JUSTIFY"><LI>不像是免费发行的可执行码,
+开放原始码设定了一套<i>程序</i>鼓舞其它开发者加入功能.
+</LI></P></OL>
+</DIR>
+</DIR>
+</OL>
+<DIR>
+<DIR>
+<DIR>
+
+<P ALIGN="JUSTIFY">许多理由微软需要关注OSS:</P></DIR>
+</DIR>
+</DIR>
+
+<OL>
+
+<OL>
+
+<B><P ALIGN="JUSTIFY"><LI>OSS计划已达"商业品质"</LI></P>
+</B><P ALIGN="JUSTIFY">一个关键界线, 在许多客户眼中, OSS曾经是缺乏品质的.
+OSS支持者则辩解, 好程式是要看一个OSS软体中的臭虫点阅单,
+而这导致比商业软体<u>更高品质</u>的结论.
+</P>
+
+<P ALIGN="JUSTIFY"><FONT COLOR="red"><a name="quote2">
+最近的个案研究(网际网路)提供了引人注目的证据,
+在消费者眼中, 商业软体品质可由OSS计划达成或超越.</A>
+在此, 没有强烈证据OSS程式品质超出消遣范围.
+</FONT></P>
+
+<FONT COLOR="green">{
+这些句子放在一起非常地自我矛盾, 除非"最近的个案研究"都是"消遣".  
+既然这样, 又何必叫它们"非常引人注目的证据"?
+<P>
+这好似有点自我保护, 并且将第二句话补满.
+然而, 第一句可算是微软的大让步.
+<P>
+任何状况下, "消遣"是失效的. 看看
+<a href="javascript:if(confirm('../../../../../../www.cs.wisc.edu'))window.location='http://www.cs.wisc.edu/Dienst/UI/2.0/Describe/ncstrl.uwmadison/CS-TR-95-1268'" tppabs="http://www.cs.wisc.edu/Dienst/UI/2.0/Describe/ncstrl.uwmadison/CS-TR-95-1268">
+Fuzz Revisited: A Re-examination of the Reliability of UNIX
+Utilities and Services </a>.<P>
+
+这里有几行很适切:<P>
+
+<BLOCKQUOTE>
+"我们测试过商业版的UNIX工具失效率... 范围从15-43%."
+"免费发行的Linux版UNIX失效率次低, 9%",
+"在我们的研究中, 最低的是GNU工具, 仅7%."
+</BLOCKQUOTE>
+}</FONT><P>
+<B><P ALIGN="JUSTIFY"><LI>OSS计划规模与复杂度越变越大</LI></P>
+</B><P ALIGN="JUSTIFY">另一个重要界线, OSS界已经着手处理的是计画复杂度.
+OSS团队正在进行迄今为止只有商业, 具经济组织/有动机开发团队才能处理的
+大规模及复杂度的计划.
+例如Linux作业系统及Xfree86 GUI.
+</P>
+<P ALIGN="JUSTIFY">OSS过程与网际网路息息相关,
+网际网路提供了巨大的分散开发资源.
+看看一些OSS计划的规模:
+</P></OL>
+</FONT>
+<P ALIGN="CENTER"><CENTER><TABLE BORDER CELLSPACING=1 CELLPADDING=7 WIDTH=406>
+<TR><TD WIDTH="53%" VALIGN="TOP">
+<FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">Project</FONT></TD>
+<TD WIDTH="47%" VALIGN="TOP">
+<FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">Lines of Code</FONT></TD>
+</TR>
+<TR><TD WIDTH="53%" VALIGN="TOP">
+<FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">Linux Kernel (x86 only)</FONT></TD>
+<TD WIDTH="47%" VALIGN="TOP">
+<FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">500,000</FONT></TD>
+</TR>
+<TR><TD WIDTH="53%" VALIGN="TOP">
+<FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">Apache Web Server</FONT></TD>
+<TD WIDTH="47%" VALIGN="TOP">
+<FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">80,000</FONT></TD>
+</TR>
+<TR><TD WIDTH="53%" VALIGN="TOP">
+<FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">SendMail</FONT></TD>
+<TD WIDTH="47%" VALIGN="TOP">
+<FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">57,000</FONT></TD>
+</TR>
+<TR><TD WIDTH="53%" VALIGN="TOP">
+<FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">Xfree86 X-windows server</FONT></TD>
+<TD WIDTH="47%" VALIGN="TOP">
+<FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">1.5 Million </FONT></TD>
+</TR>
+<TR><TD WIDTH="53%" VALIGN="TOP">
+<FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">"K" desktop environment</FONT></TD>
+<TD WIDTH="47%" VALIGN="TOP">
+<FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">90,000</FONT></TD>
+</TR>
+<TR><TD WIDTH="53%" VALIGN="TOP">
+<FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">Full Linux distribution</FONT></TD>
+<TD WIDTH="47%" VALIGN="TOP">
+<FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">~10 Million</FONT></TD>
+</TR>
+</TABLE>
+</CENTER></P>
+
+<FONT FACE="冼  " LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY"></P>
+</FONT><B><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+<LI>OSS有相当独特的开发过程及特有的强处及弱点</LI>
+</P></OL>
+<DIR>
+<DIR>
+<DIR>
+<DIR>
+
+</B><P ALIGN="JUSTIFY">OSS过程是特有的,
+特别是其叁与者的动机及资源可把问题攻下来.
+因此, OSS有些有趣, 不重覆的资产是必须要全面加以了解的.
+</P></DIR>
+</DIR>
+</DIR>
+</DIR>
+
+</FONT><FONT FACE="冼  " LANG="ZH-CN" SIZE=4><P><A NAME="_Toc427495720"></FONT>
+<FONT FACE="Helvetica Black" SIZE=4>历史</A></P><DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+OSS在业馀玩家及科学团体扎下很深的根,
+特别是以交换原始码做为象徵.
+</P>
+</FONT><FONT FACE="Helvetica Black" SIZE=3><P>网际网路软体</P>
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+对OSS的最大规模个案研究是网际网路.
+大部份网际网路程式, 在早期到目前为止依然是OSS, 
+Tim O'Reilly 有相当的描述
+(</FONT><A HREF="javascript:if(confirm('../../../../../../www.techweb.com/internet/profile/toreilly/interview  /n/nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  /n/nDo you want to open it from the server-'))window.location='http://www.techweb.com/internet/profile/toreilly/interview'" tppabs="http://www.techweb.com/internet/profile/toreilly/interview">
+<FONT FACE="Helvetica" SIZE=3>http://www.techweb.com/internet/profile/toreilly/interview</FONT></A>
+<FONT FACE="Helvetica" SIZE=3> ):  </P><DIR>
+
+<I><P>TIM O'REILLY: 我们所收到的最明显的讯息是,
+"开发原始码软体有用." ... BIND绝对是一套统治整个网际网路的重要任务软体.
+Apache统治网站伺服器. SendMail大概占有80%的邮件伺服器,
+而且触及每一份电子邮件.
+</P>
+</DIR>
+译注: BIND是DNS软体, 在UNIX上执行, Internet没有DNS会四处碰壁. 
+Internet上是以BIND做为DNS软体公共建设, 占有率比SendMail还高.
+
+</I></FONT><FONT FACE="Helvetica Black" SIZE=3><P>
+自由软体基金会/格弩计划(Free Software Foundation/GNU Project)</P>
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+第一个进行现代化有组织性的OSS是在MIT的Richard Stallman.
+在1983年後期, Stallman建立自由软体基金会(FSF) --
+</FONT>
+<A HREF="javascript:if(confirm('../../../../../../www.fsf.com)/  /n/nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  /n/nDo you want to open it from the server-'))window.location='http://www.fsf.com)/'" tppabs="http://www.fsf.com)/"><U>
+<FONT FACE="Helvetica" SIZE=3 COLOR="#0000ff">
+http://www.gnu.ai.mit.edu/fsf/fsf.html</U></FONT></A>
+<FONT FACE="Helvetica" SIZE=3> -- 
+以产生免费版本的UNIX作业系统做为终极目标.
+以GNU绰号之名(绕口的名字, "Gns's Not Unix"), 
+FSF释出一系列的原始码及执行码.
+</P>
+<P ALIGN="JUSTIFY">
+原始FSF/GNU创设动机在於生产完整的OSS Unix.
+而他们做到了, 目前已经贡献了许多着名并广  使用的应用软体及程式工具,
+包含:
+</P></DIR>
+</DIR>
+</DIR>
+
+
+<UL><DIR>
+<DIR>
+
+
+<UL>
+<B><P ALIGN="JUSTIFY"><LI>GNU Emacs</B> -- 
+原来是很强力的文字编辑器, 後来被加强成编译器的环境, 及可读电子邮件, 等等.
+</LI></P>
+<B><P ALIGN="JUSTIFY"><LI>GNU C Compiler (GCC)</B> -- 
+GCC是在学校及OSS界最广  使用的编译器, 此外有一大套的标准函数库.
+</LI></P>
+<B><P ALIGN="JUSTIFY"><LI>GNU GhostScript</B> -- Postscript printer/viewer.
+</LI></P></UL>
+</DIR>
+</DIR>
+</UL>
+<DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica Black" SIZE=3><P>释放式版权(CopyLeft Licensing)</P>
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+FSF/GNU软体引入了"copyleft"版权方案,
+不但使得藏起原始码是非法的, 也使藏起由GNU软体原始码所延伸的工作也非法. 
+该文件即着名的General Public License(GPL).
+</P>
+<P ALIGN="JUSTIFY">Wired杂志对该方案及目标有以下的摘要 
+(</FONT><A HREF="javascript:if(confirm('../../../../../../www.wired.com/wired/5.08/linux.html  /n/nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  /n/nDo you want to open it from the server-'))window.location='http://www.wired.com/wired/5.08/linux.html'" tppabs="http://www.wired.com/wired/5.08/linux.html">
+<FONT FACE="Helvetica" SIZE=3>http://www.wired.com/wired/5.08/linux.html</FONT>
+</A><FONT FACE="Helvetica" SIZE=3>):</P><DIR>
+
+<I><P>一般大众版权,或GPL,允许使用者贩卖, 复制, 并修改copyleft程式 -
+也就是也可以变成copyright -
+但相同的自由, 即修改或销售, 也转嫁到消费者身上.
+您必须使得您的修改也可免费获得.
+</P>
+</DIR>
+
+</I><P ALIGN="JUSTIFY">第二句 -- 开放原始码延伸工作 -- 
+是最具争议性的(不过, 可能也是最成功的)释放式版权观念. </P></DIR>
+</DIR>
+</DIR>
+
+</FONT><FONT FACE="冼  " LANG="ZH-CN" COLOR="black"><P><A NAME="_Toc427495721">
+</FONT><FONT FACE="Helvetica Black" COLOR="black">开放原始码处理过程</A></P>
+<DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+商业软体开发通常是由组织因为经济目标所设立的.
+不过, 既然钱不是OSS的主要动机, 了解该威胁的性质需要深一步了解
+开放原始码团队的动机及其处理过程.
+</P>
+<P ALIGN="JUSTIFY"><FONT COLOR="red"><A NAME="quote3">
+换句话说, 要了解如何与OSS界竞争, 我们必须瞄准一种过程而非一家公司.
+</A></FONT></P>
+<FONT COLOR="green">{
+这是很重要的洞察力, 是我希望微软遗漏掉的.
+真正的战场不在於NT对Linux, 或是微软对Red Hat/Caldera/S.u.S.E.
+- 它是一场封闭原始码对开放原始码的圣战,
+教堂对市集(The cathedral versus the bazaar).
+<P>
+
+这在反方面来说是一样的, 也就是何以打击微软, 因为微软是敌方象徵 -
+它们是表象, 而非病根.
+<FONT COLOR="blue">
+(译注: Raymond这句话非常的深, 起源於Homesteading the Noosphere, 
+需要深入解释一下, 原文为:
+This applies in reverse as well, which is why bashing Microsoft qua
+Microsoft misses the point - they're a symptom, not the disease itself.
+有许多的误解都由此而来, 在Open Source界有几个主流:
+传统Open source是保持理念者, 可以说比较能够走长路, 也是目前OSS的主力军.
+有许多吃了微软的亏的人, 不见得是公司, 大多数是个人, 进入Open source,
+使用Linux, 发现了另一片天空, 有部份的人则开始拿Linux当武器,
+进攻微软, 从文斗笔攻到网路奇袭, 样样都来, 糟糕的事是太成功太有效,
+微软的系统太不堪一击, 造成不少破坏, 於是造成Linux恶名,
+使外界误解Linux是玩家骇客的栖身之地,
+这样的行动在1993-1997年间相当盛行. 译者也是其中之一, 到目前还是死性不改.
+纯粹Open source是理想主义者, 对一切非开放的系统都进行笔攻,
+最有名的Open source内部问题就是KDE/GNOME之间的圣战, 这场文斗在Troll Tech
+释出Qt版权後落幕, 也使译者松一口气, 可以安心翻译Qt文件. 
+这场笔战主要是纯粹Open source主义者与抱持其它理念者之间意见整合.
+部份Open source主要是商业机构, 如Sun, IBM, SGI等等这些相关者,
+以及一些个人, 有着其它的考量, 不能完全释出原始码者.
+在这所有流派之间, 大家可以注意到, 没有任何一点与微软有重合之处.
+其次, 不管是那一种Open source版权, 其内容都与微软完全颠倒;
+OSS要求开放自由, MS完全封锁独裁; OSS的开发方法是科学的, MS是商业的;
+OSS要求免费, MS样样要钱; OSS开发者大多负责任, 有问题会以最短时间修改完成, 
+使用者有问题都会主动回答, MS只问钱, 有问题修改慢慢来不说, 
+修补程式还要钱, 顾问支援也要钱;
+OSS不镇压竞争者, 重复性质的开发团队, 以技术一较上下,
+采自然淘汰, 有许多的例子甚至可互助共荣, 例如多样化的X Window Manager;
+MS眼中则容不下一颗沙子, 挡我路者死, 采用各种阴险的技俩杀死对手,
+例如着名的FUD, SS战略, 及黑函等等;
+OSS不做夸大广告, 而MS只怕是全世界最会说谎的一家公司;
+於是OSS与MS之间, 全面背道而驰, 自然而成为天敌.
+再从消费者的观点来看, 购买微软货物只有助长恶势,
+而OSS是站在高处, 明白指出这个问题的团体, 并与之对抗.
+因此, 为何说微软是表徵, 所指的是微软的运作模式, 对世界经济与科技的发展,
+有极大的伤害.
+OSS对抗的并不是一家公司, 而是一种现像, 而这种现像, 由微软明白的呈献,
+称为微软现像, 其影响之深入及各角落.
+如果有其它的公司有类似的现像, OSS本质上, 就很容易会自然相互对抗,
+不用主动找上, 该公司也会自然地与OSS对峙.
+因此Raymond希望Anti-MS Linux Hacker要了解到Open source的真意,
+而非一谓地针对微软.
+)
+</font>
+我希望有更多Linux玩家了解这一点.
+<P>
+
+在实际的层面, 这样的洞察意谓着, 我们可以预期微软的宣传机器,
+会直指开放原始码的文化与过程, 而非特定的竞争者.
+记住这句话...
+<font color="blue">
+(译注: Raymond这句话有所保留. 似乎有意保护一些Open source的发展商,
+如Red Hat/FreeBSD/Caldera/S.u.S.E./Turbo Linux等等.
+我的想法与Raymond不同, 我认为微软智曩团足够聪明,
+一定会得到与我相同的结论, 因此我把Raymond没讲出来的话写出来,
+希望知道的人要适时地警告.
+在公司级的层面, 以Open source做为基础的公司,
+如Red Hat/FreeBSD等等, 使用FUD战略依然是有效的,
+本文作者是工程师, 并非在市场上打战的, 无法得到这样的结论.
+其次, FUD固然会对OSS整体形像无损, 但运作到公司团体的方向,
+依然非常有力. 因为, Open source基础的公司是以提供顾问及服务做为主力,
+也就是人与人之间的相处, FUD释放谣言, 受服务的公司听信谣言或是
+相信眼前的稳定是很难判定的. Open source服务公司是站在前线,
+对OSS理念的拓展, 其次, 可以回馈到Open source界.
+因此, 以FUD来进攻这些公司, 会间接造成OSS理念及发展的障碍.
+OSS脚步一慢下来, 微软便可利用时间布署Shifting Standards战略来攻击OSS.
+虽然作者建议FUD无效, 但我相信微软依然会用FUD做为武器, 最有可能的第一个目标,
+可能就是Red Hat Linux, 而RH目前的後台, 正是与MS撕破脸的Netscape, Intel,
+Sun, AOL. 因此, Open source界要特别注要到谣言, 
+澄清谣言的速度要快. 此外, 要特别注意到台面下的动作, 
+特别是微软蚕食Open source的服务对象.)
+</font>
+
+}</FONT><P>
+</DIR>
+</DIR>
+</DIR>
+
+</FONT><FONT FACE="冼  " LANG="ZH-CN" SIZE=4><P><A NAME="_Toc427495722">
+</FONT><FONT FACE="Helvetica Black" SIZE=4>开放原始码开发团队</A></P><DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+以网际网路驱策OSS开发团队的一些关键特色:
+</P></DIR>
+</DIR>
+</DIR>
+
+
+<UL>
+
+<UL>
+<a name="comment5">
+<P ALIGN="JUSTIFY"><LI>地理远布.  
+<FONT COLOR="red">
+例如说, 许多Linux关键的开发者规则地分散在欧洲, 美洲, 及亚洲.
+</FONT>
+</LI></P> 
+<FONT COLOR="green">{
+非常有趣的, 作者注意到这一点,
+但它并没有继续讨论下去Linux在国际化或在海外的延展威力的成功
+(特别是欧洲), 是因为恐惧美国科技统治的威力所驱策的.
+这样的遗漏可能表示出微软策略的明显盲点.
+<font color="blue">
+(
+译注:
+Linux的开发者主力是美国及欧洲, 在亚洲则是日本, 台湾则在起步.
+观察整个开发人员的分布及特质, 可以看出一些有趣的事实.
+在美国的开发人员有大规模的反微软人士, 
+欧洲的心态较为中立, 并没有特意反对什麽, 因此有许多精彩的作品,
+可以看出明显的软体公共建设心态.
+另外, 澳洲/纽西兰也是Linux大本营, 出发点也近於欧洲.
+日本/中国/台湾开发人员居住美国者也有相当多,
+本土方面, 日本Turbo Linux经营成熟, 向软体公共建设稳定的迈进, 
+近日前则宣布描准中国大陆市场.
+台湾与韩国大致相当, 台湾可能较多一点, 
+但重视程度离开始进行软体公共建设之路, 还有一段距离.
+可以看出美国科技统治在台湾及韩国根扎得很深.
+)
+</font>
+}</FONT><P>
+</a>
+<P ALIGN="JUSTIFY"><LI>大规模的贡献者及小规模的核心份子.
+再一次, Linux有超过千人贡献修补程式, 除错程式等等,
+而有大约200人直接为核心程式贡献.
+</LI></P></UL>
+</UL>
+
+
+<UL>
+
+<UL>
+<P ALIGN="JUSTIFY"><LI>不以金钱做为出发动机(短程的).
+这些人大多像嗜好一样, 将休闲时间/精力花在OSS计划发展上,
+自己另外有全职. 当商业版本Linux出现时, 可能有所改变.
+</LI></P></UL>
+</UL>
+
+</FONT><FONT FACE="冼  " LANG="ZH-CN" SIZE=4><P><A NAME="_Toc427495723">
+</FONT><FONT FACE="Helvetica Black" SIZE=4>OSS开发整合</A>
+</P><DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica Black" SIZE=3><P>通讯 -- 网际网路规模</P>
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+整合一个OSS开发团队极端依赖以网际网路为基础型式的合作.
+典型被采用的方式是全方位使用网际网路统合科技:
+</P></DIR>
+</DIR>
+</DIR>
+
+
+<UL><DIR>
+<DIR>
+
+
+<UL>
+<P ALIGN="JUSTIFY"><LI>Email lists</LI></P>
+<P ALIGN="JUSTIFY"><LI>Newsgroups</LI></P>
+<P ALIGN="JUSTIFY"><LI>24x 7 monitoring by international subscribers</LI></P>
+<P ALIGN="JUSTIFY"><LI>Web sites</LI></P></UL>
+</DIR>
+</DIR>
+</UL>
+<DIR>
+<DIR>
+<DIR>
+
+<P ALIGN="JUSTIFY">
+OSS计划到Linux及Apache的规模, 只有靠大量有高等技巧的开发者
+蓄集力量合力解决问题. 因此, 在OSS计划大小方面与网际网路的成长有直接的关系.
+</P>
+</FONT><FONT FACE="Helvetica Black" SIZE=3><P>共同方向</P>
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+除了通讯媒体以外, 另外有一些因素隐隐地协调着开发团队的方向.
+</P>
+</FONT><FONT FACE="Helvetica" SIZE=4><P>共同目标</P>
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+共同目标相当於可见的声明, 普及深入於整个开发团队分散式决策.
+一个单一清悉的指令(例如, "重建UNIX")是极度有效的沟通,
+并且由一个团队来执行, 而非许多个, 一个无形的团队.
+(例如, "制造一个好的作业系统").
+</P>
+</FONT><FONT FACE="Helvetica" SIZE=4><P>共同前例</P>
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+前例是潜在<U>最重要的因素</U>解释在像Linux作业系统,
+这样重量级的OSS计划的快速而有凝聚力的成长.
+因为整个Linux团体有着经年累月的经验,
+在处理多样化的UNIX上, 他们很容易就可以区分 -- 
+毫无质疑地 -- 什麽做法有效, 什麽失效.
+</P>
+
+<P ALIGN="JUSTIFY">
+他们不会争辩在文字编辑器中要用什麽命令格式 -- 
+大家都已经用"vi", 而发展者就是以这些做为基础,
+再往上建构.
+</P>
+<A NAME="comment6"><P ALIGN="JUSTIFY">具有历史, 20:20的後见之明,
+提供了强力潜在的结构
+<FONT COLOR="red">再往前仔细检视组织, 其结构具有强力而有梦想的领导力.
+</FONT></P>
+<FONT COLOR="green">{
+第一眼看下去, 这读起来犹如红鼻子比尔的注解,
+有似有人预期Gates会读这份备忘录 -- 
+您可以几乎看见作者跪在大哉勇领导者形像之前.
+
+<P>
+更一般地来看, 它具有一些严重而可能可利用的对开放原始码社团能力的低估,
+以便使自己的领导者看来具有梦想.
+
+我们并非从"20:20的事後聪明"中取得Emacs或Perl或是全球资讯网 --
+而把相对保守的Linux核心设计, 看成是过去消遣模式的开发模式,
+也是不正确的.
+
+<P>
+所以, 这就是说微软对开放原始码的回应,
+可能就是强调错方向在革新,
+同时在我们的行动, 及我们对这个世界所表达的方式两个方面上.
+}</A></FONT><P>
+</FONT><FONT FACE="Helvetica" SIZE=4><P>共同技巧</P>
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+NatBro指出, 对OSS发展来说, 先决条件需要以共同接受的技巧做为基础.
+这一点与先前所提及的共同前例现像相近.
+从其Email:
+</P><DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3 COLOR="#000080"><P ALIGN="JUSTIFY">
+一个关键的特色 ... 是OSS加入及增强的共同的UNIX/gnu/make技巧.
+我想如果进入点门槛再高一点, 整个过程就会失效 ... 
+一个平庸技巧的UNIX程式设计师可在Linux及许多OSS产品中做出许多伟大的事.
+换另一个方向来说 -- 对开发者来说, 在OSS领域不难达成他们的渴望,
+因为大家做事的方式都相近, 除错方式也相近, 等等.
+
+</P></DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+鉴於前例标示出最终目标, 共同技巧特质指出, 在整个过程中,
+人数适切, 即可达成终极目标.
+<FONT FACE="Helvetica" SIZE=3 COLOR="#000080">.</P>
+
+</FONT><FONT FACE="Helvetica Black" SIZE=3><P>教堂观与市集观</P>
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+一篇由OSS支持者 -- Eric Raymond -- 非常具有影响力的文章,
+首次在May 1997发表
+(</FONT><A HREF="javascript:if(confirm('../../../../../../www.redhat.com/redhat/cathedral-bazaar/  /n/nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  /n/nDo you want to open it from the server-'))window.location='http://www.redhat.com/redhat/cathedral-bazaar/'" tppabs="http://www.redhat.com/redhat/cathedral-bazaar/">
+<FONT FACE="Helvetica" SIZE=3>http://www.redhat.com/redhat/cathedral-bazaar/</FONT>
+</A><FONT FACE="Helvetica" SIZE=3>). 
+Raymond的文章被Netscape CTO Eric Hahn明白的指出,
+是他们决定要释放浏览器原始码的主要动机.
+</P>
+<P ALIGN="JUSTIFY">
+Raymond对自己的OSS计划解析, 以求取规则元素,
+期许能够在未来被其它OSS计划所利用.
+一些Raymond的规则元素包含了:</P>
+</FONT><FONT FACE="Helvetica Black" SIZE=3><P>
+所有伟大的软体都开始於开发者个人的渴望.
+</P><DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+这总括了在OSS过程中, 开发者的核心动机 --
+由个体解决呈在眼前的急迫需求 -- 
+这使得OSS能够演化出复杂的需要,
+而不需要由行销支援组织来固定回馈.
+</P></DIR>
+
+</FONT><FONT FACE="Helvetica Black" SIZE=3><P>
+好的程式设计者知道如何写程式, 伟大的程式设计者知道如何重写(或再利用).
+</P><DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+Raymond断定, 在严密的开放原始码过程比传统开发环境, 更容易再利用程式码,
+因为他们总是保证整个原始码可获取.
+</P>
+
+<P ALIGN="JUSTIFY">
+大量可取得的开放原始码降低了找寻程式草稿所需的代价.
+</P></DIR>
+
+</FONT><FONT FACE="Helvetica Black" SIZE=3><P>
+``Plan to throw one away;
+ you will, anyhow.'' </P><DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">引自Fred Brooks,
+ ``The Mythical Man-Month'', Chapter 11.   
+因为OSS开发团队通常都极度散居各地,
+许多在Linux中的主要的次系统元件,
+主要是由Linus来提供原型并做选择及精炼.
+</P></DIR>
+
+</FONT><FONT FACE="Helvetica Black" SIZE=3><P>
+要胁您的使用者变成共同作者, 是快速地改善程式及有效地除错的捷径.
+</P><DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+Raymond主张精华的文件及重要的开发者支援运用到OSS计划,
+以使好处最大. 
+</P>
+<P ALIGN="JUSTIFY">
+程式文件是商业软体开发者典型忽略的一环,
+而此通常在OSS中是致命的错误.
+</P></DIR>
+
+</FONT><FONT FACE="Helvetica Black" SIZE=3><P>
+早点释出, 释出频繁, 然後听听您的使用者.
+</P><DIR>
+
+<A NAME="comment7">
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+<FONT COLOR="red">
+这是起源於微软手册的典型手法.</FONT>
+OSS支持者会注意到他们的"释出-回馈"周期, 比商业软体速度高得多.
+</P>
+<FONT COLOR="green">{
+这实在是个有趣的傲慢声明, 好似我是被微软那种binary-only的方式所鼓舞一样.
+<P>
+但这也可以看出一些东西出来 --
+虽然作者理智地掌握到原始码释放的重要性,
+它却不了解真正释出<em>原始码</em>的手段的强大威力.
+或者活在微软的傲慢中使得这一切变得不可能.
+<P>
+<font color="blue">
+(译注: 作者不真正了解所谓, Release early, Release often的真正意义,
+也许让他叁与个OSS的计划才能真正体会吧.)
+</font>
+}</FONT><P>
+</A>
+
+</DIR>
+
+</FONT><FONT FACE="Helvetica Black" SIZE=3><P>
+弄一大票beta测试者及共同作者, 几乎所有问题都会被找出来, 并且由某人修正.
+</P><DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+<FONT COLOR="red">
+这可能是Raymond对整个OSS过程洞察的核心了.
+</FONT>
+它诠释这个法则为"平行除错". 更深入的分析如下.
+</P>
+<FONT COLOR="green">{ 喝, 它总算把<em>这个</em>搞对了. }</FONT><P>
+</DIR>
+</DIR>
+</DIR>
+</DIR>
+
+</FONT><FONT FACE="冼  " LANG="ZH-CN" SIZE=4><P><A NAME="_Toc427495724"></FONT>
+<FONT FACE="Helvetica Black" SIZE=4>平行开发</A></P><DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+一旦元件的架构建起来
+(例如, 关键API及结构定义), 
+OSS计划, 像Linux就会部署开许多个小团队来解决特定问题.
+</P>
+
+<P ALIGN="JUSTIFY">
+因为发展者通常都是做为嗜好, 因此弄出许多个竞争的状况,
+在OSS过程中不常见的, 而大家则是捡拾最好的实作来放到产品上.
+</P>
+<P ALIGN="JUSTIFY">注意到, 这非常地依靠以下:</P></DIR>
+</DIR>
+</DIR>
+
+
+<UL>
+
+<UL>
+<P ALIGN="JUSTIFY"><LI>一大群的个体愿意献上程式</LI></P>
+<P ALIGN="JUSTIFY"><LI>一个强而隐含的元件的架构
+ (即, 以Linux的来说, 是继承UNIX架构而来的).
+</LI></P></UL>
+</UL>
+
+</FONT><FONT FACE="冼  " LANG="ZH-CN" SIZE=4><P><A NAME="_Toc427495725"></FONT>
+<FONT FACE="Helvetica Black" SIZE=4>平行除错</A></P><DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+由Eric S. Raymond所提出的论点来看,
+不像软体开发的其他方面, 程式除错效率是直接与叁与计划的人数成正比的.
+在除错方面, 可以说仅需小量/或没有管理及协调的代价.
+</P>
+
+<P ALIGN="JUSTIFY">
+Raymond引用了Linus Torvald对Linux除错过程的描述:
+</P><DIR>
+
+<P>
+我原始描述是每个问题"对某些人来说是看不见的",
+Linus说能够了解并修正那个问题的人, 并非必要是,
+甚至通常都不是找出那个问题的人.
+"有些人找到问题", "而有些人了解它",
+而我要说, 找到问题的挑战性是比较大的.
+但要点是, 两件事尽可能越早发生越好.
+
+</P>
+</DIR>
+
+<P ALIGN="JUSTIFY">Put alternately:</P><DIR>
+
+<P>``除错是可以平行的''. Jeff [Dutky &lt;dutky@wam.umd.edu&gt;]
+可以观察到, 虽然除错需要除错者去跟某个程度的开发者沟通,
+但并不需要除错者之间互相沟通.
+这不会变成二次方的复杂度, 管理代价也不会把开发者搞头大.
+</P>
+</DIR>
+
+<P>
+另一个平行除错的好处, 是臭虫与修正发现/传播速度快过传统方式.
+例如, 当TearDrop IP攻击第一次在网路上发现时,
+不到二十四小时, 整个Linux团体就有修正版可供下载.
+<!--
+<font color="blue">
+(译注: 上次译者发表a4c.ime到新闻讨论区, 信发完就去睡觉,
+一睡醒就有FreeBSD的网友, 找到注音输入法有个臭虫, 并且修正过.)
+</font>
+!-->
+</P>
+
+</FONT><FONT FACE="Helvetica Black" SIZE=3><P>"Impulse Debugging"</P>
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+一个平行除错的外加好处是, 我加入Raymond的假设, 即"推动除错".
+以Linux系统的例子, 意指安装该作业系统的行为,
+即为安装除错/开发的环境的行动.
+
+</I>
+所以, 非常可能某个使用者/开发者, 无意中发现一个其他人的元件的臭虫
+-- 特别是那个臭虫是"小只的" -- 那个使用者可以很快的修改过,
+并透过网际网路合作技术, 迅速传播该修正回到程式维护者.
+
+</P>
+
+<P ALIGN="JUSTIFY">
+换另一种方式说, 因为藉由GNU工具, 一般开发/除错的方法,
+OSS过程有一个非常低的门槛来进行除错过程.
+</P></DIR>
+</DIR>
+</DIR>
+
+</FONT><FONT FACE="冼  " LANG="ZH-CN" SIZE=4><P><A NAME="_Toc427495726"></FONT>
+<FONT FACE="Helvetica Black" SIZE=4>冲突解决</A></P><DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+大规模的开发过程都会糟遇冲突而需要解决.
+通常解决方是都是个霸道的决定, 以便进行更进一步的发展.
+在商业团队, 公司组织与效率检视结构解决这个问题 -- 
+OSS团对如何解决?
+</P>
+<P ALIGN="JUSTIFY">
+在Linux的例子中, Linus Torvalds是毫无疑问的计划"领导者".
+他委托大量的元件(例如, 网路, 驱动程式, 等等)给他信任的"副官",
+然後更进一步的再分派给各领域的"熟手"(例如, 区域网路驱动程式).
+
+</P>
+<P ALIGN="JUSTIFY">其它组织则由Eric Raymond所描写出来:
+ (http://earthspace.net/~esr/writings/homesteading/homesteading-15.html):
+</P><DIR>
+
+<P>
+有些完全不吃"仁慈的独裁者"模式.
+一个方式是转共同作者成为委员会会员来投票(像Apache).
+另一个方式是"轮换独裁者", 即控制权由一群资深共同作者轮换
+(Perl开发者组织即为此).
+</P>
+
+</FONT><FONT FACE="冼  " LANG="ZH-CN" SIZE=3><P>&nbsp;</P></DIR>
+</DIR>
+</DIR>
+</DIR>
+
+</FONT><FONT FACE="冼  " LANG="ZH-CN" SIZE=4><P><A NAME="_Toc427495727"></FONT>
+<FONT FACE="Helvetica Black" SIZE=4>动机</A></P><DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+这一节提供一个全观来看何以OSS开发者要献身於OSS计划.
+</P>
+</FONT><FONT FACE="Helvetica Black" SIZE=3><P>解决手上的问题</P>
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+这基本上是重述Raymond的第一定律 -- 
+"所有伟大的软体都开始於开发者个人的渴望."
+
+</P>
+
+<P ALIGN="JUSTIFY">
+许多OSS计划 -- 像Apache -- 起源於小规模开发者, 设定要解决手上的问题.
+随後的程式码的改善通常起於个体改良程式到自己的处境
+(例如, 发现某个网路卡没有驱动程式, 等等)
+</P>
+
+</FONT><FONT FACE="Helvetica Black" SIZE=3><P>教育</P>
+
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+Linux核心成长起於Helsinki大学的教育计划.
+相同地, 许多Linux/GNU系统元件(X windows GUI, shell utilities, clustering,
+networking, 等等)都是由教育机构个体所延展的.
+</P></DIR>
+</DIR>
+</DIR>
+
+
+<UL>
+
+<UL>
+<P ALIGN="JUSTIFY"><LI>
+在远东, 例如, Linux成长率比网路连接成长率还高 -- 主要由於教育采用.
+</LI></P>
+<P ALIGN="JUSTIFY"><LI>
+大学是采用OSS做为教学工具的拥护人.
+</LI></P>
+<P ALIGN="JUSTIFY"><LI>
+在Linux上的研究/教学非常容易传播, 因为Linux原始码很容易取得.
+
+<A NAME="innovation"><FONT COLOR="red">
+特别是, 这通常意味新的研究点子会第一个在Linux上先实作,
+然後才移殖到其它平台.
+</FONT></A>
+   </LI></P></UL>
+</UL>
+<FONT COLOR="green">{
+同样一个作者稍後竟然说Linux暴民会很难吸收新点子.
+}</FONT>
+<DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica Black" SIZE=3><P>自我满足感</P>
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+最飘飘然的, 而或许是最深奥的动机, 由OSS开发团体所表现出来的,
+就是纯粹的自我满足感.
+</P>
+<P ALIGN="JUSTIFY">在"教堂观与市集观", Eric S. Raymond说:  </P><DIR>
+
+<P ALIGN="JUSTIFY">
+这个被Linux玩家扩大"实用功能"的, 并非典型的经济,
+而是无形的在玩家中的名声及自我满足感.
+</P></DIR>
+
+<P>当然了, "您不是玩家, 除非别人给您这个封号."</P>
+
+</FONT><FONT FACE="Helvetica Black" SIZE=3><P>开拓智域</P>
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+由Raymond所发表的第二篇文章 -- "开拓智域"
+(http://sagan.earthspace.net/~esr/writings/homesteading/), 
+讨论了经济动机交换(例如商业软体开发换钱)及"礼物交换"(例如, OSS交换荣耀).
+</P>
+
+<P ALIGN="JUSTIFY">
+"开拓"("Homesteading")要求成为第一个"发现"者或是贡献最大者.
+"智域"("Noosphere")则较不明确地定义为"所有工作的空间".
+因此, Raymond断定, OSS玩家动机是在於占有工作的大部份领域.
+换句话说, 吃最大的一块饼(take credit for the biggest piece of the prize).
+
+</P>
+
+<FONT COLOR="green">{
+这很敏锐但读错方向了.
+它引入了一个领土"疆域", 是不在我的理论中的.
+这可能是作者个人的错误, 但我怀疑它反应出微软的竞争导向文化.
+}</FONT><P>
+
+<P ALIGN="JUSTIFY">在"开拓智域":</P><DIR>
+
+<P>
+丰满使得以命令建立起的关系难以维系并交换关系, 命令变成一场无聊的游戏.
+在礼物文化中, 社会关系不是由您所能控制的来决定,
+而是由<em>您送出去的礼物</em>有多少及轻重来决定
+<FONT FACE="Helvetica" SIZE=3>.
+
+</P>
+<P>...</P>
+
+<P>
+以这种方式来检视, 很清楚地可以看出open-source玩家的社会实际上是礼物文化.
+在其中, 并没有严重"求生必须品"短缺的问题 -- 磁碟空间, 网路频宽, 电脑能量.
+软体是免费分享的.
+这样的丰满, 产生了一个以获得别人的敬重, 来做为衡量的成功的竞争.
+
+</P>
+
+</FONT><FONT FACE="冼  " LANG="ZH-CN" SIZE=3></DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+更简洁地 
+(</FONT><A HREF="javascript:if(confirm('../../../../../../www.techweb.com/internet/profile/eraymond/interview  /n/nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  /n/nDo you want to open it from the server-'))window.location='http://www.techweb.com/internet/profile/eraymond/interview'" tppabs="http://www.techweb.com/internet/profile/eraymond/interview">
+<FONT FACE="Helvetica" SIZE=3>http://www.techweb.com/internet/profile/eraymond/interview</FONT></A>
+<FONT FACE="Helvetica" SIZE=3>):</P><DIR>
+
+<P>SIMS: 所以您所饥渴寻求的是注意及回报的饥渴?<BR>
+RAYMOND: 完全没错.</P>
+</DIR>
+
+</FONT><FONT FACE="Helvetica Black" SIZE=3><P>利他主义</P>
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+这是有争议的动机, 我倾向在有程度的相信,
+Raymond评议利他主义"变质"成自我满足心.
+</P>
+
+<P ALIGN="JUSTIFY"><FONT COLOR="red"><A NAME="comment8">
+一小部份动机, 有些人是这样地, 起源於打击微软.
+</FONT>   </P>
+<FONT COLOR="green">{
+啊, 这是如何地坦白, 尤其是来自微软农奴口中!
+当然了, 它并没有分析到为何会与微软有关联; 可能是会砸坏家具吧...
+}</FONT><P></A>
+</DIR>
+</DIR>
+</DIR>
+
+</FONT><FONT FACE="冼  " LANG="ZH-CN" SIZE=4><P><A NAME="_Toc427495728"></FONT>
+<FONT FACE="Helvetica Black" SIZE=4>程式分歧</A></P><DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+在大型开发团队中的致命伤 -- 特别是会恶化混乱现像在网际网路规模的团队 -- 
+是程式分歧的风险.
+</P>
+
+<P ALIGN="JUSTIFY">
+程式分歧发生在开发计划拉拉扯扯时, 许多个不协调版本的程式码就演化出来了.
+</P>
+
+<P ALIGN="JUSTIFY">
+例如, 在商业的世界, 一个单一强大的Windows NT程式管理,
+相比於这些在商业UNIX中分歧的程式, 是绝大的优点.
+(SCO, Solaris, IRIX, HP-UX, etc.).
+
+</P>
+
+</FONT><FONT FACE="Helvetica Black" SIZE=3><P>OSS中的分歧 -- BSD Unix</P>
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+在OSS领域, BSD Unix是分歧程式码的最佳范例.
+原有的BSD
+UNIX是UCLA伯克莱分校尝试用来重制完全免费的UNIX作业系统做为教学目的.
+不过, 伯克莱对非学院的使用有很严格的限制.
+</P>
+
+<FONT COLOR="green">{
+作者对BSD分支的历史全弄错了.
+}</FONT><P></A>
+<P ALIGN="JUSTIFY">
+为了要制作完全免费的BSD UNIX, 一些特别(但封闭)的开发团队生产出FreeBSD.
+其它与FreeBSD不同意见的就生产出(OpenBSD, NetBSD, BSDI).
+</P>
+<P ALIGN="JUSTIFY">
+以下是导致BSD分支的最重要因素:
+</P></DIR>
+</DIR>
+</DIR>
+
+
+<UL><DIR>
+<DIR>
+
+
+<UL>
+<A NAME="comment9">
+<P ALIGN="JUSTIFY"><LI><FONT COLOR="red">
+不是每个人都可以贡献BSD程式码, 这限制了有效的"智域".
+并产生了某些人宣称他们的分歧码会比原有BSD来的更好的潜在现像.
+</FONT></LI></P>
+
+<FONT COLOR="green">{
+哇. 这是我从未有过的洞察力 - 
+分歧可以因为这些脱队人员, 相信他们可以创造比现有计划更大的市集而发生.
+这的确解释了EGCS及BSD本周脱队群(BSD-spinoff-group-of-the-week)的现像,
+不过不适用於Emacs/XEmacs.
+<P>
+好, 我们总算学到一点东西了.
+这可能解释这种反直觉的事实. 
+开放的开发计划会有这种最低倾向的分歧.
+}
+
+</FONT><P></A>
+<P ALIGN="JUSTIFY"><LI>
+不向GPL, BSD版权并没有把延伸工作加以限制.
+因此, 如果您觉得您的修改够酷, 您可以大加分歧, 改名字, 收钱.
+</LI></P></UL>
+</DIR>
+</DIR>
+</UL>
+<DIR>
+<DIR>
+<DIR>
+
+<P ALIGN="JUSTIFY">
+两种动机产生一种状况, 发展者会试图去分岐程式码,
+收取版税(财务上或自尊心), 消耗BSD团体社会.
+</P>
+</FONT><FONT FACE="Helvetica Black" SIZE=3><P>Linux(缺乏)分歧</P>
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+相对於BSD的例子, Linux核心未曾分歧.
+Linux的整体性持续保持的几个原因如下:
+</P></DIR>
+</DIR>
+</DIR>
+
+
+<UL>
+
+<UL>
+<P ALIGN="JUSTIFY"><LI>普遍接受的领导者</LI></P></UL>
+</UL>
+<DIR>
+<DIR>
+<DIR>
+<DIR>
+
+<P ALIGN="JUSTIFY">
+Linus Torvalds在Linux界是名人, 而他的决定就是最终决定.
+做为对比, 相等程度的名人领导者并不在BSD界存在.
+</P>
+<P ALIGN="JUSTIFY">
+Linus在处理开发团队时算得上是公平,
+合理的程式管理者, 并且他在Linux团体中名望很高.
+不过, Linus并没有在每个方向都介入.
+通常, 次开发群解决各自 -- 通常都很大 -- 不同的问题, 并避免分歧.
+</P></DIR>
+</DIR>
+</DIR>
+</DIR>
+
+
+<UL>
+
+<UL>
+<P ALIGN="JUSTIFY">
+<LI>开放会员及长期贡献的潜力. </LI></P></UL>
+</UL>
+<DIR>
+<DIR>
+<DIR>
+<DIR>
+
+<P ALIGN="JUSTIFY">
+相对於BSD的封闭会员, 所有人都可以贡献Linux,
+而您的状态 -- 即您开拓Linux的疆土 -- 是根据您所贡献的大小来决定的.
+</P>
+
+
+<P ALIGN="JUSTIFY">
+间接地这阻碍了程式码分支. 因为分支不会有功劳,
+因此会以最小的程式量来维系主要Linux核心码的革新.
+</P></DIR>
+</DIR>
+</DIR>
+</DIR>
+
+
+<UL>
+
+<UL>
+<P ALIGN="JUSTIFY"><LI>GPL版权体系消除了经济动机的程式分歧.</LI></P></UL>
+</UL>
+<DIR>
+<DIR>
+<DIR>
+<DIR>
+
+<P ALIGN="JUSTIFY">
+因为由Linux所延展的工作必须由某些渠道让人可获取,
+它降低了以小群人分歧Linux做为长期经济利益的动机.
+</P></DIR>
+</DIR>
+</DIR>
+</DIR>
+
+
+<UL>
+
+<UL>
+<P ALIGN="JUSTIFY"><LI>分歧程式码也会分歧"智域".
+</LI></P></UL>
+</UL>
+<DIR>
+<DIR>
+<DIR>
+<DIR>
+
+<P ALIGN="JUSTIFY">
+自尊心推动OSS开发者将股本下在最大的一片智域土地.
+分歧程式码对後来的发展者说, 不可避免地缩小成就空间.
+</P></DIR>
+</DIR>
+</DIR>
+</DIR>
+
+</FONT><FONT FACE="冼  " LANG="ZH-CN" COLOR="black"><P><A NAME="_Toc427495729"></FONT><FONT FACE="Helvetica Black" COLOR="black">Open Source Strengths</A> </P><DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+对OSS产品的强处, 什麽是微软需要注意的?
+</P></DIR>
+</DIR>
+</DIR>
+
+</FONT><FONT FACE="冼  " LANG="ZH-CN" SIZE=4><P><A NAME="_Toc427495730"></FONT>
+<FONT FACE="Helvetica Black" SIZE=4>OSS指数特性</A></P><DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+正如我们的作业系统事业一样, OSS生态系有几个指数特性:
+</P></DIR>
+</DIR>
+</DIR>
+
+
+<UL>
+
+<UL>
+<B><P ALIGN="JUSTIFY"><LI>OSS过程与网际网路共同成长</LI></P>
+</UL>
+</UL>
+<DIR>
+<DIR>
+<DIR>
+<DIR>
+
+</B><P ALIGN="JUSTIFY">
+对任何OSS计划来说, 最担心的就是要找到足够的开发人员,
+吸引他们有兴趣来贡献计划.
+
+一个基本要求, 对一个像作业系统规模的计划来说, 要结合这麽多人,
+网际网路绝对是必要的.
+更重要的, 这些计画的<i>成长引擎</i>就是网际网路所能及的范围.
+合作科技的改善润滑OSS引擎.
+</P>
+
+<P ALIGN="JUSTIFY">
+换句话说, 网际网路的成长会造就现有OSS计划越来越大,
+并使OSS计划渗透到越小的软体领域.
+</P></DIR>
+</DIR>
+</DIR>
+</DIR>
+
+
+<UL>
+
+<UL>
+<B><P ALIGN="JUSTIFY"><LI>OSS过程是"winner-take-all"</LI></P></UL>
+</UL>
+<DIR>
+<DIR>
+<DIR>
+<DIR>
+
+</B><P ALIGN="JUSTIFY">
+像商业软体一样, 最可行的OSS计划会牺牲掉相竞争的OSS计划,
+并取得他们的IQ资产.
+例如, Linux一直在蚕食BSD UNIX, 并吸取其核心观念(及其它商业UNIXes的观念).
+这项特色鼓动叁与较优越的计画.
+</P></DIR>
+</DIR>
+</DIR>
+</DIR>
+
+
+<UL>
+
+<UL>
+<B><P ALIGN="JUSTIFY"><LI>发展者企图贡献较大的OSS舞台</LI></P></UL>
+</UL>
+<DIR>
+<DIR>
+<DIR>
+<DIR>
+
+</B><P ALIGN="JUSTIFY">
+OSS计划越大, 名望就越大,
+有越大越高品质的元件贡献到智域.
+这个现像回馈到"winner-take-all"的OSS过程本身的各角落.
+
+</P></DIR>
+</DIR>
+</DIR>
+</DIR>
+
+
+<UL>
+
+<UL>
+<B><P ALIGN="JUSTIFY"><LI>越大的OSS计划解决越多的"眼前问题"
+</LI></P></UL>
+</UL>
+<DIR>
+<DIR>
+<DIR>
+<DIR>
+
+</B><P ALIGN="JUSTIFY">
+计划越大, 收到越多开发/测试/除错的程式.
+除错越多, 越多人用它.
+</P></DIR>
+</DIR>
+</DIR>
+</DIR>
+
+</FONT><FONT FACE="冼  " LANG="ZH-CN" SIZE=4><P><A NAME="_Toc427495731"></FONT>
+<FONT FACE="Helvetica Black" SIZE=4>长期可信性</A></P><DIR>
+<DIR>
+<DIR>
+
+</FONT><I><FONT FACE="Helvetica" SIZE=3><P ALIGN="CENTER">
+执行码可能会消失, 但原始码永存</P>
+</I><P ALIGN="JUSTIFY">
+在OSS生态系中最有趣的关系就是长期可信性.
+</P>
+</FONT><FONT FACE="Helvetica Black" SIZE=3><P>长期可信性定义</P>
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+企业在短期内不会被排出市场时具有长期可信性.
+这要看竞争者如何"处理"您了.
+</P>
+<P ALIGN="JUSTIFY">
+例如, 空中巴士工业以取得政府支援来建立长期可信性.
+所以, 在空中巴士招标时,
+波音(Boeing)会收一些短期非经济回报的标, 以取得可信度.
+</P>
+<a name="quote4">
+<P ALIGN="JUSTIFY">
+用软体工业的道地家乡话来说,
+
+<FONT COLOR="red">
+如果FUD战略无法击败一个产品/过程, 即为具有长期可信性.
+</FONT>.</P>
+</FONT><FONT FACE="Helvetica Black" SIZE=3><P><FONT COLOR="red">
+OSS具有长期可信性.</a></FONT></P>
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+OSS系统可考虑为可信的,
+因为原始码可由上百万的地方及个体取得.
+</P>
+
+<FONT COLOR="green">{
+我们在此深入了微软的世界观.
+我知道标准玩家对此的反应是作呕,
+但它反应了一种使用反面行销的机械化无情,
+而我们必须学着如何与之相处.
+<P>
+<em>真正</em>有趣的事, 是关於这两个叙述,
+似乎暗示微软必须放弃FUD做为攻击我们的有效工具.
+<P>
+大部份的人可能会假设美国司法部反托拉斯案,
+是导致微软把FUD的枪口移开的原因.
+
+但如果它的盖兹主子买备忘录这一套的话,
+微软会相信它们需要发展另一套更有效的回应,
+因为FUD没效.
+
+<P>
+这可能是好消息但也带来坏消息.
+好消息是微软会放弃行销攻击这个在过去比它明显低劣技术更有力的武器.
+坏消息是, 对付<em>我们</em>, 放弃这个武器可能是更佳的策略;
+它们不会去浪费更多的精力, 而可以全力发展更有效的反击.
+
+}
+
+</FONT><P></A>
+<P ALIGN="JUSTIFY">
+可能使Apache消失的状况, 其规模指数, 远低於如WordPerfect可能消失的状况.
+Apache会消失的状况并不与可执行档消失相关
+(即与购买率等等息息相关因素),
+而是与原始码及知识库相关.
+</P>
+
+
+<P ALIGN="JUSTIFY">
+反向来说, 消费者知道Apache大约五年历史 -- 
+持续地在其使用者/开发者团体有人在使用.
+</P>
+
+<P ALIGN="JUSTIFY">
+一位Apache消费者, 在讨论他的电子交易网站时, 选用OSS软体的理由,
+"因为它是开放原始码, 我可以雇用一或两位开发者来或自己来维护."
+</P>
+
+</FONT><FONT FACE="Helvetica Black" SIZE=3><P>
+缺乏程式分析元素  长期可信
+</P>
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+GPL及其对程式分支的嫌恶, 保障了消费者不会因为购买特定版本的商业Linux,
+而用了会发生演化"死巷"的问题.
+
+</P>
+<A NAME="comment11">
+<P ALIGN="JUSTIFY"><FONT COLOR="red">
+"演化死巷"是软体FUD攻击的核心.
+</FONT></P>
+<FONT COLOR="green">{
+完全没错 -- 还有个重点漏掉了.
+
+如果作者够诚实, 它会注意到OSS支持者, 都已经准备好姿势,
+准备转过身来, 用这一点与微软决一死战.
+
+<P>
+作者自己承认, OSS在这一点上是穿了防弹衣的.
+
+另一方面来说, 那个爆炸复杂, 一延再延的, 仅换个"Windows 2000"的东西,
+证明了已经走到演化死巷墙角前.
+
+<P>
+作者不敢指出来. 但<em>我们</em>应当要指出.
+}</FONT><P></A>
+</DIR>
+</DIR>
+</DIR>
+
+</FONT><FONT FACE="冼  " LANG="ZH-CN" SIZE=4><P><A NAME="_Toc427495732"></FONT>
+<FONT FACE="Helvetica Black" SIZE=4>平行除错</A></P><DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+<A NAME="quote5"><FONT COLOR="red">
+Linux及其它OSS支持者正使其累积更多的可信证明,
+即OSS至少与商业替代品一样的强建 - 如果没有超过的话.
+网际网路提供了一个理想, 高度可见的展示台给OSS界.
+</FONT></A> </P>
+<FONT COLOR="green">{
+
+那是一大把的业馀玩家, 我们大部份都没有收钱, 几乎全部是兼职,
+对抗一个亿万元建起的宣传机器, 由少数几个在科技行销企业中的大作手操控.
+
+<P>
+
+而且业馀玩家"正在累积更多的可信证明".
+
+</FONT>.  
+
+由微软的告白, 我们确实在持续<em>胜利</em>中.<P>
+
+或者这是将有台面下产品的讯息呢?
+
+}</FONT><P>
+<P ALIGN="JUSTIFY">
+特别是, 大型, 机敏的组织, 会依赖OSS来做企业运作, (例如, 波音, ISPs)
+并因为他们可以自行修正可能导致工作停摆的错误, 而不需要依赖商业提供者, 
+而感到安全.
+ (例如, UUNET就能够取得, 编译, 并加入防止TearDrop的攻击的功能到Linux上, 
+在第一起对大众攻击发生後的24小时内.)
+</P></DIR>
+</DIR>
+</DIR>
+
+</FONT><FONT FACE="冼  " LANG="ZH-CN" SIZE=4><P>
+<A NAME="_Toc427495733"></FONT>
+<FONT FACE="Helvetica Black" SIZE=4>平行发展</A></P><DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3>
+<P ALIGN="JUSTIFY">
+换个方式说, "开发者的资源在OSS中基本上是免费的".
+因为潜在的开发者简直无限,
+在经济上可实行同时调查多个解决方案/版本来解决一个问题的办法,
+并在最後选择最佳方案.
+
+</P>
+
+
+<P ALIGN="JUSTIFY">例如, Linux TCP/IP堆叠至少重写过三次.
+组合语言码被"持续"一再的微调并精炼过.
+</P></DIR>
+</DIR>
+</DIR>
+
+</FONT><FONT FACE="冼  " LANG="ZH-CN" SIZE=4><P><A NAME="_Toc427495734"></FONT>
+<FONT FACE="Helvetica Black" SIZE=4>
+OSS = `完美' API福音/文件</A></P><DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+
+OSS的API福音/开发者教育基本上是藉由提供了底层的程式码而来.
+而在封闭原始码模式中基本上只能"内定"相信, 
+OSS API则使开发者下定决心.
+
+</P>
+<A NAME="comment13">
+<P ALIGN="JUSTIFY">
+NatBro及Ckindel指出开发者的能力分别在此.
+即"狂热的开发者"只相信OSS的福音.
+<FONT COLOR="red">初学者/中等开发者 -- 主要的开发大众 -- 
+倾向相信信任模式及组织可信性
+</FONT> (例如 "微软说某某API是这个样子")</P>
+
+<FONT COLOR="green">{
+是否大多数开发者都倾向"信任"模式是个很令人质疑的问题.
+
+<P>
+二十年的经验告诉我不是这样;
+也就是说, 开发者倾向原始码, 就算非技术出身的
+<em>老板</em>都不会天真到倾向"信任".
+
+微软明显地想要相信它的"组织可信性"算数 -- 我在这里闻到一厢情愿的想法.
+
+<font color="blue">
+(译注: 关於组织可信性方面, 拿Windows 3.1/95文件来说, 错误率高, 书蛀虫之多, 
+竟要用一整本杂志, 每月出版来修正.)
+</font>
+
+<P>
+另一方面, 它们可能是对的.
+我们在open-source社区无法承受误算这一点的可能性.
+我相信我们能够发展出高品质文件来符合这个需求.
+以这种方式, "信任"着名的作者(或名声良好的出版商, 像O'Reilly或Addison-Wesley),
+可以替代"信任"於API定义的组织.)
+}</FONT></A><P>
+</DIR>
+</DIR>
+</DIR>
+
+</FONT><FONT FACE="冼  " LANG="ZH-CN" SIZE=4><P><A NAME="_Toc427495735"></FONT>
+<FONT FACE="Helvetica Black" SIZE=4>释放速度</A></P><DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3>
+<P ALIGN="JUSTIFY">
+强烈元件化的OSS计划, 有能力在开发者完成的同时释放次元件.
+因此, OSS计划释放速度快速频繁.
+</P></DIR>
+</DIR>
+</DIR>
+
+</FONT><FONT FACE="冼  " LANG="ZH-CN" COLOR="black"><P>
+<A NAME="_Toc427495736"></FONT><FONT FACE="Helvetica Black" COLOR="black">
+开放原始码弱点</A></P><DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+OSS计划的弱点主要落於三个主项:
+</P></DIR>
+</DIR>
+</DIR>
+
+
+<UL>
+
+<UL>
+<P ALIGN="JUSTIFY"><LI>管理代价</LI></P>
+<P ALIGN="JUSTIFY"><LI>处理议题</LI></P>
+<P ALIGN="JUSTIFY"><LI>组织可信性</LI></P></UL>
+</UL>
+
+</FONT><FONT FACE="冼  " LANG="ZH-CN" SIZE=4><P><A NAME="_Toc427495737">
+</FONT><FONT FACE="Helvetica Black" SIZE=4>管理代价</A></P><DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+对OSS计划最大的路障, 就是处理指数成长的管理代价,
+因为计划一大, 革新率就高, 程式量也大.
+这暗示OSS计划的创新率是有上限的.
+</P>
+</FONT><FONT FACE="Helvetica Black" SIZE=3><P>
+开展一个OSS计划是很艰辛的
+</P>
+
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">从Eric Raymond:
+  </P><DIR>
+
+<P>
+以市集模式来说, 很清楚地, 一个人没办法平地架楼.
+一个人可以测试, 除错, 并以市集模式来改善,
+但要以市集模式要
+</FONT><EM>建立</EM><FONT FACE="Helvetica" SIZE=3>起计划是非常难的.
+Linus没试过. 我也没有. 而你初期的开发者团体要有东西可以跑, 测试并玩弄的.
+</P>
+</DIR>
+
+<P ALIGN="JUSTIFY">
+Raymond的论证可延伸为, 如果没有清晰的前例/目标(或太多目标),
+要发起一个计划是很困难的.
+</P>
+
+</FONT><FONT FACE="Helvetica" SIZE=4><P>市集可信性</P>
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+明显地, 在网际网路上, 片断未完成的原始码比OSS的更多.
+
+什麽分开"死原始码"与"繁荣市集"呢?
+
+</P>
+<P ALIGN="JUSTIFY">一篇文章(</FONT><A HREF="javascript:if(confirm('../../../../../../www.mibsoftware.com/bazdev/0003.htm  /n/nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  /n/nDo you want to open it from the server-'))window.location='http://www.mibsoftware.com/bazdev/0003.htm'" tppabs="http://www.mibsoftware.com/bazdev/0003.htm">
+<FONT FACE="Helvetica" SIZE=3>http://www.mibsoftware.com/bazdev/0003.htm</FONT></A>
+<FONT FACE="Helvetica" SIZE=3>)提供了以下的<I>信用</I>标准:
+</P><DIR>
+
+<P ALIGN="JUSTIFY">"....想想以为一个很少数的叁与者是误导的
+Fetchmail及Linux"现在"有庞大数量的测试者, 但明显的最初只有几个而已.
+</P>
+
+<P ALIGN="JUSTIFY">
+两个计划所做的是一大匹狂热者及合理的承诺.
+这承诺是部份技术性地(程式会很漂亮, 写得会很轻松)及社会学地
+(如果您加入我们这一帮, 您将会有一大堆的乐处).
+因此一个市集要可开发, 其必要性则是个吹牛膨胀的市集存在.
+
+</P></DIR>
+
+<P ALIGN="JUSTIFY">
+我断定一些关键的要素在市集中是可收取信用的:
+
+</P></DIR>
+</DIR>
+</DIR>
+
+
+<UL>
+
+<UL>
+<B><P ALIGN="JUSTIFY"><LI>未来大型智库</B> -- 
+这计划一定要够酷, 而知性的回报可完全补尝开发者所投资的时间.
+Linux系统在许多方面胜出.
+</LI></P>
+<B><P ALIGN="JUSTIFY"><LI>骚到渴望的痒处</B>-- 
+计划要够重要/有许多开发者安装. Apache网站伺服器提供了极佳的范例.
+</LI></P>
+<B><P ALIGN="JUSTIFY"><LI>先解决足够多的眼前问题</B>--
+解决够多的问题, 将开发团体贬到测试者的角色.
+解决太少问题OSS降低"合理的承诺", 并不提供够强的元件架构来进行有效的合作工作.
+</LI></P></UL>
+<FONT COLOR="green">{
+这三点的确仔细的思考过, 并且改善我在"教堂观与市集观"的特徵.
+尤其是它将"未来大型智库"及"骚到渴望的痒处"特别分开了.
+}</A></FONT><P>
+</UL>
+<DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica Black" SIZE=3><P>後同位开发</P>
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+当向JimAll描述这个问题的时候, 它提供了漂亮的类比"追逐後灯".
+要使一大批半组织的暴民合作, 必须要向他们指出一个明显的目标.
+有後灯具体提供了一个  糊的影像.
+在这种状况下, 有个後灯可跟是有强大中心领导的媒介.
+
+</P>
+<A NAME="comment14">
+<P ALIGN="JUSTIFY">
+当然了, 一旦这个组织基础不再时
+<FONT COLOR="red">(一旦计划已达"艺术"的地位时), 
+管理层次就很需要开拓新的疆土.
+</FONT></P>
+<FONT COLOR="green">{
+胡说. 在open-source界, 所需要的只需要一个人, 有好点子, 就能够成就.
+
+<P>
+部份open-source在这一点上的原因, 是要降低造成革新所需的能量门槛.
+我们有经验中知道, 作者所赞颂的"大量管理"是其中最糟糕的一个门槛.
+<P>
+在open-source界, 革新者尝试任何事, 
+唯一的测试是是否使用者会志愿去试用它, 并喜欢上它.
+网际网路帮助了这个过程,
+而open-source社团合作会议则特地设计来推销它.
+<P>
+第三的替代``<FONT COLOR="red">追逐後灯</FONT>''
+或``<FONT COLOR="red">强力的中心领导</FONT>''
+(而且比两者更有效率)是演化出创造力无政府状态,
+因而有上千的领导者, 而数万门人跟随.
+<P>
+微软无法打击, 我不认为它们甚至能够<em>了解</em>, 没有那个胆子.
+}</FONT><P></A>
+<P ALIGN="JUSTIFY">
+在目前Linux团体可能需要面对的障碍,
+可能是他们在许多方面都已经到达了"艺术"的层次.
+</P>
+<FONT COLOR="green">{
+Linux团体不但跳过这个障碍, 而且还完全<em>摧毁</em>它.  
+这个事实是open-source长期优越於closed-source开发的核心.
+}</FONT><P>
+</FONT><FONT FACE="Helvetica Black" SIZE=3><P>不性感的工作</P>
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+另一个有趣的事, 则是一些"不性感"的OSS工作需求,
+将OSS带到商业层次.
+</P>
+<P ALIGN="JUSTIFY">
+在作业系统的领域, 这包含了, 小而基本的工具, 
+如电源管理, 暂停/回复, 管理建设,
+界面优美, 深度的Unicode支援, 等等.
+</P>
+<P ALIGN="JUSTIFY">
+对Apache来说, 这意谓着初学者管理功能, 如精灵.
+</P>
+</FONT><FONT FACE="Helvetica Black" SIZE=3><P>
+整合/架构工作
+</P>
+
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+跨模组的整合工作是OSS团队目前面临的最大挑战.
+从Nathan Myrhvold 5/98的Email备忘录, 指出在所有的软体开发工作中,
+整合工作最耗心神.
+</P>
+
+<P ALIGN="JUSTIFY">到今为止, Linux已经<U>大大</U>地,
+从过去UNIX的整合/元件化模式中受益.
+再者, Apache组织以相对的简单, HTTP协定容错规格及UNIX伺服器设计简化组织.
+</P>
+
+<A NAME="comment15">
+<P ALIGN="JUSTIFY"><FONT COLOR="red">
+未来革新需要修改到核心架构/整合模式,
+将会对OSS团队来说是难以吸收的,
+因为它同时会减低他们前例及技巧的价值.
+
+</P></FONT> 
+
+<FONT COLOR="green">{
+这个预测源起於作者<A HREF="#comment6">早先的主张</A>,
+即open-source开发大大有赖於前例设计, 而且无可避免地向後相容.
+
+真是近视 -- 明显地, 像这些东西 
+<a href="javascript:if(confirm('../../../../../../www.python.org/  /n/nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  /n/nDo you want to open it from the server-'))window.location='http://www.python.org/'" tppabs="http://www.python.org/">Python</a>, 
+<a href="javascript:if(confirm('../../../../../../www.beowulf.org/  /n/nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  /n/nDo you want to open it from the server-'))window.location='http://www.beowulf.org/'" tppabs="http://www.beowulf.org/">Beowulf</a>,
+及<a href="javascript:if(confirm('../../../../../../squeak.cs.uiuc.edu/  /n/nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  /n/nDo you want to open it from the server-'))window.location='http://squeak.cs.uiuc.edu/'" tppabs="http://squeak.cs.uiuc.edu/">Squeak</a>
+(就讲数百个革新之中这三个)没有出现在它的雷达上.
+
+<P>
+我们希望微软继续相信这一点, 因为这会减缓它们的回应.
+许多部份将会看微软如何解释革新, 诸如Linux多处理器化.
+<P>
+有趣地是, 作者在这一点上<a href="#innovation">自我矛盾</a>.
+}</FONT><P></A>
+</DIR>
+</DIR>
+</DIR>
+
+</FONT><FONT FACE="冼  " LANG="ZH-CN" SIZE=4><P><A NAME="_Toc427495738">
+</FONT><FONT FACE="Helvetica Black" SIZE=4>处理议题</A></P><DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+这些是OSS设计/回馈方法学本质上的弱点.
+</P>
+</FONT><FONT FACE="Helvetica Black" SIZE=3><P>重复代价</P>
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+OSS过程一个重要关键是比商业软体多出许多的重复版本.
+(Linux就经常有一天有两个核心释放出来!).
+
+但是商业消费者告诉我们希望<u>少一点</u>释放版, 而不是较多.
+
+</P>
+<FONT COLOR="green">{
+我怀疑如果微软的东西如果不是这麽贵, 这个答案会是什麽?
+
+<P>
+这也是为何商业版Linux发行商会存在 -- 
+去减缓快速发展过程及消费者不想每次都换来换去之间的过程.
+核心可能一天释放两次, 但Red Hat只每六个月释放一次.
+}</FONT><P>
+</FONT><FONT FACE="Helvetica Black" SIZE=3><P>"非专家"回应</P>
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+Linux系统不是为终端用户所开发的, 而是为玩家所开发的.
+类同的, Apache网站伺服器是描准大型有智慧的网站操作员,
+而非部门内部网路.
+</P>
+<P ALIGN="JUSTIFY">
+在此的关键要素是, 因为OSS没有市场/客户的回馈元素, 需求表 --
+因而特色发展 -- 是由技术高手来统治的.
+</P>
+<A NAME="comment16">
+<P ALIGN="JUSTIFY"><FONT COLOR="red">
+在MSFT的开发群, 一次再一次地学到, 容易使用, 直觉界面等等,
+必须由平地建起到产品中, 而且无法在稍後加入.
+</FONT></P>
+<FONT COLOR="green">{
+这要解释一下 -- 它在理论上看起来很正确, 但在微软业务中却完全弄错.
+错误的地方在於微软策略上过度强调使用者界面.
+
+<P>
+有两种方式来"由平地建立"起容易使用.
+一种(微软之道)是设计整个应用软体完全用UI来定义的.
+这导致产生"视窗化" -- 刻板, 无趣, 臭虫倾向的怪物,
+有金玉其外, 而败絮其内.
+
+<P>
+程式这样建, 第一眼看起来使用者友善,
+但在长期却是大量时间与精力的下沉.
+它们只能在地毯炸弹行销的方式维持,
+主要的目地是要让使用者相信, 臭虫是特色,
+所有臭虫都是因为愚笨的使用者错误,
+或所有臭虫都会消失, 如果使用者屈服於再买下个版本.
+这样的方式是基本上错误的.
+
+<P>
+另一种是UNIX/Internet/Web的方式,
+将引擎(确定可动)与使用者界面(只用来看及控制的)分开.
+这个要求引擎与界面使用定义良好的界面来沟通.
+
+以浏览器/伺服器来做例证 -- 
+引擎做引擎的事, 界面做界面的事.
+
+<P>
+第二种方式, 整体复杂度下降, 可信度上升.
+更好的事, 界面更容易演化/改良/自定,
+因为它并不与引擎连接在一起.
+甚至可以有许多种界面来给不同类型的使用者.
+
+<P>
+最终, 这种架构自然导致应用软体适用於企业 -- 
+可以使用或远端管理伺服器.
+这种方式有效 -- 而这是open-source团体自然的方式以对立於微软.
+
+<P>
+在此处的关键点, 是如果微软想用UI来跟open-source团体作战, 让它们来吧 -- 
+因为我们可以打蠃这场战, 用我们的方式.
+它们可以写更加复杂的Windows巨石, 把您的应用软体及伺服器焊接起来.
+我们会蠃, 如果我们写乾净而分散的软体来构逐网际网路及全球资讯网,
+并将使用者界面做成可插入/取出, 由使用者来选择.
+
+<P>
+注意, 不管如何, 我们的胜利将要依靠现有定义良好的协定(如HTTP),
+来沟通界面及引擎.
+这就是为什麽在後面那个"解效(de-commoditizing)协定"的东西, 那麽地阴险.
+我们需要保渭.
+
+}</FONT><P></A>
+<P ALIGN="JUSTIFY">
+有必要观察的时尚是商业OSS提供者(像RedHat在Linux, C2Net在Apache)会有回馈周期.
+
+</P></DIR>
+</DIR>
+</DIR>
+
+</FONT><FONT FACE="冼  " LANG="ZH-CN" SIZE=4><P><A NAME="_Toc427495739">
+</FONT><FONT FACE="Helvetica Black" SIZE=4>组织可信性</A>
+</P><DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+消费者要期望从OSS软体提供者中获的什麽样的<i>服务</i>?
+</P>
+</FONT><FONT FACE="Helvetica Black" SIZE=3><P>支援模式</P>
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+产品支援是OSS套件未来客户第一个要考虑的,
+并且是商业发行商的特色探针.
+
+</P>
+<A NAME="comment17">
+<P ALIGN="JUSTIFY">
+不过, 大部份OSS计划是由不同成份的开发者所支援的.
+扩大这项支援公共建设到商业层次将会是一大挑战.
+
+<FONT COLOR="red">
+在IIS vs. Apache的使用者及开发者中, 有许多显注的不同.
+
+</FONT></P>
+<FONT COLOR="green">{
+最後这一句是在打混.
+
+如果作者继续, 它应该已经知道Apache正在痛打IIS这个猪罗,
+把它赶出市场中(Apache占有至少54%, 而且持续上扬; IIS是大约14%, 并且下降).
+
+<P>
+这会出现对微软来说不好吃的替代品.
+这可能是Apache的非正式使用者支援管道,
+及"组织可信性"实际产生比微软IIS组织所能提供的更好的结果.
+如果这是真的, 那就很难看出同样的效应不会在其它的open-source中发生.
+
+<P>
+这个替代品 -- Apache实在是太好, 而实际<em>不需要</em>太多支援或"组织可信性"
+-- 是更加地不利.
+
+这意味所有微软大量部署的支援及市场大军营是错误投资,
+就像四十年前在Stalinist公寓区的大规模投资一样.
+
+<P>
+对open-source支持者, 两个可能的解释暗示不同但平行的策略.
+其一是把软体写到好得根本就不需要太多支援(我们非这样做不可,
+而且必须一直做下去).
+
+另一种是加强我们正在支援线上做的事,
+如mailing lists, newsgroups, FAQs, 及其它非正式但很有效的管道.
+
+}</FONT><P></A>
+<P ALIGN="JUSTIFY">
+在中短期来说, 这项因素会逐步将OSS产品带到上层的使用者.
+
+</P>
+</FONT><FONT FACE="Helvetica Black" SIZE=3><P>未来策略</P>
+<A NAME="comment18">
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+<FONT COLOR="red">
+一个极度严重的问题, 会影响到整个消费者采用OSS产品,
+是在OSS发展周期中缺乏策略方向.
+持续修改OSS产品的现有特色是非常的可信的,
+<I>未来特色</I>没有组织的承诺来保证他们的发展.
+
+</FONT></P>
+<FONT COLOR="green">{
+不. 在open-source团体中, 新的特色是由崭新及开拓领域的个别玩家所加入的.
+这绝对是不可鄙视的力量.
+Internet及Web是用这样建起来的 -- 
+不是因为"组织承诺", 而是因为某人, 某处, 在想"嘿 -- 这样子不错喔...".
+
+<P>
+或者我们好运, 因为"组织可信度"在微软的世界观中看起来这麽大而朦胧.
+它们花在上面的时间与精力, 并相信这是资源的先决条件,
+它们不会花时间在发展有效对付我们的事上.
+
+}</FONT><P></A>
+<A NAME="comment19">
+<P ALIGN="JUSTIFY">
+对Linux社团来说, "签署"协助建立"协同数位神经系统"
+(Corporate Digital Nervous System)有何意义?
+Linux要如何保证API的向後相容性?
+<FONT COLOR="red">
+如果下个版本的Linux不守承诺, 您要去告谁?
+Linux要如何与其它实体形成策略联盟?
+
+</FONT></P>
+
+<FONT COLOR="green">{
+如果NT 5.0(喔, 对不起, "Windows 2000")不准时出版, 您要告谁?
+有<em>任何人</em>因为微软的任何向後不相容或其它的胡搞收到过补尝吗?
+
+<p>
+向後相容的问题实在讽刺,
+想想看, 我没听说过有那个程式可以不用改, 就在DOS, Windows 3.1, Windows 95,
+Windows 98, 及NT 4.0上执行.
+
+<P>
+这个作者赶不上时代了. 它应该要问一问微软的兄弟Intel,
+才在这个备忘录写完後两个月, Intel变成Red Hat的小股东.
+
+}</FONT><P></A>
+</DIR>
+</DIR>
+</DIR>
+
+</FONT><FONT FACE="冼  " LANG="ZH-CN" COLOR="black"><P>
+<A NAME="_Toc427495740"></FONT><FONT FACE="Helvetica Black" COLOR="black">
+开放原始码商业模式</A></P><DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+在过去的两年中, 贩卖OSS软体的公司相继成立,
+并开始雇用全职员工来改善OSS程式.
+
+什麽样的企业模式来付这些薪水呢?
+
+</P>
+<P ALIGN="JUSTIFY">
+在许多的状况中, 回答这些问题的答案大多是,
+"我为何要送我的协定/软体/API给标准单位?"
+
+</P></DIR>
+</DIR>
+</DIR>
+
+</FONT><FONT FACE="冼  " LANG="ZH-CN" SIZE=4><P>
+<A NAME="_Toc427495741"></FONT><FONT FACE="Helvetica Black" SIZE=4>
+第二服务</A></P><DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+OSS软体制造商提供销售, 支援, 及整合到消费者手上.
+这非常有效地将OSS软体制造商从套件制造商转型成服务提供者.
+</P></DIR>
+</DIR>
+</DIR>
+
+</FONT><FONT FACE="冼  " LANG="ZH-CN" SIZE=4><P><A NAME="_Toc427495742">
+</FONT><FONT FACE="Helvetica Black" SIZE=4>缺乏领导者 -- 市场门槛</A>
+</P><DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+缺乏领导者的OSS商业模式可用於两种目地:
+</P></DIR>
+</DIR>
+</DIR>
+
+
+<UL><DIR>
+<DIR>
+
+
+<UL>
+<P ALIGN="JUSTIFY"><LI>由初期的市场起跳</LI></P>
+<P ALIGN="JUSTIFY"><LI>进入现有巩固的, 封闭原始码的市场</LI></P></UL>
+</DIR>
+</DIR>
+</UL>
+<DIR>
+<DIR>
+<DIR>
+
+<P ALIGN="JUSTIFY">
+许多OSS的起步 -- 特别是作业系统领域 -- 
+将建立OSS产品线看成是用来对抗微软的策略.
+
+</P>
+
+<P ALIGN="JUSTIFY">
+Linux发行者, 诸如RedHat, Caldera, 及其它的,
+都表示愿意雇用全职开发者, 并将他们的工作回馈给OSS团体.
+透过同时投入这些资源,
+Red Hat及Caldera暗中共谋, 并相信与其相互竞争, 不如成长Linux市场,
+这样双方能赚进更多的短期收入.
+
+</P>
+
+<P ALIGN="JUSTIFY">
+间接的例子是O'Reilly &amp; Associates雇用Larry Wall -- 
+"领导"并全职发展PERL.
+排名第一的PERL叁考书的发行商, 当然就是O'Reilly &amp; Associates.
+
+</P>
+
+<P ALIGN="JUSTIFY">
+短期来说, 特别是OSS计划的成长率向上陡峭,
+这样的投资产生正面的投资报酬率.
+长期来说, 投资报酬的动机将会驱使这些开发者生产独有的附加功能, 而不释放成OSS.
+</P></DIR>
+</DIR>
+</DIR>
+
+</FONT><FONT FACE="冼  " LANG="ZH-CN" SIZE=4><P><A NAME="_Toc427495743">
+</FONT><FONT FACE="Helvetica Black" SIZE=4>
+廉价品下游提供者</A> </P><DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+这很接近缺乏领导者的企业模式.
+不过, 他们不以该大量成长该市场的来获取回报,
+这些企业以提供廉价下游相关产品来获取回收.
+</P>
+
+<P ALIGN="JUSTIFY">
+最佳的例子是小型伺服器, 如Whistle Communications及Cobalt Micro,
+他们实际雇用SAMBA及Linux的开发者.
+</P>
+<P ALIGN="JUSTIFY">
+两者都是依靠硬体来收入.
+因此, 运用OSS使他们避免今日PC市场"税"必须有OS制造商来付的问题
+(NT伺服器零售价$800, 而Cobalt则描准整个解决方案大约$1000).
+
+</P>
+<P ALIGN="JUSTIFY">
+早期的Apache开发者都是由预算紧缩的ISPs及ICPs所雇用.
+</P>
+
+<P ALIGN="JUSTIFY">
+而最近例子, IBM处理Apache.
+除了宣称HTTP伺服器为日用品外,
+IBM希望集中在更多不可思议的技术应用服务在Apache的发行版上
+(并希望能达到Apache市场占有率).
+
+</P></DIR>
+</DIR>
+</DIR>
+
+</FONT><FONT FACE="冼  " LANG="ZH-CN" SIZE=4><P><A NAME="_Toc427495744">
+</FONT><FONT FACE="Helvetica Black" SIZE=4>
+有力的鼓动家 -- 先动手再说, $$往後再谈
+</A></P><DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+另一个OSS的品质指数 --
+成功的OSS计划蚕食较不成功的 -- 
+暗示另一种投机企业模式, 就是今天先直接投资在OSS产品,
+可以晚一点再来投机/消灭竞争计划 -- 特别是该计划需要API福音时.
+这是在OSS中先动手的优点.
+
+</P>
+<P ALIGN="JUSTIFY">
+此外, OSS过程中, 发展者的规模, 变动率, 可依赖程度的优点,
+都是受惠於小起步, 通常都没办法雇用大规模的开发职员.
+
+</P>
+
+<P ALIGN="JUSTIFY">
+靠这样的例子有SendMail.Com
+(生产具支援的sendmail送信软体)及C2Net(生产商业及具加密功能的Apache).
+
+</P>
+
+
+<P ALIGN="JUSTIFY">
+注意, 没有先商业起步而产生OSS计划的成功例子.
+在两个例子中, 都是OSS计划先成功, 才有商业起步.
+</P>
+
+
+<P ALIGN="JUSTIFY">
+Sun Microsystem最近宣布其"JINI"计划将会以OSS的形式出现,
+可做为这一投机原理的应用.
+</P></DIR>
+</DIR>
+</DIR>
+
+</FONT><FONT FACE="冼  " LANG="ZH-CN" COLOR="black">
+<P><A NAME="_Toc427495745"></FONT>
+<FONT FACE="Helvetica Black" COLOR="black">Linux</A></P><DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+下一节分析最突出的OSS计划, 包涵Linux, Apache, 及Netscape的OSS浏览器.
+
+</P>
+<P ALIGN="JUSTIFY">
+第二份备忘录标名"Linux作业系统竞争力分析"
+提供了深入对Linux系统的深入分析.
+在此, 我提供一些我在Linux中的发现摘要.
+
+</P></DIR>
+</DIR>
+</DIR>
+
+</FONT><FONT FACE="冼  " LANG="ZH-CN" SIZE=4><P><A NAME="_Toc427495746">
+</FONT><FONT FACE="Helvetica Black" SIZE=4>什麽是Linux?</A></P><DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3><P>
+Linux(念成"LYNN-ucks",
+<font color="blue">译注: 这是美语念法, 正确为LINN-ux</font>),
+是开放原始码OS在市场占有率排名第一的作业系统.
+Linux起源於有至少25+年历史的老牌子UNIX作业系统.
+
+</P>
+
+<P>特色摘要:</P></DIR>
+</DIR>
+</DIR>
+
+
+<UL>
+
+<UL>
+<LI>多使用者/多线多工(kernel &amp; user)</LI>
+<LI>跨平台(x86, Alpha, MIPS, PowerPC, SPARC, etc.)</LI>
+<LI>32位元记忆体保护;  虚拟记忆体支援(64位元发展中)</LI>
+<LI>对称式多处理器支援(Intel &amp; Sun CPU's)</LI>
+<LI>支援多种档案系统(FAT16, FAT32, NTFS, Ext2FS)</LI>
+<LI>高效能网路</LI>
+
+<UL>
+<LI>NFS/SMB/IPX/Appletalk网路</LI>
+<LI>在各种UNIX测试评比中速度最快</LI></UL>
+
+<LI>磁碟管理</LI>
+
+<UL>
+<LI>Striping, mirroring, FAT16, FAT32, NTFS</LI></UL>
+
+<LI>Xfree86 GUI</LI></UL>
+</UL>
+
+</FONT><FONT FACE="冼  " LANG="ZH-CN" SIZE=3>
+</FONT><FONT FACE="冼  " LANG="ZH-CN" SIZE=4><P><A NAME="_Toc424804421"><A NAME="_Toc427495747"></FONT>
+<A NAME="quote6">
+<FONT FACE="Helvetica Black" SIZE=4>Linux是实在可信的作业系统及开发过程</A></A></P><DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+<FONT COLOR="red">
+就如其它的OSS产品一样, Linux的关键不是产品的版本,
+而是整个处理过程.
+这个过程添与可信性, 并使Linux消费者对在上面的投资感到安全.
+
+</FONT></P></DIR>
+</DIR>
+</DIR>
+
+
+<UL>
+
+<UL>
+<B><P ALIGN="JUSTIFY"><LI>在重要任务上受到信任</B>.
+<FONT COLOR="red">Linux被部署在重要任务上, 商业环境,
+而有大规模的群众证词.
+
+</FONT></LI></P></UL>
+</UL>
+
+
+<UL>
+
+<UL>
+<B><P ALIGN="JUSTIFY">
+<LI>Linux等於最有出息的UNIX.  </B>
+<FONT COLOR="red">
+Linux效能超出许多其它的UNIX, 在绝大多数的效能目录上
+(networking, disk I/O, process ctx switch, etc.).</FONT>    
+为了增加特色, Linux四处向其它UNIX偷(shell, 档案系统, 绘图,
+CPU ports)</LI></P></UL>
+</UL>
+
+
+<UL>
+
+<UL>
+<B><P ALIGN="JUSTIFY"><LI>唯一的UNIX OS在市场上占有率成长.</B>
+<FONT COLOR="red">
+Linux正向全面占有x86 UNIX市场的路上迈进,
+而且是最近几年, 唯一的UNIX OS在市场上占有率有成长的.
+
+我相信Linux -- 比NT更有可能 -- 将会在未来先威胁到SCO.
+
+</LI></P></UL>
+</UL>
+
+
+<UL>
+
+<UL>
+<B><P ALIGN="JUSTIFY"><LI>Linux过程演化非常快速.
+</B>例如, 相当於TransmitFile() API的Linux功能,
+从想法到实作仅花去两周的时间. 
+</LI></P></UL>
+</UL>
+<FONT COLOR="green">{
+都正确. 我自己都没办法再加得更好了 :-)
+}</FONT><P>
+</A>
+
+</FONT><FONT FACE="冼  " LANG="ZH-CN" SIZE=4><P>
+<A NAME="_Toc424804422"><A NAME="_Toc427495748"></FONT>
+<FONT FACE="Helvetica Black" SIZE=4>Linux是在伺服器上中短期威胁</A></A></P><DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+主要对微软的威胁是Linux对NT伺服器.
+
+</P>
+<P ALIGN="JUSTIFY">
+Linux在未来对抗NT伺服器(及其它UNIXes)是有以下几个关键因素:
+
+</P></DIR>
+</DIR>
+</DIR>
+
+
+<UL>
+
+<UL>
+<P ALIGN="JUSTIFY"><LI>
+Linux使用廉价PC硬体, 并且由於OS模组化,
+比NT来说, 用小很多的配备.
+Linux经常用旧的486在衣橱里面跑DNS及邮件伺服器.
+
+</LI></P>
+
+<P ALIGN="JUSTIFY"><LI>
+由於UNIX的传统, Linux在许多组织中, 都是用来替代NT的廉价品.
+</LI></P>
+
+<P ALIGN="JUSTIFY"><LI>UNIX过往的任务达成率, 交互操作性,
+可取得性, 及管理能力(SIAM)优点远超NT.</LI></P>
+
+
+<P ALIGN="JUSTIFY"><LI><FONT COLOR="red"><a name="quote7">
+Linux可在廉价的服务及协定上胜利.
+</a></FONT></LI></P>
+<FONT COLOR="green">{
+我们在此感到一个主题在此发展...
+
+<P>
+把它看得一点点不同: 使要服务及协定是简单的, 透明的, Linux就能蠃.
+微软只能在服务是封闭的, 协定是复杂, 不透明的, 才有办法蠃.
+
+<P>
+
+在更加冲击一点: "廉价"服务及协定对消费者是好事; 它们提供了竞争及选择.
+<B>因此, 微软要蠃, 消费者一定要输.
+</B><P>
+
+这份备忘录揭露微软逻辑中, 最想做的事.
+
+}</FONT><P>
+</UL>
+</UL>
+
+</FONT><FONT FACE="冼  " LANG="ZH-CN" SIZE=4><P><A NAME="_Toc424804423">
+<A NAME="_Toc427495749"></FONT><FONT FACE="Helvetica Black" SIZE=4>Linux
+不太可能成为桌上系统的威胁</A></A></P><DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+Linux不太可能在中长期对桌面系统发生威胁, 有几个因素:
+</P></DIR>
+</DIR>
+</DIR>
+
+
+<UL>
+
+<UL>
+<A NAME="comment22">
+<B><P ALIGN="JUSTIFY"><LI>缺乏对终端使用者的软体及注意.  </B><FONT
+COLOR="red">
+OSS发展过程在处理个别元件的问题比解决整合局面的问题来的强,
+例如容易使用的人机界面.
+</FONT></LI></P>
+
+
+<FONT COLOR="green">{
+最明显容易的矛段就是微软本身对`end-to-end ease of use'就很糟糕; 
+它最行的事就是做个系统<em>第一眼看上去</em>好像有这个品质,
+但实际上并没有
+(而且, 从头到尾, 价格高於生产力, 而且比Linux少很多特色).
+
+<P>
+就算是真得好了, 它闪避了一个重要的议题 -- 微软的俗气不会使这个评鉴有效.
+开放原始码的开发, 确实是在这方面比较贫乏,
+因为它并没有非玩家有系统地测试易用性质.
+
+<P>
+这确实会减缓Linux在桌面系统的强度.
+这不可能永远都原地踏步 -- 它只是需要时间让像<a href="javascript:if(confirm('../../../../../../www.gnome.org/  /n/nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  /n/nDo you want to open it from the server-'))window.location='http://www.gnome.org/'" tppabs="http://www.gnome.org/">GNOME</a>及<a href="javascript:if(confirm('../../../../../../www.kde.org/  /n/nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  /n/nDo you want to open it from the server-'))window.location='http://www.kde.org/'" tppabs="http://www.kde.org/">KDE</a>成熟.
+}</FONT><P></A>
+<A NAME="comment23">
+<B><P ALIGN="JUSTIFY"><LI>
+桌上系统的转移代价.
+
+</B><FONT COLOR="red">
+转移桌上系统是很困难的挑战, 必须要有很大的好处才能.
+Linux的过成是专注在第二层次的优点(例如, 用那些已经确实可用的)
+因此, 很难提供第一鼓动的优点来刺激转移.
+
+</FONT></LI></P>
+<FONT COLOR="green">{
+
+这个隐藏的先决假设, 即革新与"第一鼓动"是唯一支付转移的代价.
+这对微软是个危险的假设; 对Linux来说, 超强的可依赖性及稳定性便十分足够.
+
+<P>
+
+就算同意作者的假设, 
+Linux能够取得"第一鼓动"的优点是不排除的,
+除非open-source模式真得无法产生革新 -- 
+而我们已经知道那是不正确的.
+
+}</FONT><P></A>
+</UL></UL><UL>
+
+<UL>
+<A NAME="comment24">
+<B><P ALIGN="JUSTIFY"><LI>UNIX传统将会降低侵入.</B>
+<FONT COLOR="red">
+易用性必须要由底层设计起.
+Linux玩家的方向从来就未提供一般桌上系统使用者易用性的要求.
+
+</FONT></LI></P>
+<FONT COLOR="green">{
+我<a href="#comment16">上面的注解</a>对易用性工程,
+及open-source的方式可用来打击这一点.
+我们需要走错路的微软, 透过发展它们自己的空域到达最大,
+然後我们用Web的方式来走.
+}</FONT><P></A>
+</UL></UL>
+
+</FONT><FONT FACE="冼  " LANG="ZH-CN" SIZE=4><P><A NAME="_Toc424804424">
+<A NAME="_Toc427495750"></FONT><FONT FACE="Helvetica Black" SIZE=4>
+打击Linux</A></A></P><DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+除了攻击一般OSS计划的弱点(如整合/架构代价), 针对Linux有以下:
+
+</P></DIR>
+</DIR>
+</DIR>
+
+
+<UL>
+
+<UL>
+<P ALIGN="JUSTIFY"><LI>打击UNIX</LI></P></UL>
+</UL>
+<DIR>
+<DIR>
+<DIR>
+<DIR>
+
+<P ALIGN="JUSTIFY">所有标准产品议题在NT vs. Sun可应用在Linux.</P></DIR>
+</DIR>
+</DIR>
+</DIR>
+
+
+<UL>
+
+<UL>
+<P ALIGN="JUSTIFY"><LI>挟入外加功能到廉价服务/协定, 并产生新协定
+</LI></P></UL>
+</UL>
+<DIR>
+<DIR>
+<DIR>
+<DIR>
+
+<A NAME="comment25">
+<P ALIGN="JUSTIFY"><FONT
+COLOR="red">Linux的基地是目前廉价的网路及伺服器公共建设.
+透过夹入外加功能
+(例如 Storage+在档案系统中, DAV/POD在网路中)
+到今日的廉价服务, 我们筑起一道墙, 并改变游戏规则.
+
+</FONT></P></DIR>
+<FONT COLOR="green">{
+
+在此, 在早先的注解<a href="#comment21">
+Linux要如何蠃</a>,
+
+我们开始看见微软策略由雾中慢慢走出.
+而且相当的下流;
+事实上, 它丑陋的足以像我所写的一样, 将万圣节推向最暗黑的夜.
+
+<P>
+
+当作者实在没有办法时, 就拿出这一套破坏整个
+"<FONT COLOR="red">廉价网路及伺服器</FONT>"
+公共建设(TCP/IP, SMTP, HTTP, POP3, IMAP, NFS, 及其它开放标准),
+用一样名字的协定名称, 破坏已经受到微软控制的消费者及市场控制的范围.
+(这就是作者告诫微软农奴要``<FONT COLOR="red">
+我们筑起一道墙, 并改变游戏规则.
+</FONT>''的真意).
+
+<P>
+
+在此`<FONT COLOR="red">夹报式的增强功能</FONT>'拐弯地引入了
+外加的非标准协定(或根本是替代协定),
+然後用大幅广告变成好像是标准, 即便它们是封闭的,
+没有文件或只是乱写一通, 制造好像是开放的假像.
+
+其目地是产生一个新协定,
+然後在官样杂志上的列表上多打几个勾勾,
+然後令微软的共栖支援厂商难以生存下去.
+
+(而成功的就被买走.)
+
+<P>
+这个游戏就叫做"先拥抱再加强".
+我们以前就看过微软玩过这把戏, 它们行得很.
+一旦有效, 微软就蠃了, 然後下垄断的锁. 消费者输.
+
+<P>
+
+(这个污染标准的策略, 微软成功地打破Java的招牌.)
+<P>
+开放原始码支援者可用指出如何及为何消费者输来对抗
+(降低竞争, 价格抬高, 降低可依赖度, 失去机会).
+开放原始码支援者也可以用这句对换 -- 即,
+开放原始码及开放标准增加制造商竞争, 降低价格,
+改善可依赖度, 并增加机会.
+
+<P>
+再一次, 如微软<a href="#comment3">前面备忘录</a>所坦承的,
+网际网路是我们的海报. 
+我们对抗"先拥抱再加强"的最佳的"刺胎针",
+就是指出微软正在试图关闭网际网路.
+
+}</FONT><P></A>
+</DIR>
+</DIR>
+</DIR>
+
+</FONT><FONT FACE="冼  " LANG="ZH-CN" COLOR="black"><P>
+<A NAME="_Toc427495751"></FONT>
+<FONT FACE="Helvetica Black" COLOR="black">Netscape</A></P><DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3>
+<P ALIGN="JUSTIFY">
+Netscape为了要回复过去的雄风,
+最近释放放了它的Mozilla原始码, 做为产生OSS社区的功能.
+</P></DIR>
+</DIR>
+</DIR>
+
+</FONT><FONT FACE="冼  " LANG="ZH-CN" SIZE=4><P>
+<A NAME="_Toc427495752"></FONT>
+<FONT FACE="Helvetica Black" SIZE=4>组织及版权</A></P><DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3>
+<P ALIGN="JUSTIFY">
+Netscape的组织及版权模式基於Linux的GPL, 不过有几点不同.
+第一, Mozilla及Netscape Communicator是两套程式,
+但由Netscape工程师所同时提供的.
+</P></DIR>
+</DIR>
+</DIR>
+
+
+<UL><DIR>
+<DIR>
+
+
+<UL>
+<P ALIGN="JUSTIFY"><LI>Mozilla等於 OSS, 可免费发行的浏览器</LI></P></UL>
+</DIR>
+</DIR>
+</UL>
+
+
+<UL><DIR>
+<DIR>
+
+
+<UL>
+<P ALIGN="JUSTIFY"><LI>Netscape Communicator等於有牌子的, 将Mozilla稍加修改过
+(内定网址设为 </FONT>
+<A HREF="javascript:if(confirm('../../../../../../home.netscape.com/  /n/nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  /n/nDo you want to open it from the server-'))window.location='http://home.netscape.com/'" tppabs="http://home.netscape.com/">
+<FONT FACE="Helvetica" SIZE=3>home.netscape.com</FONT>
+</A><FONT FACE="Helvetica" SIZE=3>).</LI></P></UL>
+</DIR>
+</DIR>
+</UL>
+<DIR>
+<DIR>
+<DIR>
+
+<P ALIGN="JUSTIFY">
+不像GPL, Netscape保留拒决/强迫修改的权力,
+而且Netscape的工程师被指派为大元件的"指导员".
+</P></DIR>
+</DIR>
+</DIR>
+
+</FONT><FONT FACE="冼  " LANG="ZH-CN" SIZE=4><P>
+<A NAME="_Toc427495753"></FONT>
+<FONT FACE="Helvetica Black" SIZE=4>强处</A></P><DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica Black" SIZE=3>
+<P>在OSS团体中提供给反微软情结资本</P>
+</FONT><FONT FACE="Helvetica" SIZE=3>
+<P ALIGN="JUSTIFY">
+相对於其它OSS计划, Mozilla被视为近期最直接对微软攻击的一项.
+这就好像给用Mozilla程式的人员电镀一样.
+
+</P>
+</FONT><FONT FACE="Helvetica Black" SIZE=3><P>新的可信度</P>
+</FONT><FONT FACE="Helvetica" SIZE=3><P>
+Mozilla的程式已经使Netscape的可信度再度上扬,
+并渗透到最小的角落.
+如BharatS所指出的
+
+</FONT>
+<A HREF="javascript:if(confirm('../../../../../../ie/specs/Mozilla/default.htm-  /n/nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  /n/nDo you want to open it from the server-'))window.location='http://ie/specs/Mozilla/default.htm:'" tppabs="http://ie/specs/Mozilla/default.htm:">
+<FONT FACE="Helvetica" SIZE=3>http://ie/specs/Mozilla/default.htm:</FONT></A>
+</P>
+<FONT FACE="冼  " LANG="ZH-CN" SIZE=3><DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3><P>
+"
+他们已经保证透过释放原始码, 他们永远不会从地平线上消失,
+就如Wordstar的状况一样. Mozilla浏览器将会未来十年中依然存在,
+即使其使用者群有所震动."
+
+</P>
+</DIR>
+
+</FONT><FONT FACE="Helvetica Black" SIZE=3><P>骚到了大渴望的痒</P>
+</FONT><FONT FACE="Helvetica" SIZE=3><P>
+该浏览器使用率极高.
+因此, 愿意"解决眼前问题"的人, 或修正程式的意愿很高.
+</P>
+</FONT><FONT FACE="冼  " LANG="ZH-CN" SIZE=3></DIR>
+</DIR>
+</DIR>
+
+</FONT><FONT FACE="冼  " LANG="ZH-CN" SIZE=4><P>
+<A NAME="_Toc427495754"></FONT>
+<FONT FACE="Helvetica Black" SIZE=4>弱点</A></P><DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica Black" SIZE=3><P>後同位发展</P>
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+Mozilla已经与IE4/5平起平坐.
+因此, 没有前例可协助合作开发团队.
+</P>
+
+<P ALIGN="JUSTIFY">
+Netscape已经指定了部份高级开发者,
+全职管理Mozilla程式,
+并且要看看到底这样做能够将Mozilla推向什麽样的新高点.
+</P>
+
+</FONT><FONT FACE="Helvetica Black" SIZE=3><P>小型智域</P>
+</FONT><FONT FACE="Helvetica" SIZE=3>
+<P ALIGN="JUSTIFY">
+一个有趣的弱点就是OSS浏览器的"智域"的所剩大小.
+</P></DIR>
+</DIR>
+</DIR>
+
+<OL>
+
+<OL>
+
+<P ALIGN="JUSTIFY"><LI>基本浏览器已经完成了.</LI></P>
+<P ALIGN="JUSTIFY">
+不再有任何大形, 需要行程开发的计划需求了.
+换句话说, Netscape已经自行完成解决了80%的问题.   
+在为剩下的20%除错得不到自我满足感.
+</P>
+
+<P ALIGN="JUSTIFY"><LI>Netscape的商业利益缩小了智域贡献者的效应.
+</LI></P></OL>
+</OL>
+<DIR>
+<DIR>
+<DIR>
+<DIR>
+
+<P ALIGN="JUSTIFY">
+Linus Torvald管理Linux主要原因是产生最佳的Linux所驱策.
+相较之下, Netscape宣称保留决定程式管理权在基於Netscape的
+<I>商业/企业利益</I>.  
+与其是生产重要产品来说,
+开发者个程式是用来征服Netscape的股票价格.
+
+</P></DIR>
+
+</FONT><FONT FACE="Helvetica Black" SIZE=3><P>整合代价</P>
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+可能的最大损伤, 就是消费者对Mozilla所期望的功能的整合.
+就如稍早所述, 整合开发/测试是不可平行化的活动,
+因此有可能受到OSS过程的反噬.
+
+</P>
+
+<P ALIGN="JUSTIFY">
+特别是, IE5+的许多工作, 不只是整合元件到浏览器中,
+而是继续地整合到作业系统中.
+这会非常地难以与之竞争.
+
+</P></DIR>
+
+</DIR>
+</DIR>
+
+</FONT><FONT FACE="冼  " LANG="ZH-CN" SIZE=4><P>
+<A NAME="_Toc427495755"></FONT>
+<FONT FACE="Helvetica Black" SIZE=4>预测</A></P><DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3>
+<P ALIGN="JUSTIFY">
+因此我主张, 不像Apache及Linux计划一样的成功,
+Netscape的Mozilla会造成:
+
+</P></DIR>
+</DIR>
+</DIR>
+
+
+<UL>
+
+<UL>
+<P ALIGN="JUSTIFY"><LI>产生统治Linux及其它UNIX的浏览器.
+</LI></P>
+<P ALIGN="JUSTIFY"><LI>在长期, 继续落後IE</LI></P></UL>
+</UL>
+<DIR>
+<DIR>
+<DIR>
+
+<P ALIGN="JUSTIFY">
+记得原始码是在短时间前(1998年四月),
+已经开始出现对Mozilla兴趣的警告信号.
+极端不科学的证据指出, mailing list的量持续减少.
+</P></DIR>
+</DIR>
+</DIR>
+</FONT>
+<P ALIGN="CENTER"><CENTER>
+<TABLE BORDER CELLSPACING=1 CELLPADDING=7 WIDTH=409>
+<TR><TD WIDTH="36%" VALIGN="BOTTOM">
+<B><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">Mozilla Mailing List</B></FONT></TD>
+<TD WIDTH="24%" VALIGN="BOTTOM">
+<FONT FACE="Helvetica" SIZE=3><P ALIGN="CENTER">April 1998</FONT></TD>
+<TD WIDTH="22%" VALIGN="BOTTOM">
+<FONT FACE="Helvetica" SIZE=3><P ALIGN="CENTER">June 1998</FONT></TD>
+<TD WIDTH="18%" VALIGN="BOTTOM">
+<FONT FACE="Helvetica" SIZE=3><P ALIGN="CENTER">% decline</FONT></TD>
+</TR>
+<TR><TD WIDTH="36%" VALIGN="TOP">
+<B><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">Feature Wishlist</B></FONT></TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<FONT FACE="Helvetica" SIZE=3><P ALIGN="CENTER">1073</FONT></TD>
+<TD WIDTH="22%" VALIGN="TOP">
+<FONT FACE="Helvetica" SIZE=3><P ALIGN="CENTER">450</FONT></TD>
+<TD WIDTH="18%" VALIGN="TOP">
+<FONT FACE="Helvetica" SIZE=3><P ALIGN="CENTER">58%</FONT></TD>
+</TR>
+<TR><TD WIDTH="36%" VALIGN="TOP">
+<B><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">UI Development</B></FONT></TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<FONT FACE="Helvetica" SIZE=3><P ALIGN="CENTER">285</FONT></TD>
+<TD WIDTH="22%" VALIGN="TOP">
+<FONT FACE="Helvetica" SIZE=3><P ALIGN="CENTER">76</FONT></TD>
+<TD WIDTH="18%" VALIGN="TOP">
+<FONT FACE="Helvetica" SIZE=3><P ALIGN="CENTER">73%</FONT></TD>
+</TR>
+<TR><TD WIDTH="36%" VALIGN="TOP">
+<B><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">General Discussion</B></FONT></TD>
+<TD WIDTH="24%" VALIGN="TOP">
+<FONT FACE="Helvetica" SIZE=3><P ALIGN="CENTER">1862</FONT></TD>
+<TD WIDTH="22%" VALIGN="TOP">
+<FONT FACE="Helvetica" SIZE=3><P ALIGN="CENTER">687</FONT></TD>
+<TD WIDTH="18%" VALIGN="TOP">
+<FONT FACE="Helvetica" SIZE=3><P ALIGN="CENTER">63%</FONT></TD>
+</TR>
+</TABLE>
+</CENTER></P>
+
+<FONT FACE="冼  " LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY"></P><DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+内部对Mozilla的Mailing Lists映射可在
+http://egg.Microsoft.com/wilma/lists</P>找到
+<FONT COLOR="green">{
+嘿.  那个`蛋`机器(egg.Microsoft.com), 一看, 是台Linux.
+}</FONT>
+</DIR>
+</DIR>
+</DIR>
+
+</FONT><FONT FACE="冼  " LANG="ZH-CN" COLOR="black"><P><A NAME="_Toc427495756">
+</FONT><FONT FACE="Helvetica Black" COLOR="black">Apache</A></P>
+</FONT><FONT FACE="冼  " LANG="ZH-CN" SIZE=4><P><A NAME="_Toc427495757">
+</FONT><FONT FACE="Helvetica Black" SIZE=4>历史</A></P><DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">改写自 
+</FONT><A HREF="javascript:if(confirm('../../../../../../www.apache.org/ABOUT_APACHE.html  /n/nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  /n/nDo you want to open it from the server-'))window.location='http://www.apache.org/ABOUT_APACHE.html'" tppabs="http://www.apache.org/ABOUT_APACHE.html">
+<FONT FACE="Helvetica" SIZE=3>http://www.apache.org/ABOUT_APACHE.html
+</FONT></A></P><DIR>
+
+<FONT FACE="Helvetica" SIZE=3><P>
+
+在1995年二月, 最受欢迎的HTTP伺服器是由NCSA, 
+University of Illinois, Urbana-Champaign所发展的.
+
+不过, 该httpd的发展在1994年中期中段,
+许多webmaster自行发展自己的外加功能, 及修正码.
+
+一小群的webmaster, 透过私人e-mail, 聚集在一起来合作他们的改变
+(以"patches"的形式出现).
+
+在95年二月底, 八位核心贡献者成立原始的Apache组织(取A PAtCHE为名).
+
+在1995四月, Apache 0.6.2释出.</P>
+
+<P>
+在1995年五月到七月, 一个新的伺服器架构被发展出来(程式名Shambhala),
+包含了模组结构及API, 以适应弹性, pool-based记忆体配置,
+及可调整的事先行程分支处理模式.
+这个群在七月, 转换到新的伺服器基础, 并从0.7.x新增特色,
+於是在八月成为Apache 0.8.8.
+
+</P>
+
+<P>
+在一年之内, Apache伺服器超过NCSA httpd成为Internet上排名第一的伺服器.
+<font color="blue">(译注: 目前NCSA的程式分支总和占有率大约7%.)</font>
+</P>
+</FONT><FONT FACE="冼  " LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY"></P></DIR>
+</DIR>
+</DIR>
+</DIR>
+
+</FONT><FONT FACE="冼  " LANG="ZH-CN" SIZE=4><P><A NAME="_Toc427495758">
+</FONT><FONT FACE="Helvetica Black" SIZE=4>组织</A></P><DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+Apache发展团队目前有大约19个核心成员,
+外加数百位的网站管理员进行外加功能, 分散於全世界.
+Apache错误报告可在: </FONT><U><FONT FACE="Helvetica" SIZE=3 COLOR="#0000ff">
+http://bugs.apache.org/index</U></FONT><FONT FACE="Helvetica" SIZE=3>找到.
+
+</P>
+<P ALIGN="JUSTIFY">
+关於程式管理及争议解决程序可在
+</FONT>
+<A HREF="javascript:if(confirm('../../../../../../www.apache.org/personal/linuxboy/halloween/-/  /n/nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  /n/nDo you want to open it from the server-'))window.location='http://www.apache.org/personal/linuxboy/halloween/:/'" tppabs="http://www.apache.org/personal/linuxboy/halloween/:/"><FONT FACE="Helvetica" SIZE=3>
+http://www.apache.org:</FONT></A>找到</P>
+<FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">领导:</P><DIR>
+
+<I><P>
+有个核心的贡献者群(不正式地称为"核心"),
+由核心成员提名选举.
+</P>
+</DIR>
+
+</I><P ALIGN="JUSTIFY">争议解决:</P><DIR>
+
+<I><P>
+改变程式会在mailing list中提出,
+并且由有效会选投票 -- 3个, +1(同意), -1(不同意或否决),
+来决定.
+</P>
+</DIR>
+</DIR>
+</DIR>
+</DIR>
+
+</I></FONT><FONT FACE="冼  " LANG="ZH-CN" SIZE=4><P><A NAME="_Toc427495759">
+</FONT><FONT FACE="Helvetica Black" SIZE=4>强处</A></P><DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica Black" SIZE=3><P>市场占有率!</P>
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+Apache是今天网际网路金字招牌第一号, 远远将竞争者抛在後面.
+持有雄狮般的市场占有率是极为有利於控制市场的演化.
+
+</P>
+
+<P ALIGN="JUSTIFY">
+特别是, Apache市场占有率表现出几个屏壁:
+
+</P></DIR>
+</DIR>
+</DIR>
+
+
+<UL>
+
+<UL>
+<P ALIGN="JUSTIFY"><LI>
+最低层次的起源HTTP协定 -- 降低我们加入协定来支援新的应用软体的能力
+
+</LI></P>
+<P ALIGN="JUSTIFY"><LI>给UNIX带来生机 -- Apache到走那里, UNIX就走到那里.
+</LI></P></UL>
+</UL>
+<DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica Black" SIZE=3><P>支援厂商的支持</P>
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+为Apache提供的工具/模组持续成长增加.
+</P></DIR>
+</DIR>
+</DIR>
+
+</FONT><FONT FACE="冼  " LANG="ZH-CN" SIZE=4><P><A NAME="_Toc427495760">
+</FONT><FONT FACE="Helvetica Black" SIZE=4>弱点</A></P><DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Helvetica Black" SIZE=3><P>效能</P>
+</FONT><FONT FACE="Helvetica" SIZE=3><P ALIGN="JUSTIFY">
+在短期, IIS看来似乎能在SPECweb上数字胜过Apache.
+再看深一点, IIS一到与NT深度整合在一起时,
+将会再进一步

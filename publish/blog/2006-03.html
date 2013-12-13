@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+  <head>
+    <title>Sucha's Blog - Archive for March, 2006</title>
+    <meta name="generator" content="emacs-wiki-journal.el" />
+    <meta http-equiv="Content-Type" content=" text/html; charset=utf-8" />
+    <meta name="author" content="Sucha" />
+    <meta name="copyright" content="GFDL, http://www.gnu.org/licenses/fdl.html" />
+    <meta name="keywords" content="Sucha, Suchang, programming, GNU, Unix, Linux, Slackware, Emacs, elisp" />
+    <meta name="description" content="Sucha's blog" />
+    <link rev="made" href="mailto:suchaaa@gmail.com" />
+    <link rel="shortcut icon" href="../images/ico.png" />
+    <link rel="stylesheet" type="text/css" href="../styles/blog.css" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml" />
+    <!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="../styles/ie.css" /><![endif]-->
+  </head>
+  <body>
+    <div id="body">
+      <div id="text">
+	<h1>Sucha's Blog ~ Archive for March, 2006</h1>
+	<!-- Page published by Emacs Wiki begins here -->
+<h2><a id="p8">3月25日 周六 17:24</a></h2>
+
+<h3>文曲星维修部</h3>
+
+<p>
+最近真是不顺，前段时间显示器坏掉，接着在其后的某一天早上，不小心让文曲星从课桌上掉下，一看，屏幕裂掉，液晶也都破了，搞得左下角黑乎乎的一片。
+
+</p>
+
+<p>
+本以为学校主楼下面打着“维修文曲星”牌子的小店应该搞得定，没想到他竟然说没有屏幕，还不如直接说不搞技术活，-_-。问了问周围，也没人知道文曲星的维修点在哪。于是只好到文曲星的主页上去查，合肥怎么说都是个省会，维修点还是有的。然后查到了是在什么“太湖路 99 号”，看了下地图，还好，离工大不远，于是就高高兴兴地带着文曲星上路了。
+
+</p>
+
+<p>
+但是谁都没想到，那个店竟然关门了，还贴着招租的字条……
+
+</p>
+
+<p>
+然后这件事就一直压着，直到前几天，跟同学到科大那边买书，忽然发现竟然有文曲星专卖店，进去一问，不帮修机，但是给了个维修部的号码我，还给了个地址，在什么“中原大酒店”七楼。
+
+</p>
+
+<p>
+中原大酒店离工大很近，但是里面的情况就不清楚了，好不容易才找到那个侧门，然后乘着摇摇晃晃的电梯上到了七楼，什么七楼啊，不就是楼顶吗，然后那个维修部，晕死，是个临时搭建的临时工棚。服务员态度还好，维修进度也很快，换个屏幕二十多分钟就搞定了，不过 60RMB 怎么说还是觉得有点冤。
+
+</p>
+
+<h4><a href="CategoryLife.html">CategoryLife</a> / <a href="2006-03.html#p8">Permalink</a> </h4>
+
+<p>
+<!-- date: 2006-03-25T17:24:33+0800 -->
+
+</p>
+
+<h2><a id="p7">3月20日 周一 22:39</a></h2>
+
+<h3>用 Emacs 与 SQLite 交互</h3>
+
+<p>
+昨天刚刚写了一个用 Emacs 与 SQLite 交互的小程序 <a href="../cs/SQLiteMode.html">sqlite&#32;mode</a>，非常简单的小东西，这样就可以用 Emacs 本身强大的编辑功能，来与 SQLite 交互了。
+
+</p>
+
+<p>
+程序使用系统的 shell 命令与程序通讯，支持命令回顾，语法高亮的简单功能。虽然网路上 SQLite 的图形界面很多，但是它们大部分与 SQLite 都绑定得非常紧，有的已经不支持最新的 SQLite 产生的数据库文件了。而单纯地使用 shell 与 SQLite 交互，命令又不好编辑，所以就产生了用 Emacs 与 SQLite 交互的想法，编写了大半天，终于将简单的功能搞定了。
+
+</p>
+
+<p>
+现在程序在 Win 和 Linux 下运行得都很顺利，但是也有不爽的地方，因为我的两个系统编码不同，造成写入读出数据库的时候在不同的系统上乱码。本以为修改 default-process-coding-system 这个全局变量就可以搞定，但是发现 emacs 本身的转换其实也不大好，而刚开始时使用的 encode-coding-string 函数先对字符串进行转换的方式其实不起作用，因为 emacs 在与 shell 交互的时候，会使用特殊的方式，真是让人伤脑筋。
+
+</p>
+
+<p>
+最后决定把这个工作列入 TODO 算了。
+
+</p>
+
+<h4><a href="CategoryProgramming.html">CategoryProgramming</a> / <a href="2006-03.html#p7">Permalink</a> </h4>
+
+<p>
+<!-- date: 2006-03-20T22:39:48+0800 -->
+
+</p>
+
+<h2><a id="p6">3月18日 周六 22:21</a></h2>
+
+<h3>上下楼的困难</h3>
+
+<p>
+这个学期的课表好奇怪，前半段的时间里，周日、周一没课，等于周末右移一天，周四也放假，想来可以搞搞健身活动，然后就有人答应了别班球队踢球。这本来是个好提议，可对于我们这些经久不运动、只会面对电脑屏幕发呆的人来说，就是另外一回事了。
+
+</p>
+
+<p>
+周四的球赛对我们的影响，直到今天都还未散去，大家面对面的时候都只有苦笑。忽然间觉得那双沉重而酸疼的腿，对我们来说实在是太重要了，一定要好好保护，否则，连上下楼都得用手了。
+
+</p>
+
+<h4><a href="CategoryLife.html">CategoryLife</a> / <a href="2006-03.html#p6">Permalink</a> </h4>
+
+<p>
+<!-- date: 2006-03-18T22:21:06+0800 -->
+
+</p>
+
+<h2><a id="p5">3月16日 周四 22:48</a></h2>
+
+<h3>超小型的数据库 SQLite</h3>
+
+<p>
+这是一个完全用 C 实现的超小型关系数据库引擎，支持绝大部分的 SQL 92 功能，速度超快，而大小却只有几百 KB，同时还支持多平台，只要你有 gcc 环境，就可以编译执行。对于个人单机使用或是流量不多的网站来说非常合适，网路上也有很多的图形化界面支持，实在是非常好用。
+
+</p>
+
+<p>
+最近正在学数据库系统概论，还学了点 SQL，使用 sqlitecc[注] 来管理我的个人数据真是不错，还定义了几个视图来方便操作，真让人爱不释手。
+
+</p>
+
+<p>
+[注]：SQLite Control Center，一个使用 SQLite 作为引擎的跨平台图形化控制台。
+
+</p>
+
+<h4><a href="CategoryMisc.html">CategoryMisc</a> / <a href="2006-03.html#p5">Permalink</a> </h4>
+
+<p>
+<!-- date: 2006-03-16T22:48:42+0800 -->
+
+</p>
+
+<h2><a id="p4">3月14日 周二 18:49</a></h2>
+
+<h3>显示器历险记</h3>
+
+<p>
+9 号傍晚，我还在寝室玩着游戏，忽然间闻到一股塑料被烧焦的味道，猛抬头，看到显示器后边悠悠升起一缕白烟，本以为是床对面的室友在烧东西，于是稍稍站起，才发现大事不好，原来是我的显示器冒烟了！于是闪电般地按下电源，强行断电关机，这时，屏幕中的游戏还在继续。
+
+</p>
+
+<p>
+虽然冒起的烟不多，但是机子周围已经布满了焦臭味，那时我对显示器冒烟这种现象完全没有概念，鉴于实践的观点，尝试着再开机看看会发生些什么。觉得应该不会有比刚才更危险的事情，但是也不可能坏到哪里去了，显示器的画面已经完全模糊，就像调不清楚的电视机。看来，只好拿去维修，心里真是郁闷。
+
+</p>
+
+<p>
+第二天一早，就和同学将它带到了双联，当年装机的地方，我还庆幸自己的 LG 是三年连保，今年才是第二年而已。双联看了我的保修单，把我推到了新百脑汇 C407 的 LG 特约维修站。于是我高高兴兴地去了，可没想到 LG 却只提供一年的保修服务，白纸黑字的东西都不认了！完全没有讨价还价的余地，没办法，最后还不是得修。看着墙上写着大修 110RMB 的牌子，心想，这点钱看来省不了了。
+
+</p>
+
+<p>
+于是我就天天追问，可是直到今天，机子才修好，如果没有我的几通电话，天知道会拖到什么时候！最后的价钱也没得讲，150RMB，只收小修的维修费 50RMB，因为烧焦的零件要换，要多收一点钱，可是对我们说这些有什么用呢，我又不懂。站在那里，有如人家案板上的肉，只能说，要杀要剐，随便吧。
+
+</p>
+
+<h4><a href="CategoryLife.html">CategoryLife</a> / <a href="2006-03.html#p4">Permalink</a> </h4>
+
+<p>
+<!-- date: 2006-03-14T18:49:12+0800 -->
+
+</p>
+
+<h2><a id="p3">3月6日 周一 22:40</a></h2>
+
+<h3>换了站点图标</h3>
+
+<p>
+昵称换了，站点图标却忘了换，还是原来那个“L”。用 Opera、Firefox 或 Mozilla 都可以看到，就在标签栏和地址栏那个地方（可惜 IE 却一直没有）。于是决定重新设计，然后就成了现在这个样子。
+
+</p>
+
+<p>
+小图标有我写字的风范，比划歪歪斜斜的，不过有防止刻意模仿、尽力雷同的功能，至于其他优缺点，就不一一列举了，:)
+
+</p>
+
+<p>
+原以为在 16x16 pix 的小地方上面画弧线是个大麻烦，没想到用 GIMP 蛮顺的，特别是“模糊画处理”非常棒，感觉就是为这些棘手事准备的，不用为每个小点单独考虑了。不过有些东西还不是很懂，似乎 GIMP 的橡皮擦处理，仍然采取覆盖的方式，就是一层盖一层，最终的文件相对于必需浪费了相当多的空间，所以得“非常”谨慎，宁可撤销而不要用橡皮擦覆盖。
+
+</p>
+
+<p>
+不知道有什么好的解决方法。
+
+</p>
+
+<h4><a href="CategoryThisSite.html">CategoryThisSite</a> / <a href="2006-03.html#p3">Permalink</a> </h4>
+
+<p>
+<!-- date: 2006-03-06T22:40:12+0800 -->
+
+</p>
+
+<h2><a id="p2">3月6日 周一 13:27</a></h2>
+
+<h3>Gmail 的来信显示</h3>
+
+<p>
+最近才发现 Gmail 有提供个人信箱的 RSS 种子，每当有新的来信，我都可以在最快的时间内得到消息。最方便的，是可以用 Opera 内置的 RSS 阅读器订阅，有了这样的整合环境，上网真是再惬意不过。
+
+</p>
+
+<p>
+昨天跟室友打球去了，握上了许久没碰的乒乓球拍，还玩得蛮开心的，可是一到今天，缺乏锻炼的双腿开始酸痛，上下楼都小有困难，跟前几天的大跨步根本不能比，痛苦死了。
+
+</p>
+
+<p>
+星期一第六周才有课，难得的休息日。
+
+</p>
+
+<h4><a href="CategoryMisc.html">CategoryMisc</a> / <a href="2006-03.html#p2">Permalink</a> </h4>
+
+<p>
+<!-- date: 2006-03-06T13:27:14+0800 -->
+
+</p>
+
+<h2><a id="p1">3月4日 周六 18:03</a></h2>
+
+<h3>QQ 与过期软件</h3>
+
+<p>
+前天晚上 QQ 突然登录不了了，虽然可以正常上网，浏览各路东东。可奇怪的是寝室里其他兄弟的 QQ 却没有问题，这让我非常郁闷，一度考虑起自己的 RP 来……
+
+</p>
+
+<p>
+也曾想过是网络惹的祸，于是调试了一下 QQ 里边的选项，比如把登录方式从 TCP 改为 UDP，可还是一点用都没有，还是无限期的登录，最后超时。不过在尝试 UDP 登录不成功的时候，出现了提示，说什么版本太旧。我的版本是 2005 beta3，可也不得不重新下过一个 sp1 的版本。
+
+</p>
+
+<p>
+没想到这回成功了，后来问了一下室友们的 QQ 版本，原来大家都换了新货……
+
+</p>
+
+<p>
+不知不觉已经过了第三周，下周开始有德语的选修课，六级还没过呢，就选了第二外语，压力一下就上来了。
+
+</p>
+
+<h4><a href="CategoryLife.html">CategoryLife</a> / <a href="2006-03.html#p1">Permalink</a> </h4>
+
+<p>
+<!-- date: 2006-03-04T18:03:10+0800 -->
+
+</p>
+
+<h2><a id="p0">3月1日 周三 22:38</a></h2>
+
+<h3>南方人, 北方面</h3>
+
+<p>
+最近对食堂的米饭失去了兴趣，也许因为天气凉，饭容易硬。然后慢慢转到以前不怎么喜欢的面食上面，这么冷的天面对热腾腾的拉面，牛肉面，身子再冷都不会抖了。 
+
+</p>
+
+<p>
+没想到有这种嗜好的不只我一个，几个从南方过来的室友最近也都吃面。今天大家在往食堂的路上说笑，“终于知道为什么北方人那么喜欢吃面了”，这里的饭那么硬，根本就没得选择嘛。说笑而已了，:)
+
+</p>
+
+<h4><a href="CategoryLife.html">CategoryLife</a> / <a href="2006-03.html#p0">Permalink</a> </h4>
+
+<p>
+<!-- date: 2006-03-01T22:38:18+0800 -->
+<!-- Page published by Emacs Wiki ends here -->
+<div id="foot">2004-<script language="javascript">var d = new
+	Date();document.write(d.getFullYear())</script> &copy;
+	Sucha. Powered by EmacsWikiJournal.
+</div>
+</div><!-- sidebar -->
+  <div id="sidebar">
+      <p class="header">Here</p>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="index.html">Front</a></li>
+        <li><a href="../scratch/ThisSite.html">This Site</a></li>
+        <li><a href="../live/AboutMe.html">About Me</a></li>
+        <li><a href="../cs/EmacsWikiJournal.html">Emacs Wiki Journal</a></li>
+      </ul>
+
+      <p class="header">Calendar</p>
+      <div class="calendar"><table><caption>August 2005</caption><thead><tr><th>Su</th><th>Mo</th><th>Tu</th><th>We</th><th>Th</th><th>Fr</th><th>Sa</th></tr></thead><tr><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr><tr><td>7</td><td>8</td><td><a title="Hack emacs-wiki-journal.el" href="2005-08.html#p0">9</a></td><td>10</td><td>11</td><td><a title="修改 Blog 版面" href="2005-08.html#p1">12</a></td><td>13</td></tr><tr><td><a title="开始提供 Emacs''''WikiJournal 下载" href="2005-08.html#p2">14</a></td><td>15</td><td><a title="第三十九级台阶" href="2005-08.html#p3">16</a></td><td><a title="收假" href="2005-08.html#p4">17</a></td><td>18</td><td><a title="36 小时后" href="2005-08.html#p5">19</a></td><td><a title="新进 - 微软极动鲨" href="2005-08.html#p6">20</a></td></tr><tr><td><a title="W3m and emacs-w3m" href="2005-08.html#p7">21</a></td><td>22</td><td>23</td><td><a title="大三, 南区" href="2005-08.html#p8">24</a></td><td>25</td><td><a title="懒惰的后果" href="2005-08.html#p9">26</a></td><td>27</td></tr><tr><td>28</td><td>29</td><td>30</td><td><a title=""修复" emacs-wiki-journal-category-alist 函数" href="2005-08.html#p10">31</a></td></tr></table></div>
+
+      <p class="header">Search</p><!-- Google Search -->
+      <form id="searchform" method="get"
+	    action="http://www.google.com/search" >
+	<p><input id="searchtext" type="text" name="q" value="" /></p>
+	<p><input type="hidden" name="ie" value="utf-8" /></p>
+	<p><input type="hidden" name="oe" value="utf-8" /></p>
+	<p><input type="hidden" name="hl" value="zh-CN" /></p>
+	<p><input type="hidden" name="domains" value="suchang.net" /></p>
+	<p><input name="si" type="hidden" value="suchang.net" /></p>
+	<p><input type="hidden" name="sitesearch" value="suchang.net" /></p>
+      </form>
+
+      
+      <p class="header">Feeds &#38; Contact</p>
+        <ul>
+          <li><a id="rss_feeds" href="rss.xml">RSS</a></li>
+          <li><a href="mailto:suchaaa@gmail.com">Mail me</a></li>
+        </ul>
+
+      <p class="header">Categories</p>
+      <ul>
+        <li><a href="CategoryLinux.html">GNU/Linux</a></li>
+        <li><a href="CategoryProgramming.html">Programming</a></li>
+        <li><a href="CategoryLife.html">Life &#38; essay</a></li>
+        <li><a href="CategoryReading.html">Reading</a></li>
+	<li><a href="CategoryThisSite.html">This Site</a></li>
+        <li><a href="CategoryMisc.html">Misc</a></li>
+      </ul>
+
+      <p class="header">Links</p>
+      <ul>
+	    <li><a href="http://blog.csdn.net/g9yuayon/">G9</a></li>
+        <li><a href="http://mrjamie.cc/">Jamie</a></li>
+        <li><a href="http://www.ftchinese.com/column/007000002">朝九晚五</a></li>
+        <li><a href="http://blog.codingnow.com/">CloudWu</a></li>
+	    <li><a href="http://www.mindmeters.com/blogind.asp?id=253">All About S</a></li>
+        <li><a href="http://www.drunkpiano-liuyu.net/">DrunkPiano</a></li>
+	    <li><a href="http://ditu.google.cn/maps?hl=zh-CN&ll=22.626687,110.186691&spn=0.101883,0.15398&t=h&brcurrent=3,0x36adc425dfd47083:0xd77004f2b5f175d6,0,0x36adb6981be5ba57:0xbb22df1016a0dd2e%3B5,0,0&z=13">Yulin in Google Maps</a></li>
+      </ul>
+
+      <p class="header">Archives</p>
+      <div class="archive_links"><ul><li><a href="2012-07.html">July 2012</a></li><li><a href="2012-06.html">June 2012</a></li><li><a href="2012-05.html">May 2012</a></li><li><a href="2012-04.html">April 2012</a></li><li><a href="2012-03.html">March 2012</a></li><li><a href="2012-02.html">February 2012</a></li><li><a href="2012-01.html">January 2012</a></li><li><a href="2011-12.html">December 2011</a></li><li><a href="2011-11.html">November 2011</a></li><li><a href="2011-10.html">October 2011</a></li><li><a href="2011-09.html">September 2011</a></li><li><a href="2011-08.html">August 2011</a></li><li><a href="2011-04.html">April 2011</a></li><li><a href="2011-02.html">February 2011</a></li><li><a href="2011-01.html">January 2011</a></li><li><a href="2010-12.html">December 2010</a></li><li><a href="2010-11.html">November 2010</a></li><li><a href="2010-09.html">September 2010</a></li><li><a href="2009-07.html">July 2009</a></li><li><a href="2009-06.html">June 2009</a></li><li><a href="2009-05.html">May 2009</a></li><li><a href="2009-04.html">April 2009</a></li><li><a href="2009-02.html">February 2009</a></li><li><a href="2009-01.html">January 2009</a></li><li><a href="2008-12.html">December 2008</a></li><li><a href="2008-11.html">November 2008</a></li><li><a href="2008-10.html">October 2008</a></li><li><a href="2008-09.html">September 2008</a></li><li><a href="2008-08.html">August 2008</a></li><li><a href="2008-07.html">July 2008</a></li><li><a href="2008-06.html">June 2008</a></li><li><a href="2008-05.html">May 2008</a></li><li><a href="2008-04.html">April 2008</a></li><li><a href="2008-03.html">March 2008</a></li><li><a href="2008-02.html">February 2008</a></li><li><a href="2008-01.html">January 2008</a></li><li><a href="2007-10.html">October 2007</a></li><li><a href="2007-07.html">July 2007</a></li><li><a href="2007-06.html">June 2007</a></li><li><a href="2007-05.html">May 2007</a></li><li><a href="2007-04.html">April 2007</a></li><li><a href="2007-03.html">March 2007</a></li><li><a href="2007-02.html">February 2007</a></li><li><a href="2007-01.html">January 2007</a></li><li><a href="2006-12.html">December 2006</a></li><li><a href="2006-11.html">November 2006</a></li><li><a href="2006-10.html">October 2006</a></li><li><a href="2006-09.html">September 2006</a></li><li><a href="2006-08.html">August 2006</a></li><li><a href="2006-07.html">July 2006</a></li><li><a href="2006-06.html">June 2006</a></li><li><a href="2006-05.html">May 2006</a></li><li><a href="2006-04.html">April 2006</a></li><li><a href="2006-03.html">March 2006</a></li><li><a href="2006-02.html">February 2006</a></li><li><a href="2006-01.html">January 2006</a></li><li><a href="2005-12.html">December 2005</a></li><li><a href="2005-11.html">November 2005</a></li><li><a href="2005-10.html">October 2005</a></li><li><a href="2005-09.html">September 2005</a></li><li><a href="2005-08.html">August 2005</a></li><li><a href="2005-07.html">July 2005</a></li><li><a href="2005-06.html">June 2005</a></li><li><a href="2005-05.html">May 2005</a></li><li><a href="2005-04.html">April 2005</a></li><li><a href="2005-03.html">March 2005</a></li><li><a href="2005-02.html">February 2005</a></li><li><a href="2005-01.html">January 2005</a></li><li><a href="2004-12.html">December 2004</a></li><li><a href="2004-11.html">November 2004</a></li><li><a href="2004-10.html">October 2004</a></li><li><a href="2004-09.html">September 2004</a></li></ul></div>
+
+    </div><!-- sidebar -->
+   </div> <!-- body -->
+  </body>
+</html>

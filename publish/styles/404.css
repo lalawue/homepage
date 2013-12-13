@@ -1,0 +1,90 @@
+/* By sucha in Apirl, 2006 */
+
+/* initial section */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    width: 100%;
+    color: gray;
+    background-color: #000000;
+}
+
+
+/* body section */
+
+body {
+    width: 100%;
+    font: 14px/1.5 "Luxi Serif", Verdana, helvetica, sans-serif;    
+}
+
+#body {
+    background-color: transparent;
+}
+
+
+/* terminal section */
+
+#terminal {
+    margin-top: 2%;
+    margin-left: 1em;
+}
+
+/* fortune section */
+
+#fortune {
+    margin: 3% 0 2% 5%;
+}
+
+strong#root {
+    font-weight: normal;
+    margin-top: .5em;
+    margin-bottom: 2em;
+    margin-left: 27%;
+}
+
+/* prompt */
+
+#prompt {
+    maring-bottom: 1em;
+}
+
+/* dir and files */
+
+.dir_file {
+    maring-top: 1em;
+    word-spacing: 1em;
+}
+
+/* search form */
+
+#searchform {
+    width: auto;
+}
+
+#searchtext {
+    border: 0;
+    border-bottom: 1px dashed gray;
+    color: gray;
+    background-color: #000000;
+    font-size: 1.1em;
+    font-family: "Arial";
+}
+
+
+/* link section */
+
+a#dir { 
+    color: blue;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a#file {
+    color: gray;
+    font-weight: normal;
+    text-decoration: none;
+}

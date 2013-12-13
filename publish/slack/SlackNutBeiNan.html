@@ -1,0 +1,609 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+  <head>
+    <title>Sucha's Homepage - Slack Kernel</title>
+    <meta name="generator" content="emacs-wiki.el" />
+    <meta http-equiv="Content-Type" content=" text/html; charset=utf-8" />
+    <meta name="author" content="Sucha" />
+    <meta name="copyright" content="GFDL, http://www.gnu.org/licenses/fdl.html" />
+    <meta name="keywords" content="Sucha, Suchang, programming, GNU, Unix, Linux, Slackware, Emacs, elisp" />
+    <meta name="description" content="Sucha's homepage and blog" />
+    <link rel="made" href="mailto:suchaaa@gmail.com" />
+    <link rel="shortcut icon" href="../images/ico.png" />
+    <link rel="stylesheet" type="text/css" href="../styles/site.css" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="../blog/rss.xml" />
+    <!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="../styles/ie.css" /><![endif]-->
+  </head>
+  <body>
+    <div id="body">
+      <div id="text">
+	<h1>Sucha's Homepage ~ Slack Kernel</h1>
+	<!-- Page published by Emacs Wiki begins here -->
+<h2>Slack kernel</h2>
+
+<p>
+题目：用 Slackware 官方内核源码和脚本来打造适合自己机器的内核 —— 为 Slackware 初初级用户指南<br />
+作者：北南南北<br />
+来自：<a href="http://www.linuxsir.org">LinuxSir.Org</a><br />
+提要：用Slackware官方提供的内核源码和脚本来打造适合自己机器的内核，学习编译内核并提高我们的学习和工作效率；
+
+</p>
+
+<p>
+<strong>本页目录</strong>
+
+</p>
+
+<dl class="contents">
+<dt class="contents">
+<a href="#sec-1">前言：</a>
+</dt>
+<dt class="contents">
+<a href="#sec-2">一、下载官方current 的testing内核的源码；</a>
+</dt>
+<dt class="contents">
+<a href="#sec-3">二、利用Slackware官方提供的 config文件来简单配置自己的内核配置文件 .config ；</a>
+</dt>
+<dd>
+<dl class="contents">
+<dt class="contents">
+<a href="#sec-4">1.解压内核及一些基础工作；</a>
+</dt>
+<dt class="contents">
+<a href="#sec-5">2.简要的配置内核；</a>
+</dt>
+<dd>
+<dl class="contents">
+<dt class="contents">
+<a href="#sec-6">1］移动键盘，选中 Load an Alternate Configuration File 项，把 .config</a>
+</dt>
+<dt class="contents">
+<a href="#sec-7">2]针对自己机器存在的问题进行修改；比如我们在前文所提到的大内存支持的问题；</a>
+</dt>
+<dt class="contents">
+<a href="#sec-8">3]对于操作系统所采用的文件系统的支持要编入内核，最好不要编成模块；（重要）</a>
+</dt>
+<dt class="contents">
+<a href="#sec-9">4］对于硬盘及 RAID 的支持，要直接编入内核</a>
+</dt>
+<dt class="contents">
+<a href="#sec-10">5]对于咱们所没有的设备，可以在内核中不选，熟能生巧罢了；</a>
+</dt>
+</dl>
+</dd>
+<dt class="contents">
+<a href="#sec-11">3.编译内核</a>
+</dt>
+<dt class="contents">
+<a href="#sec-12">4.用 Slackware 提供的脚本为内核及 moudules 打包；</a>
+</dt>
+<dd>
+<dl class="contents">
+<dt class="contents">
+<a href="#sec-13">a)首先我们为内核打包：请运行如下命令：</a>
+</dt>
+<dt class="contents">
+<a href="#sec-14">b)然后我们要为内核的模块打包；</a>
+</dt>
+<dt class="contents">
+<a href="#sec-15">5.安装编译好的内核及模块。</a>
+</dt>
+<dt class="contents">
+<a href="#sec-16">6.查看系统引导管理器 grub 或者 lilo 的配置文件。</a>
+</dt>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+
+
+<h3><a id="sec-1">前言</a>：</h3>
+
+<p>
+现在的机器配置越来越高，一个小小的笔记本，可能也能上到 2G 内存，另外服务器的应用，经常用到大内存，从实践的情况来看，Slackware 用默认的内核是不支持大内存的，最高支持 800 多 M，可能 1G 都不到。另外 Slackware 在默认的情况下也不支持多 CPU，如果您有多 CPU 的机器，也要编译内核；
+
+</p>
+
+<p>
+让 Slackware 支持 1G 或者超过 1G 内存的机器，其实解决办法也极为简单。要重新编译一下内核，让其支持 4G 就好了。当然如果有有超过 4G 的，可以选 64G 的那个。
+
+</p>
+
+<p>
+让 Slackware 支持多 CPU 的机器，无非是在配置内核时让他支持 SMP，就是这个 [＊] Symmetric multi-processing support 选项；
+
+</p>
+
+<p>
+只说如何如何解决还不行，一篇文章如果没有操作实例，新手弟兄读起来实在是困难。我写的文章都是写给新手的，我总怕我写的文章新手看不懂，对老鸟来说又一文不值；如果真是新手弟兄看不懂，老手又不值得一看，我看我写的东西一文不值。因此我写东西的时候能详细就详细，最好是写到初次用 Linux 的弟兄看了我所写的文档，也能一步到位的完成。
+
+</p>
+
+<p>
+本文适合：初初级新手
+
+</p>
+
+<p>
+在 Slackware 系统中最省力气编译内核的办法，是用 Slackware 现有的官方资源来进行编译，其它的软件遇到问题，如果 Slackware 的官方有资源，我们同样可以用这种解决办法； 
+
+</p>
+
+<p>
+毕竟从 <a href="http://www.kernel.org">http://www.kernel.org</a> 直接下载，自己配置内核还是有点辛苦。如果是初学 Linux 的弟兄可能要花好长时间来配置，但还不能保证成功。所以我们这些 slack 的追随者来说，要充分利用 Slackware 的资源。
+
+</p>
+
+<p>
+有内核编译经验的弟兄都知道，如果配制好后，编译成功了，要把 .config 文件保存下来，以便下次为了解决一些小问题，重编同一版本的内核而用；相信 Slackware ，相信 Slacware 的官方资源；这样能让我们事倍功半，尤其对初学 Slackware 的弟兄。其实 Slackware 的内核更新并不是太积极，这和 Slackware 的传统（安全）有关。其实一般的情况下，我们有一个比较稳定的内核足够用，如果不是为了解决特定的问题，我们没有必要整天升级来升级去的。在我写本文的时候，Slackware 10.1 的内核版本是 2.4.29；而 current（也就是开发版本）的 test 内核是 2.6.12.3 。由况下此看来 Slackware 不是追新族，是以安全和稳定为主；
+
+</p>
+
+<p>
+在本文我们以 Slackware 的 current 的 test 内核来简要的说明应用 slackware 的官方资源的好处，以及顺便也解决一下大内存支持的问题；
+
+</p>
+
+<h3><a id="sec-2">一</a>、下载官方current 的testing内核的源码；</h3>
+
+<p>
+地址：<a href="http://www.slackware.com/getslack/">http://www.slackware.com/getslack/</a>
+
+</p>
+
+<p>
+<a href="ftp://slackware.mirrors.tds.net/pub/slackware/slackware-current/testing/source/linux-2.6.12.3/">ftp://slackware.mirrors.tds.net/pub/slackware/slackware-current/testing/source/linux-2.6.12.3/</a>
+
+</p>
+
+<p>
+从上面的地址找镜像，一般的情况下美国和日本的要快一点；
+
+</p>
+
+<p>
+比如我们通过下面的地址得到 testing 的内核 linux-2.6.12.3 的源码目录；
+
+</p>
+
+<p>
+我们要把他里面的所有东西都下载下来，Slackware 所提供我们的安装包就是通过这些文件编译生成的；人都都把配置文件和脚本写好了，我们没有必要不用；
+
+</p>
+
+<p>
+比如我们 FTP 镜像中的 linux-2.6.12.3 所有文件都按他 FTP 提供的目录结构存放在到 /usr/src/kernel26 中；
+
+</p>
+
+<p>
+下载好了，我们进入下一步；
+
+</p>
+
+<h3><a id="sec-3">二</a>、利用Slackware官方提供的 config文件来简单配置自己的内核配置文件 .config ；</h3>
+
+<h4><a id="sec-4">1</a>.解压内核及一些基础工作；</h4>
+
+<pre class="source">bash-3.00# pwd
+/usr/src/kernel26
+bash-3.00# ls
+config-2.6.12.3 kernel-generic linux-2.6.12.3.tar.bz2.sign
+kernel-modules linux-2.6.12.3.tar.bz2
+bash-3.00#tar jxvf linux-2.6.12.3.tar.bz2
+bash-3.00# mv linux-2.6.12.3 .. &#25226;&#35299;&#21387;&#25163;&#20869;&#26680;&#30446;&#24405;&#31227;&#21040;&#19978;&#19968;&#32423;&#30446;&#24405;&#20013;&#65292;&#20063;&#23601;
+&#26159; /usr/src &#20013;
+bash-3.00# cd ..
+bash-3.00# ls
+kernel26 linux-2.4.29 linux-2.6.12.3.tar.bz2 speakup-2.4.29
+linux linux-2.6.12.3 rpm
+bash-3.00#cd linux-2.6.12.3
+bash-3.00# pwd
+/usr/src/linux-2.6.12.3
+bash-3.00# cp ../kernel26/config-2.6.12.3 . &#25226;&#20869;&#26680;&#37197;&#32622;&#25991;&#20214;&#22797;&#21046;&#21040;&#24403;&#21069;&#24037;
+&#20316;&#30446;&#24405; linux-2.6.12.3
+bash-3.00#cp config-2.6.12.3 .config &#25226; config-2.6.12.3 &#22797;&#21046;&#20026; .config
+</pre>
+
+
+<h4><a id="sec-5">2</a>.简要的配置内核；</h4>
+
+<p>
+bash-3.00# make menuconfig 进入配置内核的配置模式 ；
+
+</p>
+
+<p>
+内核配置有两种方法，一种是直接置入内核；另一种是编成模块；两种方法各有优点；直接编入内核的，比如设备的启动，不再需要加载模块的这一过程了；而编译成模块，则需要加载设备的内核支持的模块；但直接把所有的东西都编入内核也不是可行的，内核体积会变大，系统负载也会过重。我们编内核时最好把极为重要的编入内核；其它的如果您不明白的，最好用默认。slackware 的内核配置文件是最好的教程；
+
+</p>
+
+<h5><a id="sec-6">1</a>］移动键盘，选中 Load an Alternate Configuration File 项，把 .config</h5>
+
+<p>
+调进来方便我们配置；因为这个配置文件是 Slackware 已经配置好的，我们只是稍加修改就行。
+
+</p>
+
+<h5><a id="sec-7">2</a>]针对自己机器存在的问题进行修改；比如我们在前文所提到的大内存支持的问题；</h5>
+
+<p>
+选择自己机器的CPU；
+
+</p>
+
+<p>
+移动键盘到 Processor type and features ---> ，然后按ENTER进入；
+
+</p>
+
+<p>
+找到 Processor family (486) ---> 按ENTER进入；
+
+</p>
+
+<p>
+进入后我们发现有好多CPU的型号可选；一般的情况下要根据 bash-3.00# cat /proc/cpuinfo 输出的信息来选，比如我们的是 Celeron （P4）一代的，应该选如下的，当然默认的 486 也是可以正常运行的，既然我们重编一次内核，就得选中对应型号的，也许性能有所提高呢； 
+
+</p>
+
+<p>
+Processor family (Pentium-4/Celeron(P4-based)/Pentium-4 M/Xeon)
+
+</p>
+
+<p>
+对大内存支持；如果内存是 1G 或者 1G 以上，但小于 4G 的，就要选 4G 支持；如果超过 4G 的，要选 64G 的支持；
+
+</p>
+
+<pre class="source"><span class="variable-name">High</span> Memory Support (4GB) ---&gt;
+
+<span class="variable-name">(X)</span> 4GB
+<span class="variable-name">(</span> ) 64GB
+</pre>
+
+
+还有比如声卡等硬件，需要我们一步一步的查看；如果有不明之处，就要按 [shift]+？的组合键来查看说明。一般的情况下，slackware 的 config 文件早都配置好了，只需要我们来查看一下就可以了。
+
+</p>
+
+<p>
+再举个例子：比如我现在所用的声卡是 intel ac97 的，我应该怎么配置呢？
+
+</p>
+
+<p>
+首先要知道自己的声卡的芯片组，我们要通过 lspci -v 来查看；
+
+</p>
+
+<pre class="source">bash-3.00# lspci -v
+</pre>
+
+
+只查看声卡的，应该用如下的方法：
+
+</p>
+
+<pre class="source">bash-3.00# lspci -v |grep audio
+00:1f.5 Multimedia audio controller: Intel Corp. 82801DB (ICH4) AC<span class="string">'97
+Audio Controller (rev 03)
+</span></pre>
+
+
+通过上面的输出，我们知道这台机器用的是 intel AC97 声卡；所以我们要特别注意 AC97 的配置；
+
+</p>
+
+<pre class="source"><span class="variable-name">&#25214;&#21040;</span> Device Drivers ---&gt; Sound ---&gt;
+<span class="variable-name">&lt;</span> M &gt; Sound card support &#22768;&#21345;&#30340;&#25903;&#25345;&#65292;&#36825;&#20010;&#26159;&#19968;&#23450;&#35201;&#36873;&#20013;&#30340;&#21543;&#65307;
+
+<span class="variable-name">&lt;</span> M &gt; Advanced Linux Sound Architecture &#23545;&#22768;&#21345;&#25903;&#25345;&#30340; ALSA &#39537;&#21160;&#30340;&#25903;&#25345;&#65307;&#19979;
+<span class="variable-name">&#38754;&#26377;</span> OSS &#39537;&#21160;&#65292;&#21482;&#26159;&#19968;&#37096;&#20221;&#12290;&#22914;&#26524;&#24819;&#29992; OSS &#30340;&#39537;&#21160;&#26356;&#20840;&#30340;&#65292;&#21487;&#20197;&#21435;&#20080;&#65307;&#20854;&#23427;&#30340;&#23601;&#30475;
+<span class="variable-name">&#22914;&#19979;&#30340;&#36873;&#21543;&#65307;</span>
+
+<span class="variable-name">&lt;</span> M &gt; Sequencer support
+<span class="variable-name">&lt;</span> M &gt; Sequencer dummy client
+<span class="variable-name">&lt;</span> M &gt; OSS Mixer API
+<span class="variable-name">&lt;</span> M &gt; OSS PCM (digital audio) API [*] OSS Sequencer API
+<span class="variable-name">&lt;</span> M &gt; RTC Timer support [*] Verbose printk
+<span class="variable-name">[</span><span class="type"> </span>] Debug
+</pre>
+
+
+然后我们再向下看有
+
+</p>
+
+<pre class="source"><span class="variable-name">Generic</span> devices ---&gt; &#36827;&#20837;&#37324;&#38754;
+<span class="variable-name">&lt;</span> M &gt; Dummy (/dev/null) soundcard
+<span class="variable-name">&lt;</span> M &gt; Virtual MIDI soundcard
+<span class="variable-name">&lt;</span> M &gt; MOTU MidiTimePiece AV multiport MIDI
+<span class="variable-name">&lt;</span> M &gt; UART16550 serial MIDI driver
+<span class="variable-name">&lt;</span> M &gt; Generic MPU-401 UART driver
+<span class="variable-name">ISA</span> devices ---&gt; &#22914;&#26524;&#24744;&#29992; ISA &#22768;&#21345;&#23601;&#22312;&#36825;&#37324;&#38754;&#36873;&#65307;
+<span class="variable-name">PCI</span> devices ---&gt; &#22914;&#26524;&#24744;&#29992; PCI &#22768;&#21345;&#65292;&#23601;&#22312;&#36825;&#37324;&#38754;&#36873;&#65292;&#38598;&#25104;&#22768;&#21345;&#20063;&#22312;&#36825;&#37324;&#65307;
+<span class="variable-name">USB</span> devices ---&gt; &#36825;&#26159; USB &#22768;&#21345;&#20869;&#26680;&#25903;&#25345;&#36873;&#39033;&#65307;&#25105;&#26377;&#19968;&#20010;&#36825;&#26679;&#30340;&#22768;&#21345;&#65292;&#20294;&#27809;&#26377;&#35797;&#36807;&#65307;
+<span class="variable-name">PCMCIA</span> devices ---&gt; &#36825;&#26159; PCMCIA &#22768;&#21345;&#30340;&#36873;&#39033;&#65292;&#25105;&#36824;&#27809;&#26377;&#30475;&#36807;&#36825;&#26679;&#30340;&#22768;&#21345;&#21602;&#65307;
+                    <span class="variable-name">&#22914;&#26524;&#24744;&#26377;&#65292;&#23601;&#22312;&#36825;&#37324;&#38754;&#21160;&#21160;&#25163;&#21543;&#12290;</span>
+<span class="variable-name">&#22240;&#20026;&#25105;&#29992;&#30340;&#26159;</span> Intel &#38598;&#25104;&#30340;&#22768;&#21345;&#65292;&#25152;&#20197;&#35201;&#22312; PCI &#20013;&#36873;&#25321;&#65292;&#25105;&#20204;&#22312; &#20013;&#21487;&#20197;&#30475;&#21040;
+<span class="variable-name">&#26377;&#20004;&#20010;&#19982;</span> INTEL &#26377;&#20851;&#30340;&#65307;
+<span class="variable-name">&lt;</span> M &gt; Intel/SiS/nVidia/AMD/ALi AC97 Controller &#36825;&#20010;&#25165;&#26159; Intel AC97 &#22768;&#21345;&#30340;&#65307;
+<span class="variable-name">&lt;</span> &gt; Intel/SiS/nVidia/AMD MC97 Modem (EXPERIMENTAL) &#36825;&#20010;&#26159;&#26426;&#22120;&#38598;&#25104;&#30340;
+<span class="variable-name">INTEL</span> &#29483;&#30340;&#34562;&#40483;&#22120;&#30340;&#65307;
+</pre>
+
+
+因为我发现如果把猫的蜂鸣器的驱动也选上，可能造成两个冲突。所以只能选上面的那个；
+
+</p>
+
+<p>
+我们再回到 Open Sound System ---> 中看看，与我用的声卡是不是有关的？
+
+</p>
+
+<pre class="source"><span class="variable-name">&lt;</span> M &gt; Open Sound System (DEPRECATED)
+<span class="variable-name">&lt;</span> M &gt; Intel ICH (i8xx) audio support
+<span class="variable-name">&lt;</span> M &gt; OSS sound modules
+<span class="variable-name">&lt;</span> M &gt; Loopback MIDI device support
+<span class="variable-name">&lt;</span> M &gt; Microsoft Sound System support
+</pre>
+
+
+我们也可以看到 Open Sound System 中也有好多的声卡驱动，大家根据前面的 lspci -v 来选择吧。
+
+</p>
+
+<h5><a id="sec-8">3</a>]对于操作系统所采用的文件系统的支持要编入内核，最好不要编成模块；（重要）</h5>
+
+<pre class="source"><span class="variable-name">File</span> systems ---&gt;
+<span class="variable-name">&lt;*&gt;</span> Reiserfs support
+</pre>
+
+
+比如我的 Slackware 所采用的文件系统用的是 reiserfs，所以我要把它直接编入内核；好处是不受模块丢失或者损坏而不能启动系统；而有时您把系统所采用的文件系统编译成模块，出现 VFS 错误，也有这方面的事，可能是您没有把 reiserfs 加入到相应的加载模块的配置文件中，所以我们为了减少麻烦，把风险降到最低，还是要直接置入内模的好；
+
+</p>
+
+<p>
+如果您还有其它的硬盘分区要读取，比如是 ext3、ext2、fat、fat32、ntfs 等，这样的可以编成模块来支持； 
+
+</p>
+
+<p>
+再举一例：如果您的的操作系统用的是 ext3 的文件系统，当然就要把 ext3 的直接编入内核，其它的可以编成模块来支持了； 
+
+</p>
+
+<h5><a id="sec-9">4</a>］对于硬盘及 RAID 的支持，要直接编入内核</h5>
+
+<p>
+比如 ATA、SATA、SCSI 及 RAID 的支持直接内核支持；有时编完内核后，启动时不能识别硬盘和 RAID，大多事情出在这里；Slackware 中在这方面有的是模块支持，我们可以把它由< M >改成 <＊> 来支持；
+
+</p>
+
+<h5><a id="sec-10">5</a>]对于咱们所没有的设备，可以在内核中不选，熟能生巧罢了；</h5>
+
+<p>
+比如我没有 ISDN 设备 ，所以就把 ISDN 去掉；
+
+</p>
+
+<pre class="source"><span class="variable-name">ISDN</span> subsystem ---&gt;
+<span class="variable-name">&lt;</span> &gt; Linux telephony support
+</pre>
+
+
+如果您没有 1394 的设备 ，当然可以把 1394 的支持也去掉；
+
+</p>
+
+<p>
+等等。。。。。。。
+
+</p>
+
+<p>
+内核配置就说这么多吧，太多了，我也说不清楚，水平有限啊；配置好后先要保存
+
+</p>
+
+<p>
+Save Configuration to an Alternate File
+
+</p>
+
+<p>
+出来一个
+
+</p>
+
+<p>
+Enter a filename to which this configuration ，should be saved as an alternate. Leave blank to abort.
+.config
+
+</p>
+
+<p>
+按回车就行了，这样就保存住了；
+
+</p>
+
+<p>
+然后退出 < Exit > ，这时也会出现保存 ；
+
+</p>
+
+<p>
+如果你想把 .config 保存起来，可以再复制一份到安全一点的目录，以备后用；
+
+</p>
+
+<h4><a id="sec-11">3</a>.编译内核</h4>
+
+<pre class="source">bash-3.00# make
+bash-3.00# make modules_install
+</pre>
+
+
+这样就编译好了，并把模块也安装在了 /lib/modules 目录中了，请看：
+
+</p>
+
+<pre class="source">bash-3.00# ls /lib/modules/
+2.4.29 2.6.12.3
+</pre>
+
+
+现在我们得安装内核了，但我们也没有必要急着安装，我们可以用 Slackware 提供的脚本来打包,然后再来安装，这样移除也方便，对不对？
+
+</p>
+
+<h4><a id="sec-12">4</a>.用 Slackware 提供的脚本为内核及 moudules 打包；</h4>
+
+<p>
+我们在前面已经说了，把 linux-2.6.12.3 在镜像上的目录下的所有东西载下来。所以我们要用到这些东西了。我在前面把所有的东西都下载到了 /usr/src/kernel26 目录中。
+
+</p>
+
+<p>
+所以我们要用他所提供的脚本打包；
+<pre class="source">bash-3.00# cd /usr/src/kernel26/
+bash-3.00# ls
+config-2.6.12.3 kernel-generic kernel-modules linux-2.6.12.3.tar.bz2
+linux-2.6.12.3.tar.bz2.sign
+</pre>
+
+
+
+<h5><a id="sec-13">a</a>)首先我们为内核打包：请运行如下命令：</h5>
+
+<pre class="source">bash-3.00<span class="comment-delimiter"># </span><span class="comment">bash-3.00# cp kernel-generic/slack-desc .
+</span></pre>
+
+
+我们要把 kernel-generic/slack-desc 复到制当前操作目录中，只是一个说明文件；不复制也行；反正是自己用，也不是给别人用的；
+
+</p>
+
+<pre class="source">bash-3.00<span class="comment-delimiter"># </span><span class="comment">sh kernel-generic/kernel-generic.SlackBuild
+</span></pre>
+
+
+输出是什么呢？
+
+</p>
+
+<pre class="source">kernel-generic/kernel-generic.SlackBuild: line 33: [: too many arguments
+Building kernel-generic-2.6.12.3-i486-1.tgz
+using these source files. Please check and then hit
+enter to make the package.
+
+<span class="variable-name">KERNEL</span> = /usr/src/linux-2.6.12.3/arch/i386/boot/bzImage
+<span class="variable-name">SYSMAP</span> = /usr/src/linux-2.6.12.3/System.map
+<span class="variable-name">CONFIG</span> = /usr/src/linux-2.6.12.3/.config
+</pre>
+
+
+看到了吧，我们用的配置文件在 /usr/src/linux-2.6.12.3/.config ；然后按回车；
+
+</p>
+
+<p>
+<strong>注意</strong>：如果您把打包脚本 kernel-generic.SlackBuild 复制到了 /usr/src/linux-2.6.12.3 ，并在 /usr/src/linux-2.6.12.3 中执行它，提示运用的配置文件是 CONFIG = /usr/src/linux-2.6.12.3/config＊ ，所以要看好了。其实这个文件我们可能没有配置，是 slackware 原始自带的，我们在前面已经说了，我们配置的文件是 .config；除非你有把. config 另存为 config-2.6.12.3。如果要用我们配置好的内核文件，要进入内核源码目录，把 .config 拷贝一份名为 config-2.6.12.3的；
+
+</p>
+
+<h5><a id="sec-14">b</a>)然后我们要为内核的模块打包；</h5>
+
+<pre class="source">bash-3.00# sh kernel-modules/kernel-modules.SlackBuild
+</pre>
+
+
+我们把包都打好了，他们究竟在哪里呢？在 /tmp 目录中，请看如下：
+
+</p>
+
+<pre class="source">bash-3.00# ls -lh /tmp/kernel-*
+-rw-r--r-- 1 root root 1.9M 2005-08-06 11:59 /tmp/kernel-generic-2.6.12.3-i486-1.tgz
+-rw-r--r-- 1 root root 11M 2005-08-06 12:13 /tmp/kernel-modules-2.6.12.3-i486-1.tgz
+</pre>
+
+
+
+<h5><a id="sec-15">5</a>.安装编译好的内核及模块。</h5>
+
+<p>
+我们其实已经把编译好的模块早就安装好了，但我们最好重新安装一下。这样卸载也方便。
+
+</p>
+
+<pre class="source">bash-3.00#cd /tmp
+bash-3.00# installpkg kernel-generic-2.6.12.3-i486-1.tgz
+bash-3.00# installpkg kernel-modules-2.6.12.3-i486-1.tgz
+</pre>
+
+
+这样就把内核及模块配置好了。
+
+</p>
+
+<h5><a id="sec-16">6</a>.查看系统引导管理器 grub 或者 lilo 的配置文件。</h5>
+
+<p>
+内核在安装的时候，可能已经改了一些东西，比如 /boot 内的变化，比如 vmlinuz 直接链到了 vmlinuz-generic-2.6.12 ，所以如果想要让新老内核都能让系统引导管理器 grub 和 lilo 的菜单上能看得到，必须改 grub.conf 或者 lilo.conf 我们必须保留老内核的在 grub 和 lilo 的启动菜单，毕竟我们编内核不能百分百的成功，对不对？？安全第一吧； 
+
+</p>
+
+<p>
+<strong>后记</strong>：正在修订之中，以让其更可能的全面一点，算是版本0.1吧；没有技术含量，只是想帮助初学者用在最少的时间内掌握编译内核；
+</p>      <!-- Page published by Emacs Wiki ends here -->
+      <div id="foot">
+	2004-<script language="javascript">var d = new
+	Date();document.write(d.getFullYear())</script> &copy;
+	Sucha. Powered by EmacsWiki.
+      </div><!-- foot -->
+      </div><!-- text -->
+      <div id="sidebar">
+	<p class="header">Here</p>
+	<ul>
+	  <li><a href="../index.html">Home</a></li>
+	  <li><a href="index.html">Front</a></li>
+	  <li><a href="../scratch/ThisSite.html">This Site</a></li>
+	  <li><a href="../live/AboutMe.html">About Me</a></li>
+	  <li><a href="../scratch/EmacsWiki.html">Emacs Wiki</a></li>
+	</ul>
+	<p class="header">Categories</p>
+	<ul>
+	  <li><a href="../blog/index.html">Blog</a></li>
+	  <li><a href="../live/index.html">Life</a></li>
+	  <li><a href="../cs/index.html">Lab</a></li>
+	  <li><a href="../slack/index.html">Slackware</a></li>
+	  <li><a href="../muse/index.html">Muse</a></li>
+	  <li><a href="../scratch/index.html">Scratch</a></li>
+	</ul>
+	<p class="header">Search</p><!-- Google Search -->
+	<form id="searchform" method="get"
+	      action="http://www.google.com/search" >
+	  <p><input id="searchtext" type="text" name="q" value="" /></p>
+          <p><input type="hidden" name="ie" value="utf-8" /></p>
+	  <p><input type="hidden" name="oe" value="utf-8" /></p>
+	  <p><input type="hidden" name="hl" value="zh-CN" /></p>
+ 	  <p><input type="hidden" name="domains" value="suchang.net" /></p>
+          <p><input name="si" type="hidden" value="suchang.net" /></p>
+          <p><input type="hidden" name="sitesearch" value="suchang.net" /></p>
+	</form>
+	<p class="header">Contact</p>
+	<ul>
+	  <li><a href="mailto:suchaaa@gmail.com">Email Me</a></li>
+	</ul>
+      </div><!-- sidebar -->
+    </div><!-- body -->
+  </body>
+</html>

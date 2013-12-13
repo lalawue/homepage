@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+  <head>
+    <title>Sucha's Homepage - Small UNIX Filesystem</title>
+    <meta name="generator" content="emacs-wiki.el" />
+    <meta http-equiv="Content-Type" content=" text/html; charset=utf-8" />
+    <meta name="author" content="Sucha" />
+    <meta name="copyright" content="GFDL, http://www.gnu.org/licenses/fdl.html" />
+    <meta name="keywords" content="Sucha, Suchang, programming, GNU, Unix, Linux, Slackware, Emacs, elisp" />
+    <meta name="description" content="Sucha's homepage and blog" />
+    <link rel="made" href="mailto:suchaaa@gmail.com" />
+    <link rel="shortcut icon" href="../images/ico.png" />
+    <link rel="stylesheet" type="text/css" href="../styles/site.css" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="../blog/rss.xml" />
+    <!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="../styles/ie.css" /><![endif]-->
+  </head>
+  <body>
+    <div id="body">
+      <div id="text">
+	<h1>Sucha's Homepage ~ Small UNIX Filesystem</h1>
+	<!-- Page published by Emacs Wiki begins here -->
+<h2>小型 UNIX 磁盘文件系统</h2>
+
+<p>
+最近更新: 2006-07-01
+
+</p>
+
+<p>
+<strong>本页目录</strong>
+
+</p>
+
+<dl class="contents">
+<dt class="contents">
+<a href="#sec-1">简单介绍</a>
+</dt>
+<dt class="contents">
+<a href="#sec-2">下载、运行需求</a>
+</dt>
+<dt class="contents">
+<a href="#sec-3">使用说明</a>
+</dt>
+<dt class="contents">
+<a href="#sec-4">编程相关</a>
+</dt>
+<dt class="contents">
+<a href="#sec-5">已知臭虫</a>
+</dt>
+</dl>
+
+
+
+<h3><a id="sec-1">简单介绍</a></h3>
+
+<p>
+这是一个纯模拟性质的小型 UNIX 磁盘文件系统，实现了如下的一些功能：
+
+</p>
+
+<ol>
+<li>使用了固定容量的磁盘存储空间，作为文件存储系统，并提供了虚拟磁盘转储
+ 功能，可将信息存入磁盘，还可从磁盘读入内存
+</li>
+<li>建立了简单的 UNIX 文件系统，使用索引节点、混合分配方式、成组链接法来
+ 管理存储空间，实现了对目录、文件，磁盘空闲空间、已分配空间的管理等
+</li>
+<li>提供了一个小型的模拟 shell，可以显示磁盘文件系统的状态和空间的使用情
+ 况，并提供了文件的创建、删除、移位、改名等功能 
+</li>
+</ol>
+
+<h3><a id="sec-2">下载</a>、运行需求</h3>
+
+<p>
+<a href="../code/os_fs.tar.gz">Small&#32;UNIX&#32;Filesystem&#32;&#40;download&#41;</a>
+
+</p>
+
+<p>
+需要 gcc 来的编译，Win 下和 Linux 下都可以运行，终端显示。解压源码后，只
+需进入源码目录，运行 make 就可以编译，运行二进制码即可，也可以加一个参数，
+给定文件名作为磁盘。源码内的 README 也有详细的使用说明。
+
+</p>
+
+<p>
+编译出现 “warning: integer overflow” 是因为磁盘文件系统采用了 UNIX 的混合
+分配方式，其多次间接寻址的数值超过了一个 int 的表示范围，但是在这个程序的
+实际使用上是不会有这样的情况的。
+
+</p>
+
+<h3><a id="sec-3">使用说明</a></h3>
+
+<p>
+运行程序后即进入了小型的模拟 shell，进入了 根 目录，同时程序列出了模拟
+shell 支持的命令，大部分跟 UNIX 或是 Linux 下的命令相仿，加了括号的参数
+意味着有默认值，如下：
+
+</p>
+
+<table class="ewiki-table" border="2" cellpadding="5">
+<thead>
+<tr>
+<th>命令</th><th>参数</th><th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>exit</td><td>无</td><td>离开程序</td>
+</tr>
+<tr>
+<td>echo</td><td>无空格分割的单词</td><td>打印单词</td>
+</tr>
+<tr>
+<td>help</td><td>无</td><td>打印这个帮助</td>
+</tr>
+<tr>
+<td>mkdir</td><td>目录名</td><td>建立目录</td>
+</tr>
+<tr>
+<td>mkfile</td><td>文件 (大小)</td><td>建立指定大小的文件，不指定的默认为空（0）</td>
+</tr>
+<tr>
+<td>ls</td><td>无</td><td>列出当前目录的目录及文件</td>
+</tr>
+<tr>
+<td>date</td><td>无</td><td>打印日期及时间</td>
+</tr>
+<tr>
+<td>cd</td><td>（路径）</td><td>改变当前目录至路径，可以是绝对或相对，默认（当前路径）</td>
+</tr>
+<tr>
+<td>status</td><td>无</td><td>显示文件系统的状态<sup><a id="fnr.1" href="#fn.1">1</a></sup></td>
+</tr>
+<tr>
+<td>rm</td><td>文件或目录名</td><td>删除文件<sup><a id="fnr.2" href="#fn.2">2</a></sup></td>
+</tr>
+<tr>
+<td>rn</td><td>文件一 文件二</td><td>对文件或目录改名</td>
+</tr>
+<tr>
+<td>pwd</td><td>无</td><td>打印当前目录相对于根目录的绝对路径</td>
+</tr>
+<tr>
+<td>mv</td><td>文件 路径</td><td>将文件或目录移动到路径，可以是绝对路径或相对路径</td>
+</tr>
+<tr>
+<td>link</td><td>文件 路径</td><td>将文件链接到路径，硬链接<sup><a id="fnr.3" href="#fn.3">3</a></sup></td>
+</tr>
+</tbody>
+</table>
+
+<p>
+</p><hr />
+<p>
+<sup>[<a id="fn.1" href="#fnr.1">1</a>]</sup> 文件系统的状态包括磁盘使用率，总的磁盘块数，空闲磁盘块数，空闲索引号，
+remember 号（用于对索引号表的搜索），以及记录空闲磁盘块号栈以及空闲索引
+号栈的状态
+
+</p>
+
+<p>
+<sup>[<a id="fn.2" href="#fnr.2">2</a>]</sup> 对目录中包含文件或目录的情况没有处理，所以删除目录后，被删除目录中的
+文件以及目录还没有被删除，但是已经无法搜索到了，这是一个 bug。
+
+</p>
+
+<p>
+<sup>[<a id="fn.3" href="#fnr.3">3</a>]</sup> 实现的是硬链接，链接到路径里的文件名和被链接的文件名字相同。若链接的
+是目录，会出现这样的情况，因为链接到的目录和当前被链接目录是同一个“文件”，
+所以其目录项是一样的，当你进入路径里链接到的目录中时，其实就是来到了被链
+接的目录中，当你“cd ..”时，相当于在被链接目录里键入“cd ..”，也就是回到了
+被链接目录的父目录，而不是链接到的目录的父目录。这样的描述确实有点坳口。
+
+</p>
+
+<h3><a id="sec-4">编程相关</a></h3>
+
+<p>
+磁盘文件系统可以设定使用的磁盘大小以及每个磁盘块的大小，在 src/disk.h 中，
+不过磁盘块不能小于 1024 B，因为我默认将 boot 区和 super 区都算在了同一个
+磁盘块里。
+
+</p>
+
+<h3><a id="sec-5">已知臭虫</a></h3>
+
+<p>
+除了上面提到的删除问题和链接问题，还有就是磁盘文件系统不检查当前是否有足
+够的磁盘空间提供建立指定大小的文件，建立超过磁盘文件系统所能提供空间的文
+件，会出现这样的情况，即文件会一直申请磁盘，直到用完所有空闲磁盘，接下来
+申请到的磁盘块号将是出错的信息。
+
+</p>
+
+<p>
+若还有有什么问题或建议，都可以联系我 <a class="nonexistent" href="mailto:suchaaa@gmail.com">EmailMe</a>。
+</p>      <!-- Page published by Emacs Wiki ends here -->
+      <div id="foot">
+	2004-<script language="javascript">var d = new
+	Date();document.write(d.getFullYear())</script> &copy;
+	Sucha. Powered by EmacsWiki.
+      </div><!-- foot -->
+      </div><!-- text -->
+      <div id="sidebar">
+	<p class="header">Here</p>
+	<ul>
+	  <li><a href="../index.html">Home</a></li>
+	  <li><a href="index.html">Front</a></li>
+	  <li><a href="../scratch/ThisSite.html">This Site</a></li>
+	  <li><a href="../live/AboutMe.html">About Me</a></li>
+	  <li><a href="../scratch/EmacsWiki.html">Emacs Wiki</a></li>
+	</ul>
+	<p class="header">Categories</p>
+	<ul>
+	  <li><a href="../blog/index.html">Blog</a></li>
+	  <li><a href="../live/index.html">Life</a></li>
+	  <li><a href="../cs/index.html">Lab</a></li>
+	  <li><a href="../slack/index.html">Slackware</a></li>
+	  <li><a href="../muse/index.html">Muse</a></li>
+	  <li><a href="../scratch/index.html">Scratch</a></li>
+	</ul>
+	<p class="header">Search</p><!-- Google Search -->
+	<form id="searchform" method="get"
+	      action="http://www.google.com/search" >
+	  <p><input id="searchtext" type="text" name="q" value="" /></p>
+          <p><input type="hidden" name="ie" value="utf-8" /></p>
+	  <p><input type="hidden" name="oe" value="utf-8" /></p>
+	  <p><input type="hidden" name="hl" value="zh-CN" /></p>
+ 	  <p><input type="hidden" name="domains" value="suchang.net" /></p>
+          <p><input name="si" type="hidden" value="suchang.net" /></p>
+          <p><input type="hidden" name="sitesearch" value="suchang.net" /></p>
+	</form>
+	<p class="header">Contact</p>
+	<ul>
+	  <li><a href="mailto:suchaaa@gmail.com">Email Me</a></li>
+	</ul>
+      </div><!-- sidebar -->
+    </div><!-- body -->
+  </body>
+</html>

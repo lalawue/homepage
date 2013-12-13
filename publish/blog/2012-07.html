@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+  <head>
+    <title>Sucha's Blog - Archive for July, 2012</title>
+    <meta name="generator" content="emacs-wiki-journal.el" />
+    <meta http-equiv="Content-Type" content=" text/html; charset=utf-8" />
+    <meta name="author" content="Sucha" />
+    <meta name="copyright" content="GFDL, http://www.gnu.org/licenses/fdl.html" />
+    <meta name="keywords" content="Sucha, Suchang, programming, GNU, Unix, Linux, Slackware, Emacs, elisp" />
+    <meta name="description" content="Sucha's blog" />
+    <link rev="made" href="mailto:suchaaa@gmail.com" />
+    <link rel="shortcut icon" href="../images/ico.png" />
+    <link rel="stylesheet" type="text/css" href="../styles/blog.css" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml" />
+    <!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="../styles/ie.css" /><![endif]-->
+  </head>
+  <body>
+    <div id="body">
+      <div id="text">
+	<h1>Sucha's Blog ~ Archive for July, 2012</h1>
+	<!-- Page published by Emacs Wiki begins here -->
+<h2><a id="p2">12年7月25日 周三 22:57</a></h2>
+
+<h3>三体</h3>
+
+<p>
+其实一直很少看科幻类的书，高中时候倒是还翻过卫斯里的，觉得是半天可以看完
+一本的快餐类，所以到现在连内容都忘了。
+
+</p>
+
+<p>
+三体早已盛名在外，名声是直指国内顶尖，要不我也不会随便上科幻的船了。
+
+</p>
+
+<p>
+三体共分三部，故事的时空跨度很长。第一部还包含了一部分文革的内容，貌似也
+因为这个造成出版上的困难，实际上涉及到的内容不多，而且又都是科幻故事类的，
+一眼就看出来不是真的了。
+
+</p>
+
+<p>
+感觉第三部最为震撼，让人入迷，我也好久没试过为此熬夜看书了。本书里面的文
+笔细节、人物刻画相比大文豪差远了，但是故事编排方面，结合宏大的宇宙背景，
+紧紧拉住了我对未知宇宙的想象、期待，我真想一口气读完，而其情节的发展、生
+长确实有非常独到的地方。
+
+</p>
+
+<p>
+我总觉得，是不是刘慈欣前两部只是练笔，到第三部终于手法纯熟。也可能所谓的
+峰回路转，是前两部有意的低调、收敛造成的。
+
+</p>
+
+<p>
+看网上评价三体，是说其数据以及推理的真实成分，体现了作者的科学素养，而对
+于我这种记忆力和数学都很差，不懂所谓的天体物理，且早就把经典物理忘得差不
+多的人来说，仅仅是围观其想象力而已。
+
+</p>
+
+<p>
+不过这次围观，让我震撼，期待三体能拍成电影，还是有续集的那种，当然最期待
+的是还第三部。
+
+</p>
+
+<h4><a href="CategoryReading.html">CategoryReading</a> / <a href="2012-07.html#p2">Permalink</a> </h4>
+
+<p>
+<!-- date: 2012-07-25T22:57:57+0800 -->
+
+</p>
+
+<h2><a id="p1">12年7月12日 周四 15:53</a></h2>
+
+<h3>有关 coLinux</h3>
+
+<p>
+主页重新开通后，又可以用以前自动上传的脚本了，可是脚本依赖 bash 及
+ncftpput 上传，在远离主页的日子里，Cygwin 已被我删掉。再说 Cygwin 是相当
+地慢，一个 ls 从 enter 之后到结果出来，可以让你发一下呆。
+
+</p>
+
+<p>
+VMware 启动慢，跟 windows 的目录映射复杂，比如，我就不能将 c:\USER_HOME
+这个目录当成类似 Cygwin 下的 $HOME 目录，samba、cifs、hgfs（目录共享） 之
+类的方式忒复杂了。
+
+</p>
+
+<p>
+而且我不关心硬件虚拟，我只要一个 bash 跟 ncftput 就行了。
+
+</p>
+
+<p>
+针对以上，coLinux 方便了许多，它是类似 Xen 这样的虚拟机，kernel 被修改过
+以运行 windows 的特权指令，所以即便可以支持很多的发行版，实际上 kernel 镜
+像必须使用修改过的。
+
+</p>
+
+<p>
+由于这一虚拟层很薄，所以它的性能也是最有保证的，在我五年前的 Intel Duo
+Core 上，启动到 login 的 prompt 只要 8 秒钟。
+
+</p>
+
+<p>
+觉得 coLinux 最方便的地方，在于映射 win 下的目录只要在配置文件里面指定就
+可以了，在 guest 这边被当成了磁盘，随意 mount 到哪个目录都可以，填到
+/etc/fstab 里面就自动化了。
+
+</p>
+
+<p>
+rootfs 挑的是 ArchLinux 发行版的，下载的压缩包 20M，解压后 260M。文档有点
+不足，比如配置文件里面默认将 rootfs 指定到 cobd[x] 设备，挂载上来的磁盘永
+远都是只读的，我是将其指定到 hda[x] 设备，才可以读写。
+
+</p>
+
+<p>
+这样以前 Cygwin 下的 $HOME 目录，重新被挂载到了 /root 下。
+
+</p>
+
+<p>
+然后又遇到了问题，这个 ArchLinux 的 rootfs 镜像，居然没有 tar，如今随便
+一个嵌入式小系统的 busybox，都有 tar 了，这个镜像太坑爹了。
+
+</p>
+
+<p>
+于是到 gnu 的网站下 tar，新的版本还依赖 pthread 库，为避免依赖问题，下了
+一个很早之前的版本，tar-1.12，放到 VMware 这边编译了一下，还好可以用，真
+是足够老的软件了。
+
+</p>
+
+<p>
+之后是 ncftpput 的问题，这回是运行时出错，依赖 GLIBC_2.11，而 ArchLinux
+镜像这边只有 GLIBC_2.7。nm 看了一下符号，其实只有一个函数是 GLIBC_2.11 下
+的，叫什么 __longjmp_chk，一个出错处理函数。
+
+</p>
+
+<p>
+VMware 这边 /usr/include 找了一遍，找到接口定义在
+/usr/include/bits/setjmp2.h里，是从 /usr/include/setjmp.h 这个文件
+include 过来的，里面的 ifdef 看不懂啥含义，干脆 su 成 root 注释掉重新编译
+再说。依赖没有后，正常跑起来可以上传了。
+
+</p>
+
+<p>
+coLinux 真不错，就是有些 rootfs 太坑爹了，其实 260M 的体积也不小了。
+
+</p>
+
+<h4><a href="CategoryLinux.html">CategoryLinux</a> / <a href="2012-07.html#p1">Permalink</a> </h4>
+
+<p>
+<!-- date: 2012-07-12T15:53:58+0800 -->
+
+</p>
+
+<h2><a id="p0">12年7月11日 周三 16:47</a></h2>
+
+<h3>主页重新开通</h3>
+
+<p>
+寄宿网易轻博客的日子终于过去，今儿终于找到了一款比较便宜的海外虚拟主机，
+对于我等静态 HTML 完全够用，就等 A 记录生效了。
+
+</p>
+
+<p>
+希望这款便宜的海外虚拟主机能够持续久一点，不用让我再反反复复折腾来折腾去
+了。
+
+</p>
+
+<p>
+古老的个人网站，继续走下去吧。
+
+</p>
+
+<h4><a href="CategoryThisSite.html">CategoryThisSite</a> / <a href="2012-07.html#p0">Permalink</a> </h4>
+
+<p>
+<!-- date: 2012-07-11T16:47:29+0800 -->
+
+</p>
+
+<!-- Page published by Emacs Wiki ends here -->
+<div id="foot">2004-<script language="javascript">var d = new
+	Date();document.write(d.getFullYear())</script> &copy;
+	Sucha. Powered by EmacsWikiJournal.
+</div>
+</div><!-- sidebar -->
+  <div id="sidebar">
+      <p class="header">Here</p>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="index.html">Front</a></li>
+        <li><a href="../scratch/ThisSite.html">This Site</a></li>
+        <li><a href="../live/AboutMe.html">About Me</a></li>
+        <li><a href="../cs/EmacsWikiJournal.html">Emacs Wiki Journal</a></li>
+      </ul>
+
+      <p class="header">Calendar</p>
+      <div class="calendar"><table><caption>July 2012</caption><thead><tr><th>Su</th><th>Mo</th><th>Tu</th><th>We</th><th>Th</th><th>Fr</th><th>Sa</th></tr></thead><tr></tr><tr><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr><tr><td>8</td><td>9</td><td>10</td><td><a title="主页重新开通" href="2012-07.html#p0">11</a></td><td><a title="有关 coLinux" href="2012-07.html#p1">12</a></td><td>13</td><td>14</td></tr><tr><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td></tr><tr><td>22</td><td>23</td><td>24</td><td><a title="三体" href="2012-07.html#p2">25</a></td><td>26</td><td>27</td><td>28</td></tr><tr><td>29</td><td>30</td><td>31</td></tr></table></div>
+
+      <p class="header">Search</p><!-- Google Search -->
+      <form id="searchform" method="get"
+	    action="http://www.google.com/search" >
+	<p><input id="searchtext" type="text" name="q" value="" /></p>
+	<p><input type="hidden" name="ie" value="utf-8" /></p>
+	<p><input type="hidden" name="oe" value="utf-8" /></p>
+	<p><input type="hidden" name="hl" value="zh-CN" /></p>
+	<p><input type="hidden" name="domains" value="suchang.net" /></p>
+	<p><input name="si" type="hidden" value="suchang.net" /></p>
+	<p><input type="hidden" name="sitesearch" value="suchang.net" /></p>
+      </form>
+
+      
+      <p class="header">Feeds &#38; Contact</p>
+        <ul>
+          <li><a id="rss_feeds" href="rss.xml">RSS</a></li>
+          <li><a href="mailto:suchaaa@gmail.com">Mail me</a></li>
+        </ul>
+
+      <p class="header">Categories</p>
+      <ul>
+        <li><a href="CategoryLinux.html">GNU/Linux</a></li>
+        <li><a href="CategoryProgramming.html">Programming</a></li>
+        <li><a href="CategoryLife.html">Life &#38; essay</a></li>
+        <li><a href="CategoryReading.html">Reading</a></li>
+	<li><a href="CategoryThisSite.html">This Site</a></li>
+        <li><a href="CategoryMisc.html">Misc</a></li>
+      </ul>
+
+      <p class="header">Links</p>
+      <ul>
+	    <li><a href="http://blog.csdn.net/g9yuayon/">G9</a></li>
+        <li><a href="http://mrjamie.cc/">Jamie</a></li>
+        <li><a href="http://www.ftchinese.com/column/007000002">朝九晚五</a></li>
+        <li><a href="http://blog.codingnow.com/">CloudWu</a></li>
+	    <li><a href="http://www.mindmeters.com/blogind.asp?id=253">All About S</a></li>
+        <li><a href="http://www.drunkpiano-liuyu.net/">DrunkPiano</a></li>
+	    <li><a href="http://ditu.google.cn/maps?hl=zh-CN&ll=22.626687,110.186691&spn=0.101883,0.15398&t=h&brcurrent=3,0x36adc425dfd47083:0xd77004f2b5f175d6,0,0x36adb6981be5ba57:0xbb22df1016a0dd2e%3B5,0,0&z=13">Yulin in Google Maps</a></li>
+      </ul>
+
+      <p class="header">Archives</p>
+      <div class="archive_links"><ul><li><a href="2012-07.html">July 2012</a></li><li><a href="2012-06.html">June 2012</a></li><li><a href="2012-05.html">May 2012</a></li><li><a href="2012-04.html">April 2012</a></li><li><a href="2012-03.html">March 2012</a></li><li><a href="2012-02.html">February 2012</a></li><li><a href="2012-01.html">January 2012</a></li><li><a href="2011-12.html">December 2011</a></li><li><a href="2011-11.html">November 2011</a></li><li><a href="2011-10.html">October 2011</a></li><li><a href="2011-09.html">September 2011</a></li><li><a href="2011-08.html">August 2011</a></li><li><a href="2011-04.html">April 2011</a></li><li><a href="2011-02.html">February 2011</a></li><li><a href="2011-01.html">January 2011</a></li><li><a href="2010-12.html">December 2010</a></li><li><a href="2010-11.html">November 2010</a></li><li><a href="2010-09.html">September 2010</a></li><li><a href="2009-07.html">July 2009</a></li><li><a href="2009-06.html">June 2009</a></li><li><a href="2009-05.html">May 2009</a></li><li><a href="2009-04.html">April 2009</a></li><li><a href="2009-02.html">February 2009</a></li><li><a href="2009-01.html">January 2009</a></li><li><a href="2008-12.html">December 2008</a></li><li><a href="2008-11.html">November 2008</a></li><li><a href="2008-10.html">October 2008</a></li><li><a href="2008-09.html">September 2008</a></li><li><a href="2008-08.html">August 2008</a></li><li><a href="2008-07.html">July 2008</a></li><li><a href="2008-06.html">June 2008</a></li><li><a href="2008-05.html">May 2008</a></li><li><a href="2008-04.html">April 2008</a></li><li><a href="2008-03.html">March 2008</a></li><li><a href="2008-02.html">February 2008</a></li><li><a href="2008-01.html">January 2008</a></li><li><a href="2007-10.html">October 2007</a></li><li><a href="2007-07.html">July 2007</a></li><li><a href="2007-06.html">June 2007</a></li><li><a href="2007-05.html">May 2007</a></li><li><a href="2007-04.html">April 2007</a></li><li><a href="2007-03.html">March 2007</a></li><li><a href="2007-02.html">February 2007</a></li><li><a href="2007-01.html">January 2007</a></li><li><a href="2006-12.html">December 2006</a></li><li><a href="2006-11.html">November 2006</a></li><li><a href="2006-10.html">October 2006</a></li><li><a href="2006-09.html">September 2006</a></li><li><a href="2006-08.html">August 2006</a></li><li><a href="2006-07.html">July 2006</a></li><li><a href="2006-06.html">June 2006</a></li><li><a href="2006-05.html">May 2006</a></li><li><a href="2006-04.html">April 2006</a></li><li><a href="2006-03.html">March 2006</a></li><li><a href="2006-02.html">February 2006</a></li><li><a href="2006-01.html">January 2006</a></li><li><a href="2005-12.html">December 2005</a></li><li><a href="2005-11.html">November 2005</a></li><li><a href="2005-10.html">October 2005</a></li><li><a href="2005-09.html">September 2005</a></li><li><a href="2005-08.html">August 2005</a></li><li><a href="2005-07.html">July 2005</a></li><li><a href="2005-06.html">June 2005</a></li><li><a href="2005-05.html">May 2005</a></li><li><a href="2005-04.html">April 2005</a></li><li><a href="2005-03.html">March 2005</a></li><li><a href="2005-02.html">February 2005</a></li><li><a href="2005-01.html">January 2005</a></li><li><a href="2004-12.html">December 2004</a></li><li><a href="2004-11.html">November 2004</a></li><li><a href="2004-10.html">October 2004</a></li><li><a href="2004-09.html">September 2004</a></li></ul></div>
+
+    </div><!-- sidebar -->
+   </div> <!-- body -->
+  </body>
+</html>

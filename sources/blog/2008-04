@@ -1,0 +1,72 @@
+
+#title Archive for April, 2008
+
+#p2
+* 4月13日 周日 01:43
+
+** Emacs-Wiki-Journal 更新
+
+- 解决发布 Category 目录文件时产生日历及插入日历出错的问题
+- 为 Category 目录文件的最新条目加入月份标题
+- 同时兼容 EMACS version 22，23
+- 可自定义日期标题，但需要一些 elisp 的知识（有例子程序）
+- 推荐配合 emacs-wiki-2.72 使用
+
+在 [[cs#EmacsWikiJournal]] 的下载介绍部分做了更新。
+
+*** [[CategoryProgramming][CategoryProgramming]] / [[2008-04#p2][Permalink]] 
+
+<!-- date: 2008-04-13T01:43:08+0800 -->
+
+
+
+#p1
+* 4月12日 周六 01:18
+
+** Emacs-Wiki-Journal with Emacs23
+
+最近将将 emacs 更新到了 version 23，但在和以前的一些旧软件配合的过程中遭
+遇了不小的问题，emacs-wiki-journal 在 emacs 23 上面需要 emacs-wiki-2.72
+的支持才能正常发布，而之前的 emcs-wiki-2.70 配合 emacs 23 已经不能使用
+了，中间版本 emacs-wiki-2.71 还没尝试过，省点力气，不想再尝试了。
+
+而 emacs-wiki-journal 配合 emacs-wiki-2.72 在 emacs 23 上发布文件的时候，
+还是会遇到 warning 的问题。后来发现是 emacs-wiki-srctag.el 文件中的一条语
+句引起的，因为在发布的文件中恰好包含了 &#60;src&#62; tag，只要将这条语句
+comment 掉就可以了，具体的语句是：
+
+<src type="elisp">
+;;      (search-forward "</pre>")
+</src>
+
+文件中仅有的一条 search-forward 语句，在使用到 &#60;src&#62; 的时候会造成
+search 失败，后果是无法发布 index.html，整个发布过程就无法自动化了。
+
+这部分也在 [[cs#EmacsWikiJournal]] 做了更新。
+
+*** [[CategoryProgramming][CategoryProgramming]] / [[2008-04#p1][Permalink]] 
+
+<!-- date: 2008-04-12T01:18:36+0800 -->
+
+
+
+#p0
+* 4月9日 周三 00:11
+
+** SCENE: 24
+
+本以为清明可以放假，后来发现这只是一个小小的奢望，现实中的我被强制窝在某
+个地方听讲座去了。
+
+整整两天时间，都在听关于职业素养方面的讲座，收获倒也很大。对我来说，从学
+校出来，从学生变成一个职业人是那么漫长的一个过程。都说工作难找，但当你找
+到了工作，才发现万里长征，仅仅只开始了第一步而已。
+
+路还很长。
+
+*** [[CategoryLife][CategoryLife]] / [[2008-04#p0][Permalink]] 
+
+<!-- date: 2008-04-09T00:11:09+0800 -->
+
+
+

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+  <head>
+    <title>Sucha's Blog - Archives for September, 2004</title>
+    <meta name="generator" content="emacs-wiki-journal.el" />
+    <meta http-equiv="Content-Type" content=" text/html; charset=utf-8" />
+    <meta name="author" content="Sucha" />
+    <meta name="copyright" content="GFDL, http://www.gnu.org/licenses/fdl.html" />
+    <meta name="keywords" content="Sucha, Suchang, programming, GNU, Unix, Linux, Slackware, Emacs, elisp" />
+    <meta name="description" content="Sucha's blog" />
+    <link rev="made" href="mailto:suchaaa@gmail.com" />
+    <link rel="shortcut icon" href="../images/ico.png" />
+    <link rel="stylesheet" type="text/css" href="../styles/blog.css" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml" />
+    <!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="../styles/ie.css" /><![endif]-->
+  </head>
+  <body>
+    <div id="body">
+      <div id="text">
+	<h1>Sucha's Blog ~ Archives for September, 2004</h1>
+	<!-- Page published by Emacs Wiki begins here -->
+<h2><a id="p1">2004-09-26, 星期六</a></h2>
+
+<h3>在 FVWM里使用 qiv 加载桌面背景图片</h3>
+
+<p>
+用了好多天 Gnome 和 KDE，但是汉化和中文等等一直都搞不好。前天好不容易才把 Gnome 中文化了一部分，终于可以在标题栏显示中文了，正得意，隔壁寝室的同学过来了，看到这个东西很新奇，硬是要玩。舍不得啊，开个 Netscape 让他逛逛吧。N分钟后我回来，￥#×&￥%窗口死了……之后 Gnome 就再能没进去过……
+
+</p>
+
+<p>
+于是决定用 Fvwm，不敢说自己搞得漂亮，稳定重要啊，三天两头修理的东西很烦的。特别每天搞重复的东西…… 
+
+</p>
+
+<p>
+Fvwm 是一个老牌的窗口管理器了，网上的资源也很多，但大多是 E 文的，看着头很晕，自己是新手，慢慢来吧。不管那么多，先去 copy sample,把 system.fvwm2rc 搬到了 ~/.fvwm/，然后修改 .xinitrc，把原来的 exec gnome-session 改成 exec fvwm2。startx了……
+
+</p>
+
+<p>
+真的很难看啊，不是一般的难看，背景一片灰黑，什么按钮都没有。三五分钟之后，我大概知道自己可以在里面做什么了。在 defualt 的 .fvwm2rc 里面，鼠标左键东西最多了，弹开的菜单就是在 X 里可以直接点击打开的程序。其他的程序只能在控制台上打开了。其他都可以接受，就是背景太难看了，不能让 Linux 被室友或同学……
+
+</p>
+
+<p>
+上了王垠的主页，听说 xloadimage 可以 load 桌面背景，于是决定 google 一下。没想到 xloadimage 没下到，却找到了 qiv。也是一个可以 load 桌面背景的程序，还有其他的功能，比如锁住屏幕啊等等……不过我只用到它 load 桌面背景的基本功能。这是它的主页
+
+</p>
+
+<p>
+<a href="http://www.klografx.net/qiv/index2.html">QIV&#32;-&#32;Quick&#32;Image&#32;Viewer&#32;-&#32;Homepage&#32;&#40;for&#32;Linux&#44;&#32;Sun&#44;&#32;FreeBSD&#32;and&#32;...</a>
+
+</p>
+
+<p>
+安装 qiv 之前还要先安装 imlib，软件下载那里会有说明。qiv 依赖一些 gtk/gdk 库，具体的没怎么看，反正自己装上用得就行。忙了这么久，在 .fvwn2rc 里加上 
+<pre class="source"><span class="variable-name">DestroyFunc</span> <span class="string">"&lt;nop&gt;StartFunction"</span>
+<span class="variable-name">AddToFunc</span> <span class="string">"&lt;nop&gt;StartFunction"</span>
+<span class="variable-name">+</span> I Exec exec qiv --maxpect --root ~/<span class="string">"path"</span>/
+</pre>
+
+
+终于大功告成，桌面背景搞定，其他的东西慢慢加吧……
+
+</p>
+
+<h4><a href="CategoryLinux.html">CategoryLinux</a></h4>
+
+<p>
+<!-- date: 2004-09-25T21:20:15+0800 -->
+
+</p>
+
+<h2><a id="p0">2004-09-17, 星期五</a></h2>
+
+<h3>Slackware 10.0 的安装和 Xwindows 的设置</h3>
+
+<p>
+昨天好不容易才找人把刚下的 Slackware10.0 刻成盘，今天就忍不住要安装了。在 Linux 下面我是菜鸟， 但是想起 Redhat 等等安装的方便----比 XP 还要方便啊。我倒是没怎么在意。
+
+</p>
+
+<p>
+相比 Redhat， Slackware 的文本安装界面实在是寒酸，而且麻烦，但这还算可以的了。先选择键盘，如果已经分好区的就可以直接执行 setup 了，如果没有的话还得 用 fdisk，不过因为我比较菜，还是用 cfdisk 比较爽一点。
+
+</p>
+
+<p>
+分好了区，就可以执行 setup 了。可以先看看 help，其实里面也没什么说的。Slackware 会自动找到你已经建立的 swap 分区，然后会问你在哪个区安装“/”根目录，随便了。接着列出安装方式，我还是选择 full 吧，免得以后缺了什么又得重装。
+
+</p>
+
+<p>
+安装过程倒是很快，即便是 full，半个多小时就结束了----可能机子比较好吧:)。接着是设置你的 net 环境，因为我在学校，地址都是 dhcp 服务器分配的，所以不怎么用设置，很快就搞好了。不过难的并不是这些。
+
+</p>
+
+<p>
+重启之后还得自己设置 Xwindows，烦。执行 xorgconfig，先选鼠标，usb 的选什么呢，auto 吧，反正也没有其他的关于 usb 鼠标的选项。接着是键盘，一般都是 101、105 键的了，语言一般是 us.English。
+
+</p>
+
+<p>
+倒是显示器这一节上花了我 N 多的时间。幸好电脑是新买的，找说明书快一点。接着自己手动设置水平扫描频率和垂直扫描频率，真的是烦。还没完，显卡也要自己设置，不过记着要在它列出的 database 里面选，不然你新买的显示器比不上 14 寸的黑白电视，呵呵。NVIDIA 的就选 nv* 了，然后是选择显存大小，最好自己填上吧，不想自己花钱买的显存被操作系统白白吃了……接着它让你选择三种分辨模式 1024x768，800x600，……呵呵，一个都不能少，都填上吧。最后是选择色深，我的就选 24bit 了，显示器支持就不能浪费。
+
+</p>
+
+<p>
+一开始我选择 gnome 作桌面，但是 startx 却发现鼠标不能用，而键盘似乎是好的。怎么办，惨了……上 Linuxsir 看了看置顶的帖子，原来 usb 鼠设置这么麻烦。还要进入 /etc/X11/ 修改 xorg.config 文件，找到 InputDevice 这段：
+<pre class="source"><span class="variable-name">Identifier</span>    <span class="string">"Mouse1"</span>
+<span class="variable-name">Driver</span>    <span class="string">"mouse"</span>
+<span class="variable-name">Option</span>    <span class="string">"Protocol"</span>    <span class="string">"IMPS/2"</span>
+<span class="variable-name">Option</span>    <span class="string">"Device"</span>    <span class="string">"/dev/input/mice"</span>
+<span class="variable-name">Option</span>    <span class="string">"ZAxisMapping"</span>    <span class="string">"4 5"</span>
+<span class="variable-name">Option</span>    <span class="string">"Buttons"</span>    <span class="string">"5"</span>
+</pre>
+
+
+修改完后startx，舒了一口气……
+
+</p>
+
+<h4><a href="CategoryLinux.html">CategoryLinux</a></h4>
+
+<p>
+<!-- date: 2004-09-17T21:20:15+0800 -->
+<!-- Page published by Emacs Wiki ends here -->
+<div id="foot">2004-<script language="javascript">var d = new
+	Date();document.write(d.getFullYear())</script> &copy;
+	Sucha. Powered by EmacsWikiJournal.
+</div>
+</div><!-- sidebar -->
+  <div id="sidebar">
+      <p class="header">Here</p>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="index.html">Front</a></li>
+        <li><a href="../scratch/ThisSite.html">This Site</a></li>
+        <li><a href="../live/AboutMe.html">About Me</a></li>
+        <li><a href="../cs/EmacsWikiJournal.html">Emacs Wiki Journal</a></li>
+      </ul>
+
+      <p class="header">Calendar</p>
+      <div class="calendar"><table><caption>September 2004</caption><thead><tr><th>Su</th><th>Mo</th><th>Tu</th><th>We</th><th>Th</th><th>Fr</th><th>Sa</th></tr></thead><tr><td></td><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td></tr><tr><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td></tr><tr><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td><a title="Slackware 10.0 的安装和 Xwindows 的设置" href="2004-09.html#p0">17</a></td><td>18</td></tr><tr><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td><a title="在 FVWM里使用 qiv 加载桌面背景图片" href="2004-09.html#p1">25</a></td></tr><tr><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td></tr></table></div>
+
+      <p class="header">Search</p><!-- Google Search -->
+      <form id="searchform" method="get"
+	    action="http://www.google.com/search" >
+	<p><input id="searchtext" type="text" name="q" value="" /></p>
+	<p><input type="hidden" name="ie" value="utf-8" /></p>
+	<p><input type="hidden" name="oe" value="utf-8" /></p>
+	<p><input type="hidden" name="hl" value="zh-CN" /></p>
+	<p><input type="hidden" name="domains" value="suchang.net" /></p>
+	<p><input name="si" type="hidden" value="suchang.net" /></p>
+	<p><input type="hidden" name="sitesearch" value="suchang.net" /></p>
+      </form>
+
+      
+      <p class="header">Feeds &#38; Contact</p>
+        <ul>
+          <li><a id="rss_feeds" href="rss.xml">RSS</a></li>
+          <li><a href="mailto:suchaaa@gmail.com">Mail me</a></li>
+        </ul>
+
+      <p class="header">Categories</p>
+      <ul>
+        <li><a href="CategoryLinux.html">GNU/Linux</a></li>
+        <li><a href="CategoryProgramming.html">Programming</a></li>
+        <li><a href="CategoryLife.html">Life &#38; essay</a></li>
+        <li><a href="CategoryReading.html">Reading</a></li>
+	<li><a href="CategoryThisSite.html">This Site</a></li>
+        <li><a href="CategoryMisc.html">Misc</a></li>
+      </ul>
+
+      <p class="header">Links</p>
+      <ul>
+	    <li><a href="http://blog.csdn.net/g9yuayon/">G9</a></li>
+        <li><a href="http://mrjamie.cc/">Jamie</a></li>
+        <li><a href="http://www.ftchinese.com/column/007000002">朝九晚五</a></li>
+        <li><a href="http://blog.codingnow.com/">CloudWu</a></li>
+	    <li><a href="http://www.mindmeters.com/blogind.asp?id=253">All About S</a></li>
+        <li><a href="http://www.drunkpiano-liuyu.net/">DrunkPiano</a></li>
+	    <li><a href="http://ditu.google.cn/maps?hl=zh-CN&ll=22.626687,110.186691&spn=0.101883,0.15398&t=h&brcurrent=3,0x36adc425dfd47083:0xd77004f2b5f175d6,0,0x36adb6981be5ba57:0xbb22df1016a0dd2e%3B5,0,0&z=13">Yulin in Google Maps</a></li>
+      </ul>
+
+      <p class="header">Archives</p>
+      <div class="archive_links"><ul><li><a href="2012-07.html">July 2012</a></li><li><a href="2012-06.html">June 2012</a></li><li><a href="2012-05.html">May 2012</a></li><li><a href="2012-04.html">April 2012</a></li><li><a href="2012-03.html">March 2012</a></li><li><a href="2012-02.html">February 2012</a></li><li><a href="2012-01.html">January 2012</a></li><li><a href="2011-12.html">December 2011</a></li><li><a href="2011-11.html">November 2011</a></li><li><a href="2011-10.html">October 2011</a></li><li><a href="2011-09.html">September 2011</a></li><li><a href="2011-08.html">August 2011</a></li><li><a href="2011-04.html">April 2011</a></li><li><a href="2011-02.html">February 2011</a></li><li><a href="2011-01.html">January 2011</a></li><li><a href="2010-12.html">December 2010</a></li><li><a href="2010-11.html">November 2010</a></li><li><a href="2010-09.html">September 2010</a></li><li><a href="2009-07.html">July 2009</a></li><li><a href="2009-06.html">June 2009</a></li><li><a href="2009-05.html">May 2009</a></li><li><a href="2009-04.html">April 2009</a></li><li><a href="2009-02.html">February 2009</a></li><li><a href="2009-01.html">January 2009</a></li><li><a href="2008-12.html">December 2008</a></li><li><a href="2008-11.html">November 2008</a></li><li><a href="2008-10.html">October 2008</a></li><li><a href="2008-09.html">September 2008</a></li><li><a href="2008-08.html">August 2008</a></li><li><a href="2008-07.html">July 2008</a></li><li><a href="2008-06.html">June 2008</a></li><li><a href="2008-05.html">May 2008</a></li><li><a href="2008-04.html">April 2008</a></li><li><a href="2008-03.html">March 2008</a></li><li><a href="2008-02.html">February 2008</a></li><li><a href="2008-01.html">January 2008</a></li><li><a href="2007-10.html">October 2007</a></li><li><a href="2007-07.html">July 2007</a></li><li><a href="2007-06.html">June 2007</a></li><li><a href="2007-05.html">May 2007</a></li><li><a href="2007-04.html">April 2007</a></li><li><a href="2007-03.html">March 2007</a></li><li><a href="2007-02.html">February 2007</a></li><li><a href="2007-01.html">January 2007</a></li><li><a href="2006-12.html">December 2006</a></li><li><a href="2006-11.html">November 2006</a></li><li><a href="2006-10.html">October 2006</a></li><li><a href="2006-09.html">September 2006</a></li><li><a href="2006-08.html">August 2006</a></li><li><a href="2006-07.html">July 2006</a></li><li><a href="2006-06.html">June 2006</a></li><li><a href="2006-05.html">May 2006</a></li><li><a href="2006-04.html">April 2006</a></li><li><a href="2006-03.html">March 2006</a></li><li><a href="2006-02.html">February 2006</a></li><li><a href="2006-01.html">January 2006</a></li><li><a href="2005-12.html">December 2005</a></li><li><a href="2005-11.html">November 2005</a></li><li><a href="2005-10.html">October 2005</a></li><li><a href="2005-09.html">September 2005</a></li><li><a href="2005-08.html">August 2005</a></li><li><a href="2005-07.html">July 2005</a></li><li><a href="2005-06.html">June 2005</a></li><li><a href="2005-05.html">May 2005</a></li><li><a href="2005-04.html">April 2005</a></li><li><a href="2005-03.html">March 2005</a></li><li><a href="2005-02.html">February 2005</a></li><li><a href="2005-01.html">January 2005</a></li><li><a href="2004-12.html">December 2004</a></li><li><a href="2004-11.html">November 2004</a></li><li><a href="2004-10.html">October 2004</a></li><li><a href="2004-09.html">September 2004</a></li></ul></div>
+
+    </div><!-- sidebar -->
+   </div> <!-- body -->
+  </body>
+</html>

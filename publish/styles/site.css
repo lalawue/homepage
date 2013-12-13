@@ -1,0 +1,299 @@
+/* created by Sucha in Mar 2007 */
+
+/* initial section */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+    background-color: #9ec5c9;
+}
+
+
+/* body section */
+
+body {
+    color: black;
+    width: 100%;
+    height: 100%;
+    font: 14px/1.5 "Luxi Serif", Verdana, helvetica, sans-serif;
+}
+
+#body {
+    margin-bottom: .5em;
+    background-color: transparent;
+}
+
+p {
+    margin-top: .9em;
+    margin-bottom: .9em;
+}
+
+
+/* sidebar section */
+
+#sidebar {
+    width: 15%;
+    float: left;
+    position: absolute;
+    margin-left: 81.5%;
+    margin-top: 6%;
+    text-align: left;
+}
+
+#sidebar p.header {
+    color: #526568;
+    margin-top: 2em;
+    margin-bottom: .7em;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+#sidebar ul {
+    margin: 0;
+    list-style-type: none;
+}
+
+#sidebar li {
+    margin: 0;
+    padding: 0;
+}
+
+
+#searchform {
+    margin-top: 7%;
+}
+
+#searchtext {
+    color: #657677;
+    background-color: transparent;
+    border: 1px solid #5a5a5a;
+    width: 75%;
+}
+
+
+/* text section */
+
+#text {
+    width: 70%;
+    float: left;
+    position: absolute;
+    overflow: hidden;
+    margin-top: .5em;
+    margin-bottom: .5em;
+    margin-left: 2.7%;
+    padding-left: 2.5em;
+    padding-right: 2em;
+    padding-bottom: .5em;
+    border: 1px solid gray;
+    background-color: #efefef;
+}
+
+#foot {
+    color: #63787b;
+    margin-top: 2.3em;
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 85%;
+    text-align: center;
+    position: relative;
+    clear: both;
+}
+
+pre {
+    margin-top: 1em; 
+    margin-bottom: 1em;
+    margin-left: 3%;
+    margin-right: 3%;
+    padding: .5em;
+    font-family: sans-serif;
+    font-size: 90%;
+    overflow: auto;
+}
+
+pre.example {
+    color: black;
+    background-color: #fcfff3;
+    border: 1px solid #5a5a5a;
+    white-space: pre;
+    overflow: auto;
+}
+
+pre.verse {
+    font-family: monospace;
+    white-space: pre;
+    overflow: auto;
+}
+
+
+/* headline section */
+
+h1 {
+    color: #63787b;
+    text-align: center;
+    margin-top: .4in;
+    margin-bottom: .2in;
+    padding-bottom: .6em;
+    font-size: 1.7em;
+    font-weight: bold;
+    font-family: "Bookman Old Style", serif;
+}
+
+h2 {
+    color: #a21b6a;
+    background-color: transparent;
+    margin-top: 1.5em;
+    margin-bottom: 1em;
+    font-weight: bold;
+    font-size: 1.45em;
+}
+
+h3 {
+    color: #135680;
+    background-color: transparent;
+    margin-top: 1.1em;
+    margin-bottom: .7em;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+h4 {
+    color: #638fab;
+    margin-top: 1.1em;
+    margin-bottom: .7em;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+h5 {
+    color: #638fab;
+    margin-top: 1em;
+    margin-bottom: .7em;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+em {
+    font-style: italic;
+}
+
+strong {
+    font-weight: bold;
+}
+
+
+/* list and pre-content */
+
+ul {
+    margin-left: 1.5em;
+    list-style-type: disc;
+}
+
+ol {
+    margin-left: 2em;
+}
+
+li {
+    margin-bottom: 5px;
+}
+
+dd {
+    margin-left: 2.5em;
+}
+
+dl.contents {
+    margin: 2px;
+}
+
+dt.contents {
+    padding: 1px;
+}
+
+/* tables */
+
+table {
+    width: auto;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    border-collapse: collapse;
+    empty-cells: show;
+    table-layout: auto;
+    border: 1px solid gray;
+    font-size: 90%;
+    font-family: "Luxi Serif", Verdana, helvetica, sans-serif;
+}
+
+thead {
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid gray;
+}
+
+th, tr, td {
+    border: 1px solid gray;
+    padding: 2px;
+    padding-left: 5px;
+}
+
+
+/* links and img */
+
+a { 
+    color: #0061c4;
+    text-decoration: none;
+}
+
+a:hover {
+    color: black;
+    text-decoration: underline;
+}
+
+h2 a, h2 a:hover {
+    color: #a21b6a;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+h3 a, h3 a:hover {
+    color: #135680;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+h4 a, h4 a:hover, h5 a, h5 a:hover {
+    color: #638fab;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+img {
+    border: 0;
+    background-color: transparent;
+}
+
+hr { display: none; } /* footnotes */
+
+/* Source tag , more to see "emacs-wiki-srctag.el" */
+
+pre.source {
+    color: black;
+    background-color: #f4fffe;
+    border: 1px solid #5a5a5a;
+    font-family: "Courier New", monospace;
+    white-space: pre;
+    overflow: auto;
+}
+.builtin           { color: #7580d5; }
+.comment           { color: #a02200; }
+.doc               { color: #a02200; }
+.constant          { color: #894591; }
+.function-name     { color: #1f5087; }
+.keyword           { color: #159190; font-weight: bold;}
+.preprocessor      { color: #489bdc; }
+.string            { color: #9a4b43; }
+.type              { color: #158715; }
+.variable-name     { color: #967f00; }
+.comment-delimiter { color: #a02200; }

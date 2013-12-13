@@ -1,0 +1,70 @@
+
+#title Archives for September, 2004
+
+
+#p1
+* 2004-09-26, 星期六
+
+** 在 FVWM里使用 qiv 加载桌面背景图片
+
+
+用了好多天 Gnome 和 KDE，但是汉化和中文等等一直都搞不好。前天好不容易才把 Gnome 中文化了一部分，终于可以在标题栏显示中文了，正得意，隔壁寝室的同学过来了，看到这个东西很新奇，硬是要玩。舍不得啊，开个 Netscape 让他逛逛吧。N分钟后我回来，￥#×&￥%窗口死了……之后 Gnome 就再能没进去过……
+
+于是决定用 Fvwm，不敢说自己搞得漂亮，稳定重要啊，三天两头修理的东西很烦的。特别每天搞重复的东西…… 
+
+Fvwm 是一个老牌的窗口管理器了，网上的资源也很多，但大多是 E 文的，看着头很晕，自己是新手，慢慢来吧。不管那么多，先去 copy sample,把 system.fvwm2rc 搬到了 ~/.fvwm/，然后修改 .xinitrc，把原来的 exec gnome-session 改成 exec fvwm2。startx了……
+
+真的很难看啊，不是一般的难看，背景一片灰黑，什么按钮都没有。三五分钟之后，我大概知道自己可以在里面做什么了。在 defualt 的 .fvwm2rc 里面，鼠标左键东西最多了，弹开的菜单就是在 X 里可以直接点击打开的程序。其他的程序只能在控制台上打开了。其他都可以接受，就是背景太难看了，不能让 Linux 被室友或同学……
+
+上了王垠的主页，听说 xloadimage 可以 load 桌面背景，于是决定 google 一下。没想到 xloadimage 没下到，却找到了 qiv。也是一个可以 load 桌面背景的程序，还有其他的功能，比如锁住屏幕啊等等……不过我只用到它 load 桌面背景的基本功能。这是它的主页
+
+[[http://www.klografx.net/qiv/index2.html][QIV - Quick Image Viewer - Homepage (for Linux, Sun, FreeBSD and ...]]
+
+安装 qiv 之前还要先安装 imlib，软件下载那里会有说明。qiv 依赖一些 gtk/gdk 库，具体的没怎么看，反正自己装上用得就行。忙了这么久，在 .fvwn2rc 里加上 
+<src type="conf">
+DestroyFunc "<nop>StartFunction"
+AddToFunc "<nop>StartFunction"
++ I Exec exec qiv --maxpect --root ~/"path"/
+</src>
+
+终于大功告成，桌面背景搞定，其他的东西慢慢加吧……
+
+*** CategoryLinux
+
+<!-- date: 2004-09-25T21:20:15+0800 -->
+
+
+
+#p0
+* 2004-09-17, 星期五
+
+** Slackware 10.0 的安装和 Xwindows 的设置
+
+
+昨天好不容易才找人把刚下的 Slackware10.0 刻成盘，今天就忍不住要安装了。在 Linux 下面我是菜鸟， 但是想起 Redhat 等等安装的方便----比 XP 还要方便啊。我倒是没怎么在意。
+
+相比 Redhat， Slackware 的文本安装界面实在是寒酸，而且麻烦，但这还算可以的了。先选择键盘，如果已经分好区的就可以直接执行 setup 了，如果没有的话还得 用 fdisk，不过因为我比较菜，还是用 cfdisk 比较爽一点。
+
+分好了区，就可以执行 setup 了。可以先看看 help，其实里面也没什么说的。Slackware 会自动找到你已经建立的 swap 分区，然后会问你在哪个区安装“/”根目录，随便了。接着列出安装方式，我还是选择 full 吧，免得以后缺了什么又得重装。
+
+安装过程倒是很快，即便是 full，半个多小时就结束了----可能机子比较好吧:)。接着是设置你的 net 环境，因为我在学校，地址都是 dhcp 服务器分配的，所以不怎么用设置，很快就搞好了。不过难的并不是这些。
+
+重启之后还得自己设置 Xwindows，烦。执行 xorgconfig，先选鼠标，usb 的选什么呢，auto 吧，反正也没有其他的关于 usb 鼠标的选项。接着是键盘，一般都是 101、105 键的了，语言一般是 us.English。
+
+倒是显示器这一节上花了我 N 多的时间。幸好电脑是新买的，找说明书快一点。接着自己手动设置水平扫描频率和垂直扫描频率，真的是烦。还没完，显卡也要自己设置，不过记着要在它列出的 database 里面选，不然你新买的显示器比不上 14 寸的黑白电视，呵呵。NVIDIA 的就选 nv* 了，然后是选择显存大小，最好自己填上吧，不想自己花钱买的显存被操作系统白白吃了……接着它让你选择三种分辨模式 1024x768，800x600，……呵呵，一个都不能少，都填上吧。最后是选择色深，我的就选 24bit 了，显示器支持就不能浪费。
+
+一开始我选择 gnome 作桌面，但是 startx 却发现鼠标不能用，而键盘似乎是好的。怎么办，惨了……上 Linuxsir 看了看置顶的帖子，原来 usb 鼠设置这么麻烦。还要进入 /etc/X11/ 修改 xorg.config 文件，找到 Input''''Device 这段：
+<src type="conf">
+Identifier    "Mouse1"
+Driver    "mouse"
+Option    "Protocol"    "IMPS/2"
+Option    "Device"    "/dev/input/mice"
+Option    "ZAxisMapping"    "4 5"
+Option    "Buttons"    "5"
+</src>
+
+修改完后startx，舒了一口气……
+
+*** CategoryLinux
+
+<!-- date: 2004-09-17T21:20:15+0800 -->

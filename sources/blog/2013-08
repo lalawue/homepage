@@ -1,0 +1,158 @@
+#title Archive for August, 2013
+
+#p2
+* 13年8月27日 周二 23:47
+
+** Texture''''Packer 图片打包工具
+
+最近在做 2D 游戏开发，用到了图片打包工具，网上搜到的教程好多都是
+Texture''''Packer 的，于是就到官网下载试用了一下，因为只用到打包的功能，感觉
+还是很简单的。
+
+下载后可以试用一周 pro 版的功能，免费版的功能目前不晓得是否足够支持开发。
+
+后来看到有童鞋联系开发者拿到了 pro 版的 Licese key，我上官网一查，好东西，
+说有自己博客并满足一定条件的就可以申请，然后写一片简短的博客做为回报便好。
+
+二话不说，就把自己的博客地址填上去了，然后作者还回信了，德国人真慷慨，给
+了 key 不说，还附送了一枚 Physics''''Editor 的 key，真谢谢他了，虽然暂时还用
+不到。
+
+于是就有了这篇 blog，in return。
+
+作者还说如果写教程的话可以在网站的教程页面弄个链接，当时我还跃跃欲试的，
+可后来发现这个软件虽然支持格式丰富，但貌似没有很复杂的功能，教程还真的很
+难写呢。
+
+以后要是用到高级功能，有心得的话再出教程吧。
+
+提供链接 [[www.codeandweb.com/texturepacker]]
+
+*** [[CategoryProgramming][CategoryProgramming]] / [[2013-08#p2][Permalink]] 
+
+<!-- date: 2013-08-27T23:47:42+0800 -->
+
+
+
+#p1
+* 13年8月12日 周一 14:26
+
+** 在C/C++/Objc中快速定位当前文件内的函数
+
+同样是在昨天的那个帖子里面，列出了一些小函数，可以在 Xcode 的 Objc 文件里
+面快速跳转到函数、页面定义的成员、"#pragma mark -" Xcode 标签，非常方便
+快捷。
+
+我就想着将其适配到 C/C++ 中，因为实在是太方便了，要比使用 speedbar 来定
+位跳转简单快捷得多。
+
+由于是使用正则表达式来处理上下文无关的文法，因此严格来说，不管是而在
+C/C++/Objc 中，这些匹配用的正则表达式是不完全的，还是可能会错漏的，不过对
+于大部分的情况，应该是够用了。
+
+<src type="elisp">
+;; for Xcode pragma mark, and C/C++ functions
+(require 'anything)
+(require 'anything-config)
+
+(defvar anything-c-source-objc-headline
+  '((name . "Objective-C Headline")
+    (headline  "^[-+@]\\|^#pragma mark")
+))
+
+(defvar anything-c-source-c-headline
+  '((name . "C Headline")
+    (headline  "^[A-Za-z_]+?[ A-Za-z_0-9\*]+[A-Za-z_0-9]+?(")
+))
+
+(defvar anything-c-source-cpp-headline
+  '((name . "Cpp Headline")
+    (headline  "^[A-Za-z_]+?[ A-Za-z_:~0-9\*]+[A-Za-z_0-9]+?(")
+))
+
+(defun c-base-mode-headline ()
+  (interactive)
+  ;; Set to 500 so it is displayed even if all methods are not narrowed down.
+  (let ((anything-candidate-number-limit 500))
+    (cond
+     ((eq major-mode 'objc-mode) 
+      (anything-other-buffer '(anything-c-source-objc-headline)
+                             "*ObjC Headline*"))
+     ((eq major-mode 'c++-mode)
+      (anything-other-buffer '(anything-c-source-cpp-headline)
+                             "*Cpp Headline*"))
+     ((eq major-mode 'c-mode)
+      (anything-other-buffer '(anything-c-source-c-headline)
+                             "*C Headline*"))
+     )))
+
+(add-hook
+ 'c-mode-common-hook
+ (lambda ()
+   (define-key c-mode-base-map (kbd "M-i") 'c-base-mode-headline)
+))
+</src>
+
+*** [[CategoryProgramming][CategoryProgramming]] / [[2013-08#p1][Permalink]] 
+
+<!-- date: 2013-08-12T14:26:25+0800 -->
+
+
+
+#p0
+* 13年8月11日 周日 21:44
+
+** 在头文件与源代码之间快速跳转
+
+今天忙着建立 Emacs 编写 objc 代码的环境，根据这个帖子
+[[http://roupam.github.io/blog/2012/10/07/emacs-for-xcode+ios-development/][Setup Emacs for XCode+iOS development]]，里面有说到一个快速跳转 objc 源文件与头
+文件的小函数。
+
+我稍微改了一下，可以适应于 C/C++/Objc 的代码，当然，可以再根据需要添加诸
+如 Java 语言的支持，反正改起来超简单。
+
+<src type="elisp">
+;; jump between source and header file
+(defun c-base-mode-in-header-file ()
+  (let* ((filename (buffer-file-name))
+         (extension (car (last (split-string filename "\\.")))))
+    (string= "h" extension)))
+
+(defun c-base-mode-file-jump-to-extension (extension)
+  (let* ((filename (buffer-file-name))
+         (file-components (append (butlast (split-string filename
+                                                         "\\."))
+                                  (list extension)))
+         (filepath (mapconcat 'identity file-components ".")))
+    (if (file-readable-p filepath)
+        (find-file filepath)
+      nil)))
+
+
+;;; Assumes that Header and Source file are in same directory
+(defun c-base-mode-jump-between-header-source ()
+  (interactive)
+  (if (c-base-mode-in-header-file)
+      (or
+       (c-base-mode-file-jump-to-extension "m")
+       (c-base-mode-file-jump-to-extension "mm")
+       (c-base-mode-file-jump-to-extension "c")
+       (c-base-mode-file-jump-to-extension "cc")
+       (c-base-mode-file-jump-to-extension "cpp"))
+    (c-base-mode-file-jump-to-extension "h")))
+
+
+(add-hook
+ 'c-mode-common-hook
+ (lambda ()
+   (define-key c-mode-base-map (kbd "C-c t")
+ 'c-base-mode-jump-between-header-source)
+))
+</src>
+
+*** [[CategoryProgramming][CategoryProgramming]] / [[2013-08#p0][Permalink]] 
+
+<!-- date: 2013-08-11T21:44:07+0800 -->
+
+
+

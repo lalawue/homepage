@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+  <head>
+    <title>Sucha's Blog - Archive for December, 2008</title>
+    <meta name="generator" content="emacs-wiki-journal.el" />
+    <meta http-equiv="Content-Type" content=" text/html; charset=utf-8" />
+    <meta name="author" content="Sucha" />
+    <meta name="copyright" content="GFDL, http://www.gnu.org/licenses/fdl.html" />
+    <meta name="keywords" content="Sucha, Suchang, programming, GNU, Unix, Linux, Slackware, Emacs, elisp" />
+    <meta name="description" content="Sucha's blog" />
+    <link rev="made" href="mailto:suchaaa@gmail.com" />
+    <link rel="shortcut icon" href="../images/ico.png" />
+    <link rel="stylesheet" type="text/css" href="../styles/blog.css" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml" />
+    <!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="../styles/ie.css" /><![endif]-->
+  </head>
+  <body>
+    <div id="body">
+      <div id="text">
+	<h1>Sucha's Blog ~ Archive for December, 2008</h1>
+	<!-- Page published by Emacs Wiki begins here -->
+<h2><a id="p2">12月20日 周六 11:53</a></h2>
+
+<h3>Google Docs</h3>
+
+<p>
+记得 google docs 也 beta 好长时间了，好久之前有用过，但当时对 opera 的支
+持我就不想说了，不过现在就不一样了。
+
+</p>
+
+<p>
+除了在线编辑方便之外，还是一款不错的格式转换工具，比如将 .doc 转换为
+.pdf 等等。先上传你的 .doc 文件，然后将其下载保存为 .pdf 文件就可以了，免
+去为了寻找并安装某某格式转换工具，翻遍全国各大论坛要来的方便得多，病毒等
+等啥的也都不用考虑了。
+
+</p>
+
+<p>
+.doc 容易损坏，若文档是参考书之类的话浏览起来也很不方便。可今天，我将一份
+.doc 文档转换为.pdf 下载保存后，惊奇地发现转换后 .pdf 有了书签，这可是大
+大的方便呀。
+
+</p>
+
+<p>
+于是，将几份重要的 .doc 文档人肉处理中。
+
+</p>
+
+<h4><a href="CategoryMisc.html">CategoryMisc</a> / <a href="2008-12.html#p2">Permalink</a> </h4>
+
+<p>
+<!-- date: 2008-12-20T11:53:05+0800 -->
+
+</p>
+
+<h2><a id="p1">12月19日 周五 01:25</a></h2>
+
+<h3>404 页面</h3>
+
+<p>
+一时无聊，增加了一个 404 页面。
+
+</p>
+
+<h4><a href="CategoryThisSite.html">CategoryThisSite</a> / <a href="2008-12.html#p1">Permalink</a> </h4>
+
+<p>
+<!-- date: 2008-12-19T01:25:14+0800 -->
+
+</p>
+
+<h2><a id="p0">12月14日 周日 18:29</a></h2>
+
+<h3>Google Sitemap Generator</h3>
+
+<p>
+弄了个 bash 脚本来生成偶这个小网站的 google sitemap，巨简单，其实就一行
+find 语句，限于只用 find 的原因，固定了一些 sitemap 的属性，比如固定了各
+个页面的 priority，chagefreq，且只能为 &#42;.html 生成 sitemap，如下：
+
+</p>
+
+<pre class="source"><span class="function-name">generate_goole_sitemap</span>()
+{
+    <span class="comment-delimiter"># </span><span class="comment">generate google sitemap
+</span>    <span class="builtin">echo</span> <span class="string">'&lt;?xml version="1.0" encoding="UTF-8"?&gt;'</span> &gt; $<span class="variable-name">sitemap</span>
+    <span class="builtin">echo</span> <span class="string">'&lt;urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"&gt;'</span> &gt;&gt; $<span class="variable-name">sitemap</span>
+    find $<span class="variable-name">htmlpub</span> -name $<span class="variable-name">suffix</span> -printf <span class="string">"$find_ptf_fmt"</span> &gt;&gt; $<span class="variable-name">sitemap</span>
+    <span class="builtin">echo</span> <span class="string">'&lt;/urlset&gt;'</span> &gt;&gt; $<span class="variable-name">sitemap</span>
+
+    <span class="comment-delimiter"># </span><span class="comment">zip it
+</span>    rm -f $<span class="variable-name">sitemap</span>.gz
+    gzip $<span class="variable-name">sitemap</span>
+}
+</pre>
+
+
+为了使用上面的小函数，还需要设置下面的一些变量：
+
+</p>
+
+<pre class="source"><span class="comment-delimiter"># </span><span class="comment">htmlpub and sitemap relative location
+</span><span class="variable-name">htmlpub</span>=$<span class="variable-name">HOME</span>/workport/homesite/publish
+<span class="variable-name">sitemap</span>=$<span class="variable-name">htmlpub</span>/sitemap.txt
+
+<span class="comment-delimiter"># </span><span class="comment">sitemap param for find
+</span><span class="variable-name">suffix</span>=<span class="string">"*.html"</span>
+<span class="variable-name">time_zone</span>=<span class="string">"+08:00"</span>
+<span class="variable-name">loc</span>=<span class="string">"http://suchang.net/"</span>
+<span class="variable-name">lasmod</span>=<span class="string">"%TY-%Tm-%TdT%TH:%TM:00$time_zone"</span>
+<span class="variable-name">changefreq</span>=<span class="string">"daily"</span>
+<span class="variable-name">priority</span>=1.0
+
+<span class="comment-delimiter"># </span><span class="comment">find format
+</span><span class="variable-name">find_ptf_fmt</span>=<span class="string">"
+ &lt;url&gt;\n
+  &lt;loc&gt;$loc%P&lt;/loc&gt;\n
+  &lt;lastmod&gt;$lasmod&lt;/lastmod&gt;\n
+  &lt;changefreq&gt;$changefreq&lt;/changefreq&gt;\n
+  &lt;priority&gt;$priority&lt;/priority&gt;\n
+ &lt;/url&gt;\n"</span>
+</pre>
+
+
+这里下载 <a href="../code/generate_google_sitemap.tar.gz">Google&#32;Sitemap&#32;Generator</a>，我是在 cygwin 下编写的，估计 MSYS 和
+UnixUtility 下也可以使用，生成的 sitemap 也通过了 google 那边的验证，当个
+小玩具好了。
+
+</p>
+
+<p>
+这周加了整整一个礼拜的班，有强人相助，活干得不是一般地快，那小子效率至少
+十倍于我，膜拜中……
+
+</p>
+
+<p>
+周末计划到公司打球的，结果去到一看，居然是保安在军训，囧啊，把仅有的半个
+篮球场给占用了，然后无聊地在旁边看了会保安操练，又无聊地坐公车回来。
+
+</p>
+
+<p>
+不过每次周末在福大东门坐车，人家都是排队上车的，这个要赞一个，不似我的大
+学时代呀。想起某次回家的途中，遇到一侃哥，说他们那边上了车是可以站着睡觉
+的。我想我要是哪天胖得不行了，就专拣那种车上，每次等车上的人差不多都齐
+了，就从前门上去，呆上一会，然后硬扛着从后门出来，练练身子；但真回想起那
+些在车上无助的日子，觉得不会点武功，估计是下不来的。
+
+</p>
+
+<p>
+今年蛮特别的，来回广州的飞机票价居然是 2 折、1.9 折，我都快不相信自己的眼
+睛了，赶紧动手，把它买下来。可是说到假期，今年不如去年，只有十天左右的
+假，不甚爽，而且年休假传说是去年硬性放假都用完了。
+
+</p>
+
+<h4><a href="CategoryProgramming.html">CategoryProgramming</a> / <a href="2008-12.html#p0">Permalink</a> </h4>
+
+<p>
+<!-- date: 2008-12-14T18:29:49+0800 -->
+
+</p>
+
+<!-- Page published by Emacs Wiki ends here -->
+<div id="foot">2004-<script language="javascript">var d = new
+	Date();document.write(d.getFullYear())</script> &copy;
+	Sucha. Powered by EmacsWikiJournal.
+</div>
+</div><!-- sidebar -->
+  <div id="sidebar">
+      <p class="header">Here</p>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="index.html">Front</a></li>
+        <li><a href="../scratch/ThisSite.html">This Site</a></li>
+        <li><a href="../live/AboutMe.html">About Me</a></li>
+        <li><a href="../cs/EmacsWikiJournal.html">Emacs Wiki Journal</a></li>
+      </ul>
+
+      <p class="header">Calendar</p>
+      <div class="calendar"><table><caption>July 2012</caption><thead><tr><th>Su</th><th>Mo</th><th>Tu</th><th>We</th><th>Th</th><th>Fr</th><th>Sa</th></tr></thead><tr></tr><tr><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr><tr><td>8</td><td>9</td><td>10</td><td><a title="主页重新开通" href="2012-07.html#p0">11</a></td><td>12</td><td>13</td><td>14</td></tr><tr><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td></tr><tr><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td></tr><tr><td>29</td><td>30</td><td>31</td></tr></table></div>
+
+      <p class="header">Search</p><!-- Google Search -->
+      <form id="searchform" method="get"
+	    action="http://www.google.com/search" >
+	<p><input id="searchtext" type="text" name="q" value="" /></p>
+	<p><input type="hidden" name="ie" value="utf-8" /></p>
+	<p><input type="hidden" name="oe" value="utf-8" /></p>
+	<p><input type="hidden" name="hl" value="zh-CN" /></p>
+	<p><input type="hidden" name="domains" value="suchang.net" /></p>
+	<p><input name="si" type="hidden" value="suchang.net" /></p>
+	<p><input type="hidden" name="sitesearch" value="suchang.net" /></p>
+      </form>
+
+      
+      <p class="header">Feeds &#38; Contact</p>
+        <ul>
+          <li><a id="rss_feeds" href="rss.xml">RSS</a></li>
+          <li><a href="mailto:suchaaa@gmail.com">Mail me</a></li>
+        </ul>
+
+      <p class="header">Categories</p>
+      <ul>
+        <li><a href="CategoryLinux.html">GNU/Linux</a></li>
+        <li><a href="CategoryProgramming.html">Programming</a></li>
+        <li><a href="CategoryLife.html">Life &#38; essay</a></li>
+        <li><a href="CategoryReading.html">Reading</a></li>
+	<li><a href="CategoryThisSite.html">This Site</a></li>
+        <li><a href="CategoryMisc.html">Misc</a></li>
+      </ul>
+
+      <p class="header">Links</p>
+      <ul>
+	    <li><a href="http://blog.csdn.net/g9yuayon/">G9</a></li>
+        <li><a href="http://mrjamie.cc/">Jamie</a></li>
+        <li><a href="http://www.ftchinese.com/column/007000002">朝九晚五</a></li>
+        <li><a href="http://blog.codingnow.com/">CloudWu</a></li>
+	    <li><a href="http://www.mindmeters.com/blogind.asp?id=253">All About S</a></li>
+        <li><a href="http://www.drunkpiano-liuyu.net/">DrunkPiano</a></li>
+	    <li><a href="http://ditu.google.cn/maps?hl=zh-CN&ll=22.626687,110.186691&spn=0.101883,0.15398&t=h&brcurrent=3,0x36adc425dfd47083:0xd77004f2b5f175d6,0,0x36adb6981be5ba57:0xbb22df1016a0dd2e%3B5,0,0&z=13">Yulin in Google Maps</a></li>
+      </ul>
+
+      <p class="header">Archives</p>
+      <div class="archive_links"><ul><li><a href="2012-07.html">July 2012</a></li><li><a href="2012-06.html">June 2012</a></li><li><a href="2012-05.html">May 2012</a></li><li><a href="2012-04.html">April 2012</a></li><li><a href="2012-03.html">March 2012</a></li><li><a href="2012-02.html">February 2012</a></li><li><a href="2012-01.html">January 2012</a></li><li><a href="2011-12.html">December 2011</a></li><li><a href="2011-11.html">November 2011</a></li><li><a href="2011-10.html">October 2011</a></li><li><a href="2011-09.html">September 2011</a></li><li><a href="2011-08.html">August 2011</a></li><li><a href="2011-04.html">April 2011</a></li><li><a href="2011-02.html">February 2011</a></li><li><a href="2011-01.html">January 2011</a></li><li><a href="2010-12.html">December 2010</a></li><li><a href="2010-11.html">November 2010</a></li><li><a href="2010-09.html">September 2010</a></li><li><a href="2009-07.html">July 2009</a></li><li><a href="2009-06.html">June 2009</a></li><li><a href="2009-05.html">May 2009</a></li><li><a href="2009-04.html">April 2009</a></li><li><a href="2009-02.html">February 2009</a></li><li><a href="2009-01.html">January 2009</a></li><li><a href="2008-12.html">December 2008</a></li><li><a href="2008-11.html">November 2008</a></li><li><a href="2008-10.html">October 2008</a></li><li><a href="2008-09.html">September 2008</a></li><li><a href="2008-08.html">August 2008</a></li><li><a href="2008-07.html">July 2008</a></li><li><a href="2008-06.html">June 2008</a></li><li><a href="2008-05.html">May 2008</a></li><li><a href="2008-04.html">April 2008</a></li><li><a href="2008-03.html">March 2008</a></li><li><a href="2008-02.html">February 2008</a></li><li><a href="2008-01.html">January 2008</a></li><li><a href="2007-10.html">October 2007</a></li><li><a href="2007-07.html">July 2007</a></li><li><a href="2007-06.html">June 2007</a></li><li><a href="2007-05.html">May 2007</a></li><li><a href="2007-04.html">April 2007</a></li><li><a href="2007-03.html">March 2007</a></li><li><a href="2007-02.html">February 2007</a></li><li><a href="2007-01.html">January 2007</a></li><li><a href="2006-12.html">December 2006</a></li><li><a href="2006-11.html">November 2006</a></li><li><a href="2006-10.html">October 2006</a></li><li><a href="2006-09.html">September 2006</a></li><li><a href="2006-08.html">August 2006</a></li><li><a href="2006-07.html">July 2006</a></li><li><a href="2006-06.html">June 2006</a></li><li><a href="2006-05.html">May 2006</a></li><li><a href="2006-04.html">April 2006</a></li><li><a href="2006-03.html">March 2006</a></li><li><a href="2006-02.html">February 2006</a></li><li><a href="2006-01.html">January 2006</a></li><li><a href="2005-12.html">December 2005</a></li><li><a href="2005-11.html">November 2005</a></li><li><a href="2005-10.html">October 2005</a></li><li><a href="2005-09.html">September 2005</a></li><li><a href="2005-08.html">August 2005</a></li><li><a href="2005-07.html">July 2005</a></li><li><a href="2005-06.html">June 2005</a></li><li><a href="2005-05.html">May 2005</a></li><li><a href="2005-04.html">April 2005</a></li><li><a href="2005-03.html">March 2005</a></li><li><a href="2005-02.html">February 2005</a></li><li><a href="2005-01.html">January 2005</a></li><li><a href="2004-12.html">December 2004</a></li><li><a href="2004-11.html">November 2004</a></li><li><a href="2004-10.html">October 2004</a></li><li><a href="2004-09.html">September 2004</a></li></ul></div>
+
+    </div><!-- sidebar -->
+   </div> <!-- body -->
+  </body>
+</html>

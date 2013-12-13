@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+  <head>
+    <title>Sucha's Homepage - Script stuff</title>
+    <meta name="generator" content="emacs-wiki.el" />
+    <meta http-equiv="Content-Type" content=" text/html; charset=utf-8" />
+    <meta name="author" content="Sucha" />
+    <meta name="copyright" content="GFDL, http://www.gnu.org/licenses/fdl.html" />
+    <meta name="keywords" content="Sucha, Suchang, programming, GNU, Unix, Linux, Slackware, Emacs, elisp" />
+    <meta name="description" content="Sucha's homepage and blog" />
+    <link rel="made" href="mailto:suchaaa@gmail.com" />
+    <link rel="shortcut icon" href="../images/ico.png" />
+    <link rel="stylesheet" type="text/css" href="../styles/site.css" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="../blog/rss.xml" />
+    <!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="../styles/ie.css" /><![endif]-->
+  </head>
+  <body>
+    <div id="body">
+      <div id="text">
+	<h1>Sucha's Homepage ~ Script stuff</h1>
+	<!-- Page published by Emacs Wiki begins here -->
+<h2>一些零碎的小函数</h2>
+
+<p>
+<strong>本页目录</strong>
+
+</p>
+
+<dl class="contents">
+<dt class="contents">
+<a href="#sec-1">Google Sitemap Generator</a>
+</dt>
+<dt class="contents">
+<a href="#sec-2">终端下简单的图片浏览器</a>
+</dt>
+<dt class="contents">
+<a href="#sec-3">一个简单的 mp3 播放器</a>
+</dt>
+<dt class="contents">
+<a href="#sec-4">有问题？</a>
+</dt>
+</dl>
+
+
+<h3><a id="sec-1">Google</a> Sitemap Generator</h3>
+
+<p>
+最近更新: 2008-12-04
+
+</p>
+
+<p>
+一个生成为你本地静态网页生成 google sitemap 的小工具，<a href="../blog/2008-12.html#p0">Google&#32;Sitemap&#32;Gnerator&#32;的介绍</a>。
+
+</p>
+
+<p>
+<a href="../code/generate_google_sitemap.tar.gz">Google&#32;Sitemap&#32;Generator</a> (需要 find 命令支持，也可以在 cygwin 等环境下使用)
+
+</p>
+
+<h3><a id="sec-2">终端下简单的图片浏览器</a></h3>
+
+<p>
+最近更新: 2005-12-12
+
+</p>
+
+<p>
+在终端下浏览图片很不方便，而开文件管理器又显得麻烦，受到 EMACS 里的一个扩展包 thumbs 的启发，便写了一些小小的函数用于终端下浏览图片。现在这几个函数还是很简陋的，不过还是有点作用。
+
+</p>
+
+<p>
+<a href="../code/w3mimages.htm">w3m&#32;images&#32;viewer&#32;</a>(需要 w3m 和 ImageMagick)
+
+</p>
+
+<h3><a id="sec-3">一个简单的</a> mp3 播放器</h3>
+
+<p>
+最近更新: 2005-12-12
+
+</p>
+
+<p>
+如果你像我一样将所有的 mp3 按歌手（或专辑）分类放在同一个目录下，这个函数或许帮得上忙。函数调用的是 mpg321 来播放某个歌手（专辑）目录下的所有 mp3 文件。
+
+</p>
+
+<p>
+只需将下面的函数拷贝进你的 ~/.bashrc 文件，然后 $ source ~/.bashrc 就可以使用了，又简陋又方便。
+
+</p>
+
+<p>
+<a href="../code/smallmp3player.htm">small&#32;mp3&#32;player</a> (需要 mpg321)
+
+</p>
+
+<h3><a id="sec-4">有问题</a>？</h3>
+
+<p>
+有什么问题，可以联系我 <a class="nonexistent" href="mailto:suchaaa@gmail.com">EmailMe</a>，同时欢迎任何建议和意见。
+</p>      <!-- Page published by Emacs Wiki ends here -->
+      <div id="foot">
+	2004-<script language="javascript">var d = new
+	Date();document.write(d.getFullYear())</script> &copy;
+	Sucha. Powered by EmacsWiki.
+      </div><!-- foot -->
+      </div><!-- text -->
+      <div id="sidebar">
+	<p class="header">Here</p>
+	<ul>
+	  <li><a href="../index.html">Home</a></li>
+	  <li><a href="index.html">Front</a></li>
+	  <li><a href="../scratch/ThisSite.html">This Site</a></li>
+	  <li><a href="../live/AboutMe.html">About Me</a></li>
+	  <li><a href="../scratch/EmacsWiki.html">Emacs Wiki</a></li>
+	</ul>
+	<p class="header">Categories</p>
+	<ul>
+	  <li><a href="../blog/index.html">Blog</a></li>
+	  <li><a href="../live/index.html">Life</a></li>
+	  <li><a href="../cs/index.html">Lab</a></li>
+	  <li><a href="../slack/index.html">Slackware</a></li>
+	  <li><a href="../muse/index.html">Muse</a></li>
+	  <li><a href="../scratch/index.html">Scratch</a></li>
+	</ul>
+	<p class="header">Search</p><!-- Google Search -->
+	<form id="searchform" method="get"
+	      action="http://www.google.com/search" >
+	  <p><input id="searchtext" type="text" name="q" value="" /></p>
+          <p><input type="hidden" name="ie" value="utf-8" /></p>
+	  <p><input type="hidden" name="oe" value="utf-8" /></p>
+	  <p><input type="hidden" name="hl" value="zh-CN" /></p>
+ 	  <p><input type="hidden" name="domains" value="suchang.net" /></p>
+          <p><input name="si" type="hidden" value="suchang.net" /></p>
+          <p><input type="hidden" name="sitesearch" value="suchang.net" /></p>
+	</form>
+	<p class="header">Contact</p>
+	<ul>
+	  <li><a href="mailto:suchaaa@gmail.com">Email Me</a></li>
+	</ul>
+      </div><!-- sidebar -->
+    </div><!-- body -->
+  </body>
+</html>

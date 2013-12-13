@@ -1,0 +1,51 @@
+#title This Site
+
+* 此主页的介绍
+
+这个主页是用 [[EmacsWiki][Emacs + Emacs Wiki]] 来编辑和维护的。很多图标素材来自 KDE 以及 GNOME 的图标集合，还有一些是从其他网站上搜集的，并经过了 ''''''''K''''''''iconEdit 和 Gimp 的加工。 
+
+由于网页采用 emacs + wiki 的方式，因此维护起来很方便，但生成的 HTML 比较简单，所以为了控制版式，较多地使用了CSS。因此用 IE 浏览可能有点问题。 
+
+版式的设计参考了其他个人主页，在此表示感谢，但无法一一介绍了。 
+
+这个主页是自己的第一次尝试，肯定在很多方面有存在不合适之处，希望大家多多包涵，多多支持。能给建议最好了 : ) 
+
+
+
+* 版权声明
+
+如没有特别声明，本网站的所有文章采用 [[slack#FDLcn][GNU 自由文档协议]]，简称 GFDL 的授权形式。
+ 
+<example>
+Copyright (c) Sucha (suchaaa@gmail.com).
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1 or
+any later version published by the Free Software Foundation; with the
+Invariant Sections being all the text of every section, with no
+Style-Sheets, with no Scripts, with no Front-Cover Texts, and with no
+Back-Cover Texts.
+
+A copy of the license is included in the section entitled "GNU Free
+Documentation License".(http://www.fsf.org/licensing/licenses/fdl.html)
+</example>
+
+
+
+* 网页标准
+
+正确的 CSS, XHTML1.1 格式, 不过 RSS 种子就差一些, :(
+
+<a href="http://jigsaw.w3.org/css-validator/validator?uri=http://suchang.net/styles/site.css">
+Valid CSS</a>, 
+<a href="http://validator.w3.org/check/referer">Valid XHTML 1.0 Strict</a> 
+BUT <a href="http://validator.w3.org/feed/check.cgi?url=http://suchang.net/blog/rss.xml">
+Valid RSS</a>.
+
+
+
+** 使用的工具
+
+This website was **powered** by:
+
+[[http://www.slackware.com][Slackware]], [[http://www.gnu.org/software/emacs][GNU Emacs]], [[http://www.google.com][Google]] AND [[http://www.gimp.org][GIMP]].

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+  <head>
+    <title>Sucha's Homepage - Simple Journal</title>
+    <meta name="generator" content="emacs-wiki.el" />
+    <meta http-equiv="Content-Type" content=" text/html; charset=utf-8" />
+    <meta name="author" content="Sucha" />
+    <meta name="copyright" content="GFDL, http://www.gnu.org/licenses/fdl.html" />
+    <meta name="keywords" content="Sucha, Suchang, programming, GNU, Unix, Linux, Slackware, Emacs, elisp" />
+    <meta name="description" content="Sucha's homepage and blog" />
+    <link rel="made" href="mailto:suchaaa@gmail.com" />
+    <link rel="shortcut icon" href="../images/ico.png" />
+    <link rel="stylesheet" type="text/css" href="../styles/site.css" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="../blog/rss.xml" />
+    <!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="../styles/ie.css" /><![endif]-->
+  </head>
+  <body>
+    <div id="body">
+      <div id="text">
+	<h1>Sucha's Homepage ~ Simple Journal</h1>
+	<!-- Page published by Emacs Wiki begins here -->
+<h2>Simple journal</h2>
+
+<p>
+最近更新: 2005-11-13
+
+</p>
+
+<p>
+<strong>本页目录</strong>
+
+</p>
+
+<dl class="contents">
+<dt class="contents">
+<a href="#sec-1">简要介绍</a>
+</dt>
+<dt class="contents">
+<a href="#sec-2">使用方法</a>
+</dt>
+<dt class="contents">
+<a href="#sec-3">它是如何工作的?</a>
+</dt>
+<dt class="contents">
+<a href="#sec-4">不能工作？</a>
+</dt>
+</dl>
+
+
+
+
+<h3><a id="sec-1">简要介绍</a></h3>
+
+<p>
+这是一个方便写日记的简单函数，随时记录，按月分类文件，每条记录包含题目，时间和星期。但是由于没有搜索代码，所以不利于回头搜索。函数的目的只是实现简单的记录。
+
+</p>
+
+<h3><a id="sec-2">使用方法</a></h3>
+
+<p>
+在 emacs 里加东西很简单的，要么把它作为一个 .el 文件 load 进去，或者就直接把它写到你的"~/.emacs"文件中。
+
+</p>
+
+<p>
+下面这几个函数很短，直接把它复制到你的"~/.emacs"里就行了。或者把它们写在另外一个 .el 文件中，在"~/.emacs"里用"(load "~/path/file.el")" load 进来就行了。
+
+</p>
+
+<h3><a id="sec-3">它是如何工作的</a>?</h3>
+
+<p>
+下面是一个增加日记条目的函数。如果是这个月第一次写日记，函数会在"~/path/to/your/journal/dir/"文件夹下根据当月时间建立名为"yyyy-mm"这样按年月分类的文件，并在文件头上写"# user's journal created yyyy-mm-dd"这段文字，接着插入当前的日期、时间和标题。
+
+</p>
+
+<p>
+如果文件已经存在，则只插入日期、时间和标题。
+
+</p>
+
+<pre class="source">(<span class="keyword">defun</span> <span class="function-name">sucha-simple-journal-add-entries</span>  (heading)
+  <span class="doc">"Open the local diary file and add entries today."</span>
+
+  <span class="comment-delimiter">;;; </span><span class="comment">if you need backup, remove the ';' beginning of the line
+</span>  <span class="comment-delimiter">;</span><span class="comment">(shell-command "tar -czpf backup_filename.tgz ~/path-to/files-dir/;
+</span>  <span class="comment-delimiter">;  </span><span class="comment">mv backup_filename.tgz ~/path-to/backup-dir/")
+</span>
+  (find-file (format <span class="string">"~/path/to/your/journal/dir/%s"</span> 
+                     (format-time-string <span class="string">"%Y-%m"</span>)))
+
+  (goto-char (point-min))
+  (<span class="keyword">unless</span> (re-search-forward <span class="string">"^# "</span> nil t)
+    (insert <span class="string">"# user's journal created "</span>
+            (format-time-string <span class="string">"%Y-%m-%d\n"</span>) <span class="string">"\n"</span>))
+
+  (forward-line 1)
+  (insert <span class="string">"\n\n\n\n"</span>)
+  (forward-line -3)
+  (insert (concat 
+           <span class="string">"&lt;"</span>
+           (format-time-string <span class="string">"%e"</span>)<span class="string">"&#21495;, &#21608;"</span>
+           (format-time-string <span class="string">"%a "</span>)
+           (format-time-string <span class="string">"%H:%M"</span>)
+           <span class="string">"&gt;  "</span>
+           heading
+           <span class="string">"\n    "</span>))
+  (text-mode))
+</pre>
+
+
+下面是一个从 mini-buffer 读取用户日记标题的函数，并将读取到的函数传递到上面的函数中。如果你不想要标题，留空就行了。
+
+</p>
+
+<pre class="source">(<span class="keyword">defun</span> <span class="function-name">sucha-simple-journal-add-heading</span> ()
+  <span class="doc">"Get the local journal heading from minibuffer."</span>
+  (interactive)
+  (sucha-simple-journal-add-entries
+   (read-from-minibuffer <span class="string">"Journal Heading: "</span>)))
+</pre>
+
+
+我希望随时使用它，所以最好把它绑定到一个按键上。比如下面的f11。
+<pre class="source">(global-set-key [(f11)] 'sucha-simple-journal-add-heading)
+</pre>
+
+
+
+
+<h3><a id="sec-4">不能工作</a>？</h3>
+
+<p>
+有什么问题，你可以随便修改上面的代码，或者联系我吧 <a class="nonexistent" href="mailto:suchaaa@gmail.com">EmailMe</a>，同时欢迎任何意见或建议。
+</p>      <!-- Page published by Emacs Wiki ends here -->
+      <div id="foot">
+	2004-<script language="javascript">var d = new
+	Date();document.write(d.getFullYear())</script> &copy;
+	Sucha. Powered by EmacsWiki.
+      </div><!-- foot -->
+      </div><!-- text -->
+      <div id="sidebar">
+	<p class="header">Here</p>
+	<ul>
+	  <li><a href="../index.html">Home</a></li>
+	  <li><a href="index.html">Front</a></li>
+	  <li><a href="../scratch/ThisSite.html">This Site</a></li>
+	  <li><a href="../live/AboutMe.html">About Me</a></li>
+	  <li><a href="../scratch/EmacsWiki.html">Emacs Wiki</a></li>
+	</ul>
+	<p class="header">Categories</p>
+	<ul>
+	  <li><a href="../blog/index.html">Blog</a></li>
+	  <li><a href="../live/index.html">Life</a></li>
+	  <li><a href="../cs/index.html">Lab</a></li>
+	  <li><a href="../slack/index.html">Slackware</a></li>
+	  <li><a href="../muse/index.html">Muse</a></li>
+	  <li><a href="../scratch/index.html">Scratch</a></li>
+	</ul>
+	<p class="header">Search</p><!-- Google Search -->
+	<form id="searchform" method="get"
+	      action="http://www.google.com/search" >
+	  <p><input id="searchtext" type="text" name="q" value="" /></p>
+          <p><input type="hidden" name="ie" value="utf-8" /></p>
+	  <p><input type="hidden" name="oe" value="utf-8" /></p>
+	  <p><input type="hidden" name="hl" value="zh-CN" /></p>
+ 	  <p><input type="hidden" name="domains" value="suchang.net" /></p>
+          <p><input name="si" type="hidden" value="suchang.net" /></p>
+          <p><input type="hidden" name="sitesearch" value="suchang.net" /></p>
+	</form>
+	<p class="header">Contact</p>
+	<ul>
+	  <li><a href="mailto:suchaaa@gmail.com">Email Me</a></li>
+	</ul>
+      </div><!-- sidebar -->
+    </div><!-- body -->
+  </body>
+</html>

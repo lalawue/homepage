@@ -1,0 +1,116 @@
+
+#title Archive for December, 2008
+
+#p2
+* 12月20日 周六 11:53
+
+** Google Docs
+
+记得 google docs 也 beta 好长时间了，好久之前有用过，但当时对 opera 的支
+持我就不想说了，不过现在就不一样了。
+
+除了在线编辑方便之外，还是一款不错的格式转换工具，比如将 .doc 转换为
+.pdf 等等。先上传你的 .doc 文件，然后将其下载保存为 .pdf 文件就可以了，免
+去为了寻找并安装某某格式转换工具，翻遍全国各大论坛要来的方便得多，病毒等
+等啥的也都不用考虑了。
+
+.doc 容易损坏，若文档是参考书之类的话浏览起来也很不方便。可今天，我将一份
+.doc 文档转换为.pdf 下载保存后，惊奇地发现转换后 .pdf 有了书签，这可是大
+大的方便呀。
+
+于是，将几份重要的 .doc 文档人肉处理中。
+
+*** [[CategoryMisc][CategoryMisc]] / [[2008-12#p2][Permalink]] 
+
+<!-- date: 2008-12-20T11:53:05+0800 -->
+
+
+
+#p1
+* 12月19日 周五 01:25
+
+** 404 页面
+
+一时无聊，增加了一个 404 页面。
+
+*** [[CategoryThisSite][CategoryThisSite]] / [[2008-12#p1][Permalink]] 
+
+<!-- date: 2008-12-19T01:25:14+0800 -->
+
+
+
+#p0
+* 12月14日 周日 18:29
+
+** Google Sitemap Generator
+
+弄了个 bash 脚本来生成偶这个小网站的 google sitemap，巨简单，其实就一行
+find 语句，限于只用 find 的原因，固定了一些 sitemap 的属性，比如固定了各
+个页面的 priority，chagefreq，且只能为 &#42;.html 生成 sitemap，如下：
+
+<src type="sh">
+generate_goole_sitemap()
+{
+    # generate google sitemap
+    echo '<?xml version="1.0" encoding="UTF-8"?>' > $sitemap
+    echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> $sitemap
+    find $htmlpub -name $suffix -printf "$find_ptf_fmt" >> $sitemap
+    echo '</urlset>' >> $sitemap
+
+    # zip it
+    rm -f $sitemap.gz
+    gzip $sitemap
+}
+</src>
+
+为了使用上面的小函数，还需要设置下面的一些变量：
+
+<src type="sh">
+# htmlpub and sitemap relative location
+htmlpub=$HOME/workport/homesite/publish
+sitemap=$htmlpub/sitemap.txt
+
+# sitemap param for find
+suffix="*.html"
+time_zone="+08:00"
+loc="http://suchang.net/"
+lasmod="%TY-%Tm-%TdT%TH:%TM:00$time_zone"
+changefreq="daily"
+priority=1.0
+
+# find format
+find_ptf_fmt="
+ <url>\n
+  <loc>$loc%P</loc>\n
+  <lastmod>$lasmod</lastmod>\n
+  <changefreq>$changefreq</changefreq>\n
+  <priority>$priority</priority>\n
+ </url>\n"
+</src>
+
+这里下载 [[code#generate_google_sitemap.tar.gz][Google Sitemap Generator]]，我是在 cygwin 下编写的，估计 MSYS 和
+''''UnixUtility 下也可以使用，生成的 sitemap 也通过了 google 那边的验证，当个
+小玩具好了。
+
+这周加了整整一个礼拜的班，有强人相助，活干得不是一般地快，那小子效率至少
+十倍于我，膜拜中……
+
+周末计划到公司打球的，结果去到一看，居然是保安在军训，囧啊，把仅有的半个
+篮球场给占用了，然后无聊地在旁边看了会保安操练，又无聊地坐公车回来。
+
+不过每次周末在福大东门坐车，人家都是排队上车的，这个要赞一个，不似我的大
+学时代呀。想起某次回家的途中，遇到一侃哥，说他们那边上了车是可以站着睡觉
+的。我想我要是哪天胖得不行了，就专拣那种车上，每次等车上的人差不多都齐
+了，就从前门上去，呆上一会，然后硬扛着从后门出来，练练身子；但真回想起那
+些在车上无助的日子，觉得不会点武功，估计是下不来的。
+
+今年蛮特别的，来回广州的飞机票价居然是 2 折、1.9 折，我都快不相信自己的眼
+睛了，赶紧动手，把它买下来。可是说到假期，今年不如去年，只有十天左右的
+假，不甚爽，而且年休假传说是去年硬性放假都用完了。
+
+*** [[CategoryProgramming][CategoryProgramming]] / [[2008-12#p0][Permalink]] 
+
+<!-- date: 2008-12-14T18:29:49+0800 -->
+
+
+

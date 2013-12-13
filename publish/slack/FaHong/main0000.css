@@ -1,0 +1,120 @@
+/* 這個檔案沒有版權, 可以隨意修改. */
+/* 很好的參考點: http://www.westciv.com/style_master/academy/css_tutorial/ */
+/* 最簡單語法:  ELEMENT_SELECTOR.CLASS_SELECTOR { PROPERTY: VALUE; } */
+
+/* body { font-family: "AR PL KaitiM Big5" } */
+
+em {
+    color: red;
+    background: white;
+    text-decoration: underline;
+    /* font-style: normal; */
+    font-style: italic;
+}
+
+strong {
+    color: #700;
+    background: white;
+    font-weight: bold;
+    /* font-style: italic; */
+}
+
+blockquote {
+    color: #707;
+    background: #ff0;
+}
+
+.em { background: yellow; }
+
+dfn { color: #707; }
+pre { font-family: courier, monospace; }
+pre.docsrc { background:#0ff; }
+code, pre.code {
+    font-family: courier, monospace;
+    color: #070;
+    font-weight: bold;
+}
+code em {
+    text-decoration: none;
+}
+code.input { background:yellow; }
+code.kbd {
+    background:#333;
+    margin-left: 0.1em;
+    margin-right: 0.1em;
+}
+code.lit { font-weight: bold; }
+code.id { text-decoration: underline; }
+table.center-content td { text-align: center; }
+li.new1 { color: red; }
+li.new2 { color: green; }
+ul.empty { list-style: none; }
+h1 { font-size: 150%; text-align: center; }
+h2 { font-size: 120%; text-decoration: underline; }
+h1:before { counter-reset: section; }
+h2:before {
+    content: "第 " counter(section) " 節: ";
+/*    content: "第  節: "; */
+    counter-increment: section;
+}
+p { margin: 1em; text-indent: 2em; }
+p.publication { text-indent: 0; text-align: center; }
+p.center { text-align: center; }
+p.footer { font-size: small; }
+p.noindent { text-indent: 0; }
+ol.upper-latin { list-style-type: upper-latin; }
+
+img.left { float: left; }
+img.right { float: right; }
+
+/* 「滑鼠移到 link 上, 就跳出說明文字」 的特效是從這裡學來的:
+   http://www.meyerweb.com/eric/css/edge/popups/demo.html */
+div#header { height: 5em; }
+div#header a span { display: none; }
+div#header a:hover { background: white; }
+div#header a:hover span {
+    display: block;
+    color: red;
+    border: 2pt solid red;
+    padding-left: 0.5em; padding-right: 0.5em;
+    position: absolute;
+    /* text-align: center; */
+    left: 10em; right: 20em; top: 0.5em;
+    font-size: 70%;
+}
+
+div#header a:hover span em {
+    color: green;
+}
+
+@media screen {
+    body {
+	background: white;
+	margin-left: 0%; margin-right: 0%;
+	margin-top: 0%; margin-bottom: 0%;
+	line-height: 130%;
+    }
+}
+
+
+@media print {
+/* 試半天的結論: 在 body 內, 左右 padding 與 左右 margin
+   都可以達到留邊的效果; 至於 @page 不論放在 @media 之內或之外,
+   都完全沒有效果 (連 border 都沒有作用) */
+/*
+@page { size: 8.5in 11in; margin: 5cm; }
+@page { size: auto; margin: 5cm; }
+@page { border: 2pt solid red; }
+*/
+    body {
+/*	border: 1pt solid black; */
+/*	padding-left: 5cm; padding-right: 1cm; */
+	margin-left: 0cm; margin-right: 0cm;
+	font-size: 12pt;
+	line-height: 140%;
+    }
+    .noprint { display: none; }
+    dfn, code { margin-left: 0.1em; margin-right: 0.6em; color: black; }
+    em { margin-left: 0.6em; margin-right: 0.1em; color: black; }
+    a { text-decoration: none; margin-left: 0.6em; margin-right: 1.0em; }
+}

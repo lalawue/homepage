@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+  <head>
+    <title>Sucha's Homepage - Slack Tips</title>
+    <meta name="generator" content="emacs-wiki.el" />
+    <meta http-equiv="Content-Type" content=" text/html; charset=utf-8" />
+    <meta name="author" content="Sucha" />
+    <meta name="copyright" content="GFDL, http://www.gnu.org/licenses/fdl.html" />
+    <meta name="keywords" content="Sucha, Suchang, programming, GNU, Unix, Linux, Slackware, Emacs, elisp" />
+    <meta name="description" content="Sucha's homepage and blog" />
+    <link rel="made" href="mailto:suchaaa@gmail.com" />
+    <link rel="shortcut icon" href="../images/ico.png" />
+    <link rel="stylesheet" type="text/css" href="../styles/site.css" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="../blog/rss.xml" />
+    <!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="../styles/ie.css" /><![endif]-->
+  </head>
+  <body>
+    <div id="body">
+      <div id="text">
+	<h1>Sucha's Homepage ~ Slack Tips</h1>
+	<!-- Page published by Emacs Wiki begins here -->
+<h2>alias fun='Slackware Linux'</h2>
+
+<p>
+Issue #1, April 2005<br />
+SlackTips<br />
+(pdf versions: A4, Letter)<br />
+
+</p>
+
+<p>
+作者： Mikhail Zotov<br />
+中译本: Lalawu<br>
+
+</p>
+
+<p>
+这个部分旨在帮助 Slackware Linux 的新用户，使他们在 Linux 里的生活更有效率些。在这个特辑里，我们将会看到别名和函数如何使我们在 bash 里的日常操作更快捷。
+
+</p>
+
+<p>
+首先，先看看来自 man bash 的引用：
+
+</p>
+
+<pre class="example">当 bash 被调用为一个交互的登录 shell，或者使用 --login 选项作为一个非
+交互的 shell 时，它首先从 /etc/profile 读取可执行的命令，如果文件存在
+的话。读取之后，再按顺序寻找 ~/.bash_profile，~/.bash_login，和
+~/.profile，顺序读取并执行这些文件如果它存在并且可读...当一个交互的
+shell 不作为登录的 shell 启动时，bash 从 ~/.bashrc 读取并执行命令，如
+果那个文件存在的话。
+</pre>
+
+<p>
+在一个刚刚装好的 Slackware 系统里，用户们在他们的主目录下并没有这些文件，所以我们首先得创建他们：
+
+</p>
+
+<pre class="source">   $ touch ~/.bash_profile ~/.bashrc
+</pre>
+<blockquote>
+<p>
+  
+
+</p>
+</blockquote>
+
+我们希望我们的别名能够在一个交互的 shell 每次启动时读取（比如，当我们启动 xterm），并且像我们所希望的那样使用 ～/.bashrc。为了保证我们每次启动一个交互的 shell 时能够读取 ~/.bashrc，请把下面这几行放到 ~/.bash_profile 里：
+
+</p>
+
+<pre class="source">  
+   <span class="comment-delimiter"># </span><span class="comment">.bash_profile
+</span>   <span class="keyword">if</span> [ -f ~/.bashrc ]; <span class="keyword">then</span>
+     . ~/.bashrc
+   <span class="keyword">fi</span>
+</pre>
+
+<blockquote>
+<p>
+  
+从此后，我就假设所有的别名和函数都写进 ~/.bashrc 里。
+
+</p>
+</blockquote>
+
+<p>
+我们必须牢记在心的一件事是每次我们往 ~/.bashrc 加东西时，得让 shell 知道这些变化。所以我们必须 source 这些文件（man bash 或者 help source 看看帮助信息）。为了做到这一点，我们或者
+
+</p>
+
+<pre class="source">  
+   $ source ~/.bashrc
+</pre>
+<blockquote>
+<p>
+  
+
+</p>
+</blockquote>
+
+或者
+
+</p>
+
+<pre class="source">  
+   $ . ~/.bashrc
+</pre>
+<blockquote>
+<p>
+  
+
+</p>
+</blockquote>
+
+我们得避免自己手动做这些。
+
+</p>
+
+<p>
+假设你最喜爱的编辑器是 mcedit。让我们用它打开 ~/.bashrc 并把这些置于alias 后<sup><a id="fnr.1" href="#fn.1">1</a></sup>：
+<pre class="source">  
+   alias <span class="variable-name">edb</span>=<span class="string">'mcedit ~/.bashrc &amp;&amp; . ~/.bashrc'</span>
+</pre>
+<blockquote>
+<p>
+  
+
+</p>
+</blockquote>
+
+现在，退出 mcedit 然后 source ~/.bashrc。从此后，当我们决定往 ~/.bashrc 里加 alias 并且让 shell 知道所需要做的一件事就是运行
+<pre class="source">   $ edb
+</pre>
+<blockquote>
+<p>
+  
+
+</p>
+</blockquote>
+
+这里我使用 edb 作为编辑 ~/.Bashrc<sup><a id="fnr.2" href="#fn.2">2</a></sup> 的缩写。
+
+</p>
+
+<p>
+现在我们准备去做一些有用的事。让我们以一个日常的工作开始，就是，让我们挂载或者卸载一个软盘。众所周知，用如下的命令就可以做到：
+
+</p>
+
+<pre class="source">  
+   $ mount /mnt/floppy
+   $ umount /mnt/floppy
+</pre>
+<blockquote>
+<p>
+  
+
+</p>
+</blockquote>
+
+这些命令对于每天的使用来说显得太长了。虽然可以使用 &lt;Ctrl&gt; + &lt;r&gt 和方向键以及命令行历史去呼出曾经使用过的命令，但我相信在这些情况下使用简短的别名更方便些。让我们再次运行 edb 并把下面这几行加到 ~/.bashrc 里面：
+
+</p>
+
+<pre class="source">   <span class="comment-delimiter"># </span><span class="comment">&#25346;&#36733;&#36719;&#30424;
+</span>   alias <span class="variable-name">mf</span>=<span class="string">'mount /mnt/floppy &amp;&amp; cd /mnt/floppy &amp;&amp; ls'</span>
+   <span class="comment-delimiter"># </span><span class="comment">&#21368;&#36733;&#36719;&#30424;
+</span>   alias <span class="variable-name">uf</span>=<span class="string">'cd &amp;&amp; umount /mnt/floppy'</span>
+</pre>
+<blockquote>
+<p>
+  
+
+</p>
+</blockquote>
+
+退出编辑器，插入软盘，然后试一下我们刚才打上的新别名。注意我们不仅仅挂载了软盘同时也移动到了它的目录并且显示其内容。这是很方便的。
+
+</p>
+
+<p>
+由于使用 CD 的原因，要求我们创造更多的别名使得我们可以在命令行打开和关闭光驱。让我们把下面的这些别名放到 ~/.bashrc 里（再来一次， $ edb）：
+
+</p>
+
+<pre class="source">  
+   <span class="variable-name">CDROM</span>=<span class="string">"/mnt/cdrom"</span>
+   alias <span class="variable-name">mcd</span>=<span class="string">'mount $CDROM &amp;&amp; cd $CDROM &amp;&amp; ls'</span>
+   alias <span class="variable-name">ucd</span>=<span class="string">'cd &amp;&amp; umount $CDROM &amp;&amp; eject &amp;&amp; sleep 10 &amp;&amp; eject -t'</span>
+   <span class="comment-delimiter"># </span><span class="comment">&#24377;&#20986;&#20809;&#30424;&#65306;
+</span>   alias <span class="variable-name">ecd</span>=<span class="string">'eject'</span>
+   <span class="comment-delimiter"># </span><span class="comment">&#24377;&#20837;&#20809;&#30424;&#65306;
+</span>   alias <span class="variable-name">ccd</span>=<span class="string">'eject -t'</span>
+</pre>
+<blockquote>
+<p>
+  
+
+</p>
+</blockquote>
+
+注意，我们现在不仅仅卸载了 CD 同时还弹出了光盘，并且还有 10 秒的时间来把它拿出来，接着再自动关闭光驱。除此以外，我们还定义了一个变量，CDROM，如果我们以后还要定义其他的挂载点之类的话它将很有用。
+
+</p>
+
+<p>
+这里我假设我们仅仅拥有一个光驱。在安装期间，Slackware 会在 /dev 目录创建对应的连接。如果你有两个光驱那么你不得不修改上面的别名。特别的，你必须明确地地指出弹出的是第二个光驱。
+
+</p>
+
+<p>
+现在，假设我们拥有一个光盘刻录机，让我们来做一些有趣的实验。对，让我们刻录一张光盘。每个人当然都知道如何从 Slackware 的镜像站点上下载光盘镜像‘马上’刻录它。这些事情不经常发生所以人们很可能忘记这些事情是如何完成的。让我们定义一个别名来完成这个操作，比如，像这样：
+
+</p>
+
+<pre class="source">  
+   <span class="variable-name">DEV</span>=<span class="string">"dev=0,0,0"</span>
+   alias <span class="variable-name">burn</span>=<span class="string">'ccd &amp;&amp; cdrecord -eject $DEV -dao'</span>
+</pre>
+<blockquote>
+<p>
+  
+
+</p>
+</blockquote>
+
+这里，"0,0,0" 摘自刻录机扫描线的输出。（有人会补充，16 速或者无论什么可以确定的是设备会按希望的速度刻录 CDs。） 我们也定义了另外一个变量，DEV，在下面将会用到。
+
+</p>
+
+<p>
+现在，刻录一张 Slackware CD，只需要弹出光盘（ecd），放进一张空白光盘，然后运行下面的命令:
+
+</p>
+
+<pre class="source">  
+   $ burn /pa../the/image/slackware-10.1-install-d1.iso
+</pre>
+<blockquote>
+<p>
+  
+
+</p>
+</blockquote>
+
+看啊（法）！我们甚至不用动手去弹入光盘。
+
+</p>
+
+<p>
+现在看看我们如何从命令行很容易地刻录多任务的 CDs。我们会使用 bash 函数来实现这个壮举。
+
+</p>
+
+<p>
+首先，让我们以一张新的 CD 开始。我假设我们使用一张 CD-RW，那么为保证它干净首先得擦除。接着，我们会把在目录中准备好的文件制作成 iso 镜像，并保存在主目录中，镜像的名字会被传递作为一个参数。最后，我们刻录这张CD，弹出光盘，删除镜像。
+
+</p>
+
+<pre class="source">   <span class="comment-delimiter"># </span><span class="comment">iso &#38236;&#20687;:
+</span>   <span class="variable-name">ISO</span>=<span class="string">"/tmp/a.iso"</span>
+
+   <span class="comment-delimiter"># </span><span class="comment">&#21046;&#20316; iso &#38236;&#20687;:
+</span>   alias <span class="variable-name">mkiso</span>=<span class="string">'mkisofs -R -J -v -hide-rr-moved -o $ISO'</span>
+
+   <span class="comment-delimiter"># </span><span class="comment">CD &#21051;&#24405;&#26426;&#22312;&#21051;&#24405; CD &#21069;&#30340;&#31561;&#24453;&#26102;&#38388;
+</span>   <span class="variable-name">WAIT</span>=<span class="string">"gracetime=5"</span>
+
+   <span class="comment-delimiter"># </span><span class="comment">&#21478;&#19968;&#20010;&#20415;&#20110;&#20351;&#29992;&#30340;&#21035;&#21517;&#65306;
+</span>   alias <span class="variable-name">BURN</span>=<span class="string">"cdrecord -v -eject $DEV $WAIT -tao -multi $ISO &amp;&amp; \
+     rm -f $ISO &amp;&amp; sleep 10 ; ccd"</span>
+
+   begincd() {
+     ccd &amp;&amp; <span class="sh-escaped-newline">\</span>
+     cdrecord -v <span class="variable-name">blank</span>=fast $<span class="variable-name">DEV</span> $<span class="variable-name">WAIT</span> &amp;&amp; <span class="sh-escaped-newline">\</span>
+     mkiso $<span class="variable-name">1</span> &amp;&amp; BURN
+   }
+   
+   addtocd() {
+     ccd &amp;&amp; <span class="sh-escaped-newline">\</span>
+     mkiso -C <span class="sh-quoted-exec">`cdrecord -msinfo $DEV`</span> -M /dev/cdrom $<span class="variable-name">1</span> &amp;&amp; <span class="sh-escaped-newline">\</span>
+     BURN
+   }
+</pre>
+<blockquote>
+<p>
+  
+
+</p>
+</blockquote>
+
+这里作一些说明。首先，我们定义了一个文件作为镜像。接着，我们定义了一个别名，不仅仅在后面的两个函数中省了我们好些按键，同时还可以在我们需要时创建一个 iso 镜像，比如，假设我们想刻录一张自己的完整 CD。除此外，我们介绍了一个变量 WAIT，同样也会节省我们一些时间。（我们一直在赶时间，不是吗？）最后，我们定义了另一个变量，BURN。它只在我们那两个函数里使用，所以我选择把它的名字全部大写。
+
+</p>
+
+<p>
+这样，用 dir1 目录里的文件刻一张 CD，现在只要弹出光盘（ecd），放入一张CD-RW，然后运行下面的命令：
+<pre class="source">  
+   $ begincd dir1
+</pre>
+<blockquote>
+<p>
+  
+
+</p>
+</blockquote>
+
+同样的，从 dir2 目录里往 CD 增加文件，只需要弹出光盘，放入 CD，然后运行命令：
+<pre class="source">   $ addtocd dir2
+</pre>
+<blockquote>
+<p>
+  
+
+</p>
+</blockquote>
+
+又快又简单，不是吗？事实上，我们甚至可以把 ecd 放在我们定义的开头然后使它等待一些时间，:-)
+
+</p>
+
+<p>
+就像我们所看到的，别名和函数 是强大的工具。他们可以去作许许多多不同的事：
+
+</p>
+
+<ul>
+<li>目录导航：
+<pre class="source">     alias <span class="variable-name">cda</span>=<span class="string">'cd ~/some/directory/where../writing/an/Article'</span>
+</pre>
+</li>
+<li>打包和解包 tar 文件：
+<pre class="source">  
+     alias <span class="variable-name">tgz</span>=<span class="string">'tar czpvf'</span>
+     alias <span class="variable-name">utgz</span>=<span class="string">'tar xzvf'</span>
+</pre>
+</li>
+<li>就像这么简单：
+<pre class="source">  
+     $ tgz arxiv.tgz slaxercises/
+     $ utgz arxiv.tgz
+</pre>
+</li>
+<li>备份文件，比方说，重置文件：
+<pre class="source">  
+     <span class="variable-name">BACKUP_DIR</span>=<span class="string">"/pa../the/backup/directory"</span>
+     alias <span class="variable-name">back</span>=<span class="string">"cd $BACKUP_DIR &amp;&amp; tgz conf-`date +%F`.tgz ~/.??* &amp;&amp; \
+       ls &amp;&amp; cd"</span>
+</pre>
+</li>
+<li>保存升级和移除包的记录（当然，这些是为 root 的 .bashrc<sup><a id="fnr.3" href="#fn.3">3</a></sup> 准备的）：
+<pre class="source">     <span class="variable-name">UPLOG</span>=<span class="string">"~/upgradepkg.log"</span>
+     uplog() {
+       date &gt;&gt; $<span class="variable-name">UPLOG</span>
+       upgradepkg $<span class="variable-name">@</span> | tee -a $<span class="variable-name">UPLOG</span>
+     }
+</pre>
+<pre class="source">     <span class="variable-name">REMLOG</span>=<span class="string">"~/removepkg.log"</span>
+     remlog() {
+       date &gt;&gt; $<span class="variable-name">REMLOG</span>
+       removepkg $<span class="variable-name">@</span> | tee -a $<span class="variable-name">REMLOG</span>
+     }
+</pre>
+</li>
+<li>为新近下载的 Slackware 包检查 PGP 签名：
+<pre class="source">  
+     alias <span class="variable-name">gpgv</span>=<span class="string">"for i in ./*.tgz ; do echo $i ; \
+       gpg --no-secmem-warning --verify $i.asc $i ; echo ; done"</span>
+</pre>
+</li>
+<li>听音乐，比如，播放当前目录下所有的 mp3 文件和 wav 文件：
+<pre class="source">  
+     alias <span class="variable-name">mp3</span>=<span class="string">'madplay -v --display-time=current ./*.mp3'</span>
+     alias <span class="variable-name">wav</span>=<span class="string">'for i in ./*.wav ; do play $i ; done'</span>
+</pre>
+</li>
+<li>看搜集的 jpg 图片：
+<pre class="source">  
+     alias <span class="variable-name">slide</span>=<span class="string">'qiv -f -s --delay=5 -i ./*.jpg'</span>
+</pre>
+</li>
+</ul>
+<blockquote>
+<p>
+    
+
+</p>
+</blockquote>
+
+还有其他许许多多使得使用 Slackware 比这些更为有趣的事。就靠你的想象了！
+
+</p>
+
+<p>
+备注
+
+</p>
+
+<p>
+<sup>[<a id="fn.1" href="#fnr.1">1</a>]</sup> 更为普遍的做法像下面这样：
+<pre class="source">   alias <span class="variable-name">edb</span>=<span class="string">'$VISUAL ~/.bashrc &amp;&amp; . ~/.bashrc'</span>
+</pre>
+<blockquote>
+<p>
+ 
+
+</p>
+</blockquote>
+
+我建议你先检查一下 $VISUAL 是否真正指向需要的编辑器 （$ declare &brvbar grep VISUAL） 以防无意中跟 elvis 较劲。;-)
+
+</p>
+
+<p>
+<sup>[<a id="fn.2" href="#fnr.2">2</a>]</sup> 可以随便选择其他的名字。但在创建前得检查一下它是否已经被系统的shell 或者你 PATH 变量里的程序占用。为此，你可以运行：
+<pre class="source">  
+$ help new_name
+$ which new_name
+</pre>
+<blockquote>
+<p>
+ 
+
+</p>
+</blockquote>
+
+当你得不到 help 找不到任何信息时就说明 new_name 并没有被占用。
+
+</p>
+
+<p>
+<sup>[<a id="fn.3" href="#fnr.3">3</a>]</sup> 特别的，这些记录可以被用来检查这个或那个包在被移除或升级之后是否留下了一些没有被删除的文件。
+</p>      <!-- Page published by Emacs Wiki ends here -->
+      <div id="foot">
+	2004-<script language="javascript">var d = new
+	Date();document.write(d.getFullYear())</script> &copy;
+	Sucha. Powered by EmacsWiki.
+      </div><!-- foot -->
+      </div><!-- text -->
+      <div id="sidebar">
+	<p class="header">Here</p>
+	<ul>
+	  <li><a href="../index.html">Home</a></li>
+	  <li><a href="index.html">Front</a></li>
+	  <li><a href="../scratch/ThisSite.html">This Site</a></li>
+	  <li><a href="../live/AboutMe.html">About Me</a></li>
+	  <li><a href="../scratch/EmacsWiki.html">Emacs Wiki</a></li>
+	</ul>
+	<p class="header">Categories</p>
+	<ul>
+	  <li><a href="../blog/index.html">Blog</a></li>
+	  <li><a href="../live/index.html">Life</a></li>
+	  <li><a href="../cs/index.html">Lab</a></li>
+	  <li><a href="../slack/index.html">Slackware</a></li>
+	  <li><a href="../muse/index.html">Muse</a></li>
+	  <li><a href="../scratch/index.html">Scratch</a></li>
+	</ul>
+	<p class="header">Search</p><!-- Google Search -->
+	<form id="searchform" method="get"
+	      action="http://www.google.com/search" >
+	  <p><input id="searchtext" type="text" name="q" value="" /></p>
+          <p><input type="hidden" name="ie" value="utf-8" /></p>
+	  <p><input type="hidden" name="oe" value="utf-8" /></p>
+	  <p><input type="hidden" name="hl" value="zh-CN" /></p>
+ 	  <p><input type="hidden" name="domains" value="suchang.net" /></p>
+          <p><input name="si" type="hidden" value="suchang.net" /></p>
+          <p><input type="hidden" name="sitesearch" value="suchang.net" /></p>
+	</form>
+	<p class="header">Contact</p>
+	<ul>
+	  <li><a href="mailto:suchaaa@gmail.com">Email Me</a></li>
+	</ul>
+      </div><!-- sidebar -->
+    </div><!-- body -->
+  </body>
+</html>

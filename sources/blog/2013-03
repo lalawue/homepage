@@ -1,0 +1,39 @@
+#title Archive for March, 2013
+
+#p0
+* 13年3月26日 周二 21:19
+
+** 吐槽一下 iOS 的 ''''NSMutableURLRequest 和 cookie 方案
+
+最近忙一款 iOS app，需要用到网络连接，其实 iOS 上用于网络开发的库已经不
+少了，不过对于我的需求来说还是太复杂，况且自己又是一个那么喜欢折腾的人，
+就从简单的入手吧，百度上搜到的就是 ''''NSMutableURLRequest。
+
+不凑巧我需要登陆网站，就自己折腾了 cookie 来玩玩，问题是系统在遇到 http
+重定向的时候就帮你转过去了，恰巧登入网站的 cookie 就在那个网页中，根本没
+法自己处理，没办法了，只好打开系统的 cookie 处理规则。
+
+这个是我纯折腾的，以上也就算了，但是遇到保存 cookie 用于下次登陆的时候，
+也要说一说。
+
+话说使用 ''''NSHTTPCookieStorage 的 cookies 方法得到的是一个 NSArray，不过内
+部的 object 却是 NSHTTPCookie，不算是基本类型，所以是无法通过 NSArray 的
+writeToFile 写到文件里面去的。
+
+但是可以通过导出 NSHTTPCookie 的 properties 来得到 NSDictionary，然后
+arrayByAddingObject 到一个新建的 NSArray 里面然后就可以保存了……
+
+我是有多懒，但系统有提供基本数据的持久化方案干嘛不用呢。
+
+读取的时候的到了一个 NSDictionary 的 NSArray，将其一个个 setCookie 就好
+了。
+
+话说保存 cookie 登陆网站确实有用。
+
+
+*** [[CategoryProgramming][CategoryProgramming]] / [[2013-03#p0][Permalink]]
+
+<!-- date: 2013-03-26T21:19:31+0800 -->
+
+
+

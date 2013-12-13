@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+  <head>
+    <title>Sucha's Homepage - SQLite Mode</title>
+    <meta name="generator" content="emacs-wiki.el" />
+    <meta http-equiv="Content-Type" content=" text/html; charset=utf-8" />
+    <meta name="author" content="Sucha" />
+    <meta name="copyright" content="GFDL, http://www.gnu.org/licenses/fdl.html" />
+    <meta name="keywords" content="Sucha, Suchang, programming, GNU, Unix, Linux, Slackware, Emacs, elisp" />
+    <meta name="description" content="Sucha's homepage and blog" />
+    <link rel="made" href="mailto:suchaaa@gmail.com" />
+    <link rel="shortcut icon" href="../images/ico.png" />
+    <link rel="stylesheet" type="text/css" href="../styles/site.css" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="../blog/rss.xml" />
+    <!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="../styles/ie.css" /><![endif]-->
+  </head>
+  <body>
+    <div id="body">
+      <div id="text">
+	<h1>Sucha's Homepage ~ SQLite Mode</h1>
+	<!-- Page published by Emacs Wiki begins here -->
+<h2>SQLite Mode</h2>
+
+<p>
+最近更新: 2006-03-20
+
+</p>
+
+<p>
+<strong>本页目录</strong>
+
+</p>
+
+<dl class="contents">
+<dt class="contents">
+<a href="#sec-1">简单介绍</a>
+</dt>
+<dt class="contents">
+<a href="#sec-2">下载与使用</a>
+</dt>
+<dd>
+<dl class="contents">
+<dt class="contents">
+<a href="#sec-3">下载与需求</a>
+</dt>
+<dt class="contents">
+<a href="#sec-4">使用介绍</a>
+</dt>
+</dl>
+</dd>
+<dt class="contents">
+<a href="#sec-5">有臭虫？</a>
+</dt>
+</dl>
+
+
+
+<h3><a id="sec-1">简单介绍</a></h3>
+
+<p>
+SQLite Mode 是一个用来与 SQLite 数据库交互的小型前端，内部使用 shell 命令与 SQLite 交互，拥有命令回顾，语法高亮的简单功能。
+
+</p>
+
+<h3><a id="sec-2">下载与使用</a></h3>
+
+<h4><a id="sec-3">下载与需求</a></h4>
+
+<p>
+<a href="../code/sqlite.el.tar.gz">sqlite.el&#32;&#40;v0.01&#41;</a>
+
+</p>
+
+<p>
+对 SQLite 的版本没有要求，而对 emacs 则没有做过测试，我使用的是 emacs-22.0.50.1 版本，Win 下和 Linux 下都没有问题。
+
+</p>
+
+<h4><a id="sec-4">使用介绍</a></h4>
+
+<p>
+可以将文件放入 emacs 的 load-path 路径内，或者修改 ~/.emacs，加入 (add-to-list 'load-path "/path/to/sqlite.el/")，然后再添入 (require 'sqlite)，就可以使用了。
+
+</p>
+
+<p>
+使用 “M-x sqlite-mode" 命令运行程序，在这之前，你或许需要修改一下默认的属性，“M-x customize-group sqlite-mode” 来修改。
+
+</p>
+
+<pre class="example">Program: 一般填 sqlite 程序名即可，或许得加上必要的路径名
+Flags: 控制 sqlite 的输出版面，默认是 “-header -column” 详细信息与
+       sqlite 交互时输入 &quot;.help&quot; 查询
+Database: 需要操作的数据库
+Input window height: 输入栏的高度
+</pre>
+
+<p>
+属性也可以在程序运行时 C-c C-s 做临时的修改。下面是一些按键的安排。
+
+</p>
+
+<pre class="example">C-c C-s   对属性做临时修改
+C-c C-e   清空输入缓冲区
+M-p       上一条命令
+M-n       下一条命令
+RET       确认命令
+TAB       上一条命令
+</pre>
+
+<p>
+希望对大家有所帮助，:)
+
+</p>
+
+<h3><a id="sec-5">有臭虫</a>？</h3>
+
+<p>
+有什么问题或建议，都可以联系我 <a class="nonexistent" href="mailto:suchaaa@gmail.com">EmailMe</a>。
+</p>      <!-- Page published by Emacs Wiki ends here -->
+      <div id="foot">
+	2004-<script language="javascript">var d = new
+	Date();document.write(d.getFullYear())</script> &copy;
+	Sucha. Powered by EmacsWiki.
+      </div><!-- foot -->
+      </div><!-- text -->
+      <div id="sidebar">
+	<p class="header">Here</p>
+	<ul>
+	  <li><a href="../index.html">Home</a></li>
+	  <li><a href="index.html">Front</a></li>
+	  <li><a href="../scratch/ThisSite.html">This Site</a></li>
+	  <li><a href="../live/AboutMe.html">About Me</a></li>
+	  <li><a href="../scratch/EmacsWiki.html">Emacs Wiki</a></li>
+	</ul>
+	<p class="header">Categories</p>
+	<ul>
+	  <li><a href="../blog/index.html">Blog</a></li>
+	  <li><a href="../live/index.html">Life</a></li>
+	  <li><a href="../cs/index.html">Lab</a></li>
+	  <li><a href="../slack/index.html">Slackware</a></li>
+	  <li><a href="../muse/index.html">Muse</a></li>
+	  <li><a href="../scratch/index.html">Scratch</a></li>
+	</ul>
+	<p class="header">Search</p><!-- Google Search -->
+	<form id="searchform" method="get"
+	      action="http://www.google.com/search" >
+	  <p><input id="searchtext" type="text" name="q" value="" /></p>
+          <p><input type="hidden" name="ie" value="utf-8" /></p>
+	  <p><input type="hidden" name="oe" value="utf-8" /></p>
+	  <p><input type="hidden" name="hl" value="zh-CN" /></p>
+ 	  <p><input type="hidden" name="domains" value="suchang.net" /></p>
+          <p><input name="si" type="hidden" value="suchang.net" /></p>
+          <p><input type="hidden" name="sitesearch" value="suchang.net" /></p>
+	</form>
+	<p class="header">Contact</p>
+	<ul>
+	  <li><a href="mailto:suchaaa@gmail.com">Email Me</a></li>
+	</ul>
+      </div><!-- sidebar -->
+    </div><!-- body -->
+  </body>
+</html>

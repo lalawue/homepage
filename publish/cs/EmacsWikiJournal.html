@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+  <head>
+    <title>Sucha's Homepage - Emacs Wiki Journal</title>
+    <meta name="generator" content="emacs-wiki.el" />
+    <meta http-equiv="Content-Type" content=" text/html; charset=utf-8" />
+    <meta name="author" content="Sucha" />
+    <meta name="copyright" content="GFDL, http://www.gnu.org/licenses/fdl.html" />
+    <meta name="keywords" content="Sucha, Suchang, programming, GNU, Unix, Linux, Slackware, Emacs, elisp" />
+    <meta name="description" content="Sucha's homepage and blog" />
+    <link rel="made" href="mailto:suchaaa@gmail.com" />
+    <link rel="shortcut icon" href="../images/ico.png" />
+    <link rel="stylesheet" type="text/css" href="../styles/site.css" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="../blog/rss.xml" />
+    <!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="../styles/ie.css" /><![endif]-->
+  </head>
+  <body>
+    <div id="body">
+      <div id="text">
+	<h1>Sucha's Homepage ~ Emacs Wiki Journal</h1>
+	<!-- Page published by Emacs Wiki begins here -->
+<h2>Emacs Wiki Journal</h2>
+
+<p>
+最近更新: 2008-04-13
+
+</p>
+
+<p>
+<strong>本页目录</strong>
+
+</p>
+
+<dl class="contents">
+<dt class="contents">
+<a href="#sec-1">简要介绍</a>
+</dt>
+<dt class="contents">
+<a href="#sec-2">下载说明</a>
+</dt>
+<dt class="contents">
+<a href="#sec-3">配置及使用说明</a>
+</dt>
+<dd>
+<dl class="contents">
+<dt class="contents">
+<a href="#sec-4">如果你第一次接触 Emacs Wiki Journal</a>
+</dt>
+<dt class="contents">
+<a href="#sec-5">原 Emacs Wiki Journal 用户请看下面</a>
+</dt>
+<dd>
+<dl class="contents">
+<dt class="contents">
+<a href="#sec-6">需注释掉的变量</a>
+</dt>
+<dt class="contents">
+<a href="#sec-7">需增添的变量</a>
+</dt>
+<dt class="contents">
+<a href="#sec-8">需增添的布局</a>
+</dt>
+<dt class="contents">
+<a href="#sec-9">建议使用以下部分</a>
+</dt>
+<dt class="contents">
+<a href="#sec-10">我的个人设置文件</a>
+</dt>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt class="contents">
+<a href="#sec-11">感谢</a>
+</dt>
+<dt class="contents">
+<a href="#sec-12">臭虫？</a>
+</dt>
+</dl>
+
+
+
+
+<h3><a id="sec-1">简要介绍</a></h3>
+
+<p>
+关于 EmacsWiki 的简单介绍请看<a href="../scratch/EmacsWiki.html">这里</a>。
+
+</p>
+
+<p>
+而 EmacsWikiJournal 则是建立在 EmacsWiki 上的一个 Blog 系统，支持生成 RSS 种子，日历和存档连接，软件按月份存档，并可以自定义首页的记录数目。不过即便如此，相比如今的各种 Blog 系统，EmacsWikiJournal 的功能还是很有限的。
+
+</p>
+
+<p>
+EmacsWikiJournal 和 EmacsWiki 的语法规则一样，配置的过程也差不多，而且可以作为 EmacsWiki 的一个 project 来管理，和 EmacsWiki 其他的 project 是一样的。
+
+</p>
+
+<p>
+如果你对 EmacsWiki 的语法规则不太了解，不妨到李宇维护的 <a href="http://liyu2000.nease.net/webpage/EmacsWikiZh.html">EmacsWiki&#32;中文站点</a>搜寻一下，上面有一些 FAQ，而且他还给出了配置模板，对刚开始接触的朋友非常有帮助。他的配置模板可以在这里直接使用，但还要增加一些特别的配置，配合我修改过的文件使其生效。具体的请看下面的《配置及使用说明》。
+
+</p>
+
+<h3><a id="sec-2">下载说明</a></h3>
+
+<p>
+<a href="../code/emacs-wiki-journal-latest.el.tar.gz">emacs-wiki-journal-latest.el.tar.gz</a> <br />
+<a href="../code/emacs-wiki-2.70.tar.gz">emacs-wiki-2.70.tar.gz</a> <br />
+<a href="http://mwolson.org/static/dist/emacs-wiki/emacs-wiki-2.72.tar.gz">emacs-wiki-2.72.tar.gz</a> (from mwolson.org)
+
+</p>
+
+<p>
+请注意，以上代码都是以 GPL 发布的。
+
+</p>
+
+<ul>
+<li>Emacs version 23
+</li>
+</ul>
+
+<p>
+emacs-wiki-journal 需要 emacs-wiki 的支持，Emacs version 23 仅能配合 emacs-wiki-2.72 使用。若有用到 &#60;src&#62; tag 对嵌入代码高亮进行文件的发布，还需要修改 emacs-wiki 中的 emacs-wiki-srctag.el 文件，具体见<a href="../blog/2008-04.html#p1">&#60;&#60;Emacs-Wiki-Journal&#32;with&#32;Emacs23&#62;&#62;</a>的详细说明。
+
+</p>
+
+<ul>
+<li>Emacs version 22
+</li>
+</ul>
+
+<p>
+Emacs version 22 可以配合 emacs-wiki-2.70 使用，若有用到更高级的特性，请下载 emacs-wiki-2.72。
+
+</p>
+
+<p>
+另外，Emacs-wiki 现在由 Michael Olson 维护；而 Emacs-wiki-journal 的“原始”版本可以到 <a href="http://www15.ocn.ne.jp/%7erodinia/emacs-wiki-journal.el">Yamagata&#32;Yoriyuki&#32;的主页</a>上下载（貌似现在已经打不开了）。
+
+</p>
+
+<h3><a id="sec-3">配置及使用说明</a></h3>
+
+<h4><a id="sec-4">如果你第一次接触</a> Emacs Wiki Journal</h4>
+
+<p>
+如果你是第一次接触 EmacsWikiJournal，不妨 M-x customize-group，输入 emacs-wiki-journal 来进行配置，对于每个变量的设置都有简短的英文说明，只是完成它要花一点时间。如果你选择这样建立配置文件，下面的部分就不用看了。
+
+</p>
+
+<p>
+或者你也可以这样，到李宇维护的 <a href="http://liyu2000.nease.net/webpage/EmacsWikiZh.html">EmacsWiki</a> 中文站点获取<a href="http://liyu2000.nease.net/code/.emacs-wiki.el">配置模板</a>，做相应的修改，然后请继续看下面的部分。
+
+</p>
+
+<h4><a id="sec-5">原</a> Emacs Wiki Journal 用户请看下面</h4>
+
+<p>
+下面的配置部分假设你已经配置好了原来的 EmacsWiki 和 EmacsWikiJournal。在对原来的配置文件做出改动前，请做好必要的备份，所谓有备无患。
+
+</p>
+
+<h5><a id="sec-6">需注释掉的变量</a></h5>
+
+<p>
+请将这一部分注释掉，以免和修改过的代码冲突。只需在每行的前面加上一个分号';'。
+
+</p>
+
+<pre class="source"><span class="comment-delimiter">; </span><span class="comment">'(emacs-wiki-journal-date-format "%Y-%m-%dT%T%z")
+</span><span class="comment-delimiter">; </span><span class="comment">'(emacs-wiki-journal-date-tag-template "&lt;!-- date: %s --&gt;")
+</span></pre>
+
+
+<h5><a id="sec-7">需增添的变量</a></h5>
+
+<p>
+下面的这一部分，请作相应的修改，添你的 ~/.emacs 文件或 load 进来的外部 EmacsWiki 配置文件即可。
+
+</p>
+
+<pre class="source">(custom-set-variables
+<span class="comment-delimiter">; </span><span class="comment">emacs-wiki-journal-wiki &#26159;&#26368;&#26032;&#26376;&#20221;&#35760;&#24405;&#30340;&#25335;&#36125;&#65292;&#26159;&#19968;&#20010;&#8220;&#38745;&#24577;&#8221;&#39029;&#38754;&#65292;&#19979;&#38754;&#23450;&#20041;
+</span><span class="comment-delimiter">; </span><span class="comment">&#23427;&#30340;&#25991;&#20214;&#21517;&#20197;&#21450;&#26631;&#39064;
+</span> '(emacs-wiki-journal-wiki <span class="string">"index"</span>)
+ '(emacs-wiki-journal-welcome-page-title <span class="string">"Title"</span>)
+
+<span class="comment-delimiter">; </span><span class="comment">&#23450;&#20041;&#25351;&#21521;&#24403;&#21069;&#35760;&#24405;&#30340;&#33258;&#36830;&#25509;&#30340;&#21517;&#23383;
+</span> '(emacs-wiki-journal-self-link-name <span class="string">"Permalink"</span>)
+
+<span class="comment-delimiter">; </span><span class="comment">&#23450;&#20041;&#26159;&#21542;&#20135;&#29983;&#26368;&#26032;&#26376;&#20221;&#30340; RSS &#31181;&#23376;&#65292;t &#34920;&#31034;&#32943;&#23450;&#65292;nil &#34920;&#31034;&#21542;&#23450;
+</span> '(emacs-wiki-journal-generate-rss-file t)
+
+<span class="comment-delimiter">; </span><span class="comment">&#23450;&#20041; RSS &#30340;&#25991;&#20214;&#22836;&#65292;&#35831;&#23545;&#24212;&#20316;&#30456;&#24212;&#30340;&#20462;&#25913;
+</span> '(emacs-wiki-journal-rss-initial-content
+<span class="string">"&lt;?xml version=\"1.0\" encoding=\"utf-8\"?&gt;
+&lt;?xml-stylesheet href=\"rss_style.css\" type=\"text/css\"?&gt;
+&lt;rss version=\"2.0\"
+     xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"
+     xmlns:dc=\"http://purl.org/dc/elements/1.1/\"
+     xmlns:admin=\"http://webns.net/mvcb/\"
+     &gt;
+  &lt;channel&gt;
+    &lt;title&gt;Sucha's Blog&lt;/title&gt;
+    &lt;link&gt;http://suchang.net/blog/index.html&lt;/link&gt;
+    &lt;description&gt;linux, emacs, erogramming, live and essay&lt;/description&gt;
+    &lt;dc:language&gt;zh-CN&lt;/dc:language&gt;
+    &lt;dc:creator&gt;sucha&lt;/dc:creator&gt;
+    &lt;dc:date&gt;%s&lt;/dc:date&gt;
+    &lt;admin:generatorAgent rdf:resource=\"http://suchang.net\"/&gt; \n\n"</span>)
+
+<span class="comment-delimiter">; </span><span class="comment">&#23450;&#20041; RSS &#31181;&#23376;&#21253;&#21547;&#36335;&#24452;&#30340;&#25991;&#20214;&#21517;
+</span> '(emacs-wiki-journal-rss-file-name
+   <span class="string">"~/path/to/your/publish/dir/rss.xml"</span>)
+
+<span class="comment-delimiter">; </span><span class="comment">&#23450;&#20041;&#39318;&#39029;&#30340;&#35760;&#24405;&#25968;&#30446;
+</span> '(emacs-wiki-journal-wiki-max-entries 11)
+
+<span class="comment-delimiter">; </span><span class="comment">&#23450;&#20041;&#25351;&#21521; blog &#30340;&#36830;&#25509;
+</span> '(emacs-wiki-journal-rss-link
+ <span class="string">"http://suchang.net/blog/index.html"</span>)
+
+<span class="comment-delimiter">; </span><span class="comment">&#20320;&#30340;&#32593;&#32476; ID
+</span> '(emacs-wiki-journal-maintainer <span class="string">"sucha"</span>)
+ )
+</pre>
+
+
+<h5><a id="sec-8">需增添的布局</a></h5>
+
+<p>
+下面是将日历和存档连接插入页眉的例子，或者，你也可以将它们插入到页脚。为了在产生日历和存档连接后更好地控制版面，建议使用 div 容器来存放各部分的内容。
+
+</p>
+
+<pre class="source">&lt;?xml version=\"1.0\" encoding=\"utf-8\"&gt;
+&lt;html&gt;
+  &lt;head&gt;&lt;!-- Original text/&#26679;&#26412;&#39029;&#30473;&#30340;&#21407;&#26469;&#37096;&#20998; --&gt;&lt;/head&gt;
+  &lt;body&gt;
+      &lt;h1&gt;title/&#20320;&#30340;&#26631;&#39064;&lt;/h1&gt;
+
+      &lt;div class=\"side_bar\"&gt;
+      &lt;!-- &#20320;&#21487;&#20197;&#22312;&#36825;&#37324;&#25110;&#20854;&#20182;&#22320;&#26041;&#22686;&#21152;&#19968;&#20123;&#22266;&#23450;&#36830;&#25509;&#65292;&#20687;&#36890;&#24448;&#39318;&#39029;&#12289;&#20320;&#30340;
+      RSS &#31181;&#23376;&#36830;&#25509;&#12289;&#21451;&#24773;&#36830;&#25509;&#25110;&#32773;&#26159;&#20320;&#30340;&#20998;&#31867;&#25991;&#20214;&#36830;&#25509;&#20197;&#21450;&#24191;&#21578;&#31561;&#31561; --&gt;
+
+      &lt;!-- &#22914;&#26524;&#20320;&#38656;&#35201;&#26085;&#21382;&#65292;&#23601;&#23558;&#36825;&#37096;&#20998;&#21152;&#20837; --&gt;
+      &lt;lisp&gt;(emacs-wiki-journal-insert-calendar)&lt;/lisp&gt;
+
+      &lt;!-- &#22914;&#26524;&#20320;&#38656;&#35201;&#20135;&#29983;&#23384;&#26723;&#36830;&#25509;&#65292;&#23601;&#23558;&#36825;&#37096;&#20998;&#21152;&#20837; --&gt;
+      &lt;lisp&gt;(emacs-wiki-journal-generate-archive-links)&lt;/lisp&gt; 
+      &lt;/div&gt;&lt;!-- side_bar --&gt;
+
+      &lt;div class=\"body\"&gt;
+      &lt;!-- Page published by Emacs Wiki begins here --&gt;
+     
+      &lt;!-- &#35760;&#24405;&#25991;&#26723;&#30340;&#25554;&#20837;&#37096;&#20998;&#65292;&#19978;&#38754;&#26159;&#39029;&#30473;&#65292;&#19979;&#38754;&#26159;&#39029;&#33050; --&gt;
+
+      &lt;!-- Page published by Emacs Wiki ends here --&gt;
+      &lt;/div&gt;&lt;!-- body --&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+
+<h5><a id="sec-9">建议使用以下部分</a></h5>
+
+<p>
+这部分是我从<a href="http://learn.tsinghua.edu.cn/homepage/2003214890/publish/GNU/emacswiki.html">薛瑞尼个人网站</a>中的 EmacsWiki 部分得来的，作者是现在维护 Planner 的 sacha。实在是非常好用，可以省去每次保存后还要发布成 html 的麻烦——每次修改后只需保存即可自动发布，强烈建议大家都尝试一下。只需拷贝进你的 ~/.emacs 或 load 进来的外部 EmacsWiki 配置文档。 
+
+</p>
+
+<pre class="source"><span class="comment-delimiter">;; </span><span class="comment">emacs-wiki auto-publish from sacha, add my hack.
+</span>(<span class="keyword">defun</span> <span class="function-name">sacha-emacs-wiki-auto-publish</span>()
+  (<span class="keyword">when</span> (derived-mode-p 'emacs-wiki-mode)
+    (<span class="keyword">unless</span> emacs-wiki-publishing-p
+      (<span class="keyword">let</span> ((emacs-wiki-publishing-p t)
+            (emacs-wiki-after-wiki-publish-hook nil))
+        (emacs-wiki-journal-publish-this-page)
+<span class="comment-delimiter">;</span><span class="comment">       (emacs-wiki-publish-index) ; &#22914;&#26524;&#20320;&#38656;&#35201;&#22312;&#20445;&#23384;&#30340;&#21516;&#26102;&#33258;&#21160;&#21457;&#24067; 
+</span>        ))))                       <span class="comment-delimiter">; </span><span class="comment">WikiIndex&#65292;&#35831;&#23558;&#34892;&#39318;&#30340;';'&#21435;&#25481;
+</span>
+(add-hook 'emacs-wiki-mode-hook
+          (<span class="keyword">lambda</span> () (add-hook 'after-save-hook
+                               'sacha-emacs-wiki-auto-publish
+                               nil t)))
+</pre>
+
+
+<h5><a id="sec-10">我的个人设置文件</a></h5>
+
+<p>
+下面是我的个人 EmacsWiki 和 EmacsWikiJournal 设置，我用它们来维护我的个人网站和 blog。由于使用上的需要，相比原来的样本页眉页脚，已经修改了很多地方，也许没有什么借鉴意义。而且我用的是 CVS 的 Emacs22.0.50.1，内部环境和系统环境都是用 utf-8 的编码，所以不会遇到汉字编码转换的问题。
+
+</p>
+
+<p>
+不管怎么说，在这里权且充当能够成功使用的一个例子吧，header 和 footer 是相应主页以及 blog 的文件头和文件尾。注意，下面的文件都是 utf-8 编码。
+
+</p>
+
+<p>
+<a href="../code/emacs-wiki-conf.el.htm">emacs-wiki-conf.el</a><br />
+<a href="../code/.site-header.htm">.site-header</a><br />
+<a href="../code/.site-footer.htm">.site-footer</a><br />
+<a href="../code/.blog-header.htm">.blog-header</a><br />
+<a href="../code/.blog-footer.htm">.blog-footer</a><br />
+
+</p>
+
+<h3><a id="sec-11">感谢</a></h3>
+
+<p>
+感谢 <a href="http://www.mwolson.org/">Mwolson</a> 的 <a href="http://mwolson.org/projects/EmacsWikiMode.html">EmacsWiki</a>，使得维护一个网站变得如此简单。<br />
+感谢 Yamagata Yoriyuki 的 <a href="http://www15.ocn.ne.jp/%7erodinia/emacs-wiki-journal.el">EmacsWikiJournal</a>，给我有了现实中修改的基础。<br />
+感谢 <a href="http://www.sfu.ca/%7egswamina">gswamina</a> 的 <a href="http://www.sfu.ca/%7egswamina/EmacsWikiBlog.html">EmacsWikiBlog</a>，带给了我如此多的灵感。
+
+</p>
+
+<p>
+感谢 长弓无敌 (junshen365 AT 163 DOT com)，解决了第一次使用时无法插入首
+页的 bug。
+
+</p>
+
+<h3><a id="sec-12">臭虫</a>？</h3>
+
+<p>
+有什么问题，可以联系我 <a class="nonexistent" href="mailto:suchaaa@gmail.com">EmailMe</a>，同时欢迎任何建议和意见。
+</p>      <!-- Page published by Emacs Wiki ends here -->
+      <div id="foot">
+	2004-<script language="javascript">var d = new
+	Date();document.write(d.getFullYear())</script> &copy;
+	Sucha. Powered by EmacsWiki.
+      </div><!-- foot -->
+      </div><!-- text -->
+      <div id="sidebar">
+	<p class="header">Here</p>
+	<ul>
+	  <li><a href="../index.html">Home</a></li>
+	  <li><a href="index.html">Front</a></li>
+	  <li><a href="../scratch/ThisSite.html">This Site</a></li>
+	  <li><a href="../live/AboutMe.html">About Me</a></li>
+	  <li><a href="../scratch/EmacsWiki.html">Emacs Wiki</a></li>
+	</ul>
+	<p class="header">Categories</p>
+	<ul>
+	  <li><a href="../blog/index.html">Blog</a></li>
+	  <li><a href="../live/index.html">Life</a></li>
+	  <li><a href="../cs/index.html">Lab</a></li>
+	  <li><a href="../slack/index.html">Slackware</a></li>
+	  <li><a href="../muse/index.html">Muse</a></li>
+	  <li><a href="../scratch/index.html">Scratch</a></li>
+	</ul>
+	<p class="header">Search</p><!-- Google Search -->
+	<form id="searchform" method="get"
+	      action="http://www.google.com/search" >
+	  <p><input id="searchtext" type="text" name="q" value="" /></p>
+          <p><input type="hidden" name="ie" value="utf-8" /></p>
+	  <p><input type="hidden" name="oe" value="utf-8" /></p>
+	  <p><input type="hidden" name="hl" value="zh-CN" /></p>
+ 	  <p><input type="hidden" name="domains" value="suchang.net" /></p>
+          <p><input name="si" type="hidden" value="suchang.net" /></p>
+          <p><input type="hidden" name="sitesearch" value="suchang.net" /></p>
+	</form>
+	<p class="header">Contact</p>
+	<ul>
+	  <li><a href="mailto:suchaaa@gmail.com">Email Me</a></li>
+	</ul>
+      </div><!-- sidebar -->
+    </div><!-- body -->
+  </body>
+</html>

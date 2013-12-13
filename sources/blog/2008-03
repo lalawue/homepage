@@ -1,0 +1,138 @@
+
+#title Archive for March, 2008
+
+#p0
+* 3月23日 周日 23:17
+
+** CSCOPE 和 GTAGS
+
+最近弄代码巨不爽，因为不得不用 Source Insigh 了，可是 Source Insigh 只是
+个代码浏览器而已，用它来编辑简直要让人发疯，而之前一直使用的 emacs +
+ETAGS 的方式功能实在有限，虽然它支持的编程语言是那么的多。
+
+于是好好武装了一下我的 emacs。先找到的是 cscope，相比 etags，只能说不是一
+个档次的，其中实用的功能在你修改代码却不得不用 Source Insigh 的时候就知道
+了。同时有比较过 xref，因为使用不惯而放弃，虽然看起来它的功能更为强大些，
+不过对于我，还是够用就好。
+
+也有下载了 GTAGS 尝试，相比 cscope，显得不那么人性化，索引显示的时候没法
+显示调用这个符号的函数，不过这还能让人接受，只是后来当我试着在 c-mode 中
+将这些功能函数替换之前使用的 etags 函数时，发现 cscope 更为符合我的要求。
+
+实话说，gtags 索引的速度真的是飞快，特别是在索引大量引用的符号时，差别就
+出来了，我这是说在使用 emacs 作为前端的时候，另外 gtags 还有和 etags 一样
+的补全功能。还好我需要索引文件不多，hippie-expand 也足够我的使用了，无情
+的现实只是让我不得不用 Source Insigh 了而已。
+
+我是看上了 cscope 更加人性化的表现，但是要把它融合到我的 emacs 中才好。下
+面贴的配置，大部分都是一些按键绑定，还有一些辅助功能的实现，那完全是我的
+习惯，替换了之前一直使用 etags 的功能函数。另外，我发现在 cscope 中，用
+cscope-find-this-symbol 将函数当成符号来搜索，其第一个匹配项，就是
+cscope-find-global-definition 所实现的，只不过其另外的一个无 mini-buffer
+提示的版本 cscope-find-global-definition-no-prompting 显得更为简洁而已。
+因此，我将 cscope-find-global-definition 系列函数无情地抛弃了。
+
+下面还用列出了 bookmark，在需要的时候记录一些关键的地方，方便以后回查。跟
+Source Insigh 的 mark 功能不一样，那个是关了页面或是工程之后就消失了的，
+这也是让我一直郁闷的地方，而 emacs 的 bookmark 可是一直存在的。不过，鉴于
+工程繁多，建议一个工程一个 bookmark，反正使用上也是很简单的，不会造成繁
+琐。
+
+关于下面的按键绑定，一般我的查看操作都是这样，遇到函数，就 "C-."，使用
+cscope-find-this-symbol 来查找，cscope 会把索引到的输出到一个 11 行的小窗
+中，窗口的高度在下面定义的注释为 height 地方调整。然后光标定位到 cscope
+的结果窗口，n 或 p 就可以上下跳转 tag 并在大窗中查看具体的上下文，如果查
+看结束，"C-", 关闭窗口，pop-mark，回到之前的位置。
+
+如果有多次跳转，可以一直 "M-,"，做 pop-mark 的动作。反正可以按照你的习惯
+来定义按键，下面列出的只是一个方案而已。
+
+
+<src type="elisp">
+;; for C and C++ programming
+(add-hook 
+ 'c-mode-common-hook
+ (lambda ()
+;;    (define-key c-mode-base-map [(shift tab)]
+;;      'complete-tag)
+   (define-key c-mode-base-map [(control .)]
+     'cscope-find-this-symbol)		; symbol
+   (define-key c-mode-base-map [(control ,)]
+     'delete-other-windows)		; end search 
+   (define-key c-mode-base-map [(meta .)]
+     'cscope-find-this-text-string)	; text string
+   (define-key c-mode-base-map [(meta ,)]
+     'cscope-pop-mark)			; come back
+   (define-key c-mode-base-map (kbd "C-M-.") 
+     'cscope-find-functions-calling-this-function)
+   (define-key c-mode-base-map (kbd "C-M-,")
+     'cscope-find-called-functions)
+   (define-key c-mode-base-map (kbd "C-M-/")
+     'cscope-find-files-including-file)
+   (define-key c-mode-base-map [f7]
+     'sucha-generate-cscope-files) ; generate cscope file
+   (define-key c-mode-base-map [f9]
+     'bookmark-load) ; load special project bookmark 
+   (define-key c-mode-base-map [f10]
+     'bookmark-write) ; load special project bookmark 
+   ))
+
+;; keymap in cscope result buffer
+(add-hook
+ 'cscope-list-entry-hook
+ (lambda ()
+   (sucha-cscope-set-list-entry-window-height 11) ; 11, height 
+   (define-key cscope-list-entry-keymap [(control ,)]
+     'sucha-cscope-close-window-and-pop-mark)
+   ))
+</src>
+
+
+
+下面贴的是一些支持函数，是上面绑定按键代码需要用到的，因此最好放到一起，
+注意下面注释后面出现的关键字，有 win 和 linux 的区别。cscope 生成索引的脚
+本文件 cscope-indexer 在 win 下是不管用的，因为没有好用的 shell 的支持，
+不过我们的源代码一般都是堆在 /src 下面，因此用 cscope 的 -Rb 选项就好了。
+不过 cscope-indexer 的作用可不止这些，里面的注释有说到，如果你的是大工程
+的文件，并且文件堆在好几个地方，不得不用 cscope.files 来标明，可以将这个
+脚本放在 cron 里面，定时增量更新 cscope.files 列出的文件。
+
+算了，这么高级的功能暂时还用不上，权且将其绑定在一个按键上偷偷懒吧。
+
+
+<src type="elisp">
+(defun sucha-generate-cscope-files ()
+  "Generate cscope.files for cscope."
+  (interactive)
+  (cd
+   (read-from-minibuffer
+    "directory: "
+    default-directory))
+;;  (shell-command "cscope -Rb")) ; for win
+  (shell-command "cscope-indexer")) ; for linux
+
+(defun sucha-cscope-set-list-entry-window-height (wanted-height)
+  "set cscope-list-entry-window height."
+  (interactive)
+  (shrink-window (- (window-height) wanted-height))
+  (recenter 1))
+
+(defun sucha-cscope-close-window-and-pop-mark ()
+  "close cscope-list-entry-window and pop-mark. only 
+   use in cscope-list-entry-mode."
+  (interactive)
+  (other-window 1)
+  (delete-other-windows)
+  (cscope-pop-mark)
+  (recenter))
+</src>
+
+上面的按键绑定只是在 c 和 c++ mode 里面起作用，因为 cscope 支持的语言有
+限，etags 还是有作用的。
+
+*** [[CategoryProgramming][CategoryProgramming]] / [[2008-03#p0][Permalink]] 
+
+<!-- date: 2008-03-23T23:17:06+0800 -->
+
+
+

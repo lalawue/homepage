@@ -1,0 +1,118 @@
+/* rss style sheet created by sucha */
+
+rss {
+    display: block;
+    width: 80%;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+channel {
+    display: block;
+    padding-top: 3em;
+    padding-bottom: 3em;
+    padding-left: 1in;
+    padding-right: 1in;
+}
+
+channel > title {
+    text-align: center;
+    display: block;
+    color: silver;
+    font-family: "Bookman old style", serif;
+    font-weight: bold;
+    font-size: 1.8em;
+}
+
+channel > link {
+    display: block;
+    color: #cbf3ff;
+    padding-top: 3em;
+    padding-left: 2em;
+}
+
+channel > description {
+    display: block;
+    font-style: italic;
+    font-family: serif;
+    padding-left: 2em;
+    color: #7200a7;
+}
+
+channel > pubDate {
+    display: block;
+    padding-left: 2em;
+    font-family: monospace;
+    color: #90bfff;
+}
+
+channel > generator {
+    display: block;
+    padding-left: 2em;
+    font-family: monospace;
+    color: #bd62f6;
+}
+
+
+channel > language { 
+    display: block;	 
+    padding-left: 2em;
+    color: #ff0000;
+}
+
+channel > creator {
+    display: block;	 
+    padding-left: 2em;
+    font-style: oblique;
+    color: #008c14;
+}
+
+
+
+/* items */
+
+item {
+    display: block;
+    padding-top: 2em;
+    padding-bottom: 1em;
+    padding: 2em;
+}
+
+item > title {
+    display: block;
+    font-family: serif;
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #7200a7;
+}
+
+item > guid {
+    display: block;
+    color: #cbf3ff;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+item > pubDate {
+    display: block;
+    color: #90bfff;
+    font-family: monospace;
+}
+
+item > creator {
+    display: block;
+    font-style: oblique;	
+    color: #008c14;
+}
+
+item > category {
+    display: block;
+    color: silver;
+}
+
+item > description {
+    display: block;
+    padding-top: 1em;
+    padding-bottom: 2em;
+    color: #ffe7fc;
+}

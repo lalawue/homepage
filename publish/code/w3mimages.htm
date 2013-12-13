@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!-- Created by htmlize-1.16 in css mode. -->
+<html>
+  <head>
+    <title>w3mimages.txt</title>
+    <style type="text/css">
+    <!--
+      body {
+        color: #d9d9d9;
+        background-color: #000000;
+      }
+      .builtin {
+        /* font-lock-builtin-face */
+        color: #b0c4de;
+      }
+      .comment {
+        /* font-lock-comment-face */
+        color: #ff7f24;
+      }
+      .comment-delimiter {
+      }
+      .function-name {
+        /* font-lock-function-name-face */
+        color: #87cefa;
+      }
+      .keyword {
+        /* font-lock-keyword-face */
+        color: #00ffff;
+      }
+      .string {
+        /* font-lock-string-face */
+        color: #ffa07a;
+      }
+      .variable-name {
+        /* font-lock-variable-name-face */
+        color: #eedd82;
+      }
+      a {
+        color: inherit;
+        background-color: inherit;
+        font: inherit;
+        text-decoration: inherit;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+    -->
+    </style>
+  </head>
+  <body>
+    <pre>
+<span class="comment-delimiter">#</span><span class="comment">!/bin/</span><span class="keyword">sh</span><span class="comment">
+</span>
+<span class="comment-delimiter"># </span><span class="comment">use w3m to view pics converted by imagemagic's convert 
+</span>
+<span class="comment-delimiter"># </span><span class="comment">tmp dir to store converted images
+</span><span class="variable-name">thumbnail</span>=/tmp/.imagevier
+<span class="variable-name">tmpfile</span>=/tmp/.imagevier/.image.html
+
+<span class="function-name">generate</span>(){
+        convert -thumbnail 150 <span class="string">"$file"</span> <span class="string">"$thumbnail/$file"</span>
+        <span class="builtin">echo</span> <span class="string">"&lt;a href=\"$dir/$file\"&gt;&lt;img src=\"$thumbnail/$file\"&gt;&lt;/a&gt;"</span> &gt;&gt; $<span class="variable-name">tmpfile</span>
+}
+
+<span class="function-name">w3mimages</span>(){
+
+    <span class="variable-name">dir</span>=$(<span class="builtin">pwd</span>)
+
+    mkdir -p $<span class="variable-name">thumbnail</span>
+
+    printf <span class="string">"%s"</span> <span class="string">'&lt;?xml version="1.0" encoding="utf-8"?&gt;
+ &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "xhtml11.dtd"&gt;
+ &lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN"&gt; &lt;head&gt;
+ &lt;title&gt;Simple Image Viewer&lt;/title&gt; &lt;meta name="generator" content="lynx" /&gt;
+ &lt;meta http-equiv="Content-Type" content=" text/html; charset=utf-8" /&gt;
+ &lt;link rev="made" href="mailto:lalawuer@gmail.com" /&gt; &lt;/head&gt; &lt;body&gt;'</span> &gt; $<span class="variable-name">tmpfile</span>
+
+    <span class="keyword">for</span> file<span class="keyword"> in</span> *; <span class="keyword">do</span>
+        <span class="keyword">case</span> <span class="string">"$file"</span><span class="keyword"> in</span> 
+            *.JPG)   generate ;;
+            *.JPEG)  generate ;;
+            *.jpg)   generate ;;
+            *.jpeg)  generate ;;
+            *.gif)   generate ;;
+            *.png)   generate ;;
+        <span class="keyword">esac</span>
+    <span class="keyword">done</span>
+    <span class="builtin">echo</span> <span class="string">'&lt;/body&gt; &lt;/html&gt;'</span> &gt;&gt; $<span class="variable-name">tmpfile</span>
+
+    <span class="comment-delimiter"># </span><span class="comment">use w3m to view the html file
+</span>    w3m $<span class="variable-name">tmpfile</span>
+
+    <span class="comment-delimiter"># </span><span class="comment">remove anything
+</span>    rm -rf $<span class="variable-name">thumbnail</span>
+}
+
+<span class="function-name">menu</span>(){
+    <span class="keyword">case</span> <span class="string">"$1"</span><span class="keyword"> in</span>
+        <span class="string">'-h'</span>) <span class="builtin">echo</span> <span class="string">"usage: w3mimages.sh dir"</span> ;;
+        <span class="string">'--help'</span>) <span class="builtin">echo</span> <span class="string">"usage: w3mimages.sh dir"</span> ;;
+        <span class="string">' '</span>) w3mimages ;;
+        *) <span class="builtin">cd</span> <span class="string">"$1"</span>; w3mimages ;;
+    <span class="keyword">esac</span>
+}
+
+menu <span class="string">"$1"</span>
+</pre>
+  </body>
+</html>

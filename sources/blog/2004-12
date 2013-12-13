@@ -1,0 +1,126 @@
+
+#title Archives for December, 2004
+
+
+#p3
+* 2004-12-27, 星期一
+
+** 挂载 U 盘 simple way~
+
+*** 挂载U盘所需的模块
+
+首先检查系统是否加载了以下模块，没有的话就用 #modprobe 命令加载吧。（ps：有些模块似乎不是必须的，但加上是没有错的^_^）
+<src type="conf">
+usb-storage
+usb-uhci
+hid
+ide-scsi
+</src>
+
+如果经常使用的话，可以修改 /etc/rc.d/rc.modules 文件。
+
+*** 快速挂载
+
+其实已经有了专门的软件 -- Autousb，Redhat 的用户可以直接下 rpm 来使用了。不过我还有别的办法~
+
+那就是可以把挂载 U 盘所需的参数写进 /etc/fstab，这样要挂载的时候只需 #mount -a 即可，卸载也只需 #umount /dev/sda*。方便吧~
+
+一般是以普通用户身份来读写U盘，为此可以在 fstab 里加入如下信息：
+<src type="conf">
+/dev/sda* /mnt/* vfat defaults,iocharset=cp936,umask=000 1 0
+</src>
+
+Have fun~!
+
+*** CategoryLinux
+
+<!-- date: 2004-12-27T10:20:38+0800 -->
+
+
+
+#p2
+* 2004-12-17, 星期五
+
+** Join in SmartT''''ech~!
+
+SmartT''''ech 是学校里面一个编写 Win 下虚拟机的小组，现在对此还不大了解，不过蛮有兴趣，先加入先吧。
+
+考试又快到了，怕~怕~怕~~
+
+*** CategoryMisc
+
+<!-- date: 2004-12-17T10:20:38+0800 -->
+
+
+
+#p1
+* 2004-12-10, 星期五
+
+** esmtp + mutt + fetchmail
+
+原来一直是用 sendmail+mutt+fetchmail 来处理自己的邮件的，但是最近发现
+开机时启动 sendmail 竟然花费了这么多的时间，slk 不应该这样的……记得以前没有这么久的啊~
+
+再加上 sendmail 的臃肿和著名的漏洞，而且我也没有这么多邮件要发，得开个
+daemon 来处理这些东西。于是决定用 esmtp 来发邮件。
+
+具体的 esmtp 安装和配置看 AMD-K6 兄弟的帖子：
+
+原创 [[http://www.linuxsir.org/bbs/showthread.php?t=136669&highlight  =estmp][用 MUTT 收发邮件]]
+
+royce 兄已经为我们这些懒惰的 slacker 们准备好了现成的 *.tgz 包，这里有下载地址：
+
+[[http://royce.blogchina.com/blog/article_33535.212631.html][mutt+fetchmail+esmtp 收发邮件一文里需要的一些包]]
+
+注意一下现成包里 esmtp 安装后的位置。
+
+*P.S*: AMD-K6 兄的帖子上面有许多兄弟补充的内容，仔细看完后就懂得配置了。
+
+以后再也不怕开机慢了，也不必为了发几封 E-mail 然后开机运行一个著名的 daemon，呵呵~
+
+*** CategoryLinux
+
+<!-- date: 2004-12-10T10:20:38+0800 -->
+
+
+
+#p0
+* 2004-12-05, 星期日
+
+** LaT''''ex 中文配置 in SLK 10.0
+
+在网上看了蛮多的帖子，参考了一些资料之后，终于在今天下午搞好了 SLK10 下 LaT''''eX 的中文配置。
+
+首先确保系统装上了 tetex 的包，这在 SLK10 的第一张安装盘里就有。 
+
+具体的安装过程我参考了下面的这一个帖子: 
+
+[[http://www.linuxsir.org/bbs/showthread.php?s=&threadid=107395&highlight=tetex][自认为最简单的中文latex配置，3步就可以了！]]
+
+也许是机器或是系统的不同，我在自己机子的配置上与上面帖子所说的有点差别。具体的有如下几点： 
+
+1. 以root身份运行gbkfonts会引起系统的block，具体原因不明。 
+
+2. 在我自己机子上以普通用户身份运行静态连接版本的gbkfonts会出现"[1]段错误"，然后然后程序停止，无法完成生成字体的工作。 
+
+3. 如上，因此要以普通用户身份运行非静态联接的gbkfonts。当下载解压gbkfonts.tar.gz生成gbkfonts-linux-0.3目录，并将目录复制到/usr/share/texmf-local/后，要改变texmf-local这整个工作目录的权限，然后生成字体的过程要以普通用户身份进行。 
+
+假设现在已经在 texmf-local 中，以如下方式生成字体以及配置文件：
+<src type="sh">
+gbkfonts-linux-0.3/gbkfonts   /usr/X11R6/lib/X11/fonts/TTF/simsun.ttc   song
+  ……
+  ……
+</src>
+
+生成字体结束后再把 texmf-local 目录的权限改过来。其他的细节请参考上面那篇帖子。
+
+更多的关于 LaT''''eX 中文配置的资源及链接：
+
+[[http://learn.tsinghua.edu.cn/homepage/2001315450/tex_frame.html][王垠的主页]]<br>
+[[http://www.linuxsir.org/bbs/showthread.php?t=79777&highlight=tetex][Chinesemini-HOWTO]]<br>
+[[http://www.linuxsir.com/bbs/showthread.php?s=&threadid=53610][一个快捷的使用中文latex的办法]]<br>
+[[http://mail.ustc.edu.cn/~chui/latex/latex.htm][LaTeX中文排版]]<br>
+
+*** CategoryLinux
+
+<!-- date: 2004-12-05T10:20:38+0800 -->
