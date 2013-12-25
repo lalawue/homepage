@@ -13,7 +13,7 @@
 
 一个生成为你本地静态网页生成 google sitemap 的小工具，[[../blog/2008-12.html#p0][Google Sitemap Gnerator 的介绍]]。
 
-[[code#generate_google_sitemap.tar.gz][Google Sitemap Generator]] (需要 find 命令支持，也可以在 cygwin 等环境下使用)
+https://github.com/lalawue/shell_script_stuff (需要 find 命令支持，也可以在 cygwin 等环境下使用)
 
 
 ** 终端下简单的图片浏览器

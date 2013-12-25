@@ -2,12 +2,28 @@
 <!-- Created by htmlize-1.16 in css mode. -->
 <html>
   <head>
-    <title>test.el</title>
+    <title>emacs-wiki-conf.el</title>
     <style type="text/css">
     <!--
       body {
-        color: #d9d9d9;
-        background-color: #000000;
+        color: #cccccc;
+        background-color: #2f4f4f;
+      }
+      .ATTRLIST {
+        /* (:foreground "firebrick1") */
+        color: #ff3030;
+      }
+      .ATTRLIST-1 {
+        /* (:foreground "IndianRed1") */
+        color: #ff6a6a;
+      }
+      .ATTRLIST-2 {
+        /* (:foreground "IndianRed3") */
+        color: #cd5555;
+      }
+      .ATTRLIST-3 {
+        /* (:foreground "IndianRed4") */
+        color: #8b3a3a;
       }
       .builtin {
         /* font-lock-builtin-face */
@@ -51,255 +67,266 @@
   </head>
   <body>
     <pre>
-(add-to-list 'load-path <span class="string">"~/.elisp/emacs-wiki-2.72"</span>)
-(<span class="keyword">require</span> '<span class="constant">emacs-wiki</span>)
-(<span class="keyword">require</span> ' <span class="constant">htmlize</span>)
-<span class="comment-delimiter">;; </span><span class="comment">(require 'emacs-wiki-table)
-</span><span class="comment-delimiter">;; </span><span class="comment">(require 'emacs-wiki-menu)
-</span>(<span class="keyword">require</span> '<span class="constant">emacs-wiki-srctag</span>)
-(add-to-list 'emacs-wiki-src-tag-modes-alist
-             '(<span class="string">"conf"</span> . conf-mode)
-             '(<span class="string">"sh"</span> . shell-script-mode))
-(add-to-list 'emacs-wiki-src-tag-modes-alist
-             '(<span class="string">"xml"</span> . xml-mode)
-             '(<span class="string">"scheme"</span> . scheme-mode))
+(<span class="keyword">when</span> (or (string-equal system-type <span class="string">"windows-nt"</span>)
+          (string-equal system-type <span class="string">"darwin"</span>))
 
-<span class="comment-delimiter">;; </span><span class="comment">emacs-wiki-journal
-</span><span class="comment-delimiter">;; </span><span class="comment">
-</span>(add-to-list 'load-path <span class="string">"~/.elisp/emacs-wiki-journal"</span>)
-(<span class="keyword">require</span> '<span class="constant">emacs-wiki-journal</span>)
+  <span class="comment-delimiter">;;</span><span class="comment">load emacs-wiki 
+</span>  <span class="comment-delimiter">;; </span><span class="comment">
+</span>  (add-to-list 'load-path <span class="string">"~/.elisp/emacs-wiki-2.72"</span>)
+  (<span class="keyword">require</span> '<span class="constant">emacs-wiki</span>)
+  (<span class="keyword">require</span> ' <span class="constant">htmlize</span>)
+  <span class="comment-delimiter">;; </span><span class="comment">(require 'emacs-wiki-table)
+</span>  <span class="comment-delimiter">;; </span><span class="comment">(require 'emacs-wiki-menu)
+</span>  (<span class="keyword">require</span> '<span class="constant">emacs-wiki-srctag</span>)
+  (add-to-list 'emacs-wiki-src-tag-modes-alist
+               '(<span class="string">"conf"</span> . conf-mode))
+  (add-to-list 'emacs-wiki-src-tag-modes-alist
+               '(<span class="string">"sh"</span> . shell-script-mode))
+  (add-to-list 'emacs-wiki-src-tag-modes-alist
+               '(<span class="string">"xml"</span> . xml-mode))
+  (add-to-list 'emacs-wiki-src-tag-modes-alist
+               '(<span class="string">"scheme"</span> . scheme-mode))
 
-<span class="comment-delimiter">;; </span><span class="comment">setting custom variab
-</span><span class="comment-delimiter">;; </span><span class="comment">
-</span>(custom-set-variables
- '(emacs-wiki-anchor-on-word t)
- '(emacs-wiki-index-page <span class="string">"WikiIndex"</span>)
- '(emacs-wiki-journal-description <span class="string">"Lives and essay."</span>)
- '(emacs-wiki-journal-directory <span class="string">"~/workport/homesite/sources/blog"</span>)
- '(emacs-wiki-journal-icons-subdirectory <span class="string">"../images"</span>)
- '(emacs-wiki-journal-index-title-threshold t)
- '(emacs-wiki-journal-publishing-directory <span class="string">"~/workport/homesite/publish/blog"</span>)
- '(emacs-wiki-journal-rss-file-name <span class="string">"~/workport/homesite/publish/blog/rss.xml"</span>)
- '(emacs-wiki-journal-rss-about-prefix <span class="string">"http://suchang.net/blog/"</span>)
- '(emacs-wiki-journal-rss-link-prefix <span class="string">"http://suchang.net/blog/"</span>)
- '(emacs-wiki-journal-self-link-name <span class="string">"Permalink"</span>)
-<span class="comment-delimiter">;;  </span><span class="comment">'(emacs-wiki-journal-time-format "%-m&#26376;%-e&#26085; &#21608;%a %R")
-</span><span class="comment-delimiter">;;  </span><span class="comment">'(emacs-wiki-journal-time-format-category "%-m&#26376;%-e&#26085; &#21608;%a %R")
-</span> '(emacs-wiki-journal-time-format nil)  <span class="comment-delimiter">; </span><span class="comment">use user define time-format
-</span> '(emacs-wiki-journal-time-format-category nil) <span class="comment-delimiter">; </span><span class="comment">use user define time-format
-</span> '(emacs-wiki-journal-use-other-window nil)
- '(emacs-wiki-journal-wiki <span class="string">"index"</span>)
- '(emacs-wiki-charset-default <span class="string">"utf-8"</span>)
- '(emacs-wiki-coding-default (quote utf-8))
- '(emacs-wiki-create-backlinks t)
- '(emacs-wiki-default-page <span class="string">"index"</span>)
- '(emacs-wiki-interwiki-names
-   (quote
-    ((<span class="string">"blog"</span> lambda (tag) (emacs-wiki-project-interwiki-link <span class="string">"blog"</span> tag))
-     (<span class="string">"cs"</span> lambda (tag) (emacs-wiki-project-interwiki-link <span class="string">"cs"</span> tag))
-     (<span class="string">"live"</span> lambda (tag) (emacs-wiki-project-interwiki-link <span class="string">"live"</span> tag))
-     (<span class="string">"muse"</span> lambda (tag) (emacs-wiki-project-interwiki-link <span class="string">"muse"</span> tag))
-     (<span class="string">"scratch"</span> lambda (tag) (emacs-wiki-project-interwiki-link <span class="string">"scratch"</span> tag))
-     (<span class="string">"slack"</span> lambda (tag) (emacs-wiki-project-interwiki-link <span class="string">"slack"</span> tag))
-     (<span class="string">"JournalWiki"</span> lambda (tag) (emacs-wiki-project-interwiki-link <span class="string">"JournalWiki"</span> tag))
-     (<span class="string">"GnuEmacs"</span> . <span class="string">"http://www.gnu.org/software/emacs/emacs.html"</span>)
-     (<span class="string">"TheEmacsWiki"</span> lambda (tag)
-      (concat <span class="string">"http://www.emacswiki.org/cgi-bin/wiki/"</span> 
-              (or tag <span class="string">"SiteMap"</span>)))
-     (<span class="string">"MeatballWiki"</span> lambda (tag)
-      (concat <span class="string">"http://www.usemod.com/cgi-bin/mb.pl?"</span> (or tag <span class="string">"MeatballWiki"</span>)))
-     <span class="comment-delimiter">;; </span><span class="comment">Sites
-</span>     <span class="comment-delimiter">;; </span><span class="comment">
-</span>     (<span class="string">"EmacsWikiProject"</span> . <span class="string">"http://mwolson.org/projects/EmacsWiki.html"</span>) <span class="comment-delimiter">;; </span><span class="comment">Emacs Wiki
-</span>     (<span class="string">"EmacsMuse"</span> . <span class="string">"http://mwolson.org/projects/EmacsMuse.html"</span>) <span class="comment-delimiter">;; </span><span class="comment">Emacs Muse
-</span>     (<span class="string">"HFUTBBS"</span> . <span class="string">"http://www.hfutbbs.com"</span>) <span class="comment-delimiter">;; </span><span class="comment">HFUT BBS
-</span>     (<span class="string">"LinuxForum"</span> . <span class="string">"http://www.linuxforum.net/"</span>) <span class="comment-delimiter">;; </span><span class="comment">Linuxforum
-</span>     <span class="comment-delimiter">;; </span><span class="comment">subdirectories
-</span>     <span class="comment-delimiter">;; </span><span class="comment">
-</span>     (<span class="string">"code"</span> . <span class="string">"../code/"</span>) <span class="comment-delimiter">;; </span><span class="comment">code directory
-</span>     (<span class="string">"doc"</span> . <span class="string">"../doc/"</span>) <span class="comment-delimiter">;; </span><span class="comment">doc directory
-</span>     <span class="comment-delimiter">;; </span><span class="comment">personal information
-</span>     <span class="comment-delimiter">;; </span><span class="comment">
-</span>     (<span class="string">"EmailMe"</span> . <span class="string">"mailto: suchaaa@gmail.com"</span>) <span class="comment-delimiter">;; </span><span class="comment">email
-</span>     (<span class="string">"GuestBook"</span> . <span class="string">"../Guestbook.html"</span>) <span class="comment-delimiter">;; </span><span class="comment">guestbook
-</span>     )))
- '(emacs-wiki-directories 
-   (quote 
-    (<span class="string">"~/workport/homesite/sources/blog"</span>
-     <span class="string">"~/workport/homesite/sources/cs"</span>
-     <span class="string">"~/workport/homesite/sources/live"</span>
-     <span class="string">"~/workport/homesite/sources/muse"</span>
-     <span class="string">"~/workport/homesite/sources/scratch"</span>
-     <span class="string">"~/workport/homesite/sources/slack"</span>))
-   nil (emacs-wiki))
-<span class="comment-delimiter">;; </span><span class="comment">'(emacs-wiki-footer-date-format "")
-</span> '(emacs-wiki-home-page <span class="string">"index"</span>)
- '(emacs-wiki-home-project <span class="string">"homesite"</span>)
- '(emacs-wiki-maintainer <span class="string">"mailto:suchaaa@gmail.com"</span>)
- '(emacs-wiki-markup-nonexistent-link t)
- '(emacs-wiki-mode-hook (quote
-                         (footnote-mode
-                          emacs-wiki-use-font-lock
-                          footnote-mode
-                          outline-minor-mode)))
- <span class="comment-delimiter">;; </span><span class="comment">blog, cs, live, muse, scratch, slack
-</span> <span class="comment-delimiter">;; </span><span class="comment">
-</span> '(emacs-wiki-projects
-   (quote
-    ((<span class="string">"blog"</span> <span class="comment-delimiter">;; </span><span class="comment">blog
-</span>      (emacs-wiki-directories <span class="string">"~/workport/homesite/sources/blog/"</span>)
-      (emacs-wiki-project-server-prefix . <span class="string">"../blog/"</span>)
-      (emacs-wiki-publishing-directory . <span class="string">"~/workport/homesite/publish/blog/"</span>)
-      (emacs-wiki-home-page . <span class="string">"index"</span>)
-      (emacs-wiki-index-page . <span class="string">"WikiIndex"</span>)
-      (emacs-wiki-publishing-header . <span class="string">"&lt;lisp&gt;(sucha-wiki-import-file \"../.blog-header\")&lt;/lisp&gt;"</span>)
-      (emacs-wiki-publishing-footer . <span class="string">"&lt;lisp&gt;(sucha-wiki-import-file \"../.blog-footer\")&lt;/lisp&gt;"</span>))
-     (<span class="string">"cs"</span> <span class="comment-delimiter">;; </span><span class="comment">small lab, or computer science
-</span>      (emacs-wiki-directories <span class="string">"~/workport/homesite/sources/cs/"</span>)
-      (emacs-wiki-project-server-prefix . <span class="string">"../cs/"</span>)
-      (emacs-wiki-publishing-directory . <span class="string">"~/workport/homesite/publish/cs/"</span>)
-      (emacs-wiki-home-page . <span class="string">"index"</span>)
-      (emacs-wiki-index-page . <span class="string">"WikiIndex"</span>)
-      (emacs-wiki-publishing-header . <span class="string">"&lt;lisp&gt;(sucha-wiki-import-file \"../.site-header\")&lt;/lisp&gt;"</span>)
-      (emacs-wiki-publishing-footer . <span class="string">"&lt;lisp&gt;(sucha-wiki-import-file \"../.site-footer\")&lt;/lisp&gt;"</span>))
-     (<span class="string">"live"</span>  <span class="comment-delimiter">;; </span><span class="comment">about my life
-</span>      (emacs-wiki-directories <span class="string">"~/workport/homesite/sources/live/"</span>)
-      (emacs-wiki-project-server-prefix . <span class="string">"../live/"</span>)
-      (emacs-wiki-publishing-directory . <span class="string">"~/workport/homesite/publish/live/"</span>)
-      (emacs-wiki-home-page . <span class="string">"index"</span>)
-      (emacs-wiki-index-page . <span class="string">"WikiIndex"</span>)
-      (emacs-wiki-publishing-header . <span class="string">"&lt;lisp&gt;(sucha-wiki-import-file \"../.site-header\")&lt;/lisp&gt;"</span>)
-      (emacs-wiki-publishing-footer . <span class="string">"&lt;lisp&gt;(sucha-wiki-import-file \"../.site-footer\")&lt;/lisp&gt;"</span>))
-     (<span class="string">"muse"</span>  <span class="comment-delimiter">;; </span><span class="comment">we need musing
-</span>      (emacs-wiki-directories <span class="string">"~/workport/homesite/sources/muse/"</span>)
-      (emacs-wiki-project-server-prefix . <span class="string">"../muse/"</span>)
-      (emacs-wiki-publishing-directory . <span class="string">"~/workport/homesite/publish/muse/"</span>)
-      (emacs-wiki-home-page . <span class="string">"index"</span>)
-      (emacs-wiki-index-page . <span class="string">"WikiIndex"</span>)
-      (emacs-wiki-publishing-header . <span class="string">"&lt;lisp&gt;(sucha-wiki-import-file \"../.site-header\")&lt;/lisp&gt;"</span>)
-      (emacs-wiki-publishing-footer . <span class="string">"&lt;lisp&gt;(sucha-wiki-import-file \"../.site-footer\")&lt;/lisp&gt;"</span>))
-     (<span class="string">"scratch"</span>  <span class="comment-delimiter">;; </span><span class="comment">scratch, draft, anything
-</span>      (emacs-wiki-directories <span class="string">"~/workport/homesite/sources/scratch/"</span>)
-      (emacs-wiki-project-server-prefix . <span class="string">"../scratch/"</span>)
-      (emacs-wiki-publishing-directory . <span class="string">"~/workport/homesite/publish/scratch/"</span>)
-      (emacs-wiki-home-page . <span class="string">"index"</span>)
-      (emacs-wiki-index-page . <span class="string">"WikiIndex"</span>)
-      (emacs-wiki-publishing-header . <span class="string">"&lt;lisp&gt;(sucha-wiki-import-file \"../.site-header\")&lt;/lisp&gt;"</span>)
-      (emacs-wiki-publishing-footer . <span class="string">"&lt;lisp&gt;(sucha-wiki-import-file \"../.site-footer\")&lt;/lisp&gt;"</span>))
-     (<span class="string">"slack"</span> <span class="comment-delimiter">;; </span><span class="comment">here is Slackware
-</span>      (emacs-wiki-directories <span class="string">"~/workport/homesite/sources/slack/"</span>)
-      (emacs-wiki-project-server-prefix . <span class="string">"../slack/"</span>)
-      (emacs-wiki-publishing-directory . <span class="string">"~/workport/homesite/publish/slack/"</span>)
-      (emacs-wiki-home-page . <span class="string">"index"</span>)
-      (emacs-wiki-index-page . <span class="string">"WikiIndex"</span>)
-      (emacs-wiki-publishing-header . <span class="string">"&lt;lisp&gt;(sucha-wiki-import-file \"../.site-header\")&lt;/lisp&gt;"</span>)
-      (emacs-wiki-publishing-footer . <span class="string">"&lt;lisp&gt;(sucha-wiki-import-file \"../.site-footer\")&lt;/lisp&gt;"</span>))
-     )))
- '(emacs-wiki-publish-url-coding-system (quote utf-8))
- '(emacs-wiki-publishing-directory <span class="string">"~/workport/homesite/publish"</span>)
- '(emacs-wiki-publishing-file-prefix <span class="string">""</span>)
- '(emacs-wiki-refresh-file-alist-p t)
- '(emacs-wiki-show-project-name-p t)
- '(emacs-wiki-use-mode-flags t)
- '(emacs-wiki-xhtml-inline-css nil))
+  <span class="comment-delimiter">;; </span><span class="comment">emacs-wiki-journal
+</span>  <span class="comment-delimiter">;; </span><span class="comment">
+</span>  (add-to-list 'load-path <span class="string">"~/.elisp/emacs-wiki-journal"</span>)
+  (<span class="keyword">require</span> '<span class="constant">emacs-wiki-journal</span>)
 
-<span class="comment-delimiter">;; </span><span class="comment">setting custom faces
-</span><span class="comment-delimiter">;; </span><span class="comment">
-</span>(custom-set-faces
- '(emacs-wiki-link-face ((t (<span class="builtin">:foreground</span> <span class="string">"cyan"</span> <span class="builtin">:weight</span> bold))))
- '(emacs-wiki-bad-link-face ((t (<span class="builtin">:foreground</span> <span class="string">"coral"</span> <span class="builtin">:weight</span> bold))))
- '(emacs-wiki-header-1 ((t (<span class="builtin">:inherit</span> variable-pitch <span class="builtin">:weight</span> bold <span class="builtin">:height</span> 1.9))))
- '(emacs-wiki-header-2 ((t (<span class="builtin">:inherit</span> variable-pitch <span class="builtin">:weight</span> bold <span class="builtin">:height</span> 1.7))))
- '(emacs-wiki-header-3 ((t (<span class="builtin">:inherit</span> variable-pitch <span class="builtin">:weight</span> bold <span class="builtin">:height</span> 1.6))))
- '(emacs-wiki-header-4 ((t (<span class="builtin">:inherit</span> variable-pitch <span class="builtin">:slant</span> italic <span class="builtin">:weight</span> normal <span class="builtin">:height</span> 1.3))))
- '(emacs-wiki-header-5 ((t (<span class="builtin">:inherit</span> variable-pitch <span class="builtin">:slant</span> italic <span class="builtin">:weight</span> normal <span class="builtin">:height</span> 1.2))))
- '(emacs-wiki-header-6 ((t (<span class="builtin">:inherit</span> variable-pitch <span class="builtin">:slant</span> italic <span class="builtin">:weight</span> normal <span class="builtin">:height</span> 1.2)))))
+  <span class="comment-delimiter">;; </span><span class="comment">setting custom variab
+</span>  <span class="comment-delimiter">;; </span><span class="comment">
+</span>  (custom-set-variables
+   '(emacs-wiki-anchor-on-word t)
+   '(emacs-wiki-index-page <span class="string">"WikiIndex"</span>)
+   '(emacs-wiki-journal-description <span class="string">"Lives and essay."</span>)
+   '(emacs-wiki-journal-directory <span class="string">"~/workport/homesite/sources/blog"</span>)
+   '(emacs-wiki-journal-icons-subdirectory <span class="string">"../images"</span>)
+   '(emacs-wiki-journal-index-title-threshold t)
+   '(emacs-wiki-journal-publishing-directory <span class="string">"~/workport/homesite/publish/blog"</span>)
+   '(emacs-wiki-journal-rss-file-name <span class="string">"~/workport/homesite/publish/blog/rss.xml"</span>)
+   '(emacs-wiki-journal-rss-about-prefix <span class="string">"http://suchang.net/blog/"</span>)
+   '(emacs-wiki-journal-rss-link-prefix <span class="string">"http://suchang.net/blog/"</span>)
+   '(emacs-wiki-journal-self-link-name <span class="string">"Permalink"</span>)
+   <span class="comment-delimiter">;;  </span><span class="comment">'(emacs-wiki-journal-time-format "%-m&#26376;%-e&#26085; &#21608;%a %R")
+</span>   <span class="comment-delimiter">;;  </span><span class="comment">'(emacs-wiki-journal-time-format-category "%-m&#26376;%-e&#26085; &#21608;%a %R")
+</span>   '(emacs-wiki-journal-time-format nil) <span class="comment-delimiter">; </span><span class="comment">use user define time-format
+</span>   '(emacs-wiki-journal-time-format-category nil) <span class="comment-delimiter">; </span><span class="comment">use user define time-format
+</span>   '(emacs-wiki-journal-use-other-window nil)
+   '(emacs-wiki-journal-wiki <span class="string">"index"</span>)
+   '(emacs-wiki-charset-default <span class="string">"utf-8"</span>)
+   '(emacs-wiki-coding-default (quote utf-8))
+   '(emacs-wiki-create-backlinks t)
+   '(emacs-wiki-default-page <span class="string">"index"</span>)
+   '(emacs-wiki-interwiki-names
+     (quote
+      ((<span class="string">"blog"</span> lambda (tag) (emacs-wiki-project-interwiki-link <span class="string">"blog"</span> tag))
+       (<span class="string">"cs"</span> lambda (tag) (emacs-wiki-project-interwiki-link <span class="string">"cs"</span> tag))
+       (<span class="string">"live"</span> lambda (tag) (emacs-wiki-project-interwiki-link <span class="string">"live"</span> tag))
+       (<span class="string">"muse"</span> lambda (tag) (emacs-wiki-project-interwiki-link <span class="string">"muse"</span> tag))
+       (<span class="string">"scratch"</span> lambda (tag) (emacs-wiki-project-interwiki-link <span class="string">"scratch"</span> tag))
+       (<span class="string">"slack"</span> lambda (tag) (emacs-wiki-project-interwiki-link <span class="string">"slack"</span> tag))
+       (<span class="string">"JournalWiki"</span> lambda (tag) (emacs-wiki-project-interwiki-link <span class="string">"JournalWiki"</span> tag))
+       (<span class="string">"GnuEmacs"</span> . <span class="string">"http://www.gnu.org/software/emacs/emacs.html"</span>)
+       (<span class="string">"TheEmacsWiki"</span> lambda (tag)
+        (concat <span class="string">"http://www.emacswiki.org/cgi-bin/wiki/"</span> 
+                (or tag <span class="string">"SiteMap"</span>)))
+       (<span class="string">"MeatballWiki"</span> lambda (tag)
+        (concat <span class="string">"http://www.usemod.com/cgi-bin/mb.pl?"</span> (or tag <span class="string">"MeatballWiki"</span>)))
+       <span class="comment-delimiter">;; </span><span class="comment">Sites
+</span>       <span class="comment-delimiter">;; </span><span class="comment">
+</span>       (<span class="string">"EmacsWikiProject"</span> . <span class="string">"http://mwolson.org/projects/EmacsWikiMode.html"</span>) <span class="comment-delimiter">;; </span><span class="comment">Emacs Wiki
+</span>       (<span class="string">"EmacsMuse"</span> . <span class="string">"http://mwolson.org/projects/EmacsMuse.html"</span>) <span class="comment-delimiter">;; </span><span class="comment">Emacs Muse
+</span>       (<span class="string">"HFUTBBS"</span> . <span class="string">"http://www.hfutbbs.com"</span>)      <span class="comment-delimiter">;; </span><span class="comment">HFUT BBS
+</span>       (<span class="string">"LinuxForum"</span> . <span class="string">"http://www.linuxforum.net/"</span>) <span class="comment-delimiter">;; </span><span class="comment">Linuxforum
+</span>       <span class="comment-delimiter">;; </span><span class="comment">subdirectories
+</span>       <span class="comment-delimiter">;; </span><span class="comment">
+</span>       (<span class="string">"code"</span> . <span class="string">"../code/"</span>)                   <span class="comment-delimiter">;; </span><span class="comment">code directory
+</span>       (<span class="string">"doc"</span> . <span class="string">"../doc/"</span>)                     <span class="comment-delimiter">;; </span><span class="comment">doc directory
+</span>       <span class="comment-delimiter">;; </span><span class="comment">personal information
+</span>       <span class="comment-delimiter">;; </span><span class="comment">
+</span>       (<span class="string">"EmailMe"</span> . <span class="string">"mailto: suchaaa@gmail.com"</span>) <span class="comment-delimiter">;; </span><span class="comment">email
+</span>       (<span class="string">"GuestBook"</span> . <span class="string">"../Guestbook.html"</span>)       <span class="comment-delimiter">;; </span><span class="comment">guestbook
+</span>       )))
+   '(emacs-wiki-directories 
+     (quote 
+      (<span class="string">"~/workport/homesite/sources/blog"</span>
+       <span class="string">"~/workport/homesite/sources/cs"</span>
+       <span class="string">"~/workport/homesite/sources/live"</span>
+       <span class="string">"~/workport/homesite/sources/muse"</span>
+       <span class="string">"~/workport/homesite/sources/scratch"</span>
+       <span class="string">"~/workport/homesite/sources/slack"</span>))
+     nil (emacs-wiki))
+   <span class="comment-delimiter">;; </span><span class="comment">'(emacs-wiki-footer-date-format "")
+</span>   '(emacs-wiki-home-page <span class="string">"index"</span>)
+   '(emacs-wiki-home-project <span class="string">"homesite"</span>)
+   '(emacs-wiki-maintainer <span class="string">"mailto:suchaaa@gmail.com"</span>)
+   '(emacs-wiki-markup-nonexistent-link t)
+   '(emacs-wiki-mode-hook (quote
+                           (<span class="comment-delimiter">;; </span><span class="comment">footnote-mode
+</span>                            emacs-wiki-use-font-lock
+                            <span class="comment-delimiter">;; </span><span class="comment">footnote-mode
+</span>                            outline-minor-mode)))
+   <span class="comment-delimiter">;; </span><span class="comment">blog, cs, live, muse, scratch, slack
+</span>   <span class="comment-delimiter">;; </span><span class="comment">
+</span>   '(emacs-wiki-projects
+     (quote
+      ((<span class="string">"blog"</span> <span class="comment-delimiter">;; </span><span class="comment">blog
+</span>        (emacs-wiki-directories <span class="string">"~/workport/homesite/sources/blog/"</span>)
+        (emacs-wiki-project-server-prefix . <span class="string">"../blog/"</span>)
+        (emacs-wiki-publishing-directory . <span class="string">"~/workport/homesite/publish/blog/"</span>)
+        (emacs-wiki-home-page . <span class="string">"index"</span>)
+        (emacs-wiki-index-page . <span class="string">"WikiIndex"</span>)
+        (emacs-wiki-publishing-header . <span class="string">"&lt;lisp&gt;(sucha-wiki-import-file \"../.blog-header\")&lt;/lisp&gt;"</span>)
+        (emacs-wiki-publishing-footer . <span class="string">"&lt;lisp&gt;(sucha-wiki-import-file \"../.blog-footer\")&lt;/lisp&gt;"</span>))
+       (<span class="string">"cs"</span> <span class="comment-delimiter">;; </span><span class="comment">small lab, or computer science
+</span>        (emacs-wiki-directories <span class="string">"~/workport/homesite/sources/cs/"</span>)
+        (emacs-wiki-project-server-prefix . <span class="string">"../cs/"</span>)
+        (emacs-wiki-publishing-directory . <span class="string">"~/workport/homesite/publish/cs/"</span>)
+        (emacs-wiki-home-page . <span class="string">"index"</span>)
+        (emacs-wiki-index-page . <span class="string">"WikiIndex"</span>)
+        (emacs-wiki-publishing-header . <span class="string">"&lt;lisp&gt;(sucha-wiki-import-file \"../.site-header\")&lt;/lisp&gt;"</span>)
+        (emacs-wiki-publishing-footer . <span class="string">"&lt;lisp&gt;(sucha-wiki-import-file \"../.site-footer\")&lt;/lisp&gt;"</span>))
+       (<span class="string">"live"</span> <span class="comment-delimiter">;; </span><span class="comment">about my life
+</span>        (emacs-wiki-directories <span class="string">"~/workport/homesite/sources/live/"</span>)
+        (emacs-wiki-project-server-prefix . <span class="string">"../live/"</span>)
+        (emacs-wiki-publishing-directory . <span class="string">"~/workport/homesite/publish/live/"</span>)
+        (emacs-wiki-home-page . <span class="string">"index"</span>)
+        (emacs-wiki-index-page . <span class="string">"WikiIndex"</span>)
+        (emacs-wiki-publishing-header . <span class="string">"&lt;lisp&gt;(sucha-wiki-import-file \"../.site-header\")&lt;/lisp&gt;"</span>)
+        (emacs-wiki-publishing-footer . <span class="string">"&lt;lisp&gt;(sucha-wiki-import-file \"../.site-footer\")&lt;/lisp&gt;"</span>))
+       (<span class="string">"muse"</span> <span class="comment-delimiter">;; </span><span class="comment">we need musing
+</span>        (emacs-wiki-directories <span class="string">"~/workport/homesite/sources/muse/"</span>)
+        (emacs-wiki-project-server-prefix . <span class="string">"../muse/"</span>)
+        (emacs-wiki-publishing-directory . <span class="string">"~/workport/homesite/publish/muse/"</span>)
+        (emacs-wiki-home-page . <span class="string">"index"</span>)
+        (emacs-wiki-index-page . <span class="string">"WikiIndex"</span>)
+        (emacs-wiki-publishing-header . <span class="string">"&lt;lisp&gt;(sucha-wiki-import-file \"../.site-header\")&lt;/lisp&gt;"</span>)
+        (emacs-wiki-publishing-footer . <span class="string">"&lt;lisp&gt;(sucha-wiki-import-file \"../.site-footer\")&lt;/lisp&gt;"</span>))
+       (<span class="string">"scratch"</span> <span class="comment-delimiter">;; </span><span class="comment">scratch, draft, anything
+</span>        (emacs-wiki-directories <span class="string">"~/workport/homesite/sources/scratch/"</span>)
+        (emacs-wiki-project-server-prefix . <span class="string">"../scratch/"</span>)
+        (emacs-wiki-publishing-directory . <span class="string">"~/workport/homesite/publish/scratch/"</span>)
+        (emacs-wiki-home-page . <span class="string">"index"</span>)
+        (emacs-wiki-index-page . <span class="string">"WikiIndex"</span>)
+        (emacs-wiki-publishing-header . <span class="string">"&lt;lisp&gt;(sucha-wiki-import-file \"../.site-header\")&lt;/lisp&gt;"</span>)
+        (emacs-wiki-publishing-footer . <span class="string">"&lt;lisp&gt;(sucha-wiki-import-file \"../.site-footer\")&lt;/lisp&gt;"</span>))
+       (<span class="string">"slack"</span> <span class="comment-delimiter">;; </span><span class="comment">here is Slackware
+</span>        (emacs-wiki-directories <span class="string">"~/workport/homesite/sources/slack/"</span>)
+        (emacs-wiki-project-server-prefix . <span class="string">"../slack/"</span>)
+        (emacs-wiki-publishing-directory . <span class="string">"~/workport/homesite/publish/slack/"</span>)
+        (emacs-wiki-home-page . <span class="string">"index"</span>)
+        (emacs-wiki-index-page . <span class="string">"WikiIndex"</span>)
+        (emacs-wiki-publishing-header . <span class="string">"&lt;lisp&gt;(sucha-wiki-import-file \"../.site-header\")&lt;/lisp&gt;"</span>)
+        (emacs-wiki-publishing-footer . <span class="string">"&lt;lisp&gt;(sucha-wiki-import-file \"../.site-footer\")&lt;/lisp&gt;"</span>))
+       )))
+   '(emacs-wiki-publish-url-coding-system (quote utf-8))
+   '(emacs-wiki-publishing-directory <span class="string">"~/workport/homesite/publish"</span>)
+   '(emacs-wiki-publishing-file-prefix <span class="string">""</span>)
+   '(emacs-wiki-refresh-file-alist-p t)
+   '(emacs-wiki-show-project-name-p t)
+   '(emacs-wiki-use-mode-flags t)
+   '(emacs-wiki-xhtml-inline-css nil))
 
-<span class="comment-delimiter">;; </span><span class="comment">emacs-wiki auto-publish, added my hack
-</span><span class="comment-delimiter">;; </span><span class="comment">
-</span>(<span class="keyword">defun</span> <span class="function-name">sacha-emacs-wiki-auto-publish</span>()
-  (<span class="keyword">when</span> (derived-mode-p 'emacs-wiki-mode)
-    (<span class="keyword">unless</span> emacs-wiki-publishing-p
-      (<span class="keyword">let</span> ((emacs-wiki-publishing-p t)
-            (emacs-wiki-after-wiki-publish-hook nil))
-        (emacs-wiki-journal-publish-this-page)
-        <span class="comment-delimiter">;;</span><span class="comment">(emacs-wiki-publish-index)
-</span>        ))))
+  <span class="comment-delimiter">;; </span><span class="comment">setting custom faces
+</span>  <span class="comment-delimiter">;; </span><span class="comment">
+</span>  (custom-set-faces
+   '(emacs-wiki-link-face ((t (<span class="builtin">:foreground</span> <span class="string">"cyan"</span> <span class="builtin">:weight</span> bold))))
+   '(emacs-wiki-bad-link-face ((t (<span class="builtin">:foreground</span> <span class="string">"coral"</span> <span class="builtin">:weight</span> bold))))
+   '(emacs-wiki-header-1 ((t (<span class="builtin">:inherit</span> variable-pitch <span class="builtin">:weight</span> bold <span class="builtin">:height</span> 1.9))))
+   '(emacs-wiki-header-2 ((t (<span class="builtin">:inherit</span> variable-pitch <span class="builtin">:weight</span> bold <span class="builtin">:height</span> 1.7))))
+   '(emacs-wiki-header-3 ((t (<span class="builtin">:inherit</span> variable-pitch <span class="builtin">:weight</span> bold <span class="builtin">:height</span> 1.6))))
+   '(emacs-wiki-header-4 ((t (<span class="builtin">:inherit</span> variable-pitch <span class="builtin">:slant</span> italic <span class="builtin">:weight</span> normal <span class="builtin">:height</span> 1.3))))
+   '(emacs-wiki-header-5 ((t (<span class="builtin">:inherit</span> variable-pitch <span class="builtin">:slant</span> italic <span class="builtin">:weight</span> normal <span class="builtin">:height</span> 1.2))))
+   '(emacs-wiki-header-6 ((t (<span class="builtin">:inherit</span> variable-pitch <span class="builtin">:slant</span> italic <span class="builtin">:weight</span> normal <span class="builtin">:height</span> 1.2)))))
 
-(add-hook 'emacs-wiki-mode-hook
-          (<span class="keyword">lambda</span> () (add-hook 'after-save-hook
-                               'sacha-emacs-wiki-auto-publish
-                               nil t)))
+  <span class="comment-delimiter">;; </span><span class="comment">emacs-wiki auto-publish, added my hack
+</span>  <span class="comment-delimiter">;; </span><span class="comment">
+</span>  (<span class="keyword">defun</span> <span class="function-name">sacha-emacs-wiki-auto-publish</span>()
+    (<span class="keyword">when</span> (derived-mode-p 'emacs-wiki-mode)
+      (<span class="keyword">unless</span> emacs-wiki-publishing-p
+        (<span class="keyword">let</span> ((emacs-wiki-publishing-p t)
+              (emacs-wiki-after-wiki-publish-hook nil)
+              (buffer-file-coding-system 'utf-8-unix))
+          (emacs-wiki-journal-publish-this-page)
+          <span class="comment-delimiter">;;</span><span class="comment">(emacs-wiki-publish-index)
+</span>          ))))
 
-<span class="comment-delimiter">;; </span><span class="comment">time-format for entries' title and categorys' title
-</span><span class="comment-delimiter">;; </span><span class="comment">
-</span>(<span class="keyword">defun</span> <span class="function-name">emacs-wiki-journal-user-definite-time-format</span> ()
-  <span class="doc">"If emacs-wiki-journal-time-format set to nil, it will 
+  (add-hook 'emacs-wiki-mode-hook
+            (<span class="keyword">lambda</span> () (add-hook 'after-save-hook
+                                 'sacha-emacs-wiki-auto-publish
+                                 nil t)))
+
+  <span class="comment-delimiter">;; </span><span class="comment">time-format for entries' title and categorys' title
+</span>  <span class="comment-delimiter">;; </span><span class="comment">
+</span>  (<span class="keyword">defun</span> <span class="function-name">emacs-wiki-journal-user-definite-time-format</span> ()
+    <span class="doc">"If emacs-wiki-journal-time-format set to nil, it will 
   display your own time string format in entries."</span>
-  (format <span class="string">"%s&#26376;%s&#26085; %s %s"</span>
-          (string-to-number (format-time-string <span class="string">"%-m"</span>))
-          (format-time-string <span class="string">"%-e"</span>)
-          (<span class="keyword">let</span>
-              ((weekday (string-to-number
-                         (format-time-string <span class="string">"%u"</span>))))
-            (<span class="keyword">cond</span> 
-             ((= weekday 1) (concat <span class="string">"&#21608;&#19968;"</span>))
-             ((= weekday 2) (concat <span class="string">"&#21608;&#20108;"</span>))
-             ((= weekday 3) (concat <span class="string">"&#21608;&#19977;"</span>))
-             ((= weekday 4) (concat <span class="string">"&#21608;&#22235;"</span>))
-             ((= weekday 5) (concat <span class="string">"&#21608;&#20116;"</span>))
-             ((= weekday 6) (concat <span class="string">"&#21608;&#20845;"</span>))
-             ((= weekday 7) (concat <span class="string">"&#21608;&#26085;"</span>))))
-          (format-time-string <span class="string">"%R"</span>)))
+    (format <span class="string">"%s&#24180;%s&#26376;%s&#26085; %s %s"</span>
+            (string-to-number (format-time-string <span class="string">"%-y"</span>))
+            (string-to-number (format-time-string <span class="string">"%-m"</span>))
+            (format-time-string <span class="string">"%-e"</span>)
+            (<span class="keyword">let</span>
+                ((weekday (string-to-number
+                           (format-time-string <span class="string">"%u"</span>))))
+              (<span class="keyword">cond</span> 
+               ((= weekday 1) (concat <span class="string">"&#21608;&#19968;"</span>))
+               ((= weekday 2) (concat <span class="string">"&#21608;&#20108;"</span>))
+               ((= weekday 3) (concat <span class="string">"&#21608;&#19977;"</span>))
+               ((= weekday 4) (concat <span class="string">"&#21608;&#22235;"</span>))
+               ((= weekday 5) (concat <span class="string">"&#21608;&#20116;"</span>))
+               ((= weekday 6) (concat <span class="string">"&#21608;&#20845;"</span>))
+               ((= weekday 7) (concat <span class="string">"&#21608;&#26085;"</span>))))
+            (format-time-string <span class="string">"%R"</span>)))
 
-(<span class="keyword">defun</span> <span class="function-name">emacs-wiki-journal-user-definite-format-category</span> ()
-  <span class="doc">"If emacs-wiki-journal-time-format-category set to nil, it 
+  (<span class="keyword">defun</span> <span class="function-name">emacs-wiki-journal-user-definite-format-category</span> ()
+    <span class="doc">"If emacs-wiki-journal-time-format-category set to nil, it 
    will display your own time string format in category."</span>
-  (format <span class="string">"%s&#26376;%s&#26085; %s %s"</span>
-          (string-to-number (format-time-string <span class="string">"%-m"</span>))
-          (format-time-string <span class="string">"%-e"</span>)
-          (<span class="keyword">let</span>
-              ((weekday (string-to-number
-                         (format-time-string <span class="string">"%u"</span>))))
-            (<span class="keyword">cond</span> 
-             ((= weekday 1) (concat <span class="string">"&#21608;&#19968;"</span>))
-             ((= weekday 2) (concat <span class="string">"&#21608;&#20108;"</span>))
-             ((= weekday 3) (concat <span class="string">"&#21608;&#19977;"</span>))
-             ((= weekday 4) (concat <span class="string">"&#21608;&#22235;"</span>))
-             ((= weekday 5) (concat <span class="string">"&#21608;&#20116;"</span>))
-             ((= weekday 6) (concat <span class="string">"&#21608;&#20845;"</span>))
-             ((= weekday 7) (concat <span class="string">"&#21608;&#26085;"</span>))))
-          (format-time-string <span class="string">"%R"</span>)))
+    (format <span class="string">"%s&#26376;%s&#26085; %s %s"</span>
+            (string-to-number (format-time-string <span class="string">"%-m"</span>))
+            (format-time-string <span class="string">"%-e"</span>)
+            (<span class="keyword">let</span>
+                ((weekday (string-to-number
+                           (format-time-string <span class="string">"%u"</span>))))
+              (<span class="keyword">cond</span> 
+               ((= weekday 1) (concat <span class="string">"&#21608;&#19968;"</span>))
+               ((= weekday 2) (concat <span class="string">"&#21608;&#20108;"</span>))
+               ((= weekday 3) (concat <span class="string">"&#21608;&#19977;"</span>))
+               ((= weekday 4) (concat <span class="string">"&#21608;&#22235;"</span>))
+               ((= weekday 5) (concat <span class="string">"&#21608;&#20116;"</span>))
+               ((= weekday 6) (concat <span class="string">"&#21608;&#20845;"</span>))
+               ((= weekday 7) (concat <span class="string">"&#21608;&#26085;"</span>))))
+            (format-time-string <span class="string">"%R"</span>)))
 
 
-<span class="comment-delimiter">;; </span><span class="comment">import outer template file
-</span><span class="comment-delimiter">;; </span><span class="comment">
-</span>(<span class="keyword">defun</span> <span class="function-name">sucha-wiki-import-file</span> (file)
-  (<span class="keyword">if</span> (file-readable-p file)
-      (ignore (insert-file-contents file))))
+  <span class="comment-delimiter">;; </span><span class="comment">import outer template file
+</span>  <span class="comment-delimiter">;; </span><span class="comment">
+</span>  (<span class="keyword">defun</span> <span class="function-name">sucha-wiki-import-file</span> (file)
+    (<span class="keyword">if</span> (file-readable-p file)
+        (ignore (insert-file-contents file))))
 
-<span class="comment-delimiter">;; </span><span class="comment">from ChunYe Wang's Emacs tips
-</span><span class="comment-delimiter">;; </span><span class="comment">
-</span>(<span class="keyword">defun</span> <span class="function-name">wcy-wiki-input-special-character</span> ()
-  <span class="doc">"Use to input special character."</span>
-  (interactive)
-  (<span class="keyword">let*</span> ((c (read-char <span class="string">"Character:"</span>))
-         (x (emacs-wiki-escape-html-string (string c))))
-    (insert x)))
+  <span class="comment-delimiter">;; </span><span class="comment">from ChunYe Wang's Emacs tips
+</span>  <span class="comment-delimiter">;; </span><span class="comment">
+</span>  (<span class="keyword">defun</span> <span class="function-name">wcy-wiki-input-special-character</span> ()
+    <span class="doc">"Use to input special character."</span>
+    (interactive)
+    (<span class="keyword">let*</span> ((c (read-char <span class="string">"Character:"</span>))
+           (x (emacs-wiki-escape-html-string (string c))))
+      (insert x)))
 
-(define-key emacs-wiki-mode-map (kbd <span class="string">"C-c i"</span>) 'wcy-wiki-input-special-character)
+  (define-key emacs-wiki-mode-map (kbd <span class="string">"C-c i"</span>) 'wcy-wiki-input-special-character)
 
-<span class="comment-delimiter">;; </span><span class="comment">add something to my web blog anytime
-</span><span class="comment-delimiter">;; </span><span class="comment">
-</span>(global-set-key [(C-f12)] 'emacs-wiki-journal-add-entry)
+  <span class="comment-delimiter">;; </span><span class="comment">add something to my web blog anytime
+</span>  <span class="comment-delimiter">;; </span><span class="comment">
+</span>  (global-set-key [(C-f12)] 'emacs-wiki-journal-add-entry)
 
-<span class="comment-delimiter">;; </span><span class="comment">find wiki files
-</span><span class="comment-delimiter">;; </span><span class="comment">
-</span>(<span class="keyword">defun</span> <span class="function-name">sucha-wiki-find-file</span> ()
-<span class="doc">"Find the wiki file in wiki directorys"</span>
-  (interactive)
-  (find-file (file-name-directory <span class="string">"~/workport/homesite/sources/"</span>)))
+  <span class="comment-delimiter">;; </span><span class="comment">find wiki files
+</span>  <span class="comment-delimiter">;; </span><span class="comment">
+</span>  (<span class="keyword">defun</span> <span class="function-name">sucha-wiki-find-file</span> ()
+    <span class="doc">"Find the wiki file in wiki directorys"</span>
+    (interactive)
+    (find-file (file-name-directory <span class="string">"~/workport/homesite/sources/"</span>)))
 
-(global-set-key [(M-f12)] 'sucha-wiki-find-file)</pre>
+  (global-set-key [(M-f12)] 'sucha-wiki-find-file)
+
+  )</pre>
   </body>
 </html>

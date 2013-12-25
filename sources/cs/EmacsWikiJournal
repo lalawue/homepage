@@ -1,7 +1,7 @@
 
 * Emacs Wiki Journal
 
-最近更新: 2008-04-13
+最近更新: 2013-12-25
 
 **本页目录**
 
@@ -13,47 +13,40 @@
 
 关于 Emacs''''Wiki 的简单介绍请看[[scratch#EmacsWiki][这里]]。
 
-而 Emacs''''WikiJournal 则是建立在 Emacs''''Wiki 上的一个 Blog 系统，支持生成 RSS 种子，日历和存档连接，软件按月份存档，并可以自定义首页的记录数目。不过即便如此，相比如今的各种 Blog 系统，''''EmacsWikiJournal 的功能还是很有限的。
+而 Emacs''''WikiJournal 则是建立在 Emacs''''Wiki 上的一个 Blog 系统，支持生成
+RSS 种子，日历和存档连接，软件按月份存档，并可以自定义首页的记录数目。不
+过即便如此，相比如今的各种 Blog 系统，''''EmacsWikiJournal 的功能还是很有限
+的。
 
-Emacs''''WikiJournal 和 Emacs''''Wiki 的语法规则一样，配置的过程也差不多，而且可以作为 Emacs''''Wiki 的一个 project 来管理，和 Emacs''''Wiki 其他的 project 是一样的。
-
-如果你对 Emacs''''Wiki 的语法规则不太了解，不妨到李宇维护的 [[http://liyu2000.nease.net/webpage/EmacsWikiZh.html][EmacsWiki 中文站点]]搜寻一下，上面有一些 FAQ，而且他还给出了配置模板，对刚开始接触的朋友非常有帮助。他的配置模板可以在这里直接使用，但还要增加一些特别的配置，配合我修改过的文件使其生效。具体的请看下面的《配置及使用说明》。
-
+Emacs''''WikiJournal 和 Emacs''''Wiki 的语法规则一样，配置的过程也差不多，而且可
+以作为 Emacs''''Wiki 的一个 project 来管理，和 Emacs''''Wiki 其他的 project 是一
+样的。
 
 
 ** 下载说明
 
-[[code#emacs-wiki-journal-latest.el.tar.gz][emacs-wiki-journal-latest.el.tar.gz]] <br />
-[[code#emacs-wiki-2.70.tar.gz][emacs-wiki-2.70.tar.gz]] <br />
-[[http://mwolson.org/static/dist/emacs-wiki/emacs-wiki-2.72.tar.gz][emacs-wiki-2.72.tar.gz]] (from mwolson.org)
 
-请注意，以上代码都是以 GPL 发布的。
+https://github.com/lalawue/emacs-wiki-journal<br />
+https://github.com/emacsmirror/emacs-wiki-mode <br />
 
- - Emacs version 23
-
-emacs-wiki-journal 需要 emacs-wiki 的支持，Emacs version 23 仅能配合 emacs-wiki-2.72 使用。若有用到 &#60;src&#62; tag 对嵌入代码高亮进行文件的发布，还需要修改 emacs-wiki 中的 emacs-wiki-srctag.el 文件，具体见[[../blog/2008-04.html#p1][<<Emacs-Wiki-Journal with Emacs23>>]]的详细说明。
-
- - Emacs version 22
-
-Emacs version 22 可以配合 emacs-wiki-2.70 使用，若有用到更高级的特性，请下载 emacs-wiki-2.72。
-
-另外，Emacs-wiki 现在由 Michael Olson 维护；而 Emacs-wiki-journal 的“原始”版本可以到 [[http://www15.ocn.ne.jp/~rodinia/emacs-wiki-journal.el][Yamagata Yoriyuki 的主页]]上下载（貌似现在已经打不开了）。
+适配最新的 Emacs 24，我目前使用的版本是 GNU Emacs 24.3.50.1。
 
 
 
 ** 配置及使用说明
 
 
-*** 如果你第一次接触 Emacs Wiki Journal
+*** 初次接触 Emacs Wiki Journal
 
-如果你是第一次接触 ''''EmacsWikiJournal，不妨 M-x customize-group，输入 emacs-wiki-journal 来进行配置，对于每个变量的设置都有简短的英文说明，只是完成它要花一点时间。如果你选择这样建立配置文件，下面的部分就不用看了。
+如果你是第一次接触 ''''EmacsWikiJournal，不妨 M-x customize-group，输入
+emacs-wiki-journal 来进行配置，对于每个变量的设置都有简短的英文说明，只
+是完成它要花一点时间。如果你选择这样建立配置文件，下面的部分就不用看了。
 
-或者你也可以这样，到李宇维护的 [[http://liyu2000.nease.net/webpage/EmacsWikiZh.html][EmacsWiki]] 中文站点获取[[http://liyu2000.nease.net/code/.emacs-wiki.el][配置模板]]，做相应的修改，然后请继续看下面的部分。
 
+*** 一些设置说明
 
-*** 原 Emacs Wiki Journal 用户请看下面
-
-下面的配置部分假设你已经配置好了原来的 Emacs''''Wiki 和 Emacs''''WikiJournal。在对原来的配置文件做出改动前，请做好必要的备份，所谓有备无患。
+下面的配置部分假设你已经配置好了原来的 Emacs''''Wiki 和 Emacs''''WikiJournal。在
+对原来的配置文件做出改动前，请做好必要的备份，所谓有备无患。
 
 **** 需注释掉的变量
 
@@ -117,7 +110,9 @@ Emacs version 22 可以配合 emacs-wiki-2.70 使用，若有用到更高级的�
 
 **** 需增添的布局
 
-下面是将日历和存档连接插入页眉的例子，或者，你也可以将它们插入到页脚。为了在产生日历和存档连接后更好地控制版面，建议使用 div 容器来存放各部分的内容。
+下面是将日历和存档连接插入页眉的例子，或者，你也可以将它们插入到页脚。为
+了在产生日历和存档连接后更好地控制版面，建议使用 div 容器来存放各部分的
+内容。
 
 <src type="html">
 <?xml version=\"1.0\" encoding=\"utf-8\">
@@ -150,7 +145,10 @@ Emacs version 22 可以配合 emacs-wiki-2.70 使用，若有用到更高级的�
 
 **** 建议使用以下部分
 
-这部分是我从[[http://learn.tsinghua.edu.cn/homepage/2003214890/publish/GNU/emacswiki.html][薛瑞尼个人网站]]中的 Emacs''''Wiki 部分得来的，作者是现在维护 Planner 的 sacha。实在是非常好用，可以省去每次保存后还要发布成 html 的麻烦——每次修改后只需保存即可自动发布，强烈建议大家都尝试一下。只需拷贝进你的 ~/.emacs 或 load 进来的外部 Emacs''''Wiki 配置文档。 
+这部分是我从 **薛瑞尼** 个人网站中的 Emacs''''Wiki 部分得来的，作者是现在维护
+Planner 的 sacha。实在是非常好用，可以省去每次保存后还要发布成 html 的麻
+烦——每次修改后只需保存即可自动发布，强烈建议大家都尝试一下。只需拷贝进你
+的 ~/.emacs 或 load 进来的外部 Emacs''''Wiki 配置文档。
 
 <src type="elisp">
 ;; emacs-wiki auto-publish from sacha, add my hack.
@@ -196,4 +194,5 @@ Emacs version 22 可以配合 emacs-wiki-2.70 使用，若有用到更高级的�
 
 ** 臭虫？
 
-有什么问题，可以联系我 EmailMe，同时欢迎任何建议和意见。
+有什么问题，可以联系我 EmailMe，同时欢迎任何建议和意见，有编程经验的童鞋，
+不妨 github 上面直接给我 patch 吧。

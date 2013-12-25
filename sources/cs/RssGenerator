@@ -1,17 +1,16 @@
 
 * Rss generator
 
-最近更新: 2005-08-12
+最近更新: 2013-12-25
 
 **本页目录**
 
 <contents depth="3">
 
 
-
 ** 下载试用
 
-[[code#generate_rss_feeds.tar.gz][Download the script here~! (version 1.0)]]
+https://github.com/lalawue/shell_script_stuff <br />
 
 bash 版本信息：GNU bash, version 2.05b.0(1)-release (i486-slackware-linux-gnu)
 
@@ -57,7 +56,5 @@ item 的 date 信息是从这里搜集的，所以格式要像上面那样，至
 分解文件需要文件有统一的格式，如果是用 emacs-wiki 原来的变量来做就简单多了，我这里其实就是暴力分解文件，:D。
 
 所以，如果你的 emacs-wiki 发布形式跟我的不同的话，I have no idea...不过你不必急着用 shell script 来产生你的 rss 文档(暴力分解)，还有别的 .el 文件可以使用，不过我找到的不多，而且最头疼的它是不起作用。
-
- -  [[http://liyu2000.nease.net/code/emacs-wiki-journal-rss.el][emacs-wiki-journal-rss.el]]: Liyu 写的 rss generator for emacs-wiki-journal，bad news，我这里没法使用，最大的问题是──我不了解 elisp，不知道问题出在哪里，:(
 
  - [[http://larve.net/people/hugo/2003/scratchpad/RssForEmacsWiki.html][Rss for Emacs Wiki]]: 一个法国人写的 .el，03 年的东西了，只支持 emacs-wiki(?)，不支持 projects，一个简单的小程序。

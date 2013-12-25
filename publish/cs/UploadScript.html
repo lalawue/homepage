@@ -22,13 +22,15 @@
 	<!-- Page published by Emacs Wiki begins here -->
 <h2>Upload Script/上传文件的 Shell Script</h2>
 
+<blockquote>
 <p>
-最近更新: 2006-08-05
+ 最近更新: 2013-12-25
 
 </p>
+</blockquote>
 
 <p>
-<strong>本页目录</strong>
+本页目录 
 
 </p>
 
@@ -39,74 +41,52 @@
 <dt class="contents">
 <a href="#sec-2">使用方法</a>
 </dt>
-<dd>
-<dl class="contents">
 <dt class="contents">
-<a href="#sec-3">本地目录设置</a>
+<a href="#sec-3">它是如何工作的?</a>
 </dt>
 <dt class="contents">
-<a href="#sec-4">记录文件</a>
+<a href="#sec-4">"臭虫"</a>
 </dt>
 <dt class="contents">
-<a href="#sec-5">FTP 登陆设置</a>
+<a href="#sec-5">脚本历史</a>
 </dt>
 </dl>
-</dd>
-<dt class="contents">
-<a href="#sec-6">它是如何工作的?</a>
-</dt>
-<dt class="contents">
-<a href="#sec-7">"臭虫"</a>
-</dt>
-<dt class="contents">
-<a href="#sec-8">脚本历史</a>
-</dt>
-</dl>
-
-
 
 
 <h3><a id="sec-1">下载试用</a></h3>
 
 <p>
-<a href="../code/uploadscript.tar.gz">Download&#32;the&#32;script&#32;here~&#33;&#32;&#40;version&#32;1.04&#41;</a>
-
-</p>
-
-<p>
-bash 版本信息：GNU bash, version 3.00.15(2)-release (i486-slackware-linux-gnu)
+<a href="https://github.com/lalawue/shell_script_stuff">https://github.com/lalawue/shell_script_stuff</a><br />
 
 </p>
 
 <p>
 NcFTP 版本信息：<br />
-Program version:  NcFTP 3.1.7/120 Jan 07 2004, 01:50 AM<br />
-Library version:  LibNcFTP 3.1.7 (January 6, 2004)<br />
+Program version: NcFTP 3.1.7/120 Jan 07 2004, 01:50 AM <br />
+Library version: LibNcFTP 3.1.7 (January 6, 2004) <br />
 
 </p>
 
 <h3><a id="sec-2">使用方法</a></h3>
 
 <p>
-使用方法是很简单的，不过也要注意一些小小的细节，:)
+使用方法是很简单的，不过也要注意一些小小的细节，:) 
 
 </p>
 
-<h4><a id="sec-3">本地目录设置</a></h4>
+<h4>本地目录设置</h4>
 
 <p>
-publish_dir 就是存放你 index.html 或是 WelcomePage.html 的目录，同时也对应着服务器上你存放同样文件的目录，记得在目录的最后加上“/”
+publish_dir 就是存放你 index.html 或是 WelcomePage.html 的目录，同时也对应着服务器上你存放同样文件的目录，记得在目录的最后加上“/” 
+publish_dir=$HOME/your/publish-dir/
 
 </p>
 
-<pre class="source"><span class="variable-name">publish_dir</span>=$<span class="variable-name">HOME</span>/your/publish-dir/
-</pre>
-
-
-<h4><a id="sec-4">记录文件</a></h4>
+<h4>记录文件</h4>
 
 <p>
-这个文件用来记录程序运行的最后时间(modified time)，在这之后被更改过的普通文件都会被上传，这里的设置一般不用修改。
+这个文件用来记录程序运行的最后时间(modified time)，在这之后被更改过的普
+通文件都会被上传，这里的设置一般不用修改。
 
 </p>
 
@@ -114,57 +94,67 @@ publish_dir 就是存放你 index.html 或是 WelcomePage.html 的目录，同�
 </pre>
 
 
-<h4><a id="sec-5">FTP</a> 登陆设置</h4>
+<h4>FTP 登陆设置</h4>
 
-<ol>
-<li>如果服务器上的 publish_dir 就是你登入的文件夹，那么在变量设置的最后应该像下面这样，为一个"空格"后添一个"."。
+<ul>
+<li>如果服务器上的 publish_dir 就是你登入的文件夹，那么在变量设置的最后应该像下面这样，为一个"空格"后添一个"."。 
+</li>
+</ul>
+
 <pre class="source"><span class="variable-name">ftp</span>=<span class="string">"-E -u user -p passwd -P port www.ftp.com ."</span>
 </pre>
+<ul>
+<li>如果服务器上的 publish_dir 是你登入后的下一级文件夹，那么变量应如下设置，填写你服务器上的 publish_dir，记得最后不用加上"/"。 
 </li>
-<li>如果服务器上的 publish_dir 是你登入后的下一级文件夹，那么变量应如下设置，填写你服务器上的 publish_dir，记得最后不用加上"/"。
+</ul>
+
 <pre class="source"><span class="variable-name">ftp</span>=<span class="string">"-E -u user -p passwd -P port www.ftp.com remote_serve_html"</span>
 </pre>
+
+
+<h3><a id="sec-3">它是如何工作的</a>?</h3>
+
+<ul>
+<li>如果是第一次运行程序，将会创建用于记录、比较修改时间的文件. 
 </li>
-</ol>
-
-
-
-
-<h3><a id="sec-6">它是如何工作的</a>?</h3>
-
-<ol>
-<li>如果是第一次运行程序，将会创建用于记录、比较修改时间的文件.
+<li>递归地检查目录，使用 find 命令来找出当前文件夹下面已经修改过的文件(文件的修改时间比记录文件的修改时间要新)，然后用 ncftpput 来上传。 
 </li>
-<li>递归地检查目录，使用 find 命令来找出当前文件夹下面已经修改过的文件(文
-件的修改时间比记录文件的修改时间要新)，然后用 ncftpput 来上传。
+<li>若其中任何一个文件上传失败，程序将不更新记录文件，这时你需要再次运行 这个脚本重新上传。（感谢 zhao wang, arithboy AT gmail DOT com） 
 </li>
-<li>若其中任何一个文件上传失败，程序将不更新记录文件，这时你需要再次运行
-这个脚本重新上传。（感谢 zhao wang, arithboy AT gmail DOT com）
-</li>
-</ol>
+</ul>
 
-<h3><a id="sec-7">"臭虫</a>"</h3>
+<h3><a id="sec-4">"臭虫</a>"</h3>
 
+<blockquote>
 <p>
-脚本在我这里运行还好，如果你有什么问题或建议，请联系我 <a class="nonexistent" href="mailto:suchaaa@gmail.com">EmailMe</a>。
+ 脚本在我这里运行还好，如果你有什么问题或建议，请联系我 <a class="nonexistent" href="mailto:suchaaa@gmail.com">EmailMe</a>。 
 
 </p>
+</blockquote>
 
-<h3><a id="sec-8">脚本历史</a></h3>
+<h3><a id="sec-5">脚本历史</a></h3>
 
+<blockquote>
 <p>
-最开始是想找一个软件用来上传更新过的文件，而不必将整个文件夹一股脑都上传。
+ 最开始是想找一个软件用来上传更新过的文件，而不必将整个文件夹一股脑都上传。 
 
 </p>
+</blockquote>
 
+<blockquote>
 <p>
-后来找到了 <a href="http://liyu2000.nease.net/webpage/MyPrograms.html">Liyu</a> 大哥编的 elisp 小程序 upload-remote.el，但不知道为什么，这个程序在我这里用不了，而当时我一点都不了解 elisp，搞得使用 emacs-wiki 写网页容易但上传很麻烦。
+ 后来找到了 Liyu 大哥编的 elisp 小程序 upload-remote.el，但不知道为什么，这个程序在我这里用不了，而当时我一点都不了解 elisp，搞得使用 emacs-wiki 写网页容易但上传很麻烦。 
 
 </p>
+</blockquote>
 
+<blockquote>
 <p>
-不过很感谢他提出用 ncftpput 上传的方法，给了我灵感，加上自己正在学习 bash 编程，于是花了不少时间编了这个upload script，正好用它来更新我的网站。
-</p>      <!-- Page published by Emacs Wiki ends here -->
+ 不过很感谢他提出用 ncftpput 上传的方法，给了我灵感，加上自己正在学习 bash 编程，于是花了不少时间编了这个upload script，正好用它来更新我的网站。
+
+</p>
+</blockquote>
+      <!-- Page published by Emacs Wiki ends here -->
       <div id="foot">
 	2004-<script language="javascript">var d = new
 	Date();document.write(d.getFullYear())</script> &copy;

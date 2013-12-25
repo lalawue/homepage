@@ -6,8 +6,8 @@
     <style type="text/css">
     <!--
       body {
-        color: #d9d9d9;
-        background-color: #000000;
+        color: #cccccc;
+        background-color: #2f4f4f;
       }
       .comment {
         /* font-lock-comment-face */
@@ -43,43 +43,44 @@
     <pre>
       <span class="comment-delimiter">&lt;!-- </span><span class="comment">Page published by Emacs Wiki ends here </span><span class="comment-delimiter">--&gt;</span>
       &lt;<span class="function-name">div</span> <span class="variable-name">id</span>=<span class="string">"foot"</span>&gt;
-        2004-&lt;<span class="function-name">lisp</span>&gt;(format-time-string <span class="string">"%Y"</span>)&lt;/<span class="function-name">lisp</span>&gt; <span class="variable-name">&amp;copy;</span> 
-        Sucha. Powered by EmacsWiki.
+    2004-&lt;<span class="function-name">script</span> <span class="variable-name">language</span>=<span class="string">"javascript"</span>&gt;var d = new
+    Date();document.write(d.getFullYear())&lt;/<span class="function-name">script</span>&gt; <span class="variable-name">&amp;copy;</span>
+    Sucha. Powered by EmacsWiki.
       &lt;/<span class="function-name">div</span>&gt;<span class="comment-delimiter">&lt;!-- </span><span class="comment">foot </span><span class="comment-delimiter">--&gt;</span>
       &lt;/<span class="function-name">div</span>&gt;<span class="comment-delimiter">&lt;!-- </span><span class="comment">text </span><span class="comment-delimiter">--&gt;</span>
       &lt;<span class="function-name">div</span> <span class="variable-name">id</span>=<span class="string">"sidebar"</span>&gt;
-        &lt;<span class="function-name">p</span> <span class="variable-name">class</span>=<span class="string">"header"</span>&gt;Here&lt;/<span class="function-name">p</span>&gt;
-        &lt;<span class="function-name">ul</span>&gt;
-          &lt;<span class="function-name">li</span>&gt;&lt;<span class="function-name">a</span> <span class="variable-name">href</span>=<span class="string">"../index.html"</span>&gt;Home&lt;/<span class="function-name">a</span>&gt;&lt;/<span class="function-name">li</span>&gt;
-          &lt;<span class="function-name">li</span>&gt;&lt;<span class="function-name">a</span> <span class="variable-name">href</span>=<span class="string">"index.html"</span>&gt;Front&lt;/<span class="function-name">a</span>&gt;&lt;/<span class="function-name">li</span>&gt;
-          &lt;<span class="function-name">li</span>&gt;&lt;<span class="function-name">a</span> <span class="variable-name">href</span>=<span class="string">"../scratch/ThisSite.html"</span>&gt;This Site&lt;/<span class="function-name">a</span>&gt;&lt;/<span class="function-name">li</span>&gt;
-          &lt;<span class="function-name">li</span>&gt;&lt;<span class="function-name">a</span> <span class="variable-name">href</span>=<span class="string">"../live/AboutMe.html"</span>&gt;About Me&lt;/<span class="function-name">a</span>&gt;&lt;/<span class="function-name">li</span>&gt;
-          &lt;<span class="function-name">li</span>&gt;&lt;<span class="function-name">a</span> <span class="variable-name">href</span>=<span class="string">"../scratch/EmacsWiki.html"</span>&gt;Emacs Wiki&lt;/<span class="function-name">a</span>&gt;&lt;/<span class="function-name">li</span>&gt;
-        &lt;/<span class="function-name">ul</span>&gt;
-        &lt;<span class="function-name">p</span> <span class="variable-name">class</span>=<span class="string">"header"</span>&gt;Categories&lt;/<span class="function-name">p</span>&gt;
-        &lt;<span class="function-name">ul</span>&gt;
-          &lt;<span class="function-name">li</span>&gt;&lt;<span class="function-name">a</span> <span class="variable-name">href</span>=<span class="string">"../blog/index.html"</span>&gt;Blog&lt;/<span class="function-name">a</span>&gt;&lt;/<span class="function-name">li</span>&gt;
-          &lt;<span class="function-name">li</span>&gt;&lt;<span class="function-name">a</span> <span class="variable-name">href</span>=<span class="string">"../live/index.html"</span>&gt;Life&lt;/<span class="function-name">a</span>&gt;&lt;/<span class="function-name">li</span>&gt;
-          &lt;<span class="function-name">li</span>&gt;&lt;<span class="function-name">a</span> <span class="variable-name">href</span>=<span class="string">"../cs/index.html"</span>&gt;Lab&lt;/<span class="function-name">a</span>&gt;&lt;/<span class="function-name">li</span>&gt;
-          &lt;<span class="function-name">li</span>&gt;&lt;<span class="function-name">a</span> <span class="variable-name">href</span>=<span class="string">"../slack/index.html"</span>&gt;Slackware&lt;/<span class="function-name">a</span>&gt;&lt;/<span class="function-name">li</span>&gt;
-          &lt;<span class="function-name">li</span>&gt;&lt;<span class="function-name">a</span> <span class="variable-name">href</span>=<span class="string">"../muse/index.html"</span>&gt;Muse&lt;/<span class="function-name">a</span>&gt;&lt;/<span class="function-name">li</span>&gt;
-          &lt;<span class="function-name">li</span>&gt;&lt;<span class="function-name">a</span> <span class="variable-name">href</span>=<span class="string">"../scratch/index.html"</span>&gt;Scratch&lt;/<span class="function-name">a</span>&gt;&lt;/<span class="function-name">li</span>&gt;
-        &lt;/<span class="function-name">ul</span>&gt;
-        &lt;<span class="function-name">p</span> <span class="variable-name">class</span>=<span class="string">"header"</span>&gt;Search&lt;/<span class="function-name">p</span>&gt;<span class="comment-delimiter">&lt;!-- </span><span class="comment">Google Search </span><span class="comment-delimiter">--&gt;</span>
-        &lt;<span class="function-name">form</span> <span class="variable-name">id</span>=<span class="string">"searchform"</span> <span class="variable-name">method</span>=<span class="string">"get"</span>
-              <span class="variable-name">action</span>=<span class="string">"http://www.google.com/search"</span> &gt;
-          &lt;<span class="function-name">p</span>&gt;&lt;<span class="function-name">input</span> <span class="variable-name">id</span>=<span class="string">"searchtext"</span> <span class="variable-name">type</span>=<span class="string">"text"</span> <span class="variable-name">name</span>=<span class="string">"q"</span> <span class="variable-name">value</span>=<span class="string">""</span> /&gt;&lt;/<span class="function-name">p</span>&gt;
+    &lt;<span class="function-name">p</span> <span class="variable-name">class</span>=<span class="string">"header"</span>&gt;Here&lt;/<span class="function-name">p</span>&gt;
+    &lt;<span class="function-name">ul</span>&gt;
+      &lt;<span class="function-name">li</span>&gt;&lt;<span class="function-name">a</span> <span class="variable-name">href</span>=<span class="string">"../index.html"</span>&gt;Home&lt;/<span class="function-name">a</span>&gt;&lt;/<span class="function-name">li</span>&gt;
+      &lt;<span class="function-name">li</span>&gt;&lt;<span class="function-name">a</span> <span class="variable-name">href</span>=<span class="string">"index.html"</span>&gt;Front&lt;/<span class="function-name">a</span>&gt;&lt;/<span class="function-name">li</span>&gt;
+      &lt;<span class="function-name">li</span>&gt;&lt;<span class="function-name">a</span> <span class="variable-name">href</span>=<span class="string">"../scratch/ThisSite.html"</span>&gt;This Site&lt;/<span class="function-name">a</span>&gt;&lt;/<span class="function-name">li</span>&gt;
+      &lt;<span class="function-name">li</span>&gt;&lt;<span class="function-name">a</span> <span class="variable-name">href</span>=<span class="string">"../live/AboutMe.html"</span>&gt;About Me&lt;/<span class="function-name">a</span>&gt;&lt;/<span class="function-name">li</span>&gt;
+      &lt;<span class="function-name">li</span>&gt;&lt;<span class="function-name">a</span> <span class="variable-name">href</span>=<span class="string">"../scratch/EmacsWiki.html"</span>&gt;Emacs Wiki&lt;/<span class="function-name">a</span>&gt;&lt;/<span class="function-name">li</span>&gt;
+    &lt;/<span class="function-name">ul</span>&gt;
+    &lt;<span class="function-name">p</span> <span class="variable-name">class</span>=<span class="string">"header"</span>&gt;Categories&lt;/<span class="function-name">p</span>&gt;
+    &lt;<span class="function-name">ul</span>&gt;
+      &lt;<span class="function-name">li</span>&gt;&lt;<span class="function-name">a</span> <span class="variable-name">href</span>=<span class="string">"../blog/index.html"</span>&gt;Blog&lt;/<span class="function-name">a</span>&gt;&lt;/<span class="function-name">li</span>&gt;
+      &lt;<span class="function-name">li</span>&gt;&lt;<span class="function-name">a</span> <span class="variable-name">href</span>=<span class="string">"../live/index.html"</span>&gt;Life&lt;/<span class="function-name">a</span>&gt;&lt;/<span class="function-name">li</span>&gt;
+      &lt;<span class="function-name">li</span>&gt;&lt;<span class="function-name">a</span> <span class="variable-name">href</span>=<span class="string">"../cs/index.html"</span>&gt;Lab&lt;/<span class="function-name">a</span>&gt;&lt;/<span class="function-name">li</span>&gt;
+      &lt;<span class="function-name">li</span>&gt;&lt;<span class="function-name">a</span> <span class="variable-name">href</span>=<span class="string">"../slack/index.html"</span>&gt;Slackware&lt;/<span class="function-name">a</span>&gt;&lt;/<span class="function-name">li</span>&gt;
+      &lt;<span class="function-name">li</span>&gt;&lt;<span class="function-name">a</span> <span class="variable-name">href</span>=<span class="string">"../muse/index.html"</span>&gt;Muse&lt;/<span class="function-name">a</span>&gt;&lt;/<span class="function-name">li</span>&gt;
+      &lt;<span class="function-name">li</span>&gt;&lt;<span class="function-name">a</span> <span class="variable-name">href</span>=<span class="string">"../scratch/index.html"</span>&gt;Scratch&lt;/<span class="function-name">a</span>&gt;&lt;/<span class="function-name">li</span>&gt;
+    &lt;/<span class="function-name">ul</span>&gt;
+    &lt;<span class="function-name">p</span> <span class="variable-name">class</span>=<span class="string">"header"</span>&gt;Search&lt;/<span class="function-name">p</span>&gt;<span class="comment-delimiter">&lt;!-- </span><span class="comment">Google Search </span><span class="comment-delimiter">--&gt;</span>
+    &lt;<span class="function-name">form</span> <span class="variable-name">id</span>=<span class="string">"searchform"</span> <span class="variable-name">method</span>=<span class="string">"get"</span>
+          <span class="variable-name">action</span>=<span class="string">"http://www.google.com/search"</span> &gt;
+      &lt;<span class="function-name">p</span>&gt;&lt;<span class="function-name">input</span> <span class="variable-name">id</span>=<span class="string">"searchtext"</span> <span class="variable-name">type</span>=<span class="string">"text"</span> <span class="variable-name">name</span>=<span class="string">"q"</span> <span class="variable-name">value</span>=<span class="string">""</span> /&gt;&lt;/<span class="function-name">p</span>&gt;
           &lt;<span class="function-name">p</span>&gt;&lt;<span class="function-name">input</span> <span class="variable-name">type</span>=<span class="string">"hidden"</span> <span class="variable-name">name</span>=<span class="string">"ie"</span> <span class="variable-name">value</span>=<span class="string">"utf-8"</span> /&gt;&lt;/<span class="function-name">p</span>&gt;
-          &lt;<span class="function-name">p</span>&gt;&lt;<span class="function-name">input</span> <span class="variable-name">type</span>=<span class="string">"hidden"</span> <span class="variable-name">name</span>=<span class="string">"oe"</span> <span class="variable-name">value</span>=<span class="string">"utf-8"</span> /&gt;&lt;/<span class="function-name">p</span>&gt;
-          &lt;<span class="function-name">p</span>&gt;&lt;<span class="function-name">input</span> <span class="variable-name">type</span>=<span class="string">"hidden"</span> <span class="variable-name">name</span>=<span class="string">"hl"</span> <span class="variable-name">value</span>=<span class="string">"zh-CN"</span> /&gt;&lt;/<span class="function-name">p</span>&gt;
-          &lt;<span class="function-name">p</span>&gt;&lt;<span class="function-name">input</span> <span class="variable-name">type</span>=<span class="string">"hidden"</span> <span class="variable-name">name</span>=<span class="string">"domains"</span> <span class="variable-name">value</span>=<span class="string">"suchang.net"</span> /&gt;&lt;/<span class="function-name">p</span>&gt;
+      &lt;<span class="function-name">p</span>&gt;&lt;<span class="function-name">input</span> <span class="variable-name">type</span>=<span class="string">"hidden"</span> <span class="variable-name">name</span>=<span class="string">"oe"</span> <span class="variable-name">value</span>=<span class="string">"utf-8"</span> /&gt;&lt;/<span class="function-name">p</span>&gt;
+      &lt;<span class="function-name">p</span>&gt;&lt;<span class="function-name">input</span> <span class="variable-name">type</span>=<span class="string">"hidden"</span> <span class="variable-name">name</span>=<span class="string">"hl"</span> <span class="variable-name">value</span>=<span class="string">"zh-CN"</span> /&gt;&lt;/<span class="function-name">p</span>&gt;
+      &lt;<span class="function-name">p</span>&gt;&lt;<span class="function-name">input</span> <span class="variable-name">type</span>=<span class="string">"hidden"</span> <span class="variable-name">name</span>=<span class="string">"domains"</span> <span class="variable-name">value</span>=<span class="string">"suchang.net"</span> /&gt;&lt;/<span class="function-name">p</span>&gt;
           &lt;<span class="function-name">p</span>&gt;&lt;<span class="function-name">input</span> <span class="variable-name">name</span>=<span class="string">"si"</span> <span class="variable-name">type</span>=<span class="string">"hidden"</span> <span class="variable-name">value</span>=<span class="string">"suchang.net"</span> /&gt;&lt;/<span class="function-name">p</span>&gt;
           &lt;<span class="function-name">p</span>&gt;&lt;<span class="function-name">input</span> <span class="variable-name">type</span>=<span class="string">"hidden"</span> <span class="variable-name">name</span>=<span class="string">"sitesearch"</span> <span class="variable-name">value</span>=<span class="string">"suchang.net"</span> /&gt;&lt;/<span class="function-name">p</span>&gt;
-        &lt;/<span class="function-name">form</span>&gt;
-        &lt;<span class="function-name">p</span> <span class="variable-name">class</span>=<span class="string">"header"</span>&gt;Contact&lt;/<span class="function-name">p</span>&gt;
-        &lt;<span class="function-name">ul</span>&gt;
-          &lt;<span class="function-name">li</span>&gt;&lt;<span class="function-name">a</span> <span class="variable-name">href</span>=<span class="string">"mailto:suchaaa@gmail.com"</span>&gt;Email Me&lt;/<span class="function-name">a</span>&gt;&lt;/<span class="function-name">li</span>&gt;
-        &lt;/<span class="function-name">ul</span>&gt;
+    &lt;/<span class="function-name">form</span>&gt;
+    &lt;<span class="function-name">p</span> <span class="variable-name">class</span>=<span class="string">"header"</span>&gt;Contact&lt;/<span class="function-name">p</span>&gt;
+    &lt;<span class="function-name">ul</span>&gt;
+      &lt;<span class="function-name">li</span>&gt;&lt;<span class="function-name">a</span> <span class="variable-name">href</span>=<span class="string">"mailto:suchaaa@gmail.com"</span>&gt;Email Me&lt;/<span class="function-name">a</span>&gt;&lt;/<span class="function-name">li</span>&gt;
+    &lt;/<span class="function-name">ul</span>&gt;
       &lt;/<span class="function-name">div</span>&gt;<span class="comment-delimiter">&lt;!-- </span><span class="comment">sidebar </span><span class="comment-delimiter">--&gt;</span>
     &lt;/<span class="function-name">div</span>&gt;<span class="comment-delimiter">&lt;!-- </span><span class="comment">body </span><span class="comment-delimiter">--&gt;</span>
   &lt;/<span class="function-name">body</span>&gt;
