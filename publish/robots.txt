@@ -6,9 +6,7 @@
 # exclude some access-controlled areas
 
 User-agent: *
-Disallow: /cgi
 Disallow: /code
 Disallow: /doc
 Disallow: /images
-Disallow: /lab
 Disallow: /styles
