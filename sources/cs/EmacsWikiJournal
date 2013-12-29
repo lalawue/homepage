@@ -169,9 +169,12 @@ Planner 的 sacha。实在是非常好用，可以省去每次保存后还要发
 
 **** 我的个人设置文件
 
-下面是我的个人 Emacs''''Wiki 和 Emacs''''WikiJournal 设置，我用它们来维护我的个人网站和 blog。由于使用上的需要，相比原来的样本页眉页脚，已经修改了很多地方，也许没有什么借鉴意义。而且我用的是 CVS 的 Emacs22.0.50.1，内部环境和系统环境都是用 utf-8 的编码，所以不会遇到汉字编码转换的问题。
+下面是我的个人 Emacs''''Wiki 和 Emacs''''WikiJournal 设置，我用它们来维护我的个
+人网站和 blog。由于使用上的需要，相比原来的样本页眉页脚，已经修改了很多
+地方，也许没有什么借鉴意义。
 
-不管怎么说，在这里权且充当能够成功使用的一个例子吧，header 和 footer 是相应主页以及 blog 的文件头和文件尾。注意，下面的文件都是 utf-8 编码。
+不管怎么说，在这里权且充当能够成功使用的一个例子吧，header 和 footer 是
+相应主页以及 blog 的文件头和文件尾。注意，下面的文件都是 utf-8 编码。
 
 [[code#emacs-wiki-conf.el.htm][emacs-wiki-conf.el]]<br />
 [[code#.site-header.htm][.site-header]]<br />
