@@ -9,308 +9,78 @@
     <title>Sucha's Blog</title>
     <link>http://suchang.net/blog/index.html</link>
     <description>linux, emacs, programming, live and essay</description>
-    <pubDate>2013-12-24T20:24:28+0800</pubDate>
+    <pubDate>Wed, 01 Jan 2014 02:41:56 +0800</pubDate>
     <generator>emacs-wiki-journal</generator>
     <language>zh-CN</language>
     <dc:creator>suchaaa@gmail.com (sucha)</dc:creator>
 
     <item>
-      <title>准备搬到珠海</title>
-      <guid>http://suchang.net/blog/2013-12.html#p2</guid>
-      <pubDate>2013-12-24T18:35:55+0800</pubDate>
+      <title>快速关闭远程 server 的 expect 脚本</title>
+      <guid>http://suchang.net/blog/2014-01.html#p0</guid>
+      <pubDate>2014-01-01T02:34:43+0800</pubDate>
       <dc:creator>sucha</dc:creator>
-      <category>CategoryLife</category>
+      <category>CategoryProgramming</category>
       <description><![CDATA[<p>
-过几天就要搬到珠海了，因为跟高中同学合伙做游戏的关系，需要经常性的沟通，
-他已经结婚在珠海，父母也在那边。且年后估计还有一位高中同学也过来编码，选
-择珠海，也是在这个背景之下。
+我停掉了之前的阿里云服务器，而在自己液晶屏亮不起来的破笔记本上安装了
+fubuntu server，将 git server、nginx + wiki 都安装在了上面，反正 server
+只是提供网络服务，不需要显示器。不过暂时每天的开关机还是需要的。
 
 </p>
 
 <p>
-我 8 月份的时候才开始做游戏，之前是忙一个监控项目的 iOS 界面，收了一笔小
-钱，是跟我的一位大学同学合作。他当时犹豫着跳槽，进入一个澳洲华人开的外资
-公司，一起开公司合作这个 APP。项目已经开始了，但当时他还没跳出来，每天还
-得上班，时间有限，于是就拉我进来，一起合作，价钱跟澳洲那边谈。
+目前开机还是得按本本的电源键，不过关机倒是可以通过网络来进行，当然也就可
+以使用下面的 expect 脚本了。
 
 </p>
 
 <p>
-后来我发现自己负责了很多东西，相比我之前的报价，负责的东西挺多的了。这是
-我第一次接单，报价也是按照自己之前的薪水估的，不过怎么说，这个 APP 也算
-是一个有点样子的软件了吧。
+我是 ssh 上去关闭的，可以根据需要改成 telnet，一些适配的变量是 root 用户
+ssh 上去的 prompt，shell 下 power off 的命令，一些发行版可能是 halt，不
+过也得看电源模块的配置的吧，最后是 server power off 后广播出来的字符串。
 
 </p>
 
 <p>
-在负责这个 APP 的过程中，其实我已经在考虑做一个什么样的游戏，而做游戏的
-想法，来自于远在上海的村长童鞋，去年被别人从完美拉出来做游戏，主动丢掉
-20K/Y 的薪水，然后游戏以很不错的价格出手。我看过那个游戏，自觉我也可以做
-出来，就想干嘛不试试呢，反正我也没其他东西可做。
+按照惯例贴代码：
 
 </p>
 
-<p>
-我没接单之前，做过其他的 APP，都很差，算是很失败，推一个 APP 不容易，找
-到一条市场道路也难，这些都在我目前的经验之外；而捡起我以前熟悉的设备端，
-设备调试生产备料投产出货整个周期之长、投入之大，对团队的要求不是一般地高，
-我也很自觉地放弃了。
+<pre class="source"><span class="comment-delimiter">#</span><span class="comment">!/usr/bin/expect
+</span><span class="comment-delimiter">#</span><span class="comment">
+</span><span class="comment-delimiter"># </span><span class="comment">create in 2013/12/31, by sucha in http://suchang.net
+</span><span class="comment-delimiter">#</span><span class="comment">
+</span><span class="comment-delimiter"># </span><span class="comment">Usage: halt_server host_ip
+</span>
+<span class="comment-delimiter"># </span><span class="comment">prompt for root@host_ip
+</span><span class="builtin">set</span> serv_root_prompt <span class="string">"password"</span>
+<span class="builtin">set</span> serv_halt_cmd <span class="string">"shutdown -h now"</span>
+<span class="builtin">set</span> serv_halt_expect <span class="string">"halt"</span>
+
+<span class="builtin">set</span> timeout 10
+<span class="keyword">if</span> { $<span class="variable-name">argc</span> != 1 } {
+    send_user <span class="string">"$argv0 \$HOST_IP\n"</span>
+    <span class="keyword">exit</span>
+}
+
+<span class="comment-delimiter"># </span><span class="comment">get server ip
+</span><span class="builtin">set</span> host [lrange $<span class="variable-name">argv</span> 0 0]
+
+<span class="comment-delimiter"># </span><span class="comment">get root's passwd
+</span>stty -echo
+send_user -- <span class="string">"Password for root@$host: "</span>
+expect_user -re <span class="string">"(.*)\n"</span>
+send_user <span class="string">"\n"</span>
+<span class="builtin">set</span> pass $<span class="variable-name">expect_out</span>(1,string)
+
+<span class="comment-delimiter"># </span><span class="comment">login server and run halt
+</span>spawn ssh -2 root@$<span class="variable-name">host</span>
+expect $<span class="variable-name">serv_root_prompt</span>
+send $<span class="variable-name">pass</span>\r
+send $<span class="variable-name">serv_halt_cmd</span>\r
+expect $<span class="variable-name">serv_halt_expect</span>
+<span class="keyword">exit</span>
+</pre>
 
-</p>
-
-<p>
-我有写程序的能力，而策划童鞋有构思游戏的能力，双方合作貌似是个不错的点，
-至少有个像样的游戏出来了吧。
-
-</p>
-
-<p>
-我最开始想做的，是类 COC 的游戏，那时候我大概玩了有 3、4 个月，特别喜欢，
-等到 8 月初我跟我的小伙伴们商量，提出我的看法时，两位在游戏公司的童鞋就
-直接把这个否掉了，说这个的山寨太多了，也不容易做好。
-
-</p>
-
-<p>
-现在回头一看，确实山寨太多了，绝大部分做得很糟糕，而以我们目前的研发实力，
-根本做不出这样的精品。
-
-</p>
-
-<p>
-当时不到一个早上就把我想了一个多月的想法给砍掉了，还好砍掉了。然后一个早
-上就确定了要做的游戏类型，我这个游戏白痴居然还想了一两个月，其实嘛，找一
-两个一直关注游戏的人，就有谱了。
-
-</p>
-
-<p>
-然后是从无到有写最核心的玩法，实际上这个玩法一直在改，现在也没完全定下来。
-
-</p>
-
-<p>
-10 月份之前的进度很慢，界面都没有，算是搭了一部分的核心数据结构，服务端
-与客户端可以做数据协议交互。
-
-</p>
-
-<p>
-10 月份之后，慢慢地有了几个界面，核心部分也慢慢出来了。然后服务端、客户
-端，以及简单的数据库，组件也慢慢地清晰起来。也面对了很多之前单独做设备不
-需要面对的 C/S 问题，甚至以后可能面对的集群的问题。
-
-</p>
-
-<p>
-话说这几个月也遇到了团队的一些问题，我们团队其实也有不少矛盾，所以也一直
-不稳定，当初说要加入的某童鞋，直到现在其实也没有真正加入进来，而一些童鞋，
-在加入之前有一些要求，我们暂时不具备，初期也不打算往那个方向走，另外一些
-则慢慢退出了。
-
-</p>
-
-<p>
-我的想法也在变化，我最开始以为只要我一个人全职，他们兼职都是可以的，现在
-看来那是不行的，对于游戏开发来说，需要沟通的东西太多太多，有太多太多的细
-节，远程不合适，程序、美术的合作如果可能，尽量面对面。这样，对团队的发展
-也是很有利的。
-
-</p>
-
-<p>
-所以到了现在，最稳定的是我跟策划，一个程序员，一个兼职的策划，没有美工，
-我们也许等 demo 差不多了之后，游戏的大体框架差不多了之后，外包美术吧。
-
-</p>
-
-<p>
-另外，如果年后那位童鞋过来，也会缓解一部分程序的压力，我们可以规划稍微大
-一点的东西。如果有两位程序，对于这个游戏来说，程序的问题应该差不多了。
-
-</p>
-
-<p>
-我本来是没指望这位童鞋过来的，最开始只是期望他可以兼职，但他实在是太忙了，
-根本都没参与进来。而后面，我也慢慢意识到，兼职是不行的。
-
-</p>
-
-<p>
-如果只有我一个程序员的话，是打算年后再搬到珠海去的，毕竟最后也还是要经常
-沟通，只是前期可以先搭好底层、出个 demo 再说。
-
-</p>
-
-<p>
-后来这位童鞋貌似自己想清楚了（话说我也一直持续不断地每周跟他东聊西聊），
-也跟家里人谈过了。想到他节后过来的话，那我 1 月份最好就把珠海那边的地点
-定好，环境搭好，等他过来就不用搞这么多的麻烦事了。
-
-</p>
-
-<p>
-我收到他打算辞职过来的消息，是 12 月中旬刚过，于是马上跟策划童鞋商量了搬
-到珠海去，也跟深圳这边的舍友说了一下，没想到他们同事刚好在找房子，元旦之
-前要搬进来。然后我就收拾东西，跟以前的同事吃了一顿。而大学童鞋是好几周之
-前聚了一下，当时我还跟他们说是年后去珠海呢。
-
-</p>
-
-<p>
-回顾了这几个月跟游戏项目相关的东西，想想哪有什么不变的计划，不变的团队，
-都是扯谈。
-
-</p>
-
-<p>
-不过这几个月过来，我想我跟策划，至少多了很多的信任。就跟手头的代码一样，
-从无到有，从毫无用处到勉强运行，从无数 bug 到能够接受，需要时间，需要持
-续不断地打磨。相互的信任，相互沟通交流的方式等等，也需要时间，需要耐心，
-来磨合。
-
-</p>
-
-<p>
-同样的，感觉目前对项目的把握能力，也增加了不少，这些都在变化。
-
-</p>
-
-<p>
-话说这几个月中间经历了的不少事情，包括当时团队的一些问题，真是让人情绪低
-落。还有要说家里人很支持自己那才见鬼了呢，那当然也是好心相劝，他们也会来
-软的来硬的，反正常打电话回家就对了。
-
-</p>
-
-<p>
-其实他们所有的这些担心、质疑啊都是对的，毕竟这个项目本身面对的就是不确定，
-可能的另外一面是不可能，结果如何，目前也无法知道。
-
-</p>
-
-<p>
-担心啊质疑啊，一方面是价值观的问题，就是他们不认可游戏，或者认为做游戏不
-好。不认可的原因可能是信息缺失，就比如今年下半年我才知道比特币一样；认为
-不好的有可能是道德判断，觉得游戏不那么正经。虽然天朝已经开始发文规范手游，
-且电竞早就是国家认可的体育项目了。
-
-</p>
-
-<p>
-另外一部分是担心质疑能力，是否可以做出来，是否可以卖出去。我自知能力有限，
-无数的例子，比如之前说到的想做 COC，如果真的是选那条路，我估计已经死了，
-是累死的。还好，我们是个团队，有个很不错的策划，如果还有个美术就更好了。
-随着合作时间的推移，我们也会成长，我们也在学习，但是结果如何，现在是没有
-答案的，答案在将来。
-
-</p>
-
-<p>
-其实我也有担心，有质疑，只不过我获得的信息让我认可了目前的项目，且我也自
-认能力足够，团队还是可以的。我也有很多的选择，只不过如果改做其他的东西，
-这个可能的项目就将成为一个很大的机会成本，我可不想后悔，所以就是这么简单
-的选择。
-
-</p>
-
-]]></description>
-    </item>
-
-    <item>
-      <title>笔记本使用外接 VGA 作为主屏</title>
-      <guid>http://suchang.net/blog/2013-12.html#p1</guid>
-      <pubDate>2013-12-24T18:14:40+0800</pubDate>
-      <dc:creator>sucha</dc:creator>
-      <category>CategoryLinux</category>
-      <description><![CDATA[<p>
-我的笔记本很早就退居二线，不再作为主要的生产力工具，一方面速度慢，一方面
-是液晶显示屏背光出了问题。
-
-</p>
-
-<p>
-最开始的时候是背光偶尔不亮，然后手动翻盖折叠一下，就又亮了，然后慢慢变成
-了即便翻盖都不亮了，不过无论如何，启动后大概一分钟内，背光都是亮的。
-
-</p>
-
-<p>
-找过 HP 金牌服务中心，收了 50 块评估费用后，说是显卡坏了，要 600 块才能
-修，600 块都可以买台二手笔记本了，那就只好算了。话说这台是 07 年 11 月份
-买的，无独立显卡，检测说集成显卡坏了我不认同。
-
-</p>
-
-<p>
-虽然 CPU 仍当壮年，可花大价钱修理不值得，扔掉也可惜。
-
-</p>
-
-<p>
-且我准备停掉阿里云的服务器，就想把这台笔记本当做服务器好了，服务器嘛，平
-时也不需要显示屏，只要接好网线，可以 SSH 上去就好了。硬盘上已经有了一个
-07 年末到现在从未重装过的 XP，就想再搞个 Linux 系统上去。
-
-</p>
-
-<p>
-然后才发觉没有液晶屏是个大问题，我用 U 盘启动装 Linux 系统，当液晶背光突
-然黑了，就没法继续安装了，那些选项都看不到，还搞毛。
-
-</p>
-
-<p>
-于是想通过外接 VGA 来弄，可发现 HP 这边吧，Fn + F4 激活外接 VGA 显示，是
-要进入 windows 后才可以的。
-
-</p>
-
-<p>
-这可苦了我，还好我有台式机，google 到一篇帖子，说断掉电源，拔掉笔记本电
-池，断开主板液晶显示屏的连接，然后按住电源 60 秒重启 BIOS，之后插入外接
-VGA 线，让主板 BIOS 认为外接 VGA 是主屏幕。
-
-</p>
-
-<p>
-这样终于可以了，不过想了一下我的操作，觉得也许按住电源键 60 秒重启主板
-BIOS 是没有必要的，只要断掉电源、拔掉电池，然后断开主板液晶屏的连接，接
-入外接的 VGA 显示器，重启系统就好了。
-
-</p>
-
-<p>
-目前是可以在启动最开始的时候从外接 VGA 中看到 BIOS 的启动画面，可以设置
-BIOS 等，当然安装系统这些就不在话下了。
-
-</p>
-
-]]></description>
-    </item>
-
-    <item>
-      <title>站点备份改成了 github</title>
-      <guid>http://suchang.net/blog/2013-12.html#p0</guid>
-      <pubDate>2013-12-13T10:45:15+0800</pubDate>
-      <dc:creator>sucha</dc:creator>
-      <category>CategoryThisSite</category>
-      <description><![CDATA[<p>
-之前是保存在 YUNIO 上面，感觉自己算是蛮早的一批 YUNIO 用户，分到的免费空
-间还是很大的，只是连接很不方便。
-
-</p>
-
-<p>
-虽然各个平台上都有客户端，但是其连接配置从我使用到现在换了好几种，也不算
-稳定，经常要重连确认本地、远程版本什么的，那还不如直接改成 github 算了。
-
-</p>
-
-<p>
-反正站点也是完全公开的，
-
-</p>
 
 ]]></description>
     </item>

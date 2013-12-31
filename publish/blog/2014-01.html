@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
   <head>
-    <title>Sucha's Blog - Category Programming</title>
+    <title>Sucha's Blog - Archive for January, 2014</title>
     <meta name="generator" content="emacs-wiki-journal.el" />
     <meta http-equiv="Content-Type" content=" text/html; charset=utf-8" />
     <meta name="author" content="Sucha" />
@@ -18,283 +18,81 @@
   <body>
     <div id="body">
       <div id="text">
-	<h1>Sucha's Blog ~ Category Programming</h1>
+	<h1>Sucha's Blog ~ Archive for January, 2014</h1>
 	<!-- Page published by Emacs Wiki begins here -->
-<h3>2014.01</h3>
+<h2><a id="p0">14年1月1日 周三 02:34</a></h2>
 
-<ul>
-<li>1月1日 周三 02:34 <a href="2014-01.html#p0">快速关闭远程&#32;server&#32;的&#32;expect&#32;脚本</a>
-<!-- date: 2014-01-01T02:34:52+0800 -->
-</li>
-</ul>
+<h3>快速关闭远程 server 的 expect 脚本</h3>
 
-<h3>2013.11</h3>
+<p>
+我停掉了之前的阿里云服务器，而在自己液晶屏亮不起来的破笔记本上安装了
+fubuntu server，将 git server、nginx + wiki 都安装在了上面，反正 server
+只是提供网络服务，不需要显示器。不过暂时每天的开关机还是需要的。
 
-<ul>
-<li>11月2日 周六 23:19 <a href="2013-11.html#p0">Bash&#32;下统计文件行数</a>
-<!-- date: 2013-11-02T23:19:07+0800 -->
-</li>
-</ul>
+</p>
 
-<h3>2013.10</h3>
+<p>
+目前开机还是得按本本的电源键，不过关机倒是可以通过网络来进行，当然也就可
+以使用下面的 expect 脚本了。
 
-<ul>
-<li>10月10日 周四 18:08 <a href="2013-10.html#p0">搭建&#32;git&#32;认证服务端、wiki知识系统</a>
-<!-- date: 2013-10-10T18:08:17+0800 -->
-</li>
-</ul>
+</p>
 
-<h3>2013.08</h3>
+<p>
+我是 ssh 上去关闭的，可以根据需要改成 telnet，一些适配的变量是 root 用户
+ssh 上去的 prompt，shell 下 power off 的命令，一些发行版可能是 halt，不
+过也得看电源模块的配置的吧，最后是 server power off 后广播出来的字符串。
 
-<ul>
-<li>8月27日 周二 23:47 <a href="2013-08.html#p2">TexturePacker&#32;图片打包工具</a>
-<!-- date: 2013-08-27T23:47:42+0800 -->
-</li>
-<li>8月12日 周一 14:26 <a href="2013-08.html#p1">在C/C&#43;&#43;/Objc中快速定位当前文件内的函数</a>
-<!-- date: 2013-08-12T14:26:25+0800 -->
-</li>
-<li>8月11日 周日 21:44 <a href="2013-08.html#p0">在头文件与源代码之间快速跳转</a>
-<!-- date: 2013-08-11T21:44:15+0800 -->
-</li>
-</ul>
+</p>
 
-<h3>2013.06</h3>
+<p>
+按照惯例贴代码：
 
-<ul>
-<li>6月13日 周四 14:54 <a href="2013-06.html#p0">&#91;iOS&#93;&#32;为&#32;App&#32;提供打开邮件附件的支持</a>
-<!-- date: 2013-06-13T14:54:11+0800 -->
-</li>
-</ul>
+</p>
 
-<h3>2013.03</h3>
+<pre class="source"><span class="comment-delimiter">#</span><span class="comment">!/usr/bin/expect
+</span><span class="comment-delimiter">#</span><span class="comment">
+</span><span class="comment-delimiter"># </span><span class="comment">create in 2013/12/31, by sucha in http://suchang.net
+</span><span class="comment-delimiter">#</span><span class="comment">
+</span><span class="comment-delimiter"># </span><span class="comment">Usage: halt_server host_ip
+</span>
+<span class="comment-delimiter"># </span><span class="comment">prompt for root@host_ip
+</span><span class="builtin">set</span> serv_root_prompt <span class="string">"password"</span>
+<span class="builtin">set</span> serv_halt_cmd <span class="string">"shutdown -h now"</span>
+<span class="builtin">set</span> serv_halt_expect <span class="string">"halt"</span>
 
-<ul>
-<li>3月26日 周二 21:19 <a href="2013-03.html#p0">吐槽一下&#32;iOS&#32;的&#32;NSMutableURLRequest&#32;和&#32;cookie&#32;方案</a>
-<!-- date: 2013-03-26T21:19:39+0800 -->
-</li>
-</ul>
+<span class="builtin">set</span> timeout 10
+<span class="keyword">if</span> { $<span class="variable-name">argc</span> != 1 } {
+    send_user <span class="string">"$argv0 \$HOST_IP\n"</span>
+    <span class="keyword">exit</span>
+}
 
-<h3>2012.10</h3>
+<span class="comment-delimiter"># </span><span class="comment">get server ip
+</span><span class="builtin">set</span> host [lrange $<span class="variable-name">argv</span> 0 0]
 
-<ul>
-<li>10月3日 周三 11:59 <a href="2012-10.html#p0">Emacs&#32;的正则表达式替换</a>
-<!-- date: 2012-10-03T11:59:05+0800 -->
-</li>
-</ul>
+<span class="comment-delimiter"># </span><span class="comment">get root's passwd
+</span>stty -echo
+send_user -- <span class="string">"Password for root@$host: "</span>
+expect_user -re <span class="string">"(.*)\n"</span>
+send_user <span class="string">"\n"</span>
+<span class="builtin">set</span> pass $<span class="variable-name">expect_out</span>(1,string)
 
-<h3>2012.06</h3>
+<span class="comment-delimiter"># </span><span class="comment">login server and run halt
+</span>spawn ssh -2 root@$<span class="variable-name">host</span>
+expect $<span class="variable-name">serv_root_prompt</span>
+send $<span class="variable-name">pass</span>\r
+send $<span class="variable-name">serv_halt_cmd</span>\r
+expect $<span class="variable-name">serv_halt_expect</span>
+<span class="keyword">exit</span>
+</pre>
 
-<ul>
-<li>6月13日 周三 11:02 <a href="2012-06.html#p0">视频同编同解驱动</a>
-<!-- date: 2012-06-13T11:02:59+0800 -->
-</li>
-</ul>
 
-<h3>2012.03</h3>
+<h4><a href="CategoryProgramming.html">CategoryProgramming</a> / <a href="2014-01.html#p0">Permalink</a> </h4>
 
-<ul>
-<li>3月9日 周五 23:37 <a href="2012-03.html#p1">当GCC找不到内建的头文件</a>
-<!-- date: 2012-03-09T23:37:52+0800 -->
-</li>
-</ul>
+<p>
+<!-- date: 2014-01-01T02:34:43+0800 -->
 
-<h3>2010.11</h3>
+</p>
 
-<ul>
-<li>11月6日 周六 11:41 <a href="2010-11.html#p2">Emacs-Wiki-Journal&#32;配置更新</a>
-<!-- date: 2010-11-06T11:41:09+0800 -->
-</li>
-</ul>
-
-<h3>2009.01</h3>
-
-<ul>
-<li>1月1日 周四 00:01 <a href="2009-01.html#p0">俄罗斯方块游戏</a>
-<!-- date: 2009-01-01T00:01:26+0800 -->
-</li>
-</ul>
-
-<h3>2008.12</h3>
-
-<ul>
-<li>12月14日 周日 18:29 <a href="2008-12.html#p0">Google&#32;Sitemap&#32;Generator</a>
-<!-- date: 2008-12-14T18:29:49+0800 -->
-</li>
-</ul>
-
-<h3>2008.11</h3>
-
-<ul>
-<li>11月16日 周日 22:19 <a href="2008-11.html#p1">Emacs&#32;高亮</a>
-<!-- date: 2008-11-16T22:19:03+0800 -->
-</li>
-</ul>
-
-<h3>2008.06</h3>
-
-<ul>
-<li>6月8日 周日 22:40 <a href="2008-06.html#p1">GTAGS&#32;和&#32;company-mode</a>
-<!-- date: 2008-06-08T22:40:48+0800 -->
-</li>
-</ul>
-
-<h3>2008.04</h3>
-
-<ul>
-<li>4月13日 周日 01:43 <a href="2008-04.html#p2">Emacs-Wiki-Journal&#32;更新</a>
-<!-- date: 2008-04-13T01:43:09+0800 -->
-</li>
-<li>4月12日 周日 23:17 <a href="2008-04.html#p1">Emacs-Wiki-Journal&#32;with&#32;Emacs23</a>
-<!-- date: 2008-04-12T01:18:36+0800 -->
-</li>
-</ul>
-
-<h3>2008.03</h3>
-
-<ul>
-<li>3月23日 周日 23:17 <a href="2008-03.html#p0">CSCOPE&#32;和&#32;GTAGS</a>
-<!-- date: 2008-03-23T23:17:06+0800 -->
-</li>
-</ul>
-
-<h3>2007.03</h3>
-
-<ul>
-<li>3月22日 周四 23:04 <a href="2007-03.html#p4">Smart&#32;compile&#32;command</a>
-<!-- date: 2007-03-22T23:04:32+0800 -->
-</li>
-</ul>
-
-<h3>2006.08</h3>
-
-<ul>
-<li>8月14日 周一 17:45 <a href="2006-08.html#p6">emacs-wiki-journal&#32;又有更新</a>
-<!-- date: 2006-08-14T17:45:26+0800 -->
-</li>
-<li>8月7日 周一 16:50 <a href="2006-08.html#p4">Emacs-Wiki-Journal&#32;更新</a>
-<!-- date: 2006-08-07T16:50:48+0800 -->
-</li>
-<li>8月7日 周一 16:14 <a href="2006-08.html#p2">Uploadscript&#32;v1.04</a>
-<!-- date: 2006-08-07T16:14:35+0800 -->
-</li>
-</ul>
-
-<h3>2006.07</h3>
-
-<ul>
-<li>7月1日 周六 13:43 <a href="2006-07.html#p0">小型&#32;UNIX&#32;磁盘文件系统</a>
-<!-- date: 2006-07-01T13:43:50+0800 -->
-</li>
-</ul>
-
-<h3>2006.05</h3>
-
-<ul>
-<li>5月5日 周五 02:41 <a href="2006-05.html#p0">修改了&#32;emacs-wiki-journal&#32;里的&#32;rss&#32;feed&#32;格式</a>
-<!-- date: 2006-05-05T02:41:30+0800 -->
-</li>
-</ul>
-
-<h3>2006.04</h3>
-
-<ul>
-<li>4月6日 周四 09:39 <a href="2006-04.html#p1">自定义&#32;Emacs-Wiki-Journal&#32;首页记录数目</a>
-<!-- date: 2006-04-06T09:39:24+0800 -->
-</li>
-</ul>
-
-<h3>2006.03</h3>
-
-<ul>
-<li>3月20日 周一 22:39 <a href="2006-03.html#p7">用&#32;Emacs&#32;与&#32;SQLite&#32;交互</a>
-<!-- date: 2006-03-20T22:39:48+0800 -->
-</li>
-</ul>
-
-<h3>2006.01</h3>
-
-<ul>
-<li>1月19日 周四 15:01 <a href="2006-01.html#p5">New&#32;uploadscript</a>
-<!-- date: 2006-01-19T15:01:21+0800 -->
-</li>
-</ul>
-
-<h3>2005.12</h3>
-
-<ul>
-<li>12月22日 周四 22:37 <a href="2005-12.html#p9">汇编课程设计</a>
-<!-- date: 2005-12-22T22:37:56+0800 -->
-</li>
-</ul>
-
-<h3>2005.11</h3>
-
-<ul>
-<li>11月13日 周日 12:30 <a href="2005-11.html#p7">Simple&#32;mp3&#32;playback</a>
-<!-- date: 2005-11-13T12:30:51+0800 -->
-</li>
-<li>11月12日 周六 00:53 <a href="2005-11.html#p4">修改了&#32;Emacs-Wiki-Journal&#32;里增加条目部分</a>
-<!-- date: 2005-11-12T00:53:18+0800 -->
-</li>
-<li>11月11日 周五 13:18 <a href="2005-11.html#p3">为什么发布文件会出错</a>
-<!-- date: 2005-11-11T13:18:16+0800 -->
-</li>
-</ul>
-
-<h3>2005.09</h3>
-
-<ul>
-<li>9月11日 周日 09:41 <a href="2005-09.html#p4">&#8220;无损&#8221;的文本剪切</a>
-<!-- date: 2005-09-11T09:41:51+0800 -->
-</li>
-</ul>
-
-<h3>2005.08</h3>
-
-<ul>
-<li>8月31日 周三 16:58 <a href="2005-08.html#p10">&#34;修复&#34;&#32;emacs-wiki-journal-category-alist&#32;函数</a>
-<!-- date: 2005-08-31T16:58:15+0800 -->
-</li>
-<li>8月9日 周二 22:32 <a href="2005-08.html#p0">Hack&#32;emacs-wiki-journal.el</a>
-<!-- date: 2005-08-09T22:32:58+0800 -->
-</li>
-</ul>
-
-<h3>2005.5</h3>
-
-<ul>
-<li>2005-05-20, 星期五 <a href="2005-05.html#p12">一个&#32;Emacs&#32;的日记本函数</a>
-<!-- date: 2005-05-20T09:40:30+0800 -->
-</li>
-<li>2005-05-16, 星期一 <a href="2005-05.html#p9">循环&#34;包涵于&#34;递归？</a>
-<!-- date: 2005-05-16T12:56:34+0800 -->
-</li>
-<li>2005-05-12, 星期四 <a href="2005-05.html#p8">递归--程序设计的方法与艺术?</a> 
-<!-- date: 2005-05-12T21:59:33+0800 -->
-</li>
-<li>2005-05-05, 星期四 <a href="2005-05.html#p3">满世界地找&#32;rss&#32;generater</a>
-<!-- date: 2005.05.05, 星期四 -->
-</li>
-<li>2005-05-03, 星期二 <a href="2005-05.html#p2">Upload&#32;shell&#32;script&#32;v1.2</a>
-<!-- date: 2005.05.03, 星期二 -->
-</li>
-</ul>
-
-<h3>2005.04</h3>
-
-<ul>
-<li>2005-04-29, 星期五 <a href="2005-04.html#p7">事情复杂了~</a>
-<!-- date: 2005.04.29, 星期五 -->
-</li>
-</ul>
-
-<h3>2005.01</h3>
-
-<ul>
-<li>2005-01-07, 星期五 <a href="2005-01.html#p2">挤时间编了个&#32;script</a>
-<!-- date: 2005.01.07, 星期五 -->
-</li>
-</ul>
 <!-- Page published by Emacs Wiki ends here -->
 <div id="foot">2004-<script language="javascript">var d = new
 	Date();document.write(d.getFullYear())</script> &copy;

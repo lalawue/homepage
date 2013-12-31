@@ -1,4 +1,62 @@
 #title Welcome
+* 14年1月1日 周三 02:34
+
+** 快速关闭远程 server 的 expect 脚本
+
+我停掉了之前的阿里云服务器，而在自己液晶屏亮不起来的破笔记本上安装了
+fubuntu server，将 git server、nginx + wiki 都安装在了上面，反正 server
+只是提供网络服务，不需要显示器。不过暂时每天的开关机还是需要的。
+
+目前开机还是得按本本的电源键，不过关机倒是可以通过网络来进行，当然也就可
+以使用下面的 expect 脚本了。
+
+我是 ssh 上去关闭的，可以根据需要改成 telnet，一些适配的变量是 root 用户
+ssh 上去的 prompt，shell 下 power off 的命令，一些发行版可能是 halt，不
+过也得看电源模块的配置的吧，最后是 server power off 后广播出来的字符串。
+
+按照惯例贴代码：
+
+<src type="sh">
+#!/usr/bin/expect
+#
+# create in 2013/12/31, by sucha in http://suchang.net
+#
+# Usage: halt_server host_ip
+
+# prompt for root@host_ip
+set serv_root_prompt "password"
+set serv_halt_cmd "shutdown -h now"
+set serv_halt_expect "halt"
+
+set timeout 10
+if { $argc != 1 } {
+	send_user "$argv0 \$HOST_IP\n"
+	exit
+}
+
+# get server ip
+set host [lrange $argv 0 0]
+
+# get root's passwd
+stty -echo
+send_user -- "Password for root@$host: "
+expect_user -re "(.*)\n"
+send_user "\n"
+set pass $expect_out(1,string)
+
+# login server and run halt
+spawn ssh -2 root@$host
+expect $serv_root_prompt
+send $pass\r
+send $serv_halt_cmd\r
+expect $serv_halt_expect
+exit
+</src>
+
+*** [[CategoryProgramming][CategoryProgramming]] / [[2014-01#p0][Permalink]] 
+
+<!-- date: 2014-01-01T02:34:43+0800 -->
+
 * 13年12月24日 周二 18:35
 
 ** 准备搬到珠海
@@ -491,71 +549,9 @@ Texture''''Packer 的，于是就到官网下载试用了一下，因为只用�
 
 以后要是用到高级功能，有心得的话再出教程吧。
 
-提供链接 [[www.codeandweb.com/texturepacker]]
+提供链接 http://www.codeandweb.com/texturepacker
 
 *** [[CategoryProgramming][CategoryProgramming]] / [[2013-08#p2][Permalink]] 
 
 <!-- date: 2013-08-27T23:47:42+0800 -->
-
-* 13年8月12日 周一 14:26
-
-** 在C/C++/Objc中快速定位当前文件内的函数
-
-同样是在昨天的那个帖子里面，列出了一些小函数，可以在 Xcode 的 Objc 文件里
-面快速跳转到函数、页面定义的成员、"#pragma mark -" Xcode 标签，非常方便
-快捷。
-
-我就想着将其适配到 C/C++ 中，因为实在是太方便了，要比使用 speedbar 来定
-位跳转简单快捷得多。
-
-由于是使用正则表达式来处理上下文无关的文法，因此严格来说，不管是而在
-C/C++/Objc 中，这些匹配用的正则表达式是不完全的，还是可能会错漏的，不过对
-于大部分的情况，应该是够用了。
-
-<src type="elisp">
-;; for Xcode pragma mark, and C/C++ functions
-(require 'anything)
-(require 'anything-config)
-
-(defvar anything-c-source-objc-headline
-  '((name . "Objective-C Headline")
-    (headline  "^[-+@]\\|^#pragma mark")
-))
-
-(defvar anything-c-source-c-headline
-  '((name . "C Headline")
-    (headline  "^[A-Za-z_]+?[ A-Za-z_0-9\*]+[A-Za-z_0-9]+?(")
-))
-
-(defvar anything-c-source-cpp-headline
-  '((name . "Cpp Headline")
-    (headline  "^[A-Za-z_]+?[ A-Za-z_:~0-9\*]+[A-Za-z_0-9]+?(")
-))
-
-(defun c-base-mode-headline ()
-  (interactive)
-  ;; Set to 500 so it is displayed even if all methods are not narrowed down.
-  (let ((anything-candidate-number-limit 500))
-    (cond
-     ((eq major-mode 'objc-mode) 
-      (anything-other-buffer '(anything-c-source-objc-headline)
-                             "*ObjC Headline*"))
-     ((eq major-mode 'c++-mode)
-      (anything-other-buffer '(anything-c-source-cpp-headline)
-                             "*Cpp Headline*"))
-     ((eq major-mode 'c-mode)
-      (anything-other-buffer '(anything-c-source-c-headline)
-                             "*C Headline*"))
-     )))
-
-(add-hook
- 'c-mode-common-hook
- (lambda ()
-   (define-key c-mode-base-map (kbd "M-i") 'c-base-mode-headline)
-))
-</src>
-
-*** [[CategoryProgramming][CategoryProgramming]] / [[2013-08#p1][Permalink]] 
-
-<!-- date: 2013-08-12T14:26:25+0800 -->
 
