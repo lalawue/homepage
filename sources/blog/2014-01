@@ -6,7 +6,7 @@
 ** 快速关闭远程 server 的 expect 脚本
 
 我停掉了之前的阿里云服务器，而在自己液晶屏亮不起来的破笔记本上安装了
-fubuntu server，将 git server、nginx + wiki 都安装在了上面，反正 server
+ubuntu server，将 git server、nginx + wiki 都安装在了上面，反正 server
 只是提供网络服务，不需要显示器。不过暂时每天的开关机还是需要的。
 
 目前开机还是得按本本的电源键，不过关机倒是可以通过网络来进行，当然也就可
