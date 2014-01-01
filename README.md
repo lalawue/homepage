@@ -1,4 +1,4 @@
 homesite
 ========
 
-my public homesite since 2004/09/17.
+http://suchang.net since 2004/09/17.
