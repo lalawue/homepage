@@ -38,7 +38,7 @@ bye
 将需要创建的目录、上传的文件替换上去就好了。目前我是生成一个临时脚本，然
 后运行上传命令。
 
-我把这个脚本扔到了这里 https://github.com/lalawue/shell_script_stuff。
+我把这个脚本扔到了这里 https://github.com/lalawue/shell_script_stuff 。
 
 *** [[CategoryProgramming][CategoryProgramming]] / [[2014-01#p1][Permalink]]
 
