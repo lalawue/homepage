@@ -1,73 +1,65 @@
 
 * Upload Script/上传文件的 Shell Script
 
- 最近更新: 2013-12-25
+ 最近更新: 2014-01-04
 
 本页目录 
 
 <contents depth="2">
 
+
+** 简介
+
+这个脚本将新增，或更新过的本地文件、目录通过 ftp 上传到你对应的远程目录
+中，每次只上传更新过的文件、目录，节省时间。
+
+一般 low-cost 的站点，服务端只支持 ftp，使用这个脚本最好不过了。
+
+脚本通过 bash 下 find 命令的 -cnewer 对比文件、目录的 modify time 来达到
+检测的目的，对于目录下的文件是没有版本概念的，只有修改时间的概念。
+
+另外，这个脚本不支持删除远程文件、目录。
+
+
 ** 下载试用
 
-这个脚本需要 NcFTP 的支持，在 Linux 以及 Mac 下测试 OK，Win 下也许需要
-Cygwin 环境，我记得以前有用过，可惜目前没留下记录，也有好长一段时间没用
-Win 了。
+这个 bash 脚本需要 ftp 的支持，在 MacOS 下运行正常，估计 Linux 下也没啥
+问题，Win 下也许需要 Cygwin 环境，或者 Unix''''Utils 工具组。
 
 https://github.com/lalawue/shell_script_stuff<br />
 
-NcFTP 版本信息：<br />
-Program version: NcFTP 3.1.7/120 Jan 07 2004, 01:50 AM <br />
-Library version: Lib''''NcFTP 3.1.7 (January 6, 2004) <br />
+** 设置
 
-** 使用方法
+需设置的变量 || 说明
+publish_dir | 本地发布文件的路径
+server | ftp 地址
+user | ftp 用户名
+passwd | ftp 密码
+rdir | ftp 上的存放目录
 
-使用方法是很简单的，不过也要注意一些小小的细节，:) 
-
-*** 本地目录设置
-
-publish_dir 就是存放你 index.html 或是 Welcome''''Page.html 的目录，同时也对应着服务器上你存放同样文件的目录，记得在目录的最后加上“/” 
-publish_dir=$HOME/your/publish-dir/
-
-*** 记录文件
-
-这个文件用来记录程序运行的最后时间(modified time)，在这之后被更改过的普
-通文件都会被上传，这里的设置一般不用修改。
-
-<src type="sh">
-ctf=$publish_dir.ctime.txt
-</src>
-
-*** FTP 登陆设置
-
-- 如果服务器上的 publish_dir 就是你登入的文件夹，那么在变量设置的最后应该像下面这样，为一个"空格"后添一个"."。 
-
-<src type="sh">
-ftp="-E -u user -p passwd -P port www.ftp.com ."
-</src>
-
-- 如果服务器上的 publish_dir 是你登入后的下一级文件夹，那么变量应如下设置，填写你服务器上的 publish_dir，记得最后不用加上"/"。 
-
-<src type="sh">
-ftp="-E -u user -p passwd -P port www.ftp.com remote_serve_html"
-</src>
-
-** 它是如何工作的?
+** 运行流程
 
 - 如果是第一次运行程序，将会创建用于记录、比较修改时间的文件. 
-
-- 递归地检查目录，使用 find 命令来找出当前文件夹下面已经修改过的文件(文件的修改时间比记录文件的修改时间要新)，然后用 ncftpput 来上传。 
-
-- 若其中任何一个文件上传失败，程序将不更新记录文件，这时你需要再次运行 这个脚本重新上传。（感谢 zhao wang, arithboy AT gmail DOT com） 
-
-
-** "臭虫"
-
- 脚本在我这里运行还好，如果你有什么问题或建议，请联系我 EmailMe。 
+- 使用 find 命令来找出发布文件夹下所有修改过的文件(文件的修改时间比记录
+文件的修改时间要新)，将其记录到临时脚本中
+- 运行脚本，使用系统提供的 ftp 命令上传
 
 ** 脚本历史
 
- 最开始是想找一个软件用来上传更新过的文件，而不必将整个文件夹一股脑都上传。 
+脚本在我这里运行还好，如果你有什么问题或建议，请联系我 EmailMe。 
 
- 后来找到了 Liyu 大哥编的 elisp 小程序 upload-remote.el，但不知道为什么，这个程序在我这里用不了，而当时我一点都不了解 elisp，搞得使用 emacs-wiki 写网页容易但上传很麻烦。 
+我最开始是想找一个软件用来上传更新过的文件，而不必将整个文件夹一股脑都上传。
 
- 不过很感谢他提出用 ncftpput 上传的方法，给了我灵感，加上自己正在学习 bash 编程，于是花了不少时间编了这个upload script，正好用它来更新我的网站。
+后来找到了 Liyu 大哥编的 elisp 小程序 upload-remote.el，但不知道为什么，
+这个程序在我这里用不了，而当时我一点都不了解 elisp，搞得使用 emacs-wiki
+写网页容易但上传很麻烦。
+
+不过很感谢他提出用 ncftpput 上传的方法，给了我灵感，加上自己正在学习
+bash 编程，于是花了不少时间编了这个 upload script，正好用它来更新我的网
+站。
+
+感谢 zhao wang (arithboy AT gmail DOT com)提出的上传失败后的问题。
+
+2014 年改成脚本上传了，只需要一次 ftp 连接，将方便很多，连接失败的情况则
+未处理。
+

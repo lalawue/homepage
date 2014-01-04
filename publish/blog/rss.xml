@@ -9,10 +9,74 @@
     <title>Sucha's Blog</title>
     <link>http://suchang.net/blog/index.html</link>
     <description>linux, emacs, programming, live and essay</description>
-    <pubDate>Sat, 04 Jan 2014 11:43:56 +0800</pubDate>
+    <pubDate>Sat, 04 Jan 2014 15:36:40 +0800</pubDate>
     <generator>emacs-wiki-journal</generator>
     <language>zh-CN</language>
     <dc:creator>suchaaa@gmail.com (sucha)</dc:creator>
+
+    <item>
+      <title>更方便简洁的 Upload Script</title>
+      <guid>http://suchang.net/blog/2014-01.html#p1</guid>
+      <pubDate>2014-01-04T15:04:51+0800</pubDate>
+      <dc:creator>sucha</dc:creator>
+      <category>CategoryProgramming</category>
+      <description><![CDATA[<p>
+我一直使用一个上传脚本更新这个网站，这个脚本始于 2005 年五一
+<a href="../blog/2005-05.html#p2">Upload&#32;shell&#32;script&#32;v1.2</a>，当时还使用什么 ncftpput 程序来对每一个更新过的
+文件进行一次 ftp 连接传输。
+
+</p>
+
+<p>
+然后这个脚本我居然还一直使用到了昨天，横跨 Win、Mac、Linux 系统，甚至还
+在虚拟机里面用过，因为有 ncftpput 的依赖嘛，Win 下以及一些小系统上还真不
+好弄。
+
+</p>
+
+<p>
+虽然我很早就已经了解了终端下的 ftp 命令，还使用过好多次，可是我怎么就不
+懂得结合起来、多动动脑筋呢。
+
+</p>
+
+<p>
+下面做同样事情的脚本更简洁，只需要一次 ftp 连接，对于访问连接慢的大量更
+新更为有利，且所需要的背景知识 05 年的我应该也已经具备了，深深地鄙视这么
+多年的自己，笨死了。
+
+</p>
+
+<p>
+贴一下核心部分就好了：
+
+</p>
+
+<pre class="source"><span class="comment-delimiter">#</span><span class="comment">!/bin/bash
+</span>ftp -n &lt;&lt; <span class="string">"___EOF__"</span><span class="sh-heredoc">
+open 192.168.33.88
+user FTP_USER FTP_PASS_WORD
+mkdir PATH_1_TO_CREATE
+mkdir PATH_2/TO_CREATE
+put LOCAL/PATH/FILE_1 REMOTE/PATH/FILE_1
+put LOCAL/PATH/FILE_2 REMOTE/PATH/FILE_2
+bye
+"___EOF__"
+</span></pre>
+
+
+将需要创建的目录、上传的文件替换上去就好了。目前我是生成一个临时脚本，然
+后运行上传命令。
+
+</p>
+
+<p>
+我把这个脚本扔到了这里 <a href="https://github.com/lalawue/shell_script_stuffã">https://github.com/lalawue/shell_script_stuff。</a>
+
+</p>
+
+]]></description>
+    </item>
 
     <item>
       <title>快速关闭远程 server 的 expect 脚本</title>
