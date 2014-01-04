@@ -192,22 +192,22 @@ $ ubz2 *.tar.bz2
 <pre class="source"><span class="comment-delimiter"># </span><span class="comment">created *.tar.gz ball
 </span><span class="function-name">TGZ</span>()
 {
-    tar czvf $(<span class="builtin">echo</span> <span class="string">"$1"</span> | cut -d/ -f1).tar.gz  $<span class="variable-name">1</span>
+    tar czvf $(<span class="sh-quoted-exec">echo</span> <span class="string">"$1"</span> | cut -d/ -f1).tar.gz  $<span class="variable-name">1</span>
 }
-alias <span class="variable-name">tgz</span>=<span class="string">'TGZ'</span>
+<span class="builtin">alias</span> <span class="variable-name">tgz</span>=<span class="string">'TGZ'</span>
 
 <span class="comment-delimiter"># </span><span class="comment">untar *.tar.gz ball 
-</span>alias <span class="variable-name">utgz</span>=<span class="string">'tar xzvf'</span>
+</span><span class="builtin">alias</span> <span class="variable-name">utgz</span>=<span class="string">'tar xzvf'</span>
 
 <span class="comment-delimiter"># </span><span class="comment">created *.tar.bz2 ball
 </span><span class="function-name">BZ2</span>()
 {
-    tar cjvf $(<span class="builtin">echo</span> <span class="string">"$1"</span> | cut -d/ -f1).tar.bz2  $<span class="variable-name">1</span>
+    tar cjvf $(<span class="sh-quoted-exec">echo</span> <span class="string">"$1"</span> | cut -d/ -f1).tar.bz2  $<span class="variable-name">1</span>
 }
-alias <span class="variable-name">bz2</span>=<span class="string">'BZ2'</span>
+<span class="builtin">alias</span> <span class="variable-name">bz2</span>=<span class="string">'BZ2'</span>
 
 <span class="comment-delimiter"># </span><span class="comment">untar *.tar.bz2 ball
-</span>alias <span class="variable-name">ubz2</span>=<span class="string">'tar jxvf'</span> 
+</span><span class="builtin">alias</span> <span class="variable-name">ubz2</span>=<span class="string">'tar jxvf'</span> 
 </pre>
 
 
@@ -421,11 +421,12 @@ ps: 把 2.6.10 的 kernel 和 gcc 3.4.3 去掉了，完全的 slk 10.1，经过�
       
       <p class="header">Feeds &#38; Contact</p>
         <ul>
-          <li><a id="rss_feeds" href="rss.xml">RSS</a></li>
+          <li><a id="rss_feeds" title="墙内地址 http://suchang.net/blog/rss.xml" href="http://feeds.feedburner.com/sc6349">RSS</a></li>
           <li><a href="mailto:suchaaa@gmail.com">Mail me</a></li>
         </ul>
 
       <p class="header">Categories</p>
+
       <ul>
         <li><a href="CategoryLinux.html">GNU/Linux</a></li>
         <li><a href="CategoryProgramming.html">Programming</a></li>
@@ -441,13 +442,14 @@ ps: 把 2.6.10 的 kernel 和 gcc 3.4.3 去掉了，完全的 slk 10.1，经过�
         <li><a href="http://mrjamie.cc/">Jamie</a></li>
         <li><a href="http://www.ftchinese.com/column/007000002">朝九晚五</a></li>
         <li><a href="http://blog.codingnow.com/">CloudWu</a></li>
+        <li><a href="http://emacser.com/">Emacser</a></li>
 	    <li><a href="http://www.mindmeters.com/blogind.asp?id=253">All About S</a></li>
         <li><a href="http://www.drunkpiano-liuyu.net/">DrunkPiano</a></li>
 	    <li><a href="http://ditu.google.cn/maps?hl=zh-CN&ll=22.626687,110.186691&spn=0.101883,0.15398&t=h&brcurrent=3,0x36adc425dfd47083:0xd77004f2b5f175d6,0,0x36adb6981be5ba57:0xbb22df1016a0dd2e%3B5,0,0&z=13">Yulin in Google Maps</a></li>
       </ul>
 
       <p class="header">Archives</p>
-      <div class="archive_links"><ul><li><a href="2012-07.html">July 2012</a></li><li><a href="2012-06.html">June 2012</a></li><li><a href="2012-05.html">May 2012</a></li><li><a href="2012-04.html">April 2012</a></li><li><a href="2012-03.html">March 2012</a></li><li><a href="2012-02.html">February 2012</a></li><li><a href="2012-01.html">January 2012</a></li><li><a href="2011-12.html">December 2011</a></li><li><a href="2011-11.html">November 2011</a></li><li><a href="2011-10.html">October 2011</a></li><li><a href="2011-09.html">September 2011</a></li><li><a href="2011-08.html">August 2011</a></li><li><a href="2011-04.html">April 2011</a></li><li><a href="2011-02.html">February 2011</a></li><li><a href="2011-01.html">January 2011</a></li><li><a href="2010-12.html">December 2010</a></li><li><a href="2010-11.html">November 2010</a></li><li><a href="2010-09.html">September 2010</a></li><li><a href="2009-07.html">July 2009</a></li><li><a href="2009-06.html">June 2009</a></li><li><a href="2009-05.html">May 2009</a></li><li><a href="2009-04.html">April 2009</a></li><li><a href="2009-02.html">February 2009</a></li><li><a href="2009-01.html">January 2009</a></li><li><a href="2008-12.html">December 2008</a></li><li><a href="2008-11.html">November 2008</a></li><li><a href="2008-10.html">October 2008</a></li><li><a href="2008-09.html">September 2008</a></li><li><a href="2008-08.html">August 2008</a></li><li><a href="2008-07.html">July 2008</a></li><li><a href="2008-06.html">June 2008</a></li><li><a href="2008-05.html">May 2008</a></li><li><a href="2008-04.html">April 2008</a></li><li><a href="2008-03.html">March 2008</a></li><li><a href="2008-02.html">February 2008</a></li><li><a href="2008-01.html">January 2008</a></li><li><a href="2007-10.html">October 2007</a></li><li><a href="2007-07.html">July 2007</a></li><li><a href="2007-06.html">June 2007</a></li><li><a href="2007-05.html">May 2007</a></li><li><a href="2007-04.html">April 2007</a></li><li><a href="2007-03.html">March 2007</a></li><li><a href="2007-02.html">February 2007</a></li><li><a href="2007-01.html">January 2007</a></li><li><a href="2006-12.html">December 2006</a></li><li><a href="2006-11.html">November 2006</a></li><li><a href="2006-10.html">October 2006</a></li><li><a href="2006-09.html">September 2006</a></li><li><a href="2006-08.html">August 2006</a></li><li><a href="2006-07.html">July 2006</a></li><li><a href="2006-06.html">June 2006</a></li><li><a href="2006-05.html">May 2006</a></li><li><a href="2006-04.html">April 2006</a></li><li><a href="2006-03.html">March 2006</a></li><li><a href="2006-02.html">February 2006</a></li><li><a href="2006-01.html">January 2006</a></li><li><a href="2005-12.html">December 2005</a></li><li><a href="2005-11.html">November 2005</a></li><li><a href="2005-10.html">October 2005</a></li><li><a href="2005-09.html">September 2005</a></li><li><a href="2005-08.html">August 2005</a></li><li><a href="2005-07.html">July 2005</a></li><li><a href="2005-06.html">June 2005</a></li><li><a href="2005-05.html">May 2005</a></li><li><a href="2005-04.html">April 2005</a></li><li><a href="2005-03.html">March 2005</a></li><li><a href="2005-02.html">February 2005</a></li><li><a href="2005-01.html">January 2005</a></li><li><a href="2004-12.html">December 2004</a></li><li><a href="2004-11.html">November 2004</a></li><li><a href="2004-10.html">October 2004</a></li><li><a href="2004-09.html">September 2004</a></li></ul></div>
+      <div class="archive_links"><ul><li><a href="2014-01.html">January 2014</a></li><li><a href="2013-12.html">December 2013</a></li><li><a href="2013-11.html">November 2013</a></li><li><a href="2013-10.html">October 2013</a></li><li><a href="2013-09.html">September 2013</a></li><li><a href="2013-08.html">August 2013</a></li><li><a href="2013-07.html">July 2013</a></li><li><a href="2013-06.html">June 2013</a></li><li><a href="2013-05.html">May 2013</a></li><li><a href="2013-04.html">April 2013</a></li><li><a href="2013-03.html">March 2013</a></li><li><a href="2013-02.html">February 2013</a></li><li><a href="2013-01.html">January 2013</a></li><li><a href="2012-12.html">December 2012</a></li><li><a href="2012-11.html">November 2012</a></li><li><a href="2012-10.html">October 2012</a></li><li><a href="2012-08.html">August 2012</a></li><li><a href="2012-07.html">July 2012</a></li><li><a href="2012-06.html">June 2012</a></li><li><a href="2012-05.html">May 2012</a></li><li><a href="2012-04.html">April 2012</a></li><li><a href="2012-03.html">March 2012</a></li><li><a href="2012-02.html">February 2012</a></li><li><a href="2012-01.html">January 2012</a></li><li><a href="2011-12.html">December 2011</a></li><li><a href="2011-11.html">November 2011</a></li><li><a href="2011-10.html">October 2011</a></li><li><a href="2011-09.html">September 2011</a></li><li><a href="2011-08.html">August 2011</a></li><li><a href="2011-04.html">April 2011</a></li><li><a href="2011-02.html">February 2011</a></li><li><a href="2011-01.html">January 2011</a></li><li><a href="2010-12.html">December 2010</a></li><li><a href="2010-11.html">November 2010</a></li><li><a href="2010-09.html">September 2010</a></li><li><a href="2009-07.html">July 2009</a></li><li><a href="2009-06.html">June 2009</a></li><li><a href="2009-05.html">May 2009</a></li><li><a href="2009-04.html">April 2009</a></li><li><a href="2009-02.html">February 2009</a></li><li><a href="2009-01.html">January 2009</a></li><li><a href="2008-12.html">December 2008</a></li><li><a href="2008-11.html">November 2008</a></li><li><a href="2008-10.html">October 2008</a></li><li><a href="2008-09.html">September 2008</a></li><li><a href="2008-08.html">August 2008</a></li><li><a href="2008-07.html">July 2008</a></li><li><a href="2008-06.html">June 2008</a></li><li><a href="2008-05.html">May 2008</a></li><li><a href="2008-04.html">April 2008</a></li><li><a href="2008-03.html">March 2008</a></li><li><a href="2008-02.html">February 2008</a></li><li><a href="2008-01.html">January 2008</a></li><li><a href="2007-10.html">October 2007</a></li><li><a href="2007-07.html">July 2007</a></li><li><a href="2007-06.html">June 2007</a></li><li><a href="2007-05.html">May 2007</a></li><li><a href="2007-04.html">April 2007</a></li><li><a href="2007-03.html">March 2007</a></li><li><a href="2007-02.html">February 2007</a></li><li><a href="2007-01.html">January 2007</a></li><li><a href="2006-12.html">December 2006</a></li><li><a href="2006-11.html">November 2006</a></li><li><a href="2006-10.html">October 2006</a></li><li><a href="2006-09.html">September 2006</a></li><li><a href="2006-08.html">August 2006</a></li><li><a href="2006-07.html">July 2006</a></li><li><a href="2006-06.html">June 2006</a></li><li><a href="2006-05.html">May 2006</a></li><li><a href="2006-04.html">April 2006</a></li><li><a href="2006-03.html">March 2006</a></li><li><a href="2006-02.html">February 2006</a></li><li><a href="2006-01.html">January 2006</a></li><li><a href="2005-12.html">December 2005</a></li><li><a href="2005-11.html">November 2005</a></li><li><a href="2005-10.html">October 2005</a></li><li><a href="2005-09.html">September 2005</a></li><li><a href="2005-08.html">August 2005</a></li><li><a href="2005-07.html">July 2005</a></li><li><a href="2005-06.html">June 2005</a></li><li><a href="2005-05.html">May 2005</a></li><li><a href="2005-04.html">April 2005</a></li><li><a href="2005-03.html">March 2005</a></li><li><a href="2005-02.html">February 2005</a></li><li><a href="2005-01.html">January 2005</a></li><li><a href="2004-12.html">December 2004</a></li><li><a href="2004-11.html">November 2004</a></li><li><a href="2004-10.html">October 2004</a></li><li><a href="2004-09.html">September 2004</a></li></ul></div>
 
     </div><!-- sidebar -->
    </div> <!-- body -->
