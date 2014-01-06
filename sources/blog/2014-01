@@ -1,5 +1,71 @@
 #title Archive for January, 2014
 
+#p2
+* 14年1月7日 周二 04:14
+
+** 改成靠 Git''''Hub 托管了
+
+[[https://help.github.com/categories/20/articles][GitHub Pages]] 真是个好东东，提供了静态网页的发布功能，本来是开放给开源工
+程介绍页面的，不过我的主页也是完全开源的嘛，也可以借来托管了。
+
+空间足够，git 方式更新，还可以绑定域名，对于我是完全足够了。虽然我的虚拟
+主机还有近 7 个月才到期，价钱也不贵，而且之前才更新了上传脚本，这个工具
+还没用爽呢，没想到才过了 2 天就完全用不上了。
+
+因为 Git''''Hub Pages 需要以 username.github.io 来创建仓库，如果生成这些静态
+网页的源码也打算放到 github 托管，就像我是把整个主页都放到了 github 上，
+并使用 Emacs''''Wiki 在本地生成静态网页，如下的目录结构：
+
+<src>
+homepage +
+         - publish
+         - sources
+</src>
+
+那么可以考虑将 publish 作为 homepage 的一个 submodule 关联起来：
+
+<src type="sh">
+$ cd homepage
+$ git submodule add git@github.com:username/username.github.io.git publish
+</src>
+
+这样 homepage 也可以单独作为 github 的工程了，publish 以及 sources 目录
+可以互不干扰，大不了 homepage 下建立 .gitignore 屏蔽 publish 目录下的东
+西好了。
+
+最后域名绑定部分，看了一下 help 页面才搞定，Pages 这边是建立一个
+CNAME 文件来记录 domain，另外还需要修改域名的 A 记录，次级域名的绑定还更
+麻烦，我没看了。
+
+免费使用，空间足够，自由度也高，吸引力够大的，可仔细想一下，感觉非程序员
+还得学不少东西才能用起来：
+
+ - 创建静态网页
+ - 在 github 上注册并建立 Pages 仓库
+ - git 的安装及日常使用
+ - 绑定域名
+ - 美化界面
+
+官方推荐采用支持 markdown 语法的静态网页生成工具，比如 JekyII，我看了一
+下，感觉也不简单呀，要安装 Ruby 神马的。
+
+git 的使用如果只是发布的话，感觉了解 git push 就够了吧。
+
+界面部分 Pages 有提供不少主题，感觉这点应该还好啊，域名部分，有自己域名
+的童鞋自然懂得。
+
+貌似到现在为止还是程序猿玩的多。
+
+我在 04 年就使用 wiki 语法来管理主页了，也是类似于 markdown 这样的轻量级
+标记语言，静态 html 页面的发布部分一点都不需要改，加上又是 git 的日常使
+用者，毫无压力。
+
+*** [[CategoryThisSite][CategoryThisSite]] / [[2014-01#p2][Permalink]] 
+
+<!-- date: 2014-01-07T04:14:39+0800 -->
+
+
+
 #p1
 * 14年1月4日 周六 15:04
 
