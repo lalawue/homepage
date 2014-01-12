@@ -1,0 +1,213 @@
+
+* 完善 EMACS 的编程环境
+
+最近更新：2014-01-12
+
+<contents depth="3">
+
+** 简介
+
+与许多使用 emacs 的童鞋一样，我也喜欢折腾并不断完善围绕 emacs 的工作、编
+程环境，尝试一些新鲜的 elisp 包，根据需要选择纳入自己的 load-path 里。
+
+平时工作面对的是散落在各个文件夹下的工程源码，所以对目录文件的搜索、访问、
+修改也是经常使用的部分，它们与 auto-complete、find-tag 一起组成了我日常
+的编程环境。
+
+最近玩的是 direx.el + popwin.el，auto-complete 作者写的小工具，在其
+github 上也蛮受欢迎的。
+
+direx 用来显示目录的树状图，popwin 目的是减少弹出窗口的干扰，如在
+*&#42;Help&#42;*, *&#42;Completions&#42;* 等不那么重要 buffer 的弹出后，直接
+C-g 或者other-window 跳到别的窗口时自动关闭它。
+
+fiplr 用来模糊搜索工程目录的文件，它会从当前目录一直搜索到拥有 .git、.svn
+的顶层目录，对于需要定位工程文件却又不知道其具体位置的时候非常有用。
+
+
+*** direx 以及 popwin 的配置
+
+direx 可以跟 popwin 结合起来，这也是作者推荐的，
+
+<src type="elisp">
+(require 'popwin)
+(popwin-mode 1)
+;; (setq popwin:popup-window-position 'right)
+;; (setq popwin:popup-window-width 0.5)
+
+(require 'direx)
+(push '(direx:direx-mode :position left :width 30 :dedicated t)
+     popwin:special-display-config)
+
+(global-set-key (kbd "C-x C-j") 'direx:jump-to-directory-other-window)
+</src>
+
+上面的配置是使用 C-x C-j 将目录树窗口开在左边，30 个字符宽度，C-g 就可以
+关闭。
+
+popwin 默认弹出窗口在 bottom，高度 15，维护了一个special-display-config
+的列表 来确定弹出窗口是否需要纳入 popwin 的管理范围。
+
+由于 popwin 默认管理 *vc-diff*，而我使用这个挺多的，上面注释掉的配置是将
+buffer 放在屏幕右边，宽度是当前 frame 的 50%，C-g 关闭弹出窗口已经足够方
+便了，大一点的弹出窗口也很好。
+
+direx 提供模式下的命令，g 刷新整个显示目录树，E 递归展开整个目录树。
+direx 的优缺点我感觉挺明显的，优点是可以一目了然地看到指定目录下各个文件、
+子目录、模块的相关关系，全部展开后更明显（如果能提供仅展开目录就更好了，
+必要时我可以移动到那个目录再看文件）；缺点是无法对目录编辑，只能打开文件。
+
+这个时候我只能求助于 dired 模式，不过 dired 模式中 i 展开子目录后收不回
+来，且平铺的方式模块关系不明显。目前是两个一起使用。
+
+popwin、direx 可以从作者的 github 主页上下载 https://github.com/m2ym，
+popwin 下还有不少相关插件，有需要的童鞋可以看看，这里不做介绍了。
+
+
+*** fiplr 的配置
+
+fiplr 依赖 grizzl 包来做底层的模糊搜索引擎，不过我们不需要对 grizzl 做配
+置，只需要配置 fiplr：
+
+<src type="elisp">
+(require 'fiplr)
+(setq fiplr-root-markers '(".git" ".svn"))
+(setq fiplr-ignored-globs 
+    '((directories (".git" ".svn"))
+      (files ("*.jpg" "*.png" "*.zip" "*~"))))
+
+(global-set-key (kbd "C-x f") 'fiplr-find-file)
+</src>
+
+设置搜索到顶层目录，遇到拥有 .git 或 .svn 的目录时停止，忽略
+.jpg、.png、.zip 以及后缀有 ~ 的文件，忽略 .git、.svn 目录，并绑定 "C-x
+f" 为搜索命令。
+
+fiplr 命令启动后会对所有工程文件做一次 cache，然后底部弹出小窗提示用户键
+入需要搜索的文件名，并实时显示匹配结果；如果新添了文件需要更新 cache，
+C-c r 清空一下当前 cache 就好了。
+
+grizzl 请访问这里下载，https://github.com/d11wtq/grizzl
+fiplr 请访问这里下载，https://github.com/d11wtq/fiplr
+
+
+*** 其他有关编程环境的设置
+
+除了以上的配置包，我还有不少其他编程环境相关的配置，感觉平时挺有用的，这
+些都是我从一些个人博客、论坛或者 emacswiki.org 等地方搜刮来的，具体出处
+已经无法提供了。
+
+- 同目录下的头文件与源文件的快速跳转，适用于 C/C++/ObjC，我将其绑定在 M-[ 以及 M-]。
+
+<src type="elisp">
+;; jump between source and header file
+(defun c-base-mode-in-header-file ()
+  (let* ((filename (buffer-file-name))
+         (extension (car (last (split-string filename "\\.")))))
+    (string= "h" extension)))
+
+(defun c-base-mode-file-jump-to-extension (extension)
+  (let* ((filename (buffer-file-name))
+         (file-components (append (butlast (split-string filename
+                                                         "\\."))
+                                  (list extension)))
+         (filepath (mapconcat 'identity file-components ".")))
+    (if (file-readable-p filepath)
+        (find-file filepath)
+      nil)))
+
+;;; Assumes that Header and Source file are in same directory
+(defun c-base-mode-jump-between-header-source ()
+  (interactive)
+  (if (c-base-mode-in-header-file)
+      (or
+       (c-base-mode-file-jump-to-extension "m")
+       (c-base-mode-file-jump-to-extension "mm")
+       (c-base-mode-file-jump-to-extension "c")
+       (c-base-mode-file-jump-to-extension "cc")
+       (c-base-mode-file-jump-to-extension "cpp"))
+    (c-base-mode-file-jump-to-extension "h")))
+
+(add-hook
+ 'c-mode-common-hook
+ (lambda ()
+   (define-key c-mode-base-map (kbd "M-[") 'c-base-mode-jump-between-header-source)
+   (define-key c-mode-base-map (kbd "M-]") 'c-base-mode-jump-between-header-source))
+t)
+</src>
+
+- 列出当前 buffer 下的所有函数，使用正则表达式匹配的，也许需要配合你对函数名的书写习惯做更改（如 C 中返回类型与函数名不同行），下面的配置适合 C/C++/ObjC/Lua，其实可以很方便地扩充到支持别的语言。
+
+<src type="elisp">
+;; for Xcode pragma mark, and C/C++ functions
+(require 'anything)
+(require 'anything-config)
+
+(defvar anything-objc-headline
+  '((name . "Objective-C Headline")
+    (headline  "^[-+@]\\|^#pragma mark\\|FIXME")
+))
+
+(defvar anything-c-headline
+  '((name . "C Headline")
+    (headline  "^[A-Za-z_]+?[ A-Za-z_0-9\*]+[A-Za-z_0-9]+?(\\|FIXME")
+))
+
+(defvar anything-cpp-headline
+  '((name . "Cpp Headline")
+    (headline  "^[A-Za-z_]+?[ A-Za-z_:~0-9\*]+[A-Za-z_0-9]+?(\\|FIXME")
+))
+
+(defvar anything-lua-headline
+  '((name . "Lua Headline")
+    (headline  "^local \\|^function \\|[A-Za-z]+?[A-Za-z0-9_.] +\{\\|FIXME")
+))
+
+(defun major-mode-headline ()
+  (interactive)
+  ;; Set to 500 so it is displayed even if all methods are not narrowed down.
+  (let ((anything-candidate-number-limit 500))
+    (cond
+     ((eq major-mode 'objc-mode) 
+      (anything-other-buffer '(anything-objc-headline)
+                             "*ObjC Headline*"))
+     ((eq major-mode 'c++-mode)
+      (anything-other-buffer '(anything-cpp-headline)
+                             "*Cpp Headline*"))
+     ((eq major-mode 'c-mode)
+      (anything-other-buffer '(anything-c-headline)
+                             "*C Headline*"))
+     ((eq major-mode 'lua-mode)
+      (anything-other-buffer '(anything-lua-headline)
+                             "*C Headline*"))
+     )))
+
+(add-hook
+ 'c-mode-common-hook
+ (lambda ()
+   (define-key c-mode-base-map (kbd "M-i") 'major-mode-headline))
+t)
+</src>
+
+- 当对窗口进行分割时（我经常这么做），下面的快捷键可以很方便地调整窗口的大小，(control -) 调整上下窗口的高度，(meta -)调整左右窗口的宽度，感觉挺好用的。
+
+<src type="elisp">
+(global-set-key [(control -)] 'shrink-window)
+(global-set-key [(control =)] (lambda () (interactive) (shrink-window -1)))
+
+(global-set-key [(control meta -)] 'shrink-window-horizontally)
+(global-set-key [(control meta =)] (lambda () (interactive)
+                                     (shrink-window-horizontally -1)))
+</src>
+
+这两个小函数我将其扔在 https://gist.github.com/lalawue 维护，大家有更新
+的东西不妨去修改一下。
+
+** 问题及建议
+
+配置或使用上有问题可以联系我 suchaaa 谷歌，或者给作者的 github 提 issue。
+
+目前使用 C++/ObjC/Lua 混合编程，使用 etag 代码跳转是个问题，没用过 cedet，
+有相关经验的同学不妨传授一下？
+
+
