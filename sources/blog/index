@@ -67,7 +67,7 @@ jpgd c++ 的最大亮点，在于将 YUV 转 RGB 的部分，做了 LUT。这个
 
 后续有时间，我也想弄一个稍微改进点的霍夫曼变长码检测方法、以及 YUV 转RGB
 的 LUT，目前霍夫曼编码部分是完全按照位数长度从小到大顺序检测的，非常非常
-耗时。
+耗时，只是作为一个样例来理解的话，倒还好。
 
 *** [[CategoryProgramming][CategoryProgramming]] / [[2014-12#p0][Permalink]] 
 
