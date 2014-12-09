@@ -27,7 +27,7 @@ static void using_opengl_version_330(void) {
 </src>
 
 设置完之后，我就按教程走了，但是，又出现了意外的情况，在我的黑苹果上面，
-#version 330 的 shader 源码都编译链接过了，但就是没有显示，窗口里面都是
+''''#version 330 的 shader 源码都编译链接过了，但就是没有显示，窗口里面都是
 黑的。总之 OpenGL 2.1 可以，3.3 就是不行。即便 glClear 颜色显示 OK，loop
 循环也有走。
 
