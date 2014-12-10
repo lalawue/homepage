@@ -13,7 +13,7 @@
     glBindVertexArray(vaoHandle);
 </src>
 
-当然，那些诸如 <Learning Modern 3D Graphics Programming> 的书上面是没有
+当然，那些诸如 &#60;Learning Modern 3D Graphics Programming&#62; 的书上面是没有
 这两句代码的。
 
 蛋疼呀。
