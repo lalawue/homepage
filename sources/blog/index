@@ -1,4 +1,25 @@
 #title Welcome
+* 14年12月10日 周三 21:47
+
+** OpenGL 3.3 under MacOS (2)
+
+终于查明原因了，并不是 GLFW 不堪用的问题，而是需要在 glGenBuffers 之前，
+先跑下面：
+
+<src type="cpp">
+    glGenVertexArrays(1, &vaoHandle);
+    glBindVertexArray(vaoHandle);
+</src>
+
+当然，那些诸如 <Learning Modern 3D Graphics Programming> 的书上面是没有
+这两句代码的。
+
+蛋疼呀。
+
+*** [[CategoryProgramming][CategoryProgramming]] / [[2014-12#p2][Permalink]] 
+
+<!-- date: 2014-12-10T21:47:14+0800 -->
+
 * 14年12月9日 周二 19:42
 
 ** OpenGL 3.3 under MacOS
@@ -589,62 +610,4 @@ bye
 *** [[CategoryProgramming][CategoryProgramming]] / [[2014-01#p1][Permalink]]
 
 <!-- date: 2014-01-04T15:04:51+0800 -->
-
-* 14年1月1日 周三 02:34
-
-** 快速关闭远程 server 的 expect 脚本
-
-我停掉了之前的阿里云服务器，而在自己液晶屏亮不起来的破笔记本上安装了
-ubuntu server，将 git server、nginx + wiki 都安装在了上面，反正 server
-只是提供网络服务，不需要显示器。不过暂时每天的开关机还是需要的。
-
-目前开机还是得按本本的电源键，不过关机倒是可以通过网络来进行，当然也就可
-以使用下面的 expect 脚本了。
-
-我是 ssh 上去关闭的，可以根据需要改成 telnet，一些适配的变量是 root 用户
-ssh 上去的 prompt，shell 下 power off 的命令，一些发行版可能是 halt，不
-过也得看电源模块的配置的吧，最后是 server power off 后广播出来的字符串。
-
-按照惯例贴代码：
-
-<src type="sh">
-#!/usr/bin/expect
-#
-# create in 2013/12/31, by sucha in http://suchang.net
-#
-# Usage: halt_server host_ip
-
-# prompt for root@host_ip
-set serv_root_prompt "password"
-set serv_halt_cmd "shutdown -h now"
-set serv_halt_expect "halt"
-
-set timeout 10
-if { $argc != 1 } {
-	send_user "$argv0 \$HOST_IP\n"
-	exit
-}
-
-# get server ip
-set host [lrange $argv 0 0]
-
-# get root's passwd
-stty -echo
-send_user -- "Password for root@$host: "
-expect_user -re "(.*)\n"
-send_user "\n"
-set pass $expect_out(1,string)
-
-# login server and run halt
-spawn ssh -2 root@$host
-expect $serv_root_prompt
-send $pass\r
-send $serv_halt_cmd\r
-expect $serv_halt_expect
-exit
-</src>
-
-*** [[CategoryProgramming][CategoryProgramming]] / [[2014-01#p0][Permalink]] 
-
-<!-- date: 2014-01-01T02:34:43+0800 -->
 

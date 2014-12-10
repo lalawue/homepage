@@ -1,5 +1,29 @@
 #title Archive for December, 2014
 
+#p2
+* 14年12月10日 周三 21:47
+
+** OpenGL 3.3 under MacOS (2)
+
+终于查明原因了，并不是 GLFW 不堪用的问题，而是需要在 glGenBuffers 之前，
+先跑下面：
+
+<src type="cpp">
+    glGenVertexArrays(1, &vaoHandle);
+    glBindVertexArray(vaoHandle);
+</src>
+
+当然，那些诸如 <Learning Modern 3D Graphics Programming> 的书上面是没有
+这两句代码的。
+
+蛋疼呀。
+
+*** [[CategoryProgramming][CategoryProgramming]] / [[2014-12#p2][Permalink]] 
+
+<!-- date: 2014-12-10T21:47:14+0800 -->
+
+
+
 #p1
 * 14年12月9日 周二 19:42
 
