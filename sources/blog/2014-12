@@ -1,5 +1,191 @@
 #title Archive for December, 2014
 
+#p4
+* 14年12月25日 周四 22:16
+
+** ObjC Core Data
+
+Core Data 市面上的文章太多，不管是中文还是英文，所以打算以自己的理解从简
+描述。
+
+先从上到下、从大到小理解概念。关键的概念其实只有 4 个：
+
+ - ''''NSManagedModel：数据模型，数据的结构
+ - ''''NSManagedModelContext：具体存取增删数据的接口
+ - ''''NSPersistentStoreCoordinator：连接 context 与 persistent store 的中间
+   件
+ - ''''NSPersistentStore：数据库，具体的文件
+
+如果还要简约，那概念上只需要关注 model 跟 store 就可以了，一个是 schema，
+模型结构，比如一张表，另一个是数据库，具体到文件。
+
+描述概念间相互关系的图表网上太多，我简略看了一下接口，了解到的是目前 8.1
+的 SDK下，一个 context 对应一个 model 和一个 coordinator，一个
+coordinator 可以连接多个 store，相互的关系可以脑补了吧。
+
+下面的代码只要建立一个 ''''TestCoreData 的头文件调用一下最下面的 test 就可以
+编译跑了，粗看有点多，其实分开函数看就好了，函数名很直白了。
+
+<src type="objc">
+@interface UserInfo : NSManagedObject
+@property (nonatomic,copy) NSString *name;
+@property (nonatomic,copy) NSNumber *uid;
+@end
+
+@implementation UserInfo
+@dynamic name;
+@dynamic uid;
+@end
+
+@implementation TestCoreData
+- (NSURL*)createStoreDir
+{
+    NSFileManager *fm = [[NSFileManager alloc] init];
+    NSError *error = nil;
+    NSURL *durl = [fm URLForDirectory:NSDocumentDirectory
+                             inDomain:NSUserDomainMask
+                    appropriateForURL:nil
+                               create:YES
+                                error:&error];
+    if (durl == nil) {
+        NSLog(@"Fail to create document dir:%@", [error localizedDescription]);
+        return nil;
+    }
+    return durl;
+}
+
+- (NSManagedObjectModel*)createModel
+{
+    NSManagedObjectModel *moModel = [[NSManagedObjectModel alloc] init];
+    
+    // create the entity
+    NSEntityDescription *infoEntity = [[NSEntityDescription alloc] init];
+    [infoEntity setName:@"UserInfo"];
+    [infoEntity setManagedObjectClassName:@"UserInfo"];
+    
+    [moModel setEntities:[NSArray arrayWithObject:infoEntity]];
+    
+    // add the attribute
+    NSAttributeDescription *nameAttr = [[NSAttributeDescription alloc] init];
+    [nameAttr setName:@"name"];
+    [nameAttr setAttributeType:NSStringAttributeType];
+    [nameAttr setOptional:NO];
+    
+    NSAttributeDescription *uidAttr = [[NSAttributeDescription alloc] init];
+    [uidAttr setName:@"uid"];
+    [uidAttr setAttributeType:NSInteger32AttributeType];
+    [uidAttr setOptional:NO];
+    
+    // set the properties for the entity
+    NSArray *ary = [NSArray arrayWithObjects:nameAttr, uidAttr, nil];
+    [infoEntity setProperties:ary];
+    
+    // add localization dictionary
+    NSMutableDictionary *localDict = [NSMutableDictionary dictionary];
+    [localDict setObject:@"name" forKey:@"Property/name/Entity/UserInfo"];
+    [localDict setObject:@"uid" forKey:@"Property/uid/Entity/UserInfo"];
+    
+    [moModel setLocalizationDictionary:localDict];
+    
+    return moModel;
+}
+
+- (NSManagedObjectContext*)createModelObjectContext:(NSManagedObjectModel*) moModel
+{
+    NSManagedObjectContext *moMOC = [[NSManagedObjectContext alloc] init];
+    NSPersistentStoreCoordinator *co =
+           [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:moModel];
+    
+    [moMOC setPersistentStoreCoordinator:co];
+    
+    NSString *store_type = NSBinaryStoreType; // NSSQLiteStoreType
+    NSString *store_filename = [NSString stringWithFormat:@"storeExample.bin"];
+    
+    NSError *error = nil;
+    NSURL *store_url = [[self createStoreDir]
+           URLByAppendingPathComponent:store_filename];
+    
+    NSLog(@"store url: %@", [store_url absoluteString]);
+
+    NSPersistentStore *pstore = [co addPersistentStoreWithType:store_type
+                                                 configuration:nil
+                                                           URL:store_url
+                                                       options:nil
+                                                         error:&error];
+    if (pstore == nil) {
+        NSLog(@"Fail to create persistence store %@", [error localizedDescription]);
+        return nil;
+    }
+    return moMOC;
+}
+
+- (BOOL)test
+{
+    NSManagedObjectModel *moModel = [self createModel];
+    NSManagedObjectContext *moMOC = [self createModelObjectContext:moModel];
+    
+    NSEntityDescription *infoEntity =
+          [[moModel entitiesByName] objectForKey:@"UserInfo"];
+    
+    // insert
+    int i;
+    for (i=0; i<10; i++) {
+        UserInfo *info = [[UserInfo alloc] initWithEntity:infoEntity
+                           insertIntoManagedObjectContext:moMOC];
+        info.name = [NSString stringWithFormat:@"n%d", i];
+        info.uid = [NSNumber numberWithInt:i];
+    }
+    
+    // save
+    NSError *error = nil;
+    [moMOC save:&error];
+    if (error) {
+        NSLog(@"Fail to save: %@", [error localizedDescription]);
+        return false;
+    }
+    
+#if 1
+    // query & delete
+    NSFetchRequest *req = [[NSFetchRequest alloc] init];
+    [req setEntity:infoEntity];
+    
+    NSSortDescriptor *sdesc = 
+          [[NSSortDescriptor alloc] initWithKey:@"uid" ascending:YES];
+    [req setSortDescriptors:[NSArray arrayWithObject:sdesc]];
+    
+    NSArray *ary = [moMOC executeFetchRequest:req error:&error];
+    if (error && (ary==nil)) {
+        NSLog(@"Fail to fetch object: %@", [error localizedDescription]);
+        return false;
+    }
+    for (UserInfo *info in ary) {
+        NSLog(@"user info name:%@, uid:%d", info.name, [info.uid intValue]);
+        [moMOC deleteObject:info];
+    }
+
+    // save again
+    [moMOC save:&error];
+    if (error) {
+        NSLog(@"Fail to save: %@", [error localizedDescription]);
+        return false;
+    }
+#endif
+    return true;
+}
+@end
+</src>
+
+更具体细节的东西，比如 Predicates、搜索结果的缓存，可以需要的时候再细查
+了，有了重要概念、框架的支撑，往下往细里面走就好办了吧。
+
+明天玩玩新的东西。
+
+*** [[CategoryProgramming][CategoryProgramming]] / [[2014-12#p4][Permalink]] 
+
+<!-- date: 2014-12-25T22:16:40+0800 -->
+
+
+
 #p3
 * 14年12月24日 周三 15:29
 
