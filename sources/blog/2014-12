@@ -3,7 +3,7 @@
 #p5
 * 14年12月27日 周六 17:58
 
-** Objc Animation
+** ObjC Animation
 
 其实去年在做那个 App 的时候就有使用过简单的动画，接口是 UIView 的
 animateWithDuration，只是平移了一下 view。
