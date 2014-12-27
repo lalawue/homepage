@@ -1,5 +1,46 @@
 #title Archive for December, 2014
 
+#p5
+* 14年12月27日 周六 17:58
+
+** Objc Animation
+
+其实去年在做那个 App 的时候就有使用过简单的动画，接口是 UIView 的
+animateWithDuration，只是平移了一下 view。
+
+今天学到的 iOS 的动画，分成几个部分，分别是针对 view 的，针对 controller
+的过渡动画，还有就是自由度很高的交互动画，交互动画其实可以看成是最简单的
+游戏了。
+
+针对 view 的动画除了我之前用的 animateWithDuration 方法，其实 view 的很
+多属性都是可以更改数值然后交给系统去实现动作的，只需要创建 animation 设
+置动画属性，然后使用 view 的 layer 实体 addAnimation 就好。
+
+view 中的 layer 需要说一下，为了实现动画，有多个副本，一个是表示最终状态
+的（model layer），一个是表示的是当前的（presentation layer），
+presentation 是专门用来显示动画的，结束后就被设成了 model 的状态。
+
+后面例子的还用画图实现了一个动画，画图部分就纯是 CPU 来计算了。另外一个
+部分是 controller 的转场动画，例子比我之前的平移复杂了一些，用了系统给出
+的 delegate 接口来设置，总之这也是可以自定义的。
+
+还有最后的可交互动画，实际上就跟游戏没啥区别了，动画部分的数值需要不断根
+据用户的交互来获取、计算，然后设置具体的显示，这些计算实际上是在显示驱动
+的每一帧间隔里面做的。
+
+cocos2dx 的底层部分也是通过 display link 来驱动实现每一帧的画图与计算，
+然后用户的输入是通过 UIView 的 ''''UIKeyInput delegate 来做的，而不像这个例
+子通过手势控件 recognizer 来做的， cocos2dx 的方式更灵活一些，不过两者对
+于动画显示、操作最底层的部分是相似的。
+
+没想到两者后底层部分的驱动结构其实是一样的，display link 与 run loop。
+
+*** [[CategoryProgramming][CategoryProgramming]] / [[2014-12#p5][Permalink]] 
+
+<!-- date: 2014-12-27T17:58:25+0800 -->
+
+
+
 #p4
 * 14年12月25日 周四 22:16
 
