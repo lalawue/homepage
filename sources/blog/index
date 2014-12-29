@@ -1,4 +1,76 @@
 #title Welcome
+* 14年12月29日 周一 10:22
+
+** My First Mac App - ''''TcBrowserMac
+
+开始练习 Mac App 的编写，与 iOS App 有许多不同，昨天花了一天时间，山寨了
+一个 ''''TcBrowser，一个筛选算法题目的小软件，作者博客页面
+[[http://zh.lucida.me/blog/top-code-offline-browser/][Top Coder算法题目浏览器]]。
+
+也许是我没有深入开发的原因，感觉不再像 iOS 一样，需要多个 View
+Controller 了，使得我一开始就考虑模块划分的问题，虽然这个软件是个小工具
+而已。
+
+然后考虑像 win 一样，可以在文件夹下面打开访问当前文件夹的目录，由于 Mac
+是打包成 bundle 来跑的，界面上的 app 其实是个文件夹，所以我之前整的方法
+都不对，需要通过 [[NSBundle mainBundle] bundlePath] 来获取。
+
+然后 ''''StoryBoard 方面，由于软件是个窗口，所以大小是可变的，一开始就得考虑
+自动布局的问题，Apple 文档那边对于自动布局长篇大论不说，还有一个用于自动
+布局的 DSL，足够复杂了，昨天时间有限，我是没有看透。
+
+实际是用 ''''StoryBoard 点击 nib 后 Editor -> Resolve Auto Layout Issues 上
+面的 Add Missing Constraints 来做的，每添加一个控件，就要 Add 一次。
+
+然后感觉还跟控件添加的顺序有关系，Xcode 会猜测这个控件到底是对齐那一边，
+依据的是 superview 还是哪个 view，这些 constraints 在 inspector 里面几乎
+不能配置，我本来一个 webview 靠右是要左对齐的，然后右边让它跟着
+superview 无限扩展，可是如果给弄成右对齐就改不了了，反正我是没弄懂怎么改，
+所以我只好把 constraints 删除又添加一遍。
+
+然后是 tableview，与 iOS 也有些不同，没有了 cell 的概念，取而代之的是
+NSView，没有了 index，而是一个 ''''NSTableColumn 的结构，table column 的
+identifier 可以设置，重用时也是依据这些 identifier。不过 column 的
+header title 我折腾了不少时间，然后是宽度也是通过 column 设置的。
+
+跟 iOS 一样，只需要设置两个函数就可以让数据上来了，一个是
+numberOfRowsInTableView，一个是 viewForTableColumn。
+
+最后是软件图标的问题，感觉与 iOS 也不一样，也许是我之前没有那么正规军的
+原因。我是想要 Dock 上面自定义图标，谷歌到的方法也只是动态设置的而已，关
+闭的时候很明显会显示回默认的那个。
+
+实际上呢，需要设置的方法在 [[https://developer.apple.com/library/mac/documentation/GraphicsAnimation/Conceptual/HighResolutionOSX/Optimizing/Optimizing.html#//apple_ref/doc/uid/TP40012302-CH7-SW3][Apple Doc - Optimizing for High Resolution]]，
+具体是需要下面几个大小的图标，然后放到 icon_name.iconset 这个文件夹下面
+
+<example>
+icon_16x16.png
+icon_16x16@2x.png
+icon_32x32.png
+icon_32x32@2x.png
+icon_128x128.png
+icon_128x128@2x.png
+icon_256x256.png
+icon_256x256@2x.png
+icon_512x512.png
+icon_512x512@2x.png
+</example>
+
+终端下使用命令
+
+<src type="sh">
+$ iconutil -c icns icon_name.iconset
+</src>
+
+ 来生成，然后拖到工程文件里面就好了，默认就是那个图标了，这个也折腾了不
+ 少时间 ，第一个 Mac App 终于完成了，地址在这里 [[http://pan.baidu.com/s/1sjv3gNN][TcBrowserMac]]，密码是宇宙终极答案。
+
+
+
+*** [[CategoryProgramming][CategoryProgramming]] / [[2014-12#p6][Permalink]] 
+
+<!-- date: 2014-12-29T10:22:03+0800 -->
+
 * 14年12月27日 周六 17:58
 
 ** ObjC Animation
@@ -446,7 +518,7 @@ jpgd c++ 的最大亮点，在于将 YUV 转 RGB 的部分，做了 LUT。这个
 的 LUT，目前霍夫曼编码部分是完全按照位数长度从小到大顺序检测的，非常非常
 耗时，只是作为一个样例来理解的话，倒还好。
 
-*** [[CategoryProgramming][CategoryProgramming]] / [[2014-12#p0][Permalink]] 
+*** [[CategoryProgramming][CategoryProgramming]] / [[2014-12#p0][Permalink]]
 
 <!-- date: 2014-12-01T22:53:41+0800 -->
 
@@ -713,63 +785,4 @@ Flash Pro 确实是大块头，黑苹果本来没装有，我不得不重新下�
 *** [[CategoryProgramming][CategoryProgramming]] / [[2014-02#p0][Permalink]] 
 
 <!-- date: 2014-02-28T15:08:59+0800 -->
-
-* 14年1月16日 周四 12:23
-
-** 设置服务器网络唤醒（WOL）
-
-我的破笔记本往服务器方向又迈了一大步，被我设置成网络唤醒了（Wake On Lan）。
-加上之前可以远程关闭的 expect 脚本，现在开关机都不需要手动按电源键，可以
-把它放到一个安静的角落里了。
-
-话说 baidu 上搜到的网络唤醒要什么主板支持，要先设置 BIOS 电源管理，我的
-例子是不需要的。感觉 WOL 早就是每个主板都必备的功能了吧，即便是被阉割过
-的 BIOS，也无法掩盖硬件本身能支持吧。
-
-查了一下破老笔记本的信息，2007 年 11 月买的 HP Presario V3500 的结构，能
-看到的 BIOS 管理界面极为简单，根本没有电源管理设置的入口。
-
-在 XP 下设置了网卡接收 Magic Packet 的唤醒方式、电源管理方式，可是 XP 系
-统一关闭，网卡的灯也不亮了。当然也无法网络唤醒。
-
-还好有 ubuntu，apt get 一个 ethtool 工具，按照这篇帖子的设置
-[[http://ubuntuforums.org/showthread.php?t=234588][HOWTO: Set your system up for Wake On LAN (WOL)]]，然后关闭的时候使用
-shutdown -P now 仅仅 poweroff 就好了。
-
-帖子里介绍的内容也挺简单，先 apt-get ethtool，然后往 /etc/init.d 放一个
-wakeonlanconfig 开机启动脚本，内容为：
-
-<src tyep="sh">
-#!/bin/bash
-ethtool -s eth0 wol g
-exit
-</src>
-
-chmod a+x wakeonlanconfig，然后设置开机启动方式：
-
-<src type="sh">
-update-rc.d -f wakeonlanconfig defaults
-</src>
-
-这两步手工运行一下，再使用上面的关机命令，可以发现系统关闭了，硬件指示灯
-也都不亮了，除了网卡灯和供电部分。
-
-比如我的破本电源连接处、电源键、硬盘、无线以及网卡都有灯，XP 系统的关闭
-方式，只剩下电源连接处的灯是亮着的（估计这是一上电就亮，软件无法控制）；
-而 ubuntu 下的关机方式，网卡的灯还亮着。
-
-然后网上下一个 WOL 的程序，比如我下的这个 perl 脚本 [[http://gsd.di.uminho.pt/jpo/software/wakeonlan/][Wakeonlan]]，命令行下
-运行，后面跟网卡地址就可以唤醒了。
-
-如果发送唤醒命令的主机与被唤醒的主机不在一个子网内，估计要路由做 forward
-了，没试过不懂了。
-
-还有，我的破本如果关闭后拔掉电源，网卡不亮了，再接入电源网卡也不亮了，估
-计确实是 BIOS 不支持吧，不过只要一直连着电源就没事。
-
-这种远程控制开关机真的很好玩哈哈哈。
-
-*** [[CategoryLinux][CategoryLinux]] / [[2014-01#p4][Permalink]] 
-
-<!-- date: 2014-01-16T12:23:08+0800 -->
 
