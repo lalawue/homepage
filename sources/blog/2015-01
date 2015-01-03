@@ -1,0 +1,51 @@
+#title Archive for January, 2015
+
+#p0
+* 15年1月3日 周六 11:19
+
+** HTTP Downloader
+
+忙了两天多那个 [[https://github.com/lalawue/http_downloader][HTTP Downloader]]，原来只是想实现一个 keep-alive 的连接的
+socket，当时也想到这个东西不会简单，因为一方面底层的是 low level 的
+socket，另外一方面呢，需要处理一层 http 协议，还有一个 dns。
+
+后来是因为找到了 dns 的代码，就开工了，才发现复杂呀，一方面 c 的部分我觉
+得我大意了，编码不够小心，各种折腾。
+
+另外就是 c 的 string 库太不好用了，所以不得不封装了一个，至少得有 split
+这个函数吧，没有的话啥都不用玩了。
+
+其实大概一天不到基本的 http get 已经完成了，只是代码太糟糕，我觉得需要改
+进一下，最主要的就是 string 库，于是昨天折腾了快一天呀，代码清晰了很多。
+
+这个 string 库是有 gc 的，从 head 操作产生的其他 object，都会随着 head
+的 destroy 而 destory。新建 head 的 interface 就那么几个，很有限，所以其
+实可以在开始复杂操作时新建 head，之后后清除掉那个入口的 head。
+
+新建 head 的接口除了 malloc 一段 cstring，还可以 map 一段 cstring 地址给
+它作为操作的空间，这时候内部标记 clone，就是这个 mstring 的 cstr 地址不
+是自己保存的，之后的 destroy 不用释放这个空间，对于像 http head 或者
+body 的分析时，这个就很有用了。
+
+由于新建 mstring 的空间其实是堆上的，对于各种小操作时产生的 mstring，不
+大好，还不如 cloudwu 那个栈上的方式，栈上的方式新建轻松，而且没有碎片的
+产生。
+
+不过呢，就是得随时注意，这些栈上的对象何时销毁，需要的时候需要转成堆上的
+对象。
+
+我有个想法，其实这些小碎片，不如申请一个专用的堆来操作，比如这个堆绑定在
+head 的 allocator 上，从 head 产生的所有 object 都是用这个 allocator，这
+样就避免了大量的小对象，对于内存碎片的控制是有益的，特别是对于那种 map
+cstring 过来的对象，因为本身 cstring 空间是不用释放的，这时候就很有用了，
+因为 mstring 自己控制用的结构，空间占用不大。
+
+不过呢，新建的 heap 多大才有用而又不至于浪费，那就又是另外一回事了，以及
+这个接口如何提供的问题，这个想法还得斟酌一下。
+
+*** [[CategoryProgramming][CategoryProgramming]] / [[2015-01#p0][Permalink]] 
+
+<!-- date: 2015-01-03T11:19:57+0800 -->
+
+
+
