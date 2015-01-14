@@ -1,5 +1,47 @@
 #title Archive for January, 2015
 
+#p1
+* 15年1月15日 周四 01:34
+
+** 获取默认网卡的 IP 地址
+
+目前在做一个简单的服务端程序，需要客户端发现服务端的 IP 地址，然后请求链
+接。发现部分是用 UDP 的广播来做了，但是服务端获取 IP 地址部分，遇到了问
+题。
+
+服务端里面 TCP bind 时，地址是可以为 INADDR_ANY 的，意味着不管是哪个网络
+过来的数据，只要路由到系统，端口对应上，我的服务端程序就可以 accept。看
+起来美好，但是流程上走不通，这时候程序其实是不知道 IP 包是从哪个网卡过来
+的，所以即便接收到了客户端的 UDP 广播请求，也仍然无法发送可以连接的 IP
+地址给客户端，因为从系统里面获取地址的 getsockname() 获取的其实是之前
+bind 的地址，也就是 &#34;0.0.0.0&#34;。
+
+路由都已经通了，但却无法获取路由过的网卡 IP 地址。如果这一切都只能通过之
+前的 bind 来显式地指定只接收某个网络过来的包，确实是太折腾了。
+
+简单点，不如就是用系统默认网卡的 IP 地址好了，至少系统保证这个是最为可用
+的地址。
+
+MacOS 下获取系统网络设备名称以及地址跟 Linux 下的相似，都是 getifaddrs()，
+搜到了一篇中文介绍；然后获取系统默认网卡的信息，我是从 stackoverflow 上
+面搜到的。
+
+ - [[http://www.cnblogs.com/sammei/p/3955679.html][getifaddrs]]
+ - [[http://stackoverflow.com/questions/4872196/how-to-get-the-wifi-gateway-address-on-the-iphone][How to get the WIFI gateway address on the iPhone?]]
+
+这样，bind 的时候仍然可以为 INADDR_ANY，客户端 UDP 广播请求的时候，服务
+端大方发送可连接的 IP 地址。扯远点，复杂点的情况，多个网卡，多个异构网络，
+服务端可以根据具体的请求发送不同的 IP 地址，只要能路由过来，都可以
+accept。
+
+大概就是这个意思了吧。
+
+*** [[CategoryProgramming][CategoryProgramming]] / [[2015-01#p1][Permalink]] 
+
+<!-- date: 2015-01-15T01:34:41+0800 -->
+
+
+
 #p0
 * 15年1月3日 周六 11:19
 
