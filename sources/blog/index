@@ -1,4 +1,184 @@
 #title Welcome
+* 15年3月7日 周六 23:41
+
+** [iOS] 被逼的 VFL
+
+把几年前的 app demo 搬出来，当年还没有 5、5s、6、6p 的时候，界面的布局是
+简单的，可是这两年 duang 一下出来了这么多新机器，现在 iOS 下屏幕分辨率的
+分裂程度也是让人目瞪口呆。
+
+当年一个控件 xib 就可以横行天下，5、5s 出来后有些控件不得不加了一个 xib，
+6、6p 出来后，我想我有时是拒绝使用 xib 了，妹的 6 跟 6p 的分辨率都没什么
+关联嘛。
+
+官方的说法 5、5s、6 都是 2x，6p 是 3x，并且为动态的控件还加了 autosize，
+可这玩意儿我不懂用。
+
+学着在 xib 里面使用 constraints，总是达不到自己想要的效果，折腾了好久好
+久，腰酸背痛是真的。
+
+看了一下官方那一页 VFL，第一次感觉到不知所云。于是上 github 找替代品，比
+如 ''''PureLayout，用了一下，使用上有些限制，且效果仍然不是我想要的。
+
+说一下我要的效果，table view cell 里面放多张方形图片，portrait 跟
+landscape 下布局不一样，前者 space | image | space | image | fixed space，
+后者是三个 image，而且我还考虑 6p 下面多加一个 image。如果我选择 xib，不
+是累死。
+
+即便 ''''PureLayout，还需要我指定中间间隔 space 的宽度，可我想这不是需要动态
+计算的吗，如果我能知道这个宽度的值，我都可以自己计算 frame 的大小咯，还
+要constraints 干嘛，我都 specify 了。
+
+我不明白的是，当年 CSS 都可以指定某个标签具体位置的百分比，方位，为啥水
+果的 VFL 不行呢，看起来 ''''PureLayout 也不好使呀，比如第三个例子，我想要的
+效果还有距离。
+
+于是又 baidu、bing VFL 的资料，官网又硬着头皮看了一下，终于有点开窍了，
+后来发现其实 VFL 是简单的。
+
+它的基础是所有需要动态伸缩的东西，都是一个 UIView（我是这么理解的），所
+有的数值，都是固定的，要么是间隔，要么是相互关系，比如宽是高的两倍。
+
+这就清楚了，其实官方 VFL 里面的 Spacing and Wrapping 举的例子就很清晰了，
+我上面要的效果里面，space 都是 UIView，动态计算就好。
+
+指定三个 image 宽、高相等，三个 image 的宽都相等，多个 space 的宽都相等，
+然后在指定 image 的高度（Y值）就足够了，后面 fix space 就不需要一个
+UIView 了，可以直接指定了。
+
+
+相比之下，感觉到是 IB 里面的 constraits 反而操作复杂了，而且经常是说限制
+不够，运行又出错什么的。
+
+可是明明二维的坐标，x、y 可以确定的话，那个东西就固定了呀，IB 会有让我找
+不着北的感觉，且里面的 constraints 也不容易看出来，太乱。
+
+相比之下 VFL 就好很多，只是概念不好说清，比如那个 space，我是先入为主，
+觉得为啥不能像 CSS 一样，直接指定 UIView 的位置呢，谁能想到即便官方的文
+档里面，需要动态计算大小的元素，只能是 UIView。
+
+写了一点 VFL 后，github 上又找了 Auto Layout Shorthand，但貌似不是完全的
+映射，它自己封装了一些东西，只能作罢。
+
+所以我也简单封装了自己的一些东西，试用了一个小时，感觉还不错，也放到 gist 上面
+了。
+
+<code type="objc">
+// formula as 'width == width'
+static NSLayoutConstraint*
+_lcItemRel(UIView *v1, NSString *formula, UIView *v2, float ratio, float constant) {
+    static NSDictionary *attrValueForName = nil;
+    static dispatch_once_t attrOnceToken;
+    dispatch_once(&attrOnceToken, ^{
+        attrValueForName =
+        @{
+          @"left":      @(NSLayoutAttributeLeft),
+          @"right":     @(NSLayoutAttributeRight),
+          @"top":       @(NSLayoutAttributeTop),
+          @"bottom":    @(NSLayoutAttributeBottom),
+          @"leading":   @(NSLayoutAttributeLeading),
+          @"trailing":  @(NSLayoutAttributeTrailing),
+          @"width":     @(NSLayoutAttributeWidth),
+          @"height":    @(NSLayoutAttributeHeight),
+          @"centerX":   @(NSLayoutAttributeCenterX),
+          @"centerY":   @(NSLayoutAttributeCenterY),
+          @"baseline":  @(NSLayoutAttributeBaseline),
+          };
+    });
+    
+    static NSDictionary *relationValueForName = nil;
+    static dispatch_once_t relationOnceToken;
+    dispatch_once(&relationOnceToken, ^{
+        relationValueForName =
+        @{
+          @"==":  @(NSLayoutRelationEqual),
+          @">=":  @(NSLayoutRelationGreaterThanOrEqual),
+          @"<=":  @(NSLayoutRelationLessThanOrEqual),
+          };
+    });
+    
+    NSArray *kv = [formula componentsSeparatedByString:@" "];
+    
+    NSLayoutAttribute a1, a2;
+    NSLayoutRelation r;
+    
+    if (kv[0]==nil || kv[1]==nil || kv[2]==nil) {
+        return nil;
+    }
+    
+    a1 = (NSLayoutAttribute)[((NSNumber*)attrValueForName[kv[0]]) integerValue];
+    a2 = (NSLayoutAttribute)[((NSNumber*)attrValueForName[kv[2]]) integerValue];
+    r = (NSLayoutRelation)[((NSNumber*)relationValueForName[kv[1]]) integerValue];
+
+    return [NSLayoutConstraint constraintWithItem:v1
+                                        attribute:a1
+                                        relatedBy:r
+                                           toItem:v2
+                                        attribute:a2
+                                       multiplier:ratio
+                                         constant:constant];
+}
+
+static NSArray*
+_lcAryOfVFL(NSString *formula, NSLayoutFormatOptions opt, NSDictionary *metric, NSDictionary *views) {
+    return [NSLayoutConstraint
+            constraintsWithVisualFormat:formula
+            options:opt
+            metrics:metric
+            views:views];
+}
+</code>
+
+gist 地址，https://gist.github.com/lalawue/430102f68327fe302964, 请自备
+梯子。（最后又发现了个不错的 [[https://github.com/floriankugler/FLKAutoLayout][FLKAutoLayout]]，不过没用过，具体就不知道了)
+
+*** [[CategoryProgramming][CategoryProgramming]] / [[2015-03#p1][Permalink]]
+
+<!-- date: 2015-03-07T23:41:59+0800 -->
+
+* 15年3月7日 周六 23:22
+
+** 播放器使用 OpenAL 需要注意的
+
+扯一下写在线视频播放器使用 OpenAL 遇到过的坑吧。
+
+由于不涉及到 listener 的位置与加速度，openal 参数的设置是简单的，且仅仅
+只需要一个 source，一定量的 buffer，加上 streaming 的操作。
+
+第一个问题来了，streaming 的操作，多个 buffer，可具体需要多少个呢，这个
+还真不好说。我做过一些边界测试，不过没那么详细，iOS 真机还是模拟器上面，
+总共可以开到 512 个 buffer name，这个数量总该够了吧。
+
+或者，buffer 固定数量，自己先缓存一定量再扔进去，这样就解决了 buffer
+name 不够的问题。我这边播放 1M 多的码流，每个 audio packet 大概 8k，可以
+算出来自己需要缓存多少时间。
+
+第二个问题，其实是 OpenAL 默认的情况，就是 queue 上去的 buffer，播放完毕，
+到达 stop 的状态后，新的 buffer queue 进来，其实仍然是 queue 到这些
+buffer 的后面去，一旦设置成 play 状态，会先播放一遍已经 stop 的旧数据。
+
+这个 bug 瞒了我很久，因为我之前的 seek 有些问题，加上 audio cache 又不多，
+现象不明显。
+
+这意味每次 queue 新的 buffer 进去之前，把里面的 processed buffer 都给
+unqueue 先才行，这绝壁是个坑啊，哪有 stop 后还赖着不走的。
+
+第三个问题，processed 后的 buffer name，其实在 C 的操作里面，不好存到已
+有的 buffer 数组里面，得新开一个 free_buffer name 的数组，来存放已经
+processed 的 buffer name，要不然这些 buffer name 会丢失，再想扔新的数据
+时就找不到它了。
+
+如果无论如何都先 queue 完已申请的 buffer name，然后再取 processed 的，就
+能避免这个问题。可这又溶于遇到第二个问题，我就是这么绕进去的。
+
+典型的 API 足够简单，但是使用小别扭的问题。OpenAL 我是参考了 1.1 的
+specification，对于写视频播放器足够了，iOS 上官方说是低阶 API，性能足够，
+且又跨平台，何求？
+
+*** [[CategoryProgramming][CategoryProgramming]] / [[2015-03#p0][Permalink]] 
+
+<!-- date: 2015-03-07T23:22:57+0800 -->
+
 * 15年2月28日 周六 23:44
 
 ** IUP & vs2012
@@ -562,69 +742,4 @@ static int _newThreadAborted;
 *** [[CategoryProgramming][CategoryProgramming]] / [[2014-12#p3][Permalink]] 
 
 <!-- date: 2014-12-24T15:29:33+0800 -->
-
-* 14年12月10日 周三 21:47
-
-** OpenGL 3.3 under MacOS (2)
-
-终于查明原因了，并不是 GLFW 不堪用的问题，而是需要在 glGenBuffers 之前，
-先跑下面：
-
-<src type="cpp">
-    glGenVertexArrays(1, &vaoHandle);
-    glBindVertexArray(vaoHandle);
-</src>
-
-当然，那些诸如 &#60;Learning Modern 3D Graphics Programming&#62; 的书上面是没有
-这两句代码的。
-
-蛋疼呀。
-
-*** [[CategoryProgramming][CategoryProgramming]] / [[2014-12#p2][Permalink]] 
-
-<!-- date: 2014-12-10T21:47:14+0800 -->
-
-* 14年12月9日 周二 19:42
-
-** OpenGL 3.3 under MacOS
-
-其实我想说的是在黑苹果下的情况，一般阿婆是只打开 OpenGL 2.1 而已的，用
-X11 XQuartz 或者 GLEW，都无法使用 OpenGL 3.3 的，对于我这个初学者来说，
-想从 Modern OpenGL 入门，痛苦不堪。
-
-首先，还是先确认黑苹果在硬件上能够支持的 OpenGL API 版本吧，App Store 上
-下载 OpenGL Extensions Viewer 来确认硬件情况，比如我的是 ''''GeForce 310，是
-能够支持到 OpenGL 3.3 Core 的。
-
-剩下的就是驱动问题了，谷歌得到的结果是建议用新的 GLFW 而不是 GLUT 或者
-GLEW 来做，GLFW 在 MacOS 下默认也只打开 OpenGL 2.1 而已，听说要这样才能
-打开 3.3 的 Core：
-
-<src type="c">
-static void using_opengl_version_330(void) {
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-}
-</src>
-
-设置完之后，我就按教程走了，但是，又出现了意外的情况，在我的黑苹果上面，
-''''#version 330 的 shader 源码都编译链接过了，但就是没有显示，窗口里面都是
-黑的。总之 OpenGL 2.1 可以，3.3 就是不行。即便 glClear 颜色显示 OK，loop
-循环也有走。
-
-又不甘心使用 OpenGL 2.1 呢，只好救助于 Apple 原生的系统接口看看了，还好
-谷歌查到了不错的东西 [[https://developer.apple.com/library/mac/samplecode/GLEssentials/Introduction/Intro.html][GLEssentials]]，是官方提供的 Objective-C 使用 OpenGL
-3.3 API 编程的例子。
-
-立马左上角的 "Download Sample Code"，XCode 打开工程瞬间编译完成，看了一
-下接口以及 Shader，确认是使用 OpenGL 3.3 接口无疑，demo 也挺高大上的，果
-然官方的东西就是妥妥的。
-
-之前依靠跨平台各种库、以及过时的库起步，加上黑苹果的原因吧，缓慢起步。
-
-*** [[CategoryProgramming][CategoryProgramming]] / [[2014-12#p1][Permalink]] 
-
-<!-- date: 2014-12-09T19:42:30+0800 -->
 
