@@ -23,7 +23,12 @@
 如 ''''PureLayout，用了一下，使用上有些限制，且效果仍然不是我想要的。
 
 说一下我要的效果，table view cell 里面放多张方形图片，portrait 跟
-landscape 下布局不一样，前者 space | image | space | image | fixed space，
+landscape 下布局不一样，前者是
+
+<example>
+space | image | space | image | fixed space
+</example>
+
 后者是三个 image，而且我还考虑 6p 下面多加一个 image。如果我选择 xib，不
 是累死。
 
@@ -48,7 +53,6 @@ landscape 下布局不一样，前者 space | image | space | image | fixed spac
 然后在指定 image 的高度（Y值）就足够了，后面 fix space 就不需要一个
 UIView 了，可以直接指定了。
 
-
 相比之下，感觉到是 IB 里面的 constraits 反而操作复杂了，而且经常是说限制
 不够，运行又出错什么的。
 
@@ -65,7 +69,7 @@ UIView 了，可以直接指定了。
 所以我也简单封装了自己的一些东西，试用了一个小时，感觉还不错，也放到 gist 上面
 了。
 
-<code type="objc">
+<src type="objc">
 // formula as 'width == width'
 static NSLayoutConstraint*
 _lcItemRel(UIView *v1, NSString *formula, UIView *v2, float ratio, float constant) {
@@ -129,7 +133,7 @@ _lcAryOfVFL(NSString *formula, NSLayoutFormatOptions opt, NSDictionary *metric, 
             metrics:metric
             views:views];
 }
-</code>
+</src>
 
 gist 地址，https://gist.github.com/lalawue/430102f68327fe302964, 请自备
 梯子。（最后又发现了个不错的 [[https://github.com/floriankugler/FLKAutoLayout][FLKAutoLayout]]，不过没用过，具体就不知道了)
