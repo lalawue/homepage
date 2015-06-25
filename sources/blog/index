@@ -1,4 +1,49 @@
 #title Welcome
+* 15年6月26日 周五 00:02
+
+** 搬家了
+
+搬到了离原来不远的地方，只隔了一条大马路，不过搬家还是挺累的，靠着那个大
+号的行李箱，来来回回也有十多趟的感觉。
+
+新家终于是个独立的单位了，虽然面积不大，还靠近电梯井（所以相对便宜，当然
+也还是靠出手快抢的），刚住下的时候，半夜会被电机的启动吵醒，现在是慢慢习
+惯了吧，睡得沉了。
+
+然后因为在楼顶，所以开门就是个大天台，晒衣服被子什么的从来都没这么方便过。
+房东没开网络，刚好看到 189.cn 有个余额宝宽带套餐，可是钱都交了却被短信告
+知参与不了，虽然小区就是光纤到户，可是光纤不到楼顶呀。
+
+联通绑定手机号码的优惠套餐也参与不了，同样是交了钱之后，我都换成 136 的
+套餐了，虽然之前房东说闭路天威可以的，联通跟天威都还有合作。
+
+感觉 189.cn 那个互联网部门不靠谱，虽然我也是之前到营业厅各种打听，偶然间
+知道电信几个部门都是独立跑业务的，于是在 10000 号查询，让他们帮确认到底能
+不能 100M 光纤，不能光纤，也好歹给我拉一条 ADSL 吧，总不能说不能拉，因为
+我之前在珠海，开的电信，就是给我从一楼拉到 4 楼的 ADSL，我还有给那个小哥
+晃电话线圈到固定位置上。
+
+虽然小区是光纤到户，可是楼顶有些部门确定是不管了。
+
+这段时间就是电话磨，终于 10000 号给了答复，可以拉 100M 的光纤，然后真的
+就是从之前的楼层开始往楼顶拉，师傅还没我个子高，于是其实是我自己拉的，师
+傅剪了几个电线用来绑东西，让我把光纤绑高一点，架得越高越好，免得被别人扯
+下来。。。
+
+熬了好几天，终于上网了，跟之前房东绑架的 50 块每个月，结果谁都上不了网的
+状态比起来，天差地别。地方虽小，有了网络就很不一样了。
+
+之前工作上弄的 iBeacon 定位，也在端午之前有了不错的效果，蛮开心的。
+
+虽然这周深圳总在上班时大雨，频频看海，淘宝的家具各种延迟，不过呢，也终于
+在今天都到得差不多，基本的东西搭起来，收拾收拾也终于有个样子了。
+
+
+
+*** [[CategoryLife][CategoryLife]] / [[2015-06#p1][Permalink]] 
+
+<!-- date: 2015-06-26T00:02:17+0800 -->
+
 * 15年6月7日 周日 21:05
 
 ** 有关某宝的 HTC M8 以及深港澳车展
@@ -493,76 +538,4 @@ cstring 过来的对象，因为本身 cstring 空间是不用释放的，这时
 *** [[CategoryProgramming][CategoryProgramming]] / [[2015-01#p0][Permalink]] 
 
 <!-- date: 2015-01-03T11:19:57+0800 -->
-
-* 14年12月29日 周一 10:22
-
-** My First Mac App - ''''TcBrowserMac
-
-开始练习 Mac App 的编写，与 iOS App 有许多不同，昨天花了一天时间，山寨了
-一个 ''''TcBrowser，一个筛选算法题目的小软件，作者博客页面
-[[http://zh.lucida.me/blog/top-code-offline-browser/][Top Coder算法题目浏览器]]。
-
-也许是我没有深入开发的原因，感觉不再像 iOS 一样，需要多个 View
-Controller 了，使得我一开始就考虑模块划分的问题，虽然这个软件是个小工具
-而已。
-
-然后考虑像 win 一样，可以在文件夹下面打开访问当前文件夹的目录，由于 Mac
-是打包成 bundle 来跑的，界面上的 app 其实是个文件夹，所以我之前整的方法
-都不对，需要通过 [[NSBundle mainBundle] bundlePath] 来获取。
-
-然后 ''''StoryBoard 方面，由于软件是个窗口，所以大小是可变的，一开始就得考虑
-自动布局的问题，Apple 文档那边对于自动布局长篇大论不说，还有一个用于自动
-布局的 DSL，足够复杂了，昨天时间有限，我是没有看透。
-
-实际是用 ''''StoryBoard 点击 nib 后 Editor -> Resolve Auto Layout Issues 上
-面的 Add Missing Constraints 来做的，每添加一个控件，就要 Add 一次。
-
-然后感觉还跟控件添加的顺序有关系，Xcode 会猜测这个控件到底是对齐那一边，
-依据的是 superview 还是哪个 view，这些 constraints 在 inspector 里面几乎
-不能配置，我本来一个 webview 靠右是要左对齐的，然后右边让它跟着
-superview 无限扩展，可是如果给弄成右对齐就改不了了，反正我是没弄懂怎么改，
-所以我只好把 constraints 删除又添加一遍。
-
-然后是 tableview，与 iOS 也有些不同，没有了 cell 的概念，取而代之的是
-NSView，没有了 index，而是一个 ''''NSTableColumn 的结构，table column 的
-identifier 可以设置，重用时也是依据这些 identifier。不过 column 的
-header title 我折腾了不少时间，然后是宽度也是通过 column 设置的。
-
-跟 iOS 一样，只需要设置两个函数就可以让数据上来了，一个是
-numberOfRowsInTableView，一个是 viewForTableColumn。
-
-最后是软件图标的问题，感觉与 iOS 也不一样，也许是我之前没有那么正规军的
-原因。我是想要 Dock 上面自定义图标，谷歌到的方法也只是动态设置的而已，关
-闭的时候很明显会显示回默认的那个。
-
-实际上呢，需要设置的方法在 [[https://developer.apple.com/library/mac/documentation/GraphicsAnimation/Conceptual/HighResolutionOSX/Optimizing/Optimizing.html#//apple_ref/doc/uid/TP40012302-CH7-SW3][Apple Doc - Optimizing for High Resolution]]，
-具体是需要下面几个大小的图标，然后放到 icon_name.iconset 这个文件夹下面
-
-<example>
-icon_16x16.png
-icon_16x16@2x.png
-icon_32x32.png
-icon_32x32@2x.png
-icon_128x128.png
-icon_128x128@2x.png
-icon_256x256.png
-icon_256x256@2x.png
-icon_512x512.png
-icon_512x512@2x.png
-</example>
-
-终端下使用命令
-
-<src type="sh">
-$ iconutil -c icns icon_name.iconset
-</src>
-
- 来生成，然后拖到工程文件里面就好了，默认就是那个图标了，这个也折腾了不
- 少时间 ，第一个 Mac App 终于完成了，地址在这里 [[http://pan.baidu.com/s/1sjv3gNN][TcBrowserMac]]，密码是宇宙终极答案。
-
-
-
-*** [[CategoryProgramming][CategoryProgramming]] / [[2014-12#p6][Permalink]] 
-
-<!-- date: 2014-12-29T10:22:03+0800 -->
 
