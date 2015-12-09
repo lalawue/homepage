@@ -1,0 +1,36 @@
+#title Archive for December, 2015
+
+#p0
+* 15年12月9日 周三 23:41
+
+** 类 Shadowsocks 的 sock5 proxy － m_tunnel
+
+也是好奇，自己写了一个类似 shadowsocks 的 sock5 proxy，与其协议不一样，
+local 跟 remote 是通过一个 TCP 连接起来的，两边的数据，都通过这个 TCP 连
+接。
+
+当时这么设计，是觉得，每次一个 TCP 过去，重新握手，认证，是个多么麻烦的
+事情，如果之前已经认证好了，就走一个通道就行了，反正都有加密嘛，不过现在
+看来，也许是麻烦的开端，因为这意味着需要下面的协议内容：
+
+ - connect
+ - data
+ - close
+
+data 部分就是切割数据，connect 部分意味着异步连接，close 也要保证同步，
+而且任何一方都要关注到底是 server 还是 local 关闭的。
+
+现在这个软件不太稳定，可是总感觉不是代码上面的问题，而是协议处理上，还需
+要斟酌一下。
+
+还有，其实如果是使用 shadowsocks 那样每个 local 进来的 tcp 都单独链接，
+其实更容易处理些。
+
+不扯了，地址是 https://github.com/lalawue/m_tunnel.
+
+*** [[CategoryProgramming][CategoryProgramming]] / [[2015-12#p0][Permalink]] 
+
+<!-- date: 2015-12-09T23:41:54+0800 -->
+
+
+

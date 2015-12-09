@@ -1,4 +1,35 @@
 #title Welcome
+* 15年12月9日 周三 23:41
+
+** 类 Shadowsocks 的 sock5 proxy － m_tunnel
+
+也是好奇，自己写了一个类似 shadowsocks 的 sock5 proxy，与其协议不一样，
+local 跟 remote 是通过一个 TCP 连接起来的，两边的数据，都通过这个 TCP 连
+接。
+
+当时这么设计，是觉得，每次一个 TCP 过去，重新握手，认证，是个多么麻烦的
+事情，如果之前已经认证好了，就走一个通道就行了，反正都有加密嘛，不过现在
+看来，也许是麻烦的开端，因为这意味着需要下面的协议内容：
+
+ - connect
+ - data
+ - close
+
+data 部分就是切割数据，connect 部分意味着异步连接，close 也要保证同步，
+而且任何一方都要关注到底是 server 还是 local 关闭的。
+
+现在这个软件不太稳定，可是总感觉不是代码上面的问题，而是协议处理上，还需
+要斟酌一下。
+
+还有，其实如果是使用 shadowsocks 那样每个 local 进来的 tcp 都单独链接，
+其实更容易处理些。
+
+不扯了，地址是 https://github.com/lalawue/m_tunnel.
+
+*** [[CategoryProgramming][CategoryProgramming]] / [[2015-12#p0][Permalink]] 
+
+<!-- date: 2015-12-09T23:41:54+0800 -->
+
 * 15年11月21日 周六 23:01
 
 ** 升级家用电脑
@@ -416,145 +447,4 @@ Clover，用的是懒人版，其实很多安装设置我是不懂的，我只�
 *** [[CategoryLinux][CategoryLinux]] / [[2015-03#p2][Permalink]] 
 
 <!-- date: 2015-03-30T15:10:10+0800 -->
-
-* 15年3月7日 周六 23:41
-
-** [iOS] 被逼的 VFL
-
-把几年前的 app demo 搬出来，当年还没有 5、5s、6、6p 的时候，界面的布局是
-简单的，可是这两年 duang 一下出来了这么多新机器，现在 iOS 下屏幕分辨率的
-分裂程度也是让人目瞪口呆。
-
-当年一个控件 xib 就可以横行天下，5、5s 出来后有些控件不得不加了一个 xib，
-6、6p 出来后，我想我有时是拒绝使用 xib 了，妹的 6 跟 6p 的分辨率都没什么
-关联嘛。
-
-官方的说法 5、5s、6 都是 2x，6p 是 3x，并且为动态的控件还加了 autosize，
-可这玩意儿我不懂用。
-
-学着在 xib 里面使用 constraints，总是达不到自己想要的效果，折腾了好久好
-久，腰酸背痛是真的。
-
-看了一下官方那一页 VFL，第一次感觉到不知所云。于是上 github 找替代品，比
-如 ''''PureLayout，用了一下，使用上有些限制，且效果仍然不是我想要的。
-
-说一下我要的效果，table view cell 里面放多张方形图片，portrait 跟
-landscape 下布局不一样，前者是
-
-<example>
-space | image | space | image | fixed space
-</example>
-
-后者是三个 image，而且我还考虑 6p 下面多加一个 image。如果我选择 xib，不
-是累死。
-
-即便 ''''PureLayout，还需要我指定中间间隔 space 的宽度，可我想这不是需要动态
-计算的吗，如果我能知道这个宽度的值，我都可以自己计算 frame 的大小咯，还
-要constraints 干嘛，我都 specify 了。
-
-我不明白的是，当年 CSS 都可以指定某个标签具体位置的百分比，方位，为啥水
-果的 VFL 不行呢，看起来 ''''PureLayout 也不好使呀，比如第三个例子，我想要的
-效果还有距离。
-
-于是又 baidu、bing VFL 的资料，官网又硬着头皮看了一下，终于有点开窍了，
-后来发现其实 VFL 是简单的。
-
-它的基础是所有需要动态伸缩的东西，都是一个 UIView（我是这么理解的），所
-有的数值，都是固定的，要么是间隔，要么是相互关系，比如宽是高的两倍。
-
-这就清楚了，其实官方 VFL 里面的 Spacing and Wrapping 举的例子就很清晰了，
-我上面要的效果里面，space 都是 UIView，动态计算就好。
-
-指定三个 image 宽、高相等，三个 image 的宽都相等，多个 space 的宽都相等，
-然后在指定 image 的高度（Y值）就足够了，后面 fix space 就不需要一个
-UIView 了，可以直接指定了。
-
-相比之下，感觉到是 IB 里面的 constraits 反而操作复杂了，而且经常是说限制
-不够，运行又出错什么的。
-
-可是明明二维的坐标，x、y 可以确定的话，那个东西就固定了呀，IB 会有让我找
-不着北的感觉，且里面的 constraints 也不容易看出来，太乱。
-
-相比之下 VFL 就好很多，只是概念不好说清，比如那个 space，我是先入为主，
-觉得为啥不能像 CSS 一样，直接指定 UIView 的位置呢，谁能想到即便官方的文
-档里面，需要动态计算大小的元素，只能是 UIView。
-
-写了一点 VFL 后，github 上又找了 Auto Layout Shorthand，但貌似不是完全的
-映射，它自己封装了一些东西，只能作罢。
-
-所以我也简单封装了自己的一些东西，试用了一个小时，感觉还不错，也放到 gist 上面
-了。
-
-<src type="objc">
-// formula as 'width == width'
-static NSLayoutConstraint*
-_lcItemRel(UIView *v1, NSString *formula, UIView *v2, float ratio, float constant) {
-    static NSDictionary *attrValueForName = nil;
-    static dispatch_once_t attrOnceToken;
-    dispatch_once(&attrOnceToken, ^{
-        attrValueForName =
-        @{
-          @"left":      @(NSLayoutAttributeLeft),
-          @"right":     @(NSLayoutAttributeRight),
-          @"top":       @(NSLayoutAttributeTop),
-          @"bottom":    @(NSLayoutAttributeBottom),
-          @"leading":   @(NSLayoutAttributeLeading),
-          @"trailing":  @(NSLayoutAttributeTrailing),
-          @"width":     @(NSLayoutAttributeWidth),
-          @"height":    @(NSLayoutAttributeHeight),
-          @"centerX":   @(NSLayoutAttributeCenterX),
-          @"centerY":   @(NSLayoutAttributeCenterY),
-          @"baseline":  @(NSLayoutAttributeBaseline),
-          };
-    });
-    
-    static NSDictionary *relationValueForName = nil;
-    static dispatch_once_t relationOnceToken;
-    dispatch_once(&relationOnceToken, ^{
-        relationValueForName =
-        @{
-          @"==":  @(NSLayoutRelationEqual),
-          @">=":  @(NSLayoutRelationGreaterThanOrEqual),
-          @"<=":  @(NSLayoutRelationLessThanOrEqual),
-          };
-    });
-    
-    NSArray *kv = [formula componentsSeparatedByString:@" "];
-    
-    NSLayoutAttribute a1, a2;
-    NSLayoutRelation r;
-    
-    if (kv[0]==nil || kv[1]==nil || kv[2]==nil) {
-        return nil;
-    }
-    
-    a1 = (NSLayoutAttribute)[((NSNumber*)attrValueForName[kv[0]]) integerValue];
-    a2 = (NSLayoutAttribute)[((NSNumber*)attrValueForName[kv[2]]) integerValue];
-    r = (NSLayoutRelation)[((NSNumber*)relationValueForName[kv[1]]) integerValue];
-
-    return [NSLayoutConstraint constraintWithItem:v1
-                                        attribute:a1
-                                        relatedBy:r
-                                           toItem:v2
-                                        attribute:a2
-                                       multiplier:ratio
-                                         constant:constant];
-}
-
-static NSArray*
-_lcAryOfVFL(NSString *formula, NSLayoutFormatOptions opt, NSDictionary *metric, NSDictionary *views) {
-    return [NSLayoutConstraint
-            constraintsWithVisualFormat:formula
-            options:opt
-            metrics:metric
-            views:views];
-}
-</src>
-
-gist 地址，https://gist.github.com/lalawue/430102f68327fe302964, 请自备
-梯子。（最后又发现了个不错的 [[https://github.com/floriankugler/FLKAutoLayout][FLKAutoLayout]]，不过没用过，具体就不知道了)
-
-*** [[CategoryProgramming][CategoryProgramming]] / [[2015-03#p1][Permalink]]
-
-<!-- date: 2015-03-07T23:41:59+0800 -->
 
