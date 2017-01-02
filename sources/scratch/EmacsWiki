@@ -7,7 +7,7 @@
 它除了可以进行普通的文档编辑之外，还可以很方便的基于 wiki 的文法在各个文
 档之间建立连接，并生成多种文档发布格式，比如 html 之类的等等。
 
-它的主页地址是 [[EmacsWikiProject][EmacsWiki]]，跟 ''''EmacsWiki 相似但是功能更为强大的文档管理发布工具是 EmacsMuse，它们的维护者是同一个人。
+它的主页地址是 [[https://www.emacswiki.org/emacs/EmacsWikiMode][EmacsWiki]]，跟 ''''EmacsWiki 相似但是功能更为强大的文档管理发布工具是 [[https://www.emacswiki.org/emacs/EmacsMuse][EmacsMuse]]，它们的维护者是同一个人。
 
 ** 使用 emacs-wiki 建立网站
 
