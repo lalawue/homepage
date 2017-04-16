@@ -23,9 +23,8 @@
 	  <li><a href="../muse/index.html">Muse</a></li>
 	  <li><a href="../scratch/index.html">Scratch</a></li>
 	</ul>
-	<p class="header">Search</p><!-- Google Search -->
-	<form id="searchform" method="get"
-	      action="http://www.google.com/search" >
+	<p class="header">Search</p><!-- Bing Search -->
+	<form id="searchform" method="get" action="http://cn.bing.com/search" >
 	  <p><input id="searchtext" type="text" name="q" value="" /></p>
           <p><input type="hidden" name="ie" value="utf-8" /></p>
 	  <p><input type="hidden" name="oe" value="utf-8" /></p>

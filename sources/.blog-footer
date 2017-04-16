@@ -17,9 +17,8 @@
       <p class="header">Calendar</p>
       <lisp>(emacs-wiki-journal-insert-calendar)</lisp>
 
-      <p class="header">Search</p><!-- Google Search -->
-      <form id="searchform" method="get"
-	    action="http://www.google.com/search" >
+      <p class="header">Search</p><!-- Bing Search -->
+      <form id="searchform" method="get" action="http://cn.bing.com/search" >
 	<p><input id="searchtext" type="text" name="q" value="" /></p>
 	<p><input type="hidden" name="ie" value="utf-8" /></p>
 	<p><input type="hidden" name="oe" value="utf-8" /></p>
@@ -32,7 +31,7 @@
       
       <p class="header">Feeds &#38; Contact</p>
         <ul>
-          <li><a id="rss_feeds" title="墙内地址 http://suchang.net/blog/rss.xml" href="http://feeds.feedburner.com/sc6349">RSS</a></li>
+          <li><a id="rss_feeds" title="RSS订阅" href="http://suchang.net/blog/rss.xml">RSS</a></li>
           <li><a href="mailto:suchaaa@gmail.com">Mail me</a></li>
         </ul>
 
@@ -49,13 +48,11 @@
 
       <p class="header">Links</p>
       <ul>
-	    <li><a href="http://blog.csdn.net/g9yuayon/">G9</a></li>
+      <li><a href="http://blog.csdn.net/g9yuayon/">G9</a></li>
         <li><a href="http://mrjamie.cc/">Jamie</a></li>
         <li><a href="http://www.ftchinese.com/column/007000002">朝九晚五</a></li>
         <li><a href="http://blog.codingnow.com/">CloudWu</a></li>
-	    <li><a href="http://www.mindmeters.com/blogind.asp?id=253">All About S</a></li>
-        <li><a href="http://www.drunkpiano-liuyu.net/">DrunkPiano</a></li>
-	    <li><a href="http://ditu.google.cn/maps?hl=zh-CN&ll=22.626687,110.186691&spn=0.101883,0.15398&t=h&brcurrent=3,0x36adc425dfd47083:0xd77004f2b5f175d6,0,0x36adb6981be5ba57:0xbb22df1016a0dd2e%3B5,0,0&z=13">Yulin in Google Maps</a></li>
+        <li><a href="http://ditu.google.cn/maps?hl=zh-CN&ll=22.626687,110.186691&spn=0.101883,0.15398&t=h&brcurrent=3,0x36adc425dfd47083:0xd77004f2b5f175d6,0,0x36adb6981be5ba57:0xbb22df1016a0dd2e%3B5,0,0&z=13">Yulin in Google Maps</a></li>
       </ul>
 
       <p class="header">Archives</p>
