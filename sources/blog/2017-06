@@ -1,0 +1,28 @@
+#title Archive for June, 2017
+
+#p0
+* 17年6月25日 周日 00:30
+
+** m_tunnel 支持 epoll/kqueue
+
+[[https://github.com/lalawue/m_tunnel][m_tunnel]] 支持 epoll/kqueue 了，所以默认情况下，Win 下编译使用 select 模
+型，Linux 下使用 epoll，MacOS 下使用 kqueue。这样的话，Linux 及 MacOS 下
+都没有了 socket 数量的限制，虽然大部分的情况下不会遇到这种问题。
+
+自用 m_tunnel 一段时间了，配合 kcptun 使用很不错，觉得将 kcp 集成到
+m_tunnel 里，这个选项可以提上日程了，当代实际能用时又不知到什么时候了。
+
+另外，将 m_tunnel 里面网络的部分单独抽取出来，放到了 [[https://github.com/lalawue/m_net][m_net]] 里，修改了一
+些 API，增加了一个 ERROR 的状态，另外，增加了 example 以及 test 文件。
+
+epoll、kqueue 虽然使用平台不一样，但是其接口是类似的，较大的不同，在于对
+于 socket 的通知属性修改，epoll 的接口是单独对某个 socket 设置，而
+kqueue 的接口是通过 kevent API 来操作一个数组，在接口使用上，我感觉后者
+更好一些。
+
+*** [[CategoryProgramming][CategoryProgramming]] / [[2017-06#p0][Permalink]] 
+
+<!-- date: 2017-06-25T00:30:16+0800 -->
+
+
+
