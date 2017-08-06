@@ -1,0 +1,35 @@
+#title Archive for August, 2017
+
+#p0
+* 17年8月6日 周日 13:34
+
+** m_kcptun
+
+之前的 [[https://github.com/lalawue/m_tunnel][m_tunnel]] 因为基于 TCP，实际环境单独使用其实不尽如人意，因为 TCP
+本身重发机制等等原因，在网络环境比较糟糕的情况下，延迟长得让人难以接受。
+
+早期的改进，诸如在手机、PC 端的动作游戏，IM 上，是使用改进的 UDP，封装自
+己的协议，以及重发机制管理，来达到速度、带宽的平衡。
+
+比较有名的是 [[https://github.com/skywind3000/kcp][kcp]]，包含完整协议，意图取代 TCP，野心更大的则是 Google 的
+[[https://www.chromium.org/quic][QUIC]] 协议，还包含完整的安全性的考虑。
+
+上面也说到，其实很早之前大家就都有基于 UDP 的各自的方案，大家对 TCP 的局
+限也都比较清楚，所以类似 QUIC 这样的协议，感觉铺开会很快的。
+
+实际上，我自己使用 m_tunnel 是使用 [[https://github.com/xtaci/kcptun][kcptun]]，要不实际环境跑起来太慢了，再
+说自己也想研究一下 kcp 的使用，于是构建了这个
+https://github.com/lalawue/m_kcptun 。
+
+目前仅能完成基础的工作，离具体实用还有一段距离，因为实际上虽然基于 kcp，
+上层还是需要自己的协议，来模拟这端 TCP 与远端 TCP 是否还连上这个问题，起
+码能保证当本地 TCP 重连的时候，远端 TCP 也来一个断开重连，要不然，跑在
+TCP 上面的协议会乱的。
+
+
+*** [[CategoryProgramming][CategoryProgramming]] / [[2017-08#p0][Permalink]] 
+
+<!-- date: 2017-08-06T13:34:04+0800 -->
+
+
+
