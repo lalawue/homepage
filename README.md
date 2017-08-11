@@ -1,4 +1,4 @@
 homepage
 ========
 
-http://suchang.net since 2004/09/17.
+http://suchang.org since 2004/09/17.
