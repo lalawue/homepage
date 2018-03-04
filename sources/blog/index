@@ -1,4 +1,55 @@
 #title Welcome
+* 18年3月5日 周一 00:06
+
+** m_net 支持 FreeBSD
+
+使用家里旧电脑配件新搭了一台 FreeBSD 后，开始跑程序，因为 FreeBSD 在网络
+接口层面跟 MacOS 是很相似的，同样是 kqueue，所以修改比较小，只需要新开一
+个宏定义，包起来的区域跟 MacOS 一样就行。
+
+在这个基础上 [[https://github.com/lalawue/m_net][m_net]] 开始支持 FreeBSD 了，同样的 [[https://github.com/lalawue/m_tunnel][m_tunnel]]、[[https://github.com/lalawue/m_kcptun][m_kcptun]] 也开始
+支持 FreeBSD 了。
+
+其实不用修改啥，想着其实还不如支持大端需要修改的东西多，可是目前没有平台
+跑大端，所以这个想法等实际需要后再说吧。
+
+*** [[CategoryProgramming][CategoryProgramming]] / [[2018-03#p1][Permalink]] 
+
+<!-- date: 2018-03-05T00:06:54+0800 -->
+
+* 18年3月4日 周日 23:53
+
+** 开始接触 FreeBSD
+
+过年在家发现了两台旧电脑，是之前给家人安装新电脑后，各种拆装后剩下的，清
+点了一下，CPU 是 I3 2300 之类的，主板华擎，内存 4G DDR3，这个配置感觉还
+是可以的，MicroATX 架构，就想着不如搬到深圳，搭一台 FreeBSD 学习一下。
+
+还带上了大学时就开始服役的 80G 希捷硬盘，由于是 IDE 口，这个硬盘没条件在
+家测试了，其他部件包括电源，正常跑起了 BIOS。
+
+到深圳后，只需要淘宝一个不带电源支持 MicroATX 的小机箱，大概 70 块这样，
+因为忘记电源线，因此多破费了 20 块，不到 100 机器就可以跑起来了，感觉还
+可以。
+
+计划之外的是，那个 80G IDE 接上了淘宝的 IDE 转 SATA 小板，还是没法使用；
+还好手头有一个 320G 的 USB 移动硬盘，说是用来备份的移动硬盘，可是很少使
+用，年龄也很大了，10 年买的。
+
+于是拆了硬盘盒，欣喜地看到了 SATA 口，愉快接上吧。
+
+FreeBSD 的安装很傻瓜，我唯一不理解的是分区，貌似不能像我在 Linux 那样
+给 home 单独分区，这样随便我折腾系统都没关系了。
+
+pkg install 用起来也很溜，开了 samba 后，同样可以当成一台备份服务器，就
+是速度要比用 USB 口传输慢了许多，好处是之前的 USB 口其实接触很不稳定，经
+常跑不起来，所以其实我也不太想用这个备份的移动硬盘。
+
+
+*** [[CategoryLinux][CategoryLinux]] / [[2018-03#p0][Permalink]] 
+
+<!-- date: 2018-03-04T23:53:47+0800 -->
+
 * 18年1月1日 周一 23:56
 
 ** 电影芳华
@@ -440,68 +491,4 @@ Clover 可以修改启动参数，在 Option 里面，选择启动参数，enter
 *** [[CategoryLinux][CategoryLinux]] / [[2017-05#p0][Permalink]] 
 
 <!-- date: 2017-05-07T10:36:03+0800 -->
-
-* 17年4月16日 周日 22:52
-
-** m_tunnel 支持 Win7
-
-其实 [[https://github.com/lalawue/m_tunnel][m_tunnel]] 使用单 TCP 来连接本地、远端有风险，就是 TCP 本身并不是为流
-速设计的，而是为流量设计的，这使得很多请求，在 TCP 网络不稳定的时候，很
-容易就被卡住，而这里本身的设计，就使得后一个请求，跟前一个请求发生了关联，
-要卡大家一起卡。
-
-这个大 BUG 是最开始设计的问题，后来就想转而使用 KCP 来做中间的管道，而不
-是使用 TCP，当然当时也有不少使用 KCP 的类似工具了。
-
-最近是看上了 [[https://github.com/xtaci/kcptun][kcptun]]，一个使用 kcp 来做管道的工具，管道还需要配上两端的
-shadowshocks，来为浏览器等提供标准的 socks5 接口，以及对应远端发起真实的
-请求。而我则刚好可以使用 m_tunnel 来替代 shadowsocks。加入 Win7 的支持，
-则是因为现在玩游戏比较多了，算了一下，在 Win7 下面的时间更多。
-
-还好，用 VS2017 建立工程编译，需要修改的东西不多，就可以跑了，效果是杠杠
-的，当然，m_tunnel 是用的是 select 来实现 MacOS、Linux、Windows 三端接口
-一致，而不是 libuv 这类框架。
-
-使用 select，就有一些效率的问题，但如果不是做极端的 server，其实是没有关
-系的，这个我也有一些 CPU 使用量的数据；还有就是 socket 同时使用的数量是
-有限制的，但是对于一般人来说，其实都足够了，因为你真的很难很难能够同时用
-完 select 提供的最大 socket 数量。
-
-我这边也提供了一个 Win7 的 [[https://github.com/lalawue/m_tunnel/releases/download/v20170415/mtunnel_local_windows_amd64.zip][precompiled 版本]]，自己则是买了 Linode 东京每
-月 5 刀的套餐，在 SZ 看 Youtube 720P 几乎秒开，大概这样。
-
-*** [[CategoryProgramming][CategoryProgramming]] / [[2017-04#p1][Permalink]] 
-
-<!-- date: 2017-04-16T22:52:47+0800 -->
-
-* 17年4月16日 周日 22:42
-
-** emacs-wiki-mode 已死
-
-为这个静态站点更新了几个链接，RSS 地址，还有搜索地址，这个站点不知不觉已
-经超过了 10 年，保留了最开始学习 Linux 的点点滴滴，各种嬉戏玩耍，不过，
-开始工作一段时间后，这里就都是流水了。
-
-自从搬家到了 ''''GitHub Pages，省心了很多。十年前，用 Wiki 的方式记录并连接
-各个页面，用 Emacs 作为工具编写并转换成 HTML 是一个新奇的方式，现在，还
-有谁会抱着一个客户端来写博客，有了通用的浏览器，和强大的 JS，Web 可以扮
-演所有的东西。
-
-所以当我在 google 里面搜索 emacs-wiki-mode 时，已经搜索不到什么有用的东
-西了。也许最开始大家只是使用 emacs 来写 ''''LiveJournal，最后变成了 wiki，最
-后大神 maintain 了这个 project，然后变成了 ''''EmacsMuse，然后 muse 成了 GNU
-的官方项目，那时候 emacs-wiki-mode 就已经半死不活，有谁还会用一个老项目？
-
-之前 github 上的 emacsmirror 还保留着 emacs-wiki-mode，当时看到这个老项
-目，我还是蛮开心的，没想到现在上去翻找，已经搜不到了。
-
-也许我比较古旧吧，还用着这个 mode 写东西，反正也挺趁手的，反正写的也很少，
-反正都是流水，反正这个附加挂上去的 emacs-wiki-journal 也是我自己一个人用
-而已。
-
-本来还想把自己用的 emacs-wiki-mode 源代码挂到 github 上，现在有点犹豫了。
-
-*** [[CategoryThisSite][CategoryThisSite]] / [[2017-04#p0][Permalink]] 
-
-<!-- date: 2017-04-16T22:42:10+0800 -->
 
