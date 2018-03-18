@@ -1,4 +1,30 @@
 #title Welcome
+* 18年3月19日 周一 01:06
+
+** True Life
+
+前几天在推上看到这个新闻蛮惊讶的，当时看的是[[https://www.npr.org/sections/goatsandsoda/2018/03/01/589519475/computer-teacher-with-no-computers-chalks-up-clever-classroom-plan][英文来源]]，里面的信息跟
+[[https://m.huanqiu.com/r/MV8wXzExNjQzMjM5XzE1NTRfMTUyMDI5NzgyMA==?pc_url=http%3A%2F%2Flx.huanqiu.com%2Flxnews%2F2018-03%2F11643239.html][中文报道]]有很大的不同。
+
+想起二十多年前听到信息高速公路时是完全不理解，十多年前开始慢慢接受电脑进
+入普通生活，改善工作效率的同时，也开始沉迷虚拟游戏中的各种。
+
+可是现在呢，微博、微信、抖音、视频，各种虚拟场景占据了一天中那么多时间后，
+也许网络中过得好不好要比被微信、工作IM撕裂的所谓现实生活更重要吧。
+
+自从微信变成工作IM，特别是各种下班后，以及类似今年情人节那样被硬生生被拉
+到一个微信群里解决bug到晚上九点多，我也终于理解自己不喜欢微信的原因。
+
+还好家人都爱打电话，再说家人的微信群我也不爱看，根本都不回，打字太累了，
+就像这篇打了大概有2个小时。
+
+所以，看到这篇新闻后先是惊讶，对照自己的生活后觉得羡慕，也知道再也不可能
+回退到，如新闻中加纳人的史前生活。​​​​
+
+*** [[CategoryReading][CategoryReading]] / [[2018-03#p2][Permalink]] 
+
+<!-- date: 2018-03-19T01:06:06+0800 -->
+
 * 18年3月5日 周一 00:06
 
 ** m_net 支持 FreeBSD
@@ -336,159 +362,4 @@ kqueue 的接口是通过 kevent API 来操作一个数组，在接口使用上�
 *** [[CategoryProgramming][CategoryProgramming]] / [[2017-06#p0][Permalink]] 
 
 <!-- date: 2017-06-25T00:30:16+0800 -->
-
-* 17年5月7日 周日 10:36
-
-** 安装黑苹果 10.12 macOS Sierra
-
-想想距离上次安装已经有一年多了，这次升级安装，原因是之前查到 10.11 下对
-GTX 1060 无法支持，这是个太大的硬伤。考虑到之前几次升级安装，也还算顺利，
-这次没多想就开干了，但这次巨蛋疼，来来回回花了近三天时间，通了一次宵才搞
-定。
-
-这次黑苹果安装，把 Clover 的普通安装、启动引导安装，EFI 系统分区，系统安
-装盘，DSDT，相关工具的使用，以及这个版本安装的其他坑弄清楚了一些。
-
-回头想想，如果要达到一个类似 Windows 安装流程那样顺利的安装，需要了解上
-面的这些概念才行，然后还需要用到下面列出来的工具，要不然，随便碰到一点现
-象，就不知道该怎么办了，那就难了。
-
-比如所谓的懒人版，应该是加了一些驱动吧，但我觉得在普适性上面，也还是会挑
-硬件的，苹果的系统，本来就没有考虑过这一点，从需要第三方的引导器如 Clover，
-以及需要 DSDT 来看就知道了。
-
-还有，我之所以不用懒人版，还是担心安全性的问题。
-
-
-**** 一、安装前提
-
- - PC macOS 独立硬盘安装，支持 64 位的硬件，支持 UEFI 启动的主板
- - 需要设置 BIOS，需要插拔独立显卡
- - 不懂我说啥的同学，非 64 位硬件非 UEFI 的同学，其他非独立硬盘想双系统
-   的同学，这里帮不了你了
-
-
-**** 二、需要的工具
-
-下面列出需要的工具，但一些工具需要在 macOS 下运行，只有 Windows 的考虑下
-其他替代工具吧，需要的工具有：
-
- - MaciASL.app，用于生成 DSDT 描述文件
-
- - Clover Configurator.app，用于配置 Clover，以及挂载 EFI 分区
-
- - 最新版的 Clover，到 sourceForge 下就好
-
- - AGDPfix.app，用于解决部分 SMBIOS 接 Nvidia 显卡后启动显示黑屏的问题，
-   有其他的替代方案，可通过搜这个 app 看看（这个驱动独立显卡，安装后使用
-   的）
-
-另外，需要一个 8G 或者更大容量的 U 盘，以及需要对主板 BIOS 进行以下设置：
-
- - Secure Boot disable
- - AHCI enable
- - UEFI enable（可以选择 UEFI、legacy 都支持）
- - XHCI ''''SmartAuto
- - XHCI/EHCI handoff enable
- - 设置 U 盘启动优先级最高
-
-上面的设置来源于外文网站，我自己也是这么设置的，那些懒人版都没有这个说明
-的。由于对部分开关不了解，所以这里不展开描述。
-
-我自己电脑的大概信息是 3 个硬盘，一个单用于 Windows，一个单用于 macOS 的
-最新版本（就是这次准备安装的），一个是备份启动的 macOS 系统（10.11.6），
-只有这个不是 SSD，也分区用于存数据资料。上面的 BIOS 设置，对 Windows 系
-统没有影响。
-
-
-**** 三、准备资源
-
-这里列一下大概需要准备的资源，创建硬件描述表 DSDT，准备安装用的 U 盘
-
- - 10.12 macOS Sierra 原版安装盘，并创建系统安装 U 盘
-
- - 最新版的 Clover，先给系统安装 U 盘创建 Clover 启动，务必在安装界面勾
-   选自定（customize），选择安装启动引导以及 Drivers64UEFI 下
-   的''''OsxAptioFixDrv-64
-
- - 使用 MaciASL.app 生成 DSDT，并编译，遇到编译不过的问题，将这一行或这
-   一块删除，直到通过编译，保存为 AML 二进制文件
-
- - 使用 Clover Configurator.app 挂载 U 盘的 EFI 分区（请注意不是当前启动
-   macOS 的 EFI 分区），将 DSDT 描述文件放到 EFI/ACPI/patched 以及
-   origin 下面
-
- - 下载最新版的 FakeSMC.kext 放到 U 盘 EFI/CLOVER/kexts/Others 下面，
-   kexts 目录下如果还有其他文件夹的，建议将 10.12 文件夹下面的也拷贝到
-   Others，然后删除掉除 Others 的其他，要不每次升级系统都得拷贝一遍，麻烦
-
- - 使用 Clover Configurator.app 配置 U 盘 EFI 分区下的 config.plist，
-   boot 下面的 verbose、x86_64、xcpm、kext-dev-mode=1、nv_disable=1 勾选；
-   SMBIOS 里面点魔术棒选个跟当前硬件配置差不多的就好；还有 Kernel 下的
-   AppleRTC 勾选；或者用你当前 Clover 的配置也行，但是要去掉独立显卡的选
-   项
-
- - 关闭保存 Clover Configurator.app 并推出 U 盘 EFI 分区
-
-
-**** 四、安装流程
-
-先说一下大概的流程，U 盘启动安装，遇到问题增添 U 盘 EFI 分区的 kext，安
-装后修复部分 SMBIOS 下的黑屏问题。
-
- 1. 如果有像我这样 Nvidia GTX 1060 显卡的，先把显卡拔掉，BIOS 设置使用 Intel
-    内置显卡
-
- 2. BIOS 设置 U 盘启动优先级最高，使用 U 盘 Clover 启动安装，如果没有
-    kext 挂掉，kernel panic，那么可以走到安装界面；选择盘符抹盘安装
-
- 3. 安装顺利完成，使用 U 盘引导并启动到新版系统，先驱动起网卡，然后下载
-    Nvidia 的 web 驱动安装，并使用 AGDPfix.app 修正部分 SMBIOS 设置的黑
-    屏问题
-
- 4. 使用 Clover 给新版系统安装启动引导，将之前 U 盘的 EFI 分区内容拷贝到
-    新系统的 EFI 分区，修改 config.plist，去掉 nv_disable=1，加入
-    nvidiaweb 支持（请看这一节的最后），保存并推出 EFI 分区
-
- 5. 关机下电，将 Nvidia 独立显卡插回主板，修改 BIOS 的启动顺序
-
- 6. 顺利启动新系统，安装结束；其他 kext 安装、声卡、网卡驱动安装，Clover
-    默认启动项请搜索其他吧
-
-有关 nvidiaweb 驱动的支持，需要使用文本编辑器编辑 config.plist，在
-''''SystemParameters key 下添加：
-
-<example>
-	<key>SystemParameters</key>
-	<dict>
-                ... 其他配置 ...
-        	<key>NvidiaWeb</key>
-        	<true/>
-	</dict>
-</example>
-
-
-**** 五、kernel panic、黑屏问题
-
-这里的 kernel panic 出现在安装第 2. 步，我也遇到过，看看是什么 kext 引起
-的，将其更新或删除就好，一般有了 DSDT 后，对硬件的描述应该不成问题了。
-
-Clover 可以修改启动参数，在 Option 里面，选择启动参数，enter 后修改，一
-般是增加减少 -v，nv_disable=1，-x，-f 之类的。
-
-黑屏问题看外文参考资料是因为 SMBIOS 设置，苹果针对 OEM 单独做的处理，请
-看下面的英文参考资料。
-
-
-**** 六、参考资料
-
-参考外文资料比较好，比如 www.tonymacx86.com
-
- - [[https://www.tonymacx86.com/threads/good-news-for-x99-10-11-haswell-e-el-capitan.178425/page-4#post-1151520][Clover 设置及黑屏问题]]
- - [[https://www.tonymacx86.com/threads/black-screen-with-macpro-6-1-or-imac-15-or-imac-17-system-definition.183113/][Black Screen with MacPro 6,1 or iMac 15 or iMac 17 System Definition]]
-
-
-*** [[CategoryLinux][CategoryLinux]] / [[2017-05#p0][Permalink]] 
-
-<!-- date: 2017-05-07T10:36:03+0800 -->
 
