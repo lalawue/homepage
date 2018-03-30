@@ -23,15 +23,15 @@
 	<p><input type="hidden" name="ie" value="utf-8" /></p>
 	<p><input type="hidden" name="oe" value="utf-8" /></p>
 	<p><input type="hidden" name="hl" value="zh-CN" /></p>
-	<p><input type="hidden" name="domains" value="suchang.org" /></p>
-	<p><input name="si" type="hidden" value="suchang.org" /></p>
-	<p><input type="hidden" name="sitesearch" value="suchang.org" /></p>
+	<p><input type="hidden" name="domains" value="suchang.net" /></p>
+	<p><input name="si" type="hidden" value="suchang.net" /></p>
+	<p><input type="hidden" name="sitesearch" value="suchang.net" /></p>
       </form>
 
       
       <p class="header">Feeds &#38; Contact</p>
         <ul>
-          <li><a id="rss_feeds" title="RSS订阅" href="http://suchang.org/blog/rss.xml">RSS</a></li>
+          <li><a id="rss_feeds" title="RSS订阅" href="http://suchang.net/blog/rss.xml">RSS</a></li>
           <li><a href="mailto:suchaaa@gmail.com">Mail me</a></li>
         </ul>
 

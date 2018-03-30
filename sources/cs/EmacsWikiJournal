@@ -85,12 +85,12 @@ emacs-wiki-journal 来进行配置，对于每个变量的设置都有简短的�
      >
   <channel>
     <title>Sucha's Blog</title>
-    <link>http://suchang.org/blog/index.html</link>
-    <description>linux, emacs, erogramming, live and essay</description>
+    <link>http://suchang.net/blog/index.html</link>
+    <description>linux, emacs, programming, live and essay</description>
     <dc:language>zh-CN</dc:language>
     <dc:creator>sucha</dc:creator>
     <dc:date>%s</dc:date>
-    <admin:generatorAgent rdf:resource=\"http://suchang.org\"/> \n\n")
+    <admin:generatorAgent rdf:resource=\"http://suchang.net\"/> \n\n")
 
 ; 定义 RSS 种子包含路径的文件名
  '(emacs-wiki-journal-rss-file-name
@@ -101,7 +101,7 @@ emacs-wiki-journal 来进行配置，对于每个变量的设置都有简短的�
 
 ; 定义指向 blog 的连接
  '(emacs-wiki-journal-rss-link
- "http://suchang.org/blog/index.html")
+ "http://suchang.net/blog/index.html")
 
 ; 你的网络 ID
  '(emacs-wiki-journal-maintainer "sucha")

@@ -73,7 +73,7 @@ sitemap=$htmlpub/sitemap.txt
 # sitemap param for find
 suffix="*.html"
 time_zone="+08:00"
-loc="http://suchang.org/"
+loc="http://suchang.net/"
 lasmod="%TY-%Tm-%TdT%TH:%TM:00$time_zone"
 changefreq="daily"
 priority=1.0

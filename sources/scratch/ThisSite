@@ -36,10 +36,10 @@ Documentation License".(http://www.fsf.org/licensing/licenses/fdl.html)
 
 正确的 CSS, XHTML1.1 格式, 不过 RSS 种子就差一些, :(
 
-<a href="http://jigsaw.w3.org/css-validator/validator?uri=http://suchang.org/styles/site.css">
+<a href="http://jigsaw.w3.org/css-validator/validator?uri=http://suchang.net/styles/site.css">
 Valid CSS</a>, 
 <a href="http://validator.w3.org/check/referer">Valid XHTML 1.0 Strict</a> 
-BUT <a href="http://validator.w3.org/feed/check.cgi?url=http://suchang.org/blog/rss.xml">
+BUT <a href="http://validator.w3.org/feed/check.cgi?url=http://suchang.net/blog/rss.xml">
 Valid RSS</a>.
 
 
@@ -48,4 +48,4 @@ Valid RSS</a>.
 
 This website was **powered** by:
 
-[[http://www.github.com][GitHub]], [[http://www.gnu.org/software/emacs][GNU Emacs]], [[https://github.com/emacsmirror/emacs-wiki-mode][EmacsWiki]], [[https://github.com/lalawue/emacs-wiki-journal][EmacsWikiJournal]].
+[[http://www.github.com][GitHub]], [[http://www.gnu.org/software/emacs][GNU Emacs]], [[https://github.com/lalawue/emacs-wiki-mode][EmacsWiki]], [[https://github.com/lalawue/emacs-wiki-journal][EmacsWikiJournal]].
