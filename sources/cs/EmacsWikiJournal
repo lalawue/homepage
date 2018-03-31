@@ -177,10 +177,10 @@ Planner 的 sacha。实在是非常好用，可以省去每次保存后还要发
 相应主页以及 blog 的文件头和文件尾。注意，下面的文件都是 utf-8 编码。
 
 [[code#emacs-wiki-conf.el.htm][emacs-wiki-conf.el]]<br />
-[[code#site-header.htm][site-header]]<br />
-[[code#site-footer.htm][site-footer]]<br />
-[[code#blog-header.htm][blog-header]]<br />
-[[code#blog-footer.htm][blog-footer]]<br />
+[[code#.site-header.htm][site-header.htm]]<br />
+[[code#.site-footer.htm][site-footer]]<br />
+[[code#.blog-header.htm][blog-header.htm]]<br />
+[[code#.blog-footer.htm][blog-footer.htm]]<br />
 
 
 
