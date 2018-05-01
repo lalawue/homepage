@@ -1,0 +1,44 @@
+#title Archive for May, 2018
+
+#p0
+* 18年5月1日 周二 22:30
+
+** m_dnscnt 和 lua-web
+
+前一阵子写了一个 [[https://github.com/lalawue/m_dnscnt][m_dnscnt]]，一个并发多个 DNS 请求的客户端、库接口。
+
+有这个需求的原因，在于系统提供的 DNS 请求是一个同步接口，开始请求后，得
+等着 DNS 结束才能走下一步。
+
+这带来两个问题，第一个问题是，如果我同时有 3 个 DNS 请求，总共花费的时间，
+是这 3 个请求加起来的总和；第二个问题是，因为底层的网络库是异步的，不能
+因为 DNS 请求是同步的，就将整个循环给阻塞住，因此实际是多开了线程才能用
+好这个 DNS 请求接口，也因此多了一个 STM 同步操作。
+
+并发、异步的 DNS 请求库，则没有这个问题。
+
+当我将 [[https://github.com/lalawue/m_dnscnt][m_dnscnt]] 以源代码接口的形式用到了 [[https://github.com/lalawue/m_tunnel][m_tunnel]] 上去后，感觉服务端 DNS
+请求加快了不少，毕竟之前得一个一个顺序请求 DNS，现在则是同时请求多个，总
+的花费时间大大缩短了。
+
+另外呢，也将这 DNS 以库的形式用到了 [[https://github.com/lalawue/lua-web][lua-web]] 上去。以库的形式加入 lua-web
+的原因是，[[https://github.com/lalawue/m_net][m_net]] 本身已经用库的方式提供了 Lua 绑定，无法在同一个库里面暴
+露接口给 [[https://github.com/lalawue/m_dnscnt][m_dnscnt]] 使用。所以 lua-web 底层使用了两份 m_net 代码，其中一个是
+单独用于 DNS 请求的。
+
+这样 lua-web 就支持了 HTTP request，之前不支持域名，只支持 IP，现在则没
+有这个问题了。
+
+而在架构上，HTTP 层的支持算是完整了，如果以 web-framework 的要求看的话，
+后续还需要 HTML 的支持。如果还需要加上一点，那就是 HTTPS 的支持，以及
+websocket。HTTP/2 呢，就算了，那完全是另外一个东西。
+
+还有，这些个东西，往后再说吧，目前的目标，并不是做一个 production-ready
+的东东，而只是做一个类似教学用的工具，做个小巧，但五脏六腑清晰明了，可以
+一眼看穿，但又确实可用的东西。
+
+*** [[CategoryProgramming][CategoryProgramming]] / [[2018-05#p0][Permalink]] 
+
+<!-- date: 2018-05-01T22:30:30+0800 -->
+
+
