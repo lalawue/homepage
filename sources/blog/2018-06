@@ -1,5 +1,68 @@
 #title Archive for June, 2018
 
+#p1
+* 18年6月24日 周日 10:53
+
+** Timer、FastLZ & Erasure Codec
+
+上次说到[[blog#2017-09#p0][网络库的 timer]]，总觉得直接塞入网络库不是个好主意，一方面不是所有
+的程序都需要 timer 来协助，另外一方面 timer 用途其实更广泛，可以放到更底
+层的逻辑里。
+
+实际是将其实现在 [[https://github.com/lalawue/m_foundation/blob/master/src/model/m_timer.h][m_foundation]] 里了，接口提供创建多个 timer 序列，往具体
+某个序列加入 timer 及其回调的时候，保证有序，这样每次 update timer 列表，
+可以直接检查排在最前面的 timer 是否超时，不需要检查全部；另外，如果到期
+时间冲突，解决的办法是开链表，同个到期时间的 timer 可以都排在一起。
+
+保证有序的方案算法是使用 skiplist，时间复杂度为 O(log2n)。
+
+另外，虽然是 timer，但实际设计是不考虑时间单位的，时间单位都由外面提供，
+外部在 update timer 时，同时更新最新的时间单位就好；使用了 64bit 来表示
+时间单位，表达空间应该足够了。
+
+[[https://github.com/ariya/FastLZ][FastLZ]] 是个有很长时间未更新的库，这里的压缩，将其放在了 [[https://github.com/lalawue/m_tunnel][m_tunnel]] 这一层，
+与 [[https://github.com/xtaci/kcptun][kcptun]] 不同。主要是看到了 snappy 用的 C++，包含太多文件，效果未必必
+FastLZ 好多少，因为数据量少，CPU 耗费也不大，所以就没有采用。
+
+其实后来还看到更好的 [[https://github.com/lz4/lz4][lz4]]，没有更换的原因是，实际跑起来，大部分都是 HTTPS，
+这些压缩其实绝大部分用不上。
+
+FastLZ 最少需要使用 66 byte，感觉放在 UDP 长度 14xx 的 playout 里，太浪
+费了，是没有放到 [[https://github.com/lalawue/m_kcptun][m_kcptun]] 的考虑之一。
+
+还有另外一点是，不能压缩的数据在跑 compress 的时候，返回的长度要比实际来
+源更长，这个时候可以果断抛弃不压缩，在 m_tunnel 协议里，有命令字可以区分
+这段 data 是否需要解压，这样对协议双方来说，至少有一方可以少走一次
+decompress 了，而传输数据量可以保证最少。
+
+粗看了一下，lz4 没有说压缩时最少需要多少字节，以及 dest buffer 需要比src
+大多少，貌似需要探测，这点不如 FastLZ；另外，snappy 及 lz4 的解压速度是
+亮点，但实际上对于数据量少的，没啥影响；就 CPU 耗费以及压缩率来看，折衷
+方案更好的是 [[https://github.com/facebook/zstd][zstd]]，可这个不是单线程的，代码量复杂度都会上去太多，不好管
+理。
+
+Erasure Codec 用的是 Reed-Solomon，当然不是最新最先进几乎触摸到香浓极限
+的算法。本来找到一个可用的，但是太耗 CPU 了，最后是找到一个使用 Cauthy
+码的 [[https://github.com/catid/cm256][cm256]]，网络上传输太不确定，TCP 仅保证了传输次序，内容校验有限，如果
+上层发现数据错误，要么抛错误，要么重新传输，后者意味着又得重新发一次数据，
+以及来回的时间耗费，不够经济。
+
+另外，如果链路上一定会发生错误，就需要 Erasure Codec 了，要不会一直失败。
+最后是使用了 payload 较高的 RS(11, 2)，接近经典的 RS(239, 16)，由于协议
+本身也需要保证，因此 Erasure Codec 放到了最底层，UDP 之上直接装载。
+
+多个协议下来，UDP 14xx 实际可以使用的数据量，payload 就更少了，也是没办
+法。
+
+
+
+
+*** [[CategoryProgramming][CategoryProgramming]] / [[2018-06#p1][Permalink]] 
+
+<!-- date: 2018-06-24T10:53:56+0800 -->
+
+
+
 #p0
 * 18年6月9日 周六 00:58
 
