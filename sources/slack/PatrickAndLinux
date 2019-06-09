@@ -1,15 +1,14 @@
 
 #title About Patrick
 
-* Patrick Volkerding 与 Linux
+## Patrick Volkerding 与 Linux
 
-**目录**
+**本页目录**
 
-<contents>
+#contents 1
 
 
-
-** 前言
+### 前言
 
 ［P.S: 由于此文是从网上偶得，不知道授权形式，如果有触犯，请告知，谢谢。］
 
@@ -25,7 +24,7 @@ Patrick Volkerding 1993 年毕业于美国明尼苏达州的 Moorhead 大学计�
 
 
 
-** 计算机情结 
+### 计算机情结 
 
 Patrick Volkerding 初次接触计算机是在 1973 年。当时他还是个小孩子，有次与同学一起参观 North Dakota 州立大学的计算机系。来到机房，那里存放的机器令他震惊了—许多闪着指示灯快速运转着的“大家伙”塞满了整间屋子，并存放着成排的大型磁盘驱动器。管理员还向他们展示了如何操作一台带有打字机的终端。这些使他一下就迷上了计算机。 
 
@@ -35,7 +34,7 @@ Patrick Volkerding 初次接触计算机是在 1973 年。当时他还是个小�
 
 
 
-** 接触 Linux 
+### 接触 Linux 
 
 1992 年末，Volkerding 从一位朋友那里听说了 Linux，但当时并没有立即下载试用。直到有一天，学校的一个项目需要一个 LISP 解释器，他才突然记起有人曾提过的 Linux 上面有类似的东西。因此，他下载了一个 SLS Linux（最早的商业 Linux 发行版之一）。 
 
@@ -43,7 +42,7 @@ Volkerding 开始并没有想过要去搞一个 Linux 发行版。人工智能�
 
 
 
-** 项目悄然诞生 
+### 项目悄然诞生 
 
 在接触了 SLS Linux 几周以后，Volkerding 发现安装后的这个操作系统有很多地方需要修改，多到不得不列上一个长单子来进行记录。Volkerding 自己动手基本修改了单子上所列的问题，并为其编写了一些基本的软件。他的教授询问道：“有没有办法把它原先安装盘上的程序修改一下？这样每次安装新机器的时候就不必那么费事了。”这一语惊醒梦中人，也促成了 Slackware 项目的开始。Volkerding 开始修改部分 SLS 的原始安装脚本及一些漏洞，并增添了新的功能，使得系统可以自动安装共享库和内核映像等软件包。此外，他还编辑了一些描述文件，使得介绍安装的内容更加详实。更重要的一点是，Volkerding 深入到那些软件包中，把能够找到的问题都修改了一遍。大部分软件包都能够良好运行，但仍旧有一些需要改动。在邮件、网络和 UUCP 等应用程序中有大量不正确的文件许可现象，使这些软件无法正常发挥应有的功能。还有一些程序可能会引起内核阻塞，但系统却没做任何说明。对于这些，Volkerding 都到网上重新查找并整理了源代码。  
 
@@ -51,7 +50,7 @@ Volkerding 开始并没有想过要去搞一个 Linux 发行版。人工智能�
 
 
 
-** 获得认可 
+### 获得认可 
 
 1993 年 5 月，Volkerding 把 4.4.1 C 语言库和 Linux 0.99pl11A 内核同 Slackware 整合起来，使网络功能和系统稳定性方面得到了显著的改善。Volkerding 的几个密西根州立大学（MSU）的朋友认为它很棒，强烈要求把它放到 FTP 上。但是，当时 Volkerding 认为 SLS 很快就会推出新的版本，说不定也会做类似的改善工作，因此迟疑了几个星期。在这期间，他不断地看到许多人在网上询问什么时候会有一个功能较完善的 Linux 新版本推出。因此，他在网上发出了一个帖子，标题是“有人需要类似 SLS 的 0.99pl11A 内核的操作系统吗”。不久便得到了无数个回复的帖子。 
 
@@ -63,19 +62,19 @@ Volkerding 开始并没有想过要去搞一个 Linux 发行版。人工智能�
 
 
 
-** 重要的贡献者 
+### 重要的贡献者 
 
-对于 Slackware Linux，除了 Patrick Volkerding 外，还有几位重要的开发人员。David Cantrell 的全职工作是开发和维护 Slackware Linux，主要负责处理 SPARC 端口、用邮件进行技术支持、测试及新软件包的开发工作。此外，他还为系统管理员编写了 autoslack 和 protopkg 两个实用的工具。他的个人网站地址是 [[http://www.burdell.org][http://www.burdell.org]]。Logan Johnson 肄业于美国乔治亚州科技大学，钟爱音乐和 Linux。他主要负责图形方面的功能处理，并在组织网站设计及内容维护队伍方面做了大量工作。Chris Lumens 是最近才真正全职加入到 Slackware 工作中来的。他处理 Slackware Alpha 端口，并编写了一本《精通 Slackware Linux 》的指导性书籍。他有时还使用 PHP 和 MySQL 做一些开发工作。他真正喜欢的是 Perl，并十分热衷于学一些被人认为是神秘古怪的语言。他的个人主页是 [[http://bangmoney.org][http://bangmoney.org]]。
+对于 Slackware Linux，除了 Patrick Volkerding 外，还有几位重要的开发人员。David Cantrell 的全职工作是开发和维护 Slackware Linux，主要负责处理 SPARC 端口、用邮件进行技术支持、测试及新软件包的开发工作。此外，他还为系统管理员编写了 autoslack 和 protopkg 两个实用的工具。他的个人网站地址是 [http://www.burdell.org](http://www.burdell.org)。Logan Johnson 肄业于美国乔治亚州科技大学，钟爱音乐和 Linux。他主要负责图形方面的功能处理，并在组织网站设计及内容维护队伍方面做了大量工作。Chris Lumens 是最近才真正全职加入到 Slackware 工作中来的。他处理 Slackware Alpha 端口，并编写了一本《精通 Slackware Linux 》的指导性书籍。他有时还使用 PHP 和 MySQL 做一些开发工作。他真正喜欢的是 Perl，并十分热衷于学一些被人认为是神秘古怪的语言。他的个人主页是 [http://bangmoney.org](http://bangmoney.org)。
 
 
 
-** 挑战与机遇并存 
+### 挑战与机遇并存 
 
 10 年的时间或许并不长。但是相对于计算机及 Linux 短暂的历史，10 年的时间可以改变很多事情。鼎盛与辉煌是那样令人陶醉，但挫折始终是不可避免的。幸运的是，机遇总会与挑战并存。 
 
 
 
-** 版本回顾
+### 版本回顾
 
 老牌 Linux 用户都记得从前的 Slackware 1.0 是放在 24 张软盘上的，其中 13 张是精髓部分，其余 11 张包含了 XFree86 和图形应用程序。当时使用的 Linux 内核是 0.99pl11 alpha。一切显得那么简陋（与现在相比），但是却足以给当时的 Linux 用户带来惊喜。Slackware 1.0 的推出获得了认可。很快，那一年的 5 个月中又有 6 个新的 Slackware 版本推出。正式的 Slackware Linux 2.0 是 1994 年 7 月面世的。用户可在稳定 Linux 内核 1.0.9 和开发内核 1.1.18 之间进行选择。它还包含了 XFree86 2.1.1。这时，Patrick Volkerding 把 Slackware 发行版带到一个商业层面，与 Morse 电信公司合作，策划将产品刻录在可启动光盘上，并随之发行印刷版文档说明书。这一年，Volekerding 刚满 27 岁。 
 
@@ -83,7 +82,7 @@ Volkerding 开始并没有想过要去搞一个 Linux 发行版。人工智能�
 
 
 
-** 挫折
+### 挫折
 
 网络泡沫的破灭影响了整个IT业，Slackware 的运作形式也受到了冲击。Slackware 原来的主要发行商 Walnut Creek 公司与 BSDi 合并，之后又被 <nop>WindRiver 公司购并。2001 年，该公司称将不再给予 Slackware 开发进行支持。 
 
@@ -91,7 +90,7 @@ Volkerding 开始并没有想过要去搞一个 Linux 发行版。人工智能�
 
 
 
-** 转机
+### 转机
 
 幸运的是，事情出现了转机。Patrick Volkerding 与前 Walnut Creek 公司的
 创始人之一 Bob Bruce 再度合作，成立了一个公司进行产品的销售。Slackware
