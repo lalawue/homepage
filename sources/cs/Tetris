@@ -1,7 +1,7 @@
 
 #title Tetris
 
-* 俄罗斯方块游戏
+## 俄罗斯方块游戏
 
 最近更新: 2009-01-01
 
@@ -10,4 +10,4 @@
 
 无聊时的作品，数据结构简单，但是控制逻辑却比较复杂的程序，暂存在这里吧。
 
-[[code#tetris.tar.gz][tetris.tar.gz]] (gcc 编译，*nix 或 Cygwin 环境)
+[tetris.tar.gz](code#tetris.tar.gz) (gcc 编译，*nix 或 Cygwin 环境)

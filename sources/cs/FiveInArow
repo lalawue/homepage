@@ -1,21 +1,19 @@
 
 #title Five In Row
 
-* Windows 下的五子棋游戏
+## Windows 下的五子棋游戏
 
 最近更新: 2005-05-06
 
 
+### 下载试玩
 
-** 下载试玩
+ 1. [Download here (include src and .exe)](code#chess.tar.gz)
 
- 1. [[code#chess.tar.gz][Download here (include src and .exe)]]
-
- 2. [[http://www.google.com/search?hl=zh-CN&newwindow=1&q=win-TC+V1.9.1&btnG=%E6%90%9C%E7%B4%A2&lr=][Download Win-TC V1.9.1]]
-
+ 2. [Download Win-TC V1.9.1](http://www.google.com/search?hl=zh-CN&newwindow=1&q=win-TC+V1.9.1&btnG=%E6%90%9C%E7%B4%A2&lr=)
 
 
-**  一些说明
+### 一些说明
 
 我是用 Win-TC v1.9.1 编译的。虽然 Win-TC 说它是用 TC2.0 的编译器，但我用 TC2.0 编译不了，主要是图形驱动方面的问题。
 
