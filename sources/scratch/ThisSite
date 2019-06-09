@@ -1,8 +1,8 @@
 #title This Site
 
-* 此主页的介绍
+## 此主页的介绍
 
-这个主页是用 [[EmacsWiki][Emacs + Emacs Wiki]] 来编辑和维护的。很多图标素材来自 KDE 以及 GNOME 的图标集合，还有一些是从其他网站上搜集的，并经过了 ''''''''K''''''''iconEdit 和 Gimp 的加工。 
+这个主页是用 [Emacs + Emacs Wiki](EmacsWiki) 来编辑和维护的。很多图标素材来自 KDE 以及 GNOME 的图标集合，还有一些是从其他网站上搜集的，并经过了 KiconEdit 和 Gimp 的加工。 
 
 由于网页采用 emacs + wiki 的方式，因此维护起来很方便，但生成的 HTML 比较简单，所以为了控制版式，较多地使用了CSS。因此用 IE 浏览可能有点问题。 
 
@@ -12,11 +12,11 @@
 
 
 
-* 版权声明
+## 版权声明
 
-如没有特别声明，本网站的所有文章采用 [[slack#FDLcn][GNU 自由文档协议]]，简称 GFDL 的授权形式。
+如没有特别声明，本网站的所有文章采用 [GNU 自由文档协议](slack#FDLcn)，简称 GFDL 的授权形式。
  
-<example>
+```example
 Copyright (c) Sucha (suchaaa@gmail.com).
 
 Permission is granted to copy, distribute and/or modify this document
@@ -28,11 +28,11 @@ Back-Cover Texts.
 
 A copy of the license is included in the section entitled "GNU Free
 Documentation License".(http://www.fsf.org/licensing/licenses/fdl.html)
-</example>
+```
 
 
 
-* 网页标准
+## 网页标准
 
 正确的 CSS, XHTML1.1 格式, 不过 RSS 种子就差一些, :(
 
@@ -44,8 +44,8 @@ Valid RSS</a>.
 
 
 
-** 使用的工具
+## 使用的工具
 
 This website was **powered** by:
 
-[[http://www.github.com][GitHub]], [[http://www.gnu.org/software/emacs][GNU Emacs]], [[https://github.com/lalawue/emacs-wiki-mode][EmacsWiki]], [[https://github.com/lalawue/emacs-wiki-journal][EmacsWikiJournal]].
+[GitHub](http://www.github.com), [GNU Emacs](http://www.gnu.org/software/emacs), [EmacsWiki](https://github.com/lalawue/emacs-wiki-mode), [EmacsWikiJournal](https://github.com/lalawue/emacs-wiki-journal).
