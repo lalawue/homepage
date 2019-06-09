@@ -1,13 +1,13 @@
 #title Archive for September, 2017
 
 #p0
-* 17年9月5日 周二 00:59
+#date 17年9月5日 周二 00:59
 
-** 有关 m_net 跨平台的小型网络库
+## 有关 m_net 跨平台的小型网络库
 
-最近一直在玩 [[https://github.com/lalawue/m_net][m_net]]，当然总是处于修修改改当中。
+最近一直在玩 [m_net](https://github.com/lalawue/m_net)，当然总是处于修修改改当中。
 
-很早就有参考 [[https://github.com/rxi/dyad][dyad]] 这个优雅到不行的网络库，C89 的语法，接口设计清晰明了；
+很早就有参考 [dyad](https://github.com/rxi/dyad) 这个优雅到不行的网络库，C89 的语法，接口设计清晰明了；
 仅针对 TCP 抽象为 Stream；对于 socket 的状态变化，设置为事件监听接收处理；
 简单粗暴的 SDK 接收数据再发通知，buffer 地址以及数据 size 直接送到用户手
 上，接收部分则随着数据增大，而不断 realloc 出来；读写接口还加上了方便的
@@ -32,7 +32,7 @@ m_net 历史，最早是从 13 年做游戏时弄的一个单独处理 socket �
 对于 ip:port 这样的字串，加入一个 parse 的接口，分割拿到 ip 跟 port。
 
 把 C 的这一层命名为 core 之后，在 C 接口的基础上，抽象了 C++ 的 wrapper
-对象，有三种 ''''ChannAddr，Chann 和 ''''ChannDispacher。
+对象，有三种 ChannAddr，Chann 和 ChannDispacher。
 
 分别用来处理地址部分，chann 的数据、状态处理，以及所有 chann 的事件监听、
 分发。抽象的结果，是在 C++ 这一层，比如针对 client、server 的处理，可以
@@ -80,7 +80,7 @@ would block，而不是其他的不可恢复的 error，则 SDK 会构造 buffer
 独的设置并处理，还需要斟酌一下。
 
 
-*** [[CategoryProgramming][CategoryProgramming]] / [[2017-09#p0][Permalink]]
+#category Programming
 
 <!-- date: 2017-09-05T00:59:18+0800 -->
 

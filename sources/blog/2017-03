@@ -1,9 +1,9 @@
 #title Archive for March, 2017
 
 #p0
-* 17年3月18日 周六 10:43
+#date 17年3月18日 周六 10:43
 
-** Git 二三事
+## Git 二三事
 
 之前公司一直在用 svn，虽然我也有用 github，但并没有真正参与过多人开发的
 情况，分布式的 git 在多人开发方面与 svn 有很多不同。
@@ -40,7 +40,7 @@ push 到远端。不过这个时候，这个用来并行开发的本地分支，
 
 坑好多呀，因为之前不明白这些，请教了组里面的一位实习生大神，才终于弄懂了。
 
-*** [[CategoryProgramming][CategoryProgramming]] / [[2017-03#p0][Permalink]] 
+#category Programming
 
 <!-- date: 2017-03-18T10:43:54+0800 -->
 

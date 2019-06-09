@@ -1,9 +1,9 @@
 #title Archive for August, 2017
 
 #p2
-* 17年8月20日 周日 11:36
+#date 17年8月20日 周日 11:36
 
-** 短信自动转发机
+## 短信自动转发机
 
 好早之前因为办理宽带，才知道天威视讯跟联通是一家，也才知道联通收了话费说
 能拉宽带，而天威可以接着说拉不了。
@@ -31,58 +31,58 @@
 
 后来才知道水果家的 iMessage 可以同一个账号收发，但是要 8.0 及之上的系统。
 前一阵子我刚露了一手，给吃灰好久的 4S 装上了淘宝新电池，第二春蓄势待发。
-可还是 7.1 的系统，Home 键也坏了。还好水果爸爸心慈，有 ''''AssistiveTouch，
+可还是 7.1 的系统，Home 键也坏了。还好水果爸爸心慈，有 AssistiveTouch，
 还答应可以升级到 9.3.5。
 
 小小设置了一番，电话转移也有了，短信收发也有了，延迟很小，完全可以接受，
 安全性要比之前的好太多。耗电方面，实测带着淘宝新电池的 4S，可以妥妥地扛
 3 ～ 4 天，这个结果相比之前，不能更开心。
 
-*** [[CategoryMisc][CategoryMisc]] / [[2017-08#p2][Permalink]] 
+#category Misc
 
 <!-- date: 2017-08-20T11:36:36+0800 -->
 
 
 
 #p1
-* 17年8月11日 周五 02:09
+#date 17年8月11日 周五 02:09
 
-** 本站换域名了
+## 本站换域名了
 
-换成 http://suchang.org 了，域名商还是原来那个，查到 github 只能绑定一个
-domain 吧，于是换了，这样旧的 http://suchang.net 就无法访问了。
+换成 <http://suchang.org> 了，域名商还是原来那个，查到 github 只能绑定一个
+domain 吧，于是换了，这样旧的 <http://suchang.net> 就无法访问了。
 
 前几天 gmail 收到一些域名降价邮件，随手查了一下，马上把这个域名给捞了。
 记得之前在大学时，好想抢这个，可惜抢不到，现在是没人要了。
 
 此一时彼一时。
 
-*** [[CategoryThisSite][CategoryThisSite]] / [[2017-08#p1][Permalink]] 
+#category ThisSite
 
 <!-- date: 2017-08-11T02:09:22+0800 -->
 
 
 
 #p0
-* 17年8月6日 周日 13:34
+#date 17年8月6日 周日 13:34
 
-** m_kcptun
+## m_kcptun
 
-之前的 [[https://github.com/lalawue/m_tunnel][m_tunnel]] 因为基于 TCP，实际环境单独使用其实不尽如人意，因为 TCP
+之前的 [m_tunnel](https://github.com/lalawue/m_tunnel) 因为基于 TCP，实际环境单独使用其实不尽如人意，因为 TCP
 本身重发机制等等原因，在网络环境比较糟糕的情况下，延迟长得让人难以接受。
 
 早期的改进，诸如在手机、PC 端的动作游戏，IM 上，是使用改进的 UDP，封装自
 己的协议，以及重发机制管理，来达到速度、带宽的平衡。
 
-比较有名的是 [[https://github.com/skywind3000/kcp][kcp]]，包含完整协议，意图取代 TCP，野心更大的则是 Google 的
-[[https://www.chromium.org/quic][QUIC]] 协议，还包含完整的安全性的考虑。
+比较有名的是 [kcp](https://github.com/skywind3000/kcp)，包含完整协议，意图取代 TCP，野心更大的则是 Google 的
+[QUIC](https://www.chromium.org/quic) 协议，还包含完整的安全性的考虑。
 
 上面也说到，其实很早之前大家就都有基于 UDP 的各自的方案，大家对 TCP 的局
 限也都比较清楚，所以类似 QUIC 这样的协议，感觉铺开会很快的。
 
-实际上，我自己使用 m_tunnel 是使用 [[https://github.com/xtaci/kcptun][kcptun]]，要不实际环境跑起来太慢了，再
+实际上，我自己使用 m_tunnel 是使用 [kcptun](https://github.com/xtaci/kcptun)，要不实际环境跑起来太慢了，再
 说自己也想研究一下 kcp 的使用，于是构建了这个
-https://github.com/lalawue/m_kcptun 。
+<https://github.com/lalawue/m_kcptun> 。
 
 目前仅能完成基础的工作，离具体实用还有一段距离，因为实际上虽然基于 kcp，
 上层还是需要自己的协议，来模拟这端 TCP 与远端 TCP 是否还连上这个问题，起
@@ -90,7 +90,7 @@ https://github.com/lalawue/m_kcptun 。
 TCP 上面的协议会乱的。
 
 
-*** [[CategoryProgramming][CategoryProgramming]] / [[2017-08#p0][Permalink]] 
+#category Programming
 
 <!-- date: 2017-08-06T13:34:04+0800 -->
 

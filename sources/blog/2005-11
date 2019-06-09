@@ -2,9 +2,9 @@
 #title Archive for November, 2005
 
 #p12
-* 11月27日 周日 15:33
+#date 11月27日 周日 15:33
 
-** 小心公车贼
+## 小心公车贼
 
 寝室又有兄弟被偷手机了，就在公车上，最近出去可得小心。
 
@@ -12,20 +12,20 @@
 
 下了车后，他才发现手机不见了，一个电话打过去，对方是一个口音很重的人，他装作不是失主，问现在手机主人在那里之类的问题，对方支支吾吾然后就关机了。
 
-想起[[2005-05#p0][我上次掉手机]]，也是问对方在哪里，表示愿意买回来等等，对方竟然说他现在在上海，靠。
+想起[我上次掉手机](blog#2005-05#p0)，也是问对方在哪里，表示愿意买回来等等，对方竟然说他现在在上海，靠。
 
 最近寝室也是很不顺利，昨天寝室另外的两个兄弟到工大乒乓球馆打球，手表放在上衣的口袋里，而上衣就挂在离他们不远的地方，打完了球才发现手表不见了，钱包却还在。那个手表已经修过很多次了，也烂得很，竟还有人看得上。
 
-*** [[CategoryLife][CategoryLife]] / [[2005-11#p12][Permalink]] 
+#category Life
 
 <!-- date: 2005-11-27T15:33:01+0800 -->
 
 
 
 #p11
-* 11月26日 周六 22:55
+#date 11月26日 周六 22:55
 
-** 新球场
+## 新球场
 
 前几天老妈兴奋地打电话过来，说离家不远的地方准备兴建球场了，说不定我放假回去就可以看到。
 
@@ -39,16 +39,16 @@
 
 现在好了，一回到家就可以打球了。期待中。
 
-*** [[CategoryLife][CategoryLife]] / [[2005-11#p11][Permalink]] 
+#category Life
 
 <!-- date: 2005-11-26T22:55:34+0800 -->
 
 
 
 #p10
-* 11月24日 周四 17:56
+#date 11月24日 周四 17:56
 
-** 嘿, 晴天
+## 嘿, 晴天
 
 也许是许久不见阳光的缘故，整个人感觉混混沌沌的。
 
@@ -58,18 +58,18 @@
 
 一直逛到 4 点多，晚餐就在贾三包子那里解决了。南方人真的很不适应用包子解决正餐，发誓不会再发生下一次。
 
-*** [[CategoryLife][CategoryLife]] / [[2005-11#p10][Permalink]] 
+#category Life
 
 <!-- date: 2005-11-24T17:56:34+0800 -->
 
 
 
 #p9
-* 11月21日 周一 13:33
+#date 11月21日 周一 13:33
 
-** Emacs 中文站点
+## Emacs 中文站点
 
-这是一个刚开张不久的站点，地址是 [[http://www.emacs.cn]]。用 pmWiki 建站，支持 emacs 直接编辑（需下载软件包），充满了emacs 的味道，现在资源正在急速膨胀中，:)
+这是一个刚开张不久的站点，地址是 <http://www.emacs.cn>。用 pmWiki 建站，支持 emacs 直接编辑（需下载软件包），充满了emacs 的味道，现在资源正在急速膨胀中，:)
 
 本来想在周末开始写汇编的课程设计大作业，但是搞 masm32 搞了一个下午，被 windows 的 api 搞得晕头转向，什么句柄，什么设备场景，简直就是一头雾水，顿时放弃。开始可惜我那宝贵的下午时光～
 
@@ -77,45 +77,45 @@
 
 下一步该询问下班里的强人一些函数的细节，好对“我的球队”作出更好的修改。
 
-*** [[CategoryLife][CategoryLife]] / [[2005-11#p9][Permalink]] 
+#category Life
 
 <!-- date: 2005-11-21T13:33:02+0800 -->
 
 
 
 #p8
-* 11月17日 周四 00:04
+#date 11月17日 周四 00:04
 
-** 关灯, 断网
+## 关灯, 断网
 
 刚刚跟朋友用短信在聊，他问道干嘛不上网？其实他不知道，这边除周末外 12 点就断网了，而且每个月上网时间还有上限，一般用户 200 小时，网管之类的好一点，时间有延长。好在南区用电方面比较宽松，时间上没有限制。
 
 相比之下，新区就惨多了，曾有过每天 11 点停电，自然那个时候也就断网了。后来改到周末 12 点，算是我们不断争取的“胜利”：工大的一小步，我们的一大步啊～
 
-*** [[CategoryLife][CategoryLife]] / [[2005-11#p8][Permalink]] 
+#category Life
 
 <!-- date: 2005-11-17T00:04:57+0800 -->
 
 
 
 #p7
-* 11月13日 周日 12:30
+#date 11月13日 周日 12:30
 
-** Simple mp3 playback
+## Simple mp3 playback
 
 我把自己所有的 mp3 歌曲都按歌手名分类放在同一个目录下，可每次想用 mpg321 来播放 mp3 都很不方便，于是自己写了个函数，来播放某个目录下所有的 mp3：
 
-<src type="sh">
+```source
 MP3()
 {
      find /path/to/mp3/dir -name "*.mp3" > ~/.mpg321.list
      mpg321 -o alsa --quiet --random --list ~/.mpg321.list -g $1 &
 }
-</src>
+```
 
 可是这也很不爽，因为每次调用这个函数都不能确定播放的哪个歌手的东东，于是思考了下，今天变成了如下的函数：
 
-<src type="sh">
+```source
 # simple mp3 playback, usage: mp3 volume
 MP3()
 {
@@ -143,43 +143,61 @@ MP3()
 }
 alias mp3='MP3 $1'
 alias nosong='killall mpg321'
-</src>
+```
 
 只要将 mp3_dir 改成你自己存放 mp3 的目录，然后将这部分加入到你的 ~/.bashrc，最后 source ~/.bashrc 就可以使用了。调用方法是：
 
-<src type="sh">
+```source
 $ mp3 volume  # mp3 后接音量，播放
 $ nosong      # 关闭
-</src>
+```
 
 **注意**:
 
 在调用 mpg321 的时候，我使用了 alsa 驱动，如果你并没有使用 alsa 驱动，上面的函数或许不会工作，所以更通用的做法是修改函数最后一行，改成：
 
-<src type="sh">
+```source
      mpg321 --quiet --random --list ~/.mpg321.list -g $1 &
-</src>
+```
 
-*** [[CategoryProgramming][CategoryProgramming]] / [[2005-11#p7][Permalink]] 
+#category Programming
 
 <!-- date: 2005-11-13T12:30:51+0800 -->
 
 
 
 #p6
-* 11月12日 周六 15:59
+#date 11月12日 周六 15:59
 
-** I'm Superman, 嘿嘿
+## I'm Superman, 嘿嘿
 
-[[http://www.sfu.ca/~gswamina/][Ganesh Swam]] 最近的一篇 blog 说他是个 busy man，还给出了他的[[http://www.sfu.ca/~gswamina/Schedule053.html][日程表]]。可我一看就觉得好笑，因为如果他是 busy man 的话，我就是个 super man 了。
+[Ganesh Swam](http://www.sfu.ca/~gswamina/) 最近的一篇 blog 说他是个 busy man，还给出了他的[日程表](http://www.sfu.ca/~gswamina/Schedule053.html)。可我一看就觉得好笑，因为如果他是 busy man 的话，我就是个 super man 了。
 
 看看我们的日程表：
 
-Time ||Monday ||Tuesday ||Wednsday||Thursday||Friday
-07:30| 汇编    | 组成原理  |  微机原理  |  组合数学 | 马哲
-09:30| 微机原理 | 马经     |   汇编    | 组成原理  | &nbsp;
-14:00| &nbsp; | 组合数学  | &nbsp;   | &nbsp;  | Robocup
-16:00||| 体育 |||&nbsp; ||| 形势政策  |||&nbsp; |||&nbsp;
+<table class="ewiki-table" border="2" cellpadding="5">
+<thead>
+<tr>
+<th>Time</th><th>Monday</th><th>Tuesday</th><th>Wednsday</th><th>Thursday</th><th>Friday</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>07:30</td><td>汇编</td><td>组成原理</td><td>微机原理</td><td>组合数学</td><td>马哲</td>
+</tr>
+<tr>
+<td>09:30</td><td>微机原理</td><td>马经</td><td>汇编</td><td>组成原理</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td>14:00</td><td>&nbsp;</td><td>组合数学</td><td>&nbsp;</td><td>&nbsp;</td><td>Robocup</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td>16:00</td><td>体育</td><td>&nbsp;</td><td>形势政策</td><td>&nbsp;</td><td>&nbsp;</td>
+</tr>
+</tfoot>
+</table>
 
 上面还没加上晚上偶尔的实验（现在是两个大课都有实验，而且不一定是周末，大概再过两周微机原理就有实验了）。再加上自己的原因，共有三科重修课，两个科目有重修班，都是在晚上，一科刚结束，另一科下周紧接着上。我真的成了 super man 了。
 
@@ -187,31 +205,31 @@ Time ||Monday ||Tuesday ||Wednsday||Thursday||Friday
 
 所以我确信，I'm super man，:)
 
-*** [[CategoryLife][CategoryLife]] / [[2005-11#p6][Permalink]] 
+#category Life
 
 <!-- date: 2005-11-12T15:59:37+0800 -->
 
 
 
 #p5
-* 11月12日 周六 15:49
+#date 11月12日 周六 15:49
 
-** 往 Blog 增加了搜索条
+## 往 Blog 增加了搜索条
 
-往 blog 的页面增加了一个百度的免费搜索条，参照了 [[http://www.sfu.ca/~gswamina/][Ganesh Swami]] 的页面（现在仍然觉得他的页面很棒），同时还修改了下百度提供的免费搜索代码。将笨拙的"submit"按钮去掉了。
+往 blog 的页面增加了一个百度的免费搜索条，参照了 [Ganesh Swami](http://www.sfu.ca/~gswamina/) 的页面（现在仍然觉得他的页面很棒），同时还修改了下百度提供的免费搜索代码。将笨拙的"submit"按钮去掉了。
 
 51.net 还在 Google 的封锁列表中，没办法，只好使用百度提供的搜索代码了，:(
 
-*** [[CategoryThisSite][CategoryThisSite]] / [[2005-11#p5][Permalink]] 
+#category ThisSite
 
 <!-- date: 2005-11-12T15:49:29+0800 -->
 
 
 
 #p4
-* 11月12日 周六 00:53
+#date 11月12日 周六 00:53
 
-** 修改了 Emacs-Wiki-Journal 里增加条目部分
+## 修改了 Emacs-Wiki-Journal 里增加条目部分
 
 Emacs-wiki-journal 又有更新，细节请看下面。
 
@@ -223,35 +241,35 @@ Emacs-wiki-journal 又有更新，细节请看下面。
 
 不过仍然觉得 sacha 的 auto-publish 函数是最最方便的，:)
 
-*** [[CategoryProgramming][CategoryProgramming]] / [[2005-11#p4][Permalink]] 
+#category Programming
 
 <!-- date: 2005-11-12T00:53:18+0800 -->
 
 
 
 #p3
-* 11月11日 周五 13:18
+#date 11月11日 周五 13:18
 
-** 为什么发布文件会出错
+## 为什么发布文件会出错
 
-之前在我这里的问题是不能生成 ''''WikiIndex，一遇到需要生成 ''''WikiIndex 的函数，就会出错，今天终于搞清楚了。
+之前在我这里的问题是不能生成 WikiIndex，一遇到需要生成 WikiIndex 的函数，就会出错，今天终于搞清楚了。
 
-原来，我在首页上搞了百度的搜索条后，因为搜索代码有少量 javascript 的原因，用 emacs-wiki 一直无法 mark-up，报错是有非法字符。但是我又很希望有搜索条，可一直没办法解决。两难之下，只好忍痛割爱，删掉了默认页（也就是 default-page 指定的页面，我将它作为首页），转而自己控制，自己写。这也没什么大碍，只要在页眉页脚里设置好，照样可以正常运行。但是一旦遇到需要生成 ''''WikiIndex 的函数就不成了，之前我还以为是自己修改的 emacs-wiki-journal 的原因，或是将原来的设置变量改变太多，因为没有很大的需要一直没有去修改。没想到其实原因不在这里。
+原来，我在首页上搞了百度的搜索条后，因为搜索代码有少量 javascript 的原因，用 emacs-wiki 一直无法 mark-up，报错是有非法字符。但是我又很希望有搜索条，可一直没办法解决。两难之下，只好忍痛割爱，删掉了默认页（也就是 default-page 指定的页面，我将它作为首页），转而自己控制，自己写。这也没什么大碍，只要在页眉页脚里设置好，照样可以正常运行。但是一旦遇到需要生成 WikiIndex 的函数就不成了，之前我还以为是自己修改的 emacs-wiki-journal 的原因，或是将原来的设置变量改变太多，因为没有很大的需要一直没有去修改。没想到其实原因不在这里。
 
-所以为了顺利生成 ''''WikiIndex，还得加上自己的 default-page，也就是在你的 emacs-wiki-directory 里必须有 default-page 指定的文件，这样就可以正常运行了。
+所以为了顺利生成 WikiIndex，还得加上自己的 default-page，也就是在你的 emacs-wiki-directory 里必须有 default-page 指定的文件，这样就可以正常运行了。
 
 还好，中午将百度的代码改了下，将那些 javascript 去掉了，现在一切正常。
 
-*** [[CategoryProgramming][CategoryProgramming]] / [[2005-11#p3][Permalink]] 
+#category Programming
 
 <!-- date: 2005-11-11T13:18:16+0800 -->
 
 
 
 #p2
-* 11月8日 周二 22:50
+#date 11月8日 周二 22:50
 
-** 亦冬亦秋
+## 亦冬亦秋
 
 合肥的天气很是奇怪，看似深秋，却有如玉林的春天一般，只是没有南方那么潮罢了。前段时间是连绵不断的小雨，现在则是阴云密布，中午暖暖的，早晨和晚上却很凉。和大部分的南方人一样，我比较抗冷，随便一件外套就可以应付这里蛮大的温差了。
 
@@ -265,29 +283,29 @@ BTW，刚刚听到的消息，学校准备每个寝室“配备”一个“心�
 
 Lalawu: 治标要治本啊～
 
-*** [[CategoryLife][CategoryLife]] / [[2005-11#p2][Permalink]] 
+#category Life
 
 <!-- date: 2005-11-08T22:50:16+0800 -->
 
 
 
 #p1
-* 11月6日 周日 18:07
+#date 11月6日 周日 18:07
 
-** Set up my CVSROOT
+## Set up my CVSROOT
 
 今天在 linuxpackages 下了一个 CVS 的包，建好了我的 CVS 目录，可以把以前编的零零碎碎的东西用 CVS 管理了，节省体力、脑力还有空间，:)
 
-*** [[CategoryLinux][CategoryLinux]] / [[2005-11#p1][Permalink]] 
+#category Linux
 
 <!-- date: 2005-11-06T18:07:12+0800 -->
 
 
 
 #p0
-* 11月5日 周六 15:10
+#date 11月5日 周六 15:10
 
-** 重修线代结束
+## 重修线代结束
 
 线代（线性代数）终于考完了，心里暗暗高兴。不过事实上还有两科重修未结课，所以真正的游戏还没有完。
 
@@ -295,6 +313,6 @@ Lalawu: 治标要治本啊～
 
 工大真的很奇怪，挂科要重修（不是重考），跟着下一届的学第学妹们一起努力，结果就是要浪费一年的时间，虽然不用交重修费，没有资金上的负担，但是时间上亏大了。因为南校区，新校区距离很远，如果在新校区挂科下一年就几乎没机会上课了，除非这一科在南区有重修班。不过这样也有好处，就是谁都不敢随便挂科，除了像我楞楞的，:)
 
-*** [[CategoryLife][CategoryLife]] / [[2005-11#p0][Permalink]] 
+#category Life
 
 <!-- date: 2005-11-05T15:10:16+0800 -->

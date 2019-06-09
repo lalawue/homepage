@@ -3,9 +3,9 @@
 
 
 #p10
-* Jun 29, Wed
+#date Jun 29, Wed
 
-** 阿根廷 2:1 巴西
+## 阿根廷 2:1 巴西
 
 学校开通了 CCTV 1、5、9 频道的网上直播，可把我们乐坏了，正赶上世青赛，怎能放过。不过感觉昨晚两队的表现都不太突出，阿根廷还好一些，经常有灵光一现的感觉，巴西就差多了，带球老丢，门框都踢不正……浪费大家的感情，最后实在困得不行，赶紧上床睡觉。比分是今天才知道的。
 
@@ -13,17 +13,17 @@
 
 前几天找到了个不错的校内 ftp，动漫电影什么都有，正好让我下了 EVA 重温。从隔壁寝室接手的《血色浪漫》也不错，能凑合着看到放假了……
 
-*** CategoryLife
+#category Life
 
 <!-- date: 2005-06-29T14:06:19+0800 -->
 
 
 #p9
-* Jun 22, Wed
+#date Jun 22, Wed
 
-** 朋友的网上杂志
+## 朋友的网上杂志
 
-[[http://www.tmag.cn/][<<T-M＠G>>]]，一个以网络为媒介的传统杂志，对于时下流行的网络文学不感兴趣，这是杂志强调的。
+[<<T-M＠G>>](http://www.tmag.cn/)，一个以网络为媒介的传统杂志，对于时下流行的网络文学不感兴趣，这是杂志强调的。
 
 杂志强调“体验”。第一期就以很大的篇幅来叙述不同的人在全国各大城市的感觉。摻杂了很多对当前大城市在城市化进程中不注意保护文物、历史的思考。这都是各个作者以一个平民的身份对自己所在的城市的“体验”。
 
@@ -33,15 +33,15 @@
 
 现在还不知道我那位朋友对杂志的创建做了什么工作，或者写了什么专栏没，找个机会在 QQ 上逮住他问个清楚，:)
 
-*** CategoryLife
+#category Life
 
 <!-- date: 2005-06-22T02:35:03+0800 -->
 
 
 #p8
-* Jun 14, Tue
+#date Jun 14, Tue
 
-** 选课和其他
+## 选课和其他
 
 其实主题跟选课没有很大的关系，只不过想赞一下 Opera，因为它的表现，很值得赞一下。
 
@@ -53,62 +53,62 @@
 
 今天中午的时候，一个同学（经过昨晚的奋战，刚刚选完课）过来说他不想用 IE 了，想用 Firefox，说 IE 太大了。然后我在旁边偷笑，说要是以这个衡量，Opera 是最小的，才 3M 多。“太小了，功能少，不喜欢……”。彻底晕倒，IRC、RSS、Mail、鼠标手势，键位设置……怎么会少呢？旁边的大嗓门不喜欢了，“哎呀，用什么浏览器是个人喜好嘛……”。其实我只是想纠正一下对方的观点罢了……
 
-*** CategoryLife
+#category Life
 
 <!-- date: 2005-06-14T17:33:14+0800 -->
 
 
 #p7
-* Jun 13, Mon
+#date Jun 13, Mon
 
-** Emacs dictionary
+## Emacs dictionary
 
-四六级考试又快到了，趁着今天有时间，学着[[http://learn.tsinghua.edu.cn/homepage/2001315450/emacs_elisp.html][王垠]]主页上的介绍安装好了 emasc 的 dictionary，以后在 emacs 里面对长长的英文也不用怕了，:)
+四六级考试又快到了，趁着今天有时间，学着[王垠](http://learn.tsinghua.edu.cn/homepage/2001315450/emacs_elisp.html)主页上的介绍安装好了 emasc 的 dictionary，以后在 emacs 里面对长长的英文也不用怕了，:)
 
-[[../images/emacs_dict_tooltip.jpeg][../images/emacs_dict_tooltip_small.jpeg]]
+[![img](images#emacs_dict_tooltip_small.jpeg)](../images/emacs_dict_tooltip.jpeg)
 
-可惜在这下面英汉字典很少，不过还是让我找到了。在[[http://wulei.net/Emacs/dictionary.html#top][青牛主页]]上下载，在这里谢谢他，ok，enjoy it~
+可惜在这下面英汉字典很少，不过还是让我找到了。在[青牛主页](http://wulei.net/Emacs/dictionary.html#top)上下载，在这里谢谢他，ok，enjoy it~
 
-*** CategoryLinux
+#category Linux
 
 <!-- date: 2005-06-13T18:21:21+0800 -->
 
 
 
 #p6
-* Jun 12, Sun
+#date Jun 12, Sun
 
-** 鸟窝被毁，:O~~!
+## 鸟窝被毁，:O~~!
 
 今天老妈来信了，说家门口的鸟窝被毁了，:(。老爸只知道下午有两个 10 岁左右的小孩在家门口转来转去，他以为是来摘芒果的，因为看到路边的果树上没结果，所以就没有理会。谁知鸟窝就这样被毁了……
 
 还好小鸟都已经飞走了，躲过了一劫。
 
-*** CategoryLife
+#category Life
 
 <!-- date: 2005-06-12T22:25:32+0800 -->
 
 
 
 #p5
-* Jun 12, Sun
+#date Jun 12, Sun
 
-** The Slack World
+## The Slack World
 
-今天刚从[[http://slack.linuxsir.org/][ slack.linuxsir.org]] 上看到的，感觉很好，地址是 [[http://www.slackworld.net/][www.slackworld.net]]。《The Slack World》是由一群 Slackware 的资深用户建立的电子杂志，于 2005 年 4 月创刊，如今已是第二期。
+今天刚从[ slack.linuxsir.org](http://slack.linuxsir.org/) 上看到的，感觉很好，地址是 [www.slackworld.net](http://www.slackworld.net/)。《The Slack World》是由一群 Slackware 的资深用户建立的电子杂志，于 2005 年 4 月创刊，如今已是第二期。
 
 现在只草草地看了第一期，感觉“Tips”栏目真不错，跟着 alias 了好些自己的命令，:^)
 
 自己编写的用于把文件和文件夹压缩成 ＊.tar.gz 的函数，把它绑定到了 **tgz** 上，同样的还有 **bz2** 命令，压缩成 ＊.tar.bz2。另外还有抄自《The Slack World》杂志的两个解压函数，配合压缩函数，方便使用。Usage:
-<src type="sh">
+```source
 $ tgz [filename or folder name]
 $ utgz *.tar.gz
 $ bz2 [filename or folder name]
 $ ubz2 *.tar.bz2 
-</src>
+```
 
 只要把下面的函数复制到你的“～/.bashrc”或"~/.bash_profile"，也就是你的 shell 配置文件上即可。
-<src type="sh">
+```source
 # created *.tar.gz ball
 TGZ()
 {
@@ -128,18 +128,18 @@ alias bz2='BZ2'
 
 # untar *.tar.bz2 ball
 alias ubz2='tar jxvf' 
-</src>
+```
 
-*** CategoryLinux
+#category Linux
 
 <!-- date: 2005-06-12T16:04:31+0800 -->
 
 
 
 #p4
-* Jun  9, Thu
+#date Jun  9, Thu
 
-** 超流量了～
+## 超流量了～
 
 刚刚发现的，也许是提供下载 Boyu 制作的绿色 OperaCN2.zip 的原因，也许不是（不是的话就发大财了），反正现在无法访问了，要等好一段时间，大概半天吧。
 
@@ -147,26 +147,26 @@ alias ubz2='tar jxvf'
 
 才查到，每天流量限制在 16.6M/Day，看来应该是 Opera 惹的祸。不过，能看到 Opera 这么受欢迎，还是很开心的，:)
 
-*** CategoryThisSite
+#category ThisSite
 
 <!-- date: 2005-06-09T23:11:14+0800 -->
 
 
 
 #p3
-* Jun  9, Thu
+#date Jun  9, Thu
 
-** 大程序终于搞定了～
+## 大程序终于搞定了～
 
 我搞的是分酒问题，因为以前上图论的时候认识得比较仔细，自己认为应该比较
 容易解决。
 
-<example>
+```example
   ［课题 26］（分酒问题）已知有三个容量分别为 3 千克、5 千克和 8 千克的
   并且是没有刻度的酒瓶，3 千克和 5 千克的瓶子均装满了酒，而 8 千克的瓶
   子为空。现要求仅用这三个酒瓶将这些酒均分为两个 4 千克并分别装入 5 千
   克和 8 千克的瓶子中。
-</example>
+```
 
 编写了差不多三天时间，终于在今早上把分酒问题搞定了,真是郁闷，先是遇到了如何保存分酒状态的问题，在没有完全认识清楚的情况下，弄清了数组首地址入队的方式：存的时候可以用数组首地址传递给存储变量，但是取的时候无法用数组首地址来接受变量存储的数组首地址，不知道为什么，也许是数组本身就很麻烦，既是地址，又是数组。最后尝试了用一个和数组类型相同的变量指针来取数组首地址才行，然后再用这个变量来处理数组里的各个元素。
 
@@ -176,43 +176,43 @@ alias ubz2='tar jxvf'
    
 下一步还要搞分酒过程的演示，真是麻烦……
 
-*** CategoryLife
+#category Life
 
 <!-- date: 2005-06-09T09:33:31+0800 -->
 
 
 
 #p2
-* Jun  8, Wed
+#date Jun  8, Wed
 
-** All abou Opera
+## All abou Opera
 
-由于使用 Linux 的关系而认识的朋友 Boyu (a FreeBSD fans in HFUT) 最近制作好了第二版 Opera8.0 绿色安装版 (for Win)，为了实现他在[[http://www.hfutbbs.com][青春无名]]许下的承诺，让我帮忙把软件上传到无名。可是找来找去找不到很好的匿名服务器，所以不得不在自己的主页上寄存，[[http://lalawudrop.51.net/website/OperaCN2.zip][这里]](3.8M)下载。 
+由于使用 Linux 的关系而认识的朋友 Boyu (a FreeBSD fans in HFUT) 最近制作好了第二版 Opera8.0 绿色安装版 (for Win)，为了实现他在[青春无名](http://www.hfutbbs.com)许下的承诺，让我帮忙把软件上传到无名。可是找来找去找不到很好的匿名服务器，所以不得不在自己的主页上寄存，[这里](http://lalawudrop.51.net/website/OperaCN2.zip)(3.8M)下载。 
 
 为了这件事也和他通了好些 email，由他介绍，对 Opera 了解得更多了一些。
 
 前段时间，就在 Opera8.0 release 的前夕，Opera CEO Jon S. von Tetzchner 打赌说要是 4 天之内 Opera8.0 的下载量超过 100 万，就从挪威游到美国，中途只在冰岛的母亲家喝杯热咖啡，:^)
 
-这件事被公司的人力部门主管宣扬得人尽皆知，后来实际的下载量是 104 万，CEO 不得不实现他的承诺了。结果就发生和很有意思的一幕，[[http://sunkey.blogsome.com/2005/05/11/opera-swim/][这里]]有详细介绍……
+这件事被公司的人力部门主管宣扬得人尽皆知，后来实际的下载量是 104 万，CEO 不得不实现他的承诺了。结果就发生和很有意思的一幕，[这里](http://sunkey.blogsome.com/2005/05/11/opera-swim/)有详细介绍……
 
 挪威人真是搞笑，哈哈哈。
 
-Boyu 除了制作 Opera8.0 的绿色安装版，还准备写一个 Opera 的专题，现在已经差不多了，等他有了消息，这里肯定第一时间放出。另外，也是因为他的介绍，找到了" [[http://sunkey.blogsome.com/30opera/][30 天爱上 Opera]] "的中文版，是一位新加坡人翻译的，现在已经到了第 18天，正在进行中……
+Boyu 除了制作 Opera8.0 的绿色安装版，还准备写一个 Opera 的专题，现在已经差不多了，等他有了消息，这里肯定第一时间放出。另外，也是因为他的介绍，找到了" [30 天爱上 Opera](http://sunkey.blogsome.com/30opera/) "的中文版，是一位新加坡人翻译的，现在已经到了第 18天，正在进行中……
 
 Opera 只是一款跨平台的浏览器，而 Opera Soffware ASA 只是挪威的一家小公司，到底是什么让这么多人为 Opera 而痴迷？ 如果你想知道——上面有免安装版，试用一下就知道了。
 
 Opera，10 年了……
 
-*** CategoryLinux
+#category Linux
 
 <!-- date: 2005-06-08T17:45:27+0800 -->
 
 
 
 #p1
-* Jun  2, Thu
+#date Jun  2, Thu
 
-** 升级的惨痛经历
+## 升级的惨痛经历
 
 本来升级是很快的，没有用什么别的软件，只是 iso 文件，直接 mount 到文件上，然后按照里面的 UPGRADE.TXT 一步一步来就行，可是我升级了还不甘心，想装个 2.6 的 kernel 试试，这还好，可是忘了 telinit 1，偏偏我又删掉了别的内核，结果重启后 slk 根本进不去。
 
@@ -220,15 +220,15 @@ Opera，10 年了……
 
 ps: 把 2.6.10 的 kernel 和 gcc 3.4.3 去掉了，完全的 slk 10.1，经过这么一折腾，觉得还是稳定要紧。
 
-*** CategoryLinux
+#category Linux
 
 <!-- date: 2005-06-02T22:02:51+0800 -->
 
 
 #p0
-* Jun  1, Wed
+#date Jun  1, Wed
 
-** Slackware 10.1
+## Slackware 10.1
 
 因为网络不好，处于学校代理严厉监督下的内网，所以一直不能用 swaret 或是 slapt-get 对我的 slackware 进行升级，再说我也是个大懒人，总是不习惯上官网看 Changelog，然后自己动手，”丰衣足食“。
 
@@ -237,6 +237,6 @@ ps: 把 2.6.10 的 kernel 和 gcc 3.4.3 去掉了，完全的 slk 10.1，经过�
 安装了 testing/ 目录下的 gcc-3.4.3 系列和 kernel-2.6.10，不知道会有什么不同的变化。六一对系统做升级，有纪念意义……
 
 
-*** CategoryLinux
+#category Linux
 
 <!-- date: 2005-06-01T15:40:13+0800 -->

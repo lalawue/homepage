@@ -2,9 +2,9 @@
 #title Archive for March, 2008
 
 #p0
-* 3月23日 周日 23:17
+#date 3月23日 周日 23:17
 
-** CSCOPE 和 GTAGS
+## CSCOPE 和 GTAGS
 
 最近弄代码巨不爽，因为不得不用 Source Insigh 了，可是 Source Insigh 只是
 个代码浏览器而已，用它来编辑简直要让人发疯，而之前一直使用的 emacs +
@@ -48,7 +48,7 @@ cscope-find-this-symbol 来查找，cscope 会把索引到的输出到一个 11 
 来定义按键，下面列出的只是一个方案而已。
 
 
-<src type="elisp">
+```source
 ;; for C and C++ programming
 (add-hook 
  'c-mode-common-hook
@@ -85,7 +85,7 @@ cscope-find-this-symbol 来查找，cscope 会把索引到的输出到一个 11 
    (define-key cscope-list-entry-keymap [(control ,)]
      'sucha-cscope-close-window-and-pop-mark)
    ))
-</src>
+```
 
 
 
@@ -100,7 +100,7 @@ cscope-find-this-symbol 来查找，cscope 会把索引到的输出到一个 11 
 算了，这么高级的功能暂时还用不上，权且将其绑定在一个按键上偷偷懒吧。
 
 
-<src type="elisp">
+```source
 (defun sucha-generate-cscope-files ()
   "Generate cscope.files for cscope."
   (interactive)
@@ -125,12 +125,12 @@ cscope-find-this-symbol 来查找，cscope 会把索引到的输出到一个 11 
   (delete-other-windows)
   (cscope-pop-mark)
   (recenter))
-</src>
+```
 
 上面的按键绑定只是在 c 和 c++ mode 里面起作用，因为 cscope 支持的语言有
 限，etags 还是有作用的。
 
-*** [[CategoryProgramming][CategoryProgramming]] / [[2008-03#p0][Permalink]] 
+#category Programming
 
 <!-- date: 2008-03-23T23:17:06+0800 -->
 

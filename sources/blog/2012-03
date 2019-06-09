@@ -1,9 +1,9 @@
 #title Archive for March, 2012
 
 #p2
-* 12年3月21日 周三 23:45
+#date 12年3月21日 周三 23:45
 
-** 用上了 YUNIO
+## 用上了 YUNIO
 
 年后在家用黑苹果，旧的笔记本工作用，这么多年来，工作电脑和家庭电脑第一次
 分开，才有了数据同步的问题。
@@ -24,16 +24,16 @@
 把 emacs-wiki-journal 上面管理的文本当成数据库吧，其他的只不过是其上的视
 图。
 
-*** [[CategoryMisc][CategoryMisc]] / [[2012-03#p2][Permalink]] 
+#category Misc
 
 <!-- date: 2012-03-21T23:45:46+0800 -->
 
 
 
 #p1
-* 12年3月09日 周五 23:37
+#date 12年3月09日 周五 23:37
 
-** 当GCC找不到内建的头文件
+## 当GCC找不到内建的头文件
 
 今天编译原厂提供的固件，遇到 error: no include path in which to search
 for limits.h 的问题。
@@ -44,24 +44,24 @@ ubuntu 下偷懒 apt-get 来得到 gcc package 的人，百思不得其解呀。
 好在 google 还是无比强大的，借用了 stackflow 上某高人的办法，如下方法
 bash 下指定环境变量搞定：
 
-<src type="sh">
+```source
 export INCLUDE=/usr/lib/gcc/i486-linux-gnu/4.4/include-fixed/:/usr/lib/gcc/i486-linux-gnu/4.4/include/
 export C_INCLUDE_PATH=/usr/lib/gcc/i486-linux-gnu/4.4/include-fixed/:/usr/lib/gcc/i486-linux-gnu/4.4/include/
 export CPLUS_INCLUDE_PATH=/usr/lib/gcc/i486-linux-gnu/4.4/include-fixed/:/usr/lib/gcc/i486-linux-gnu/4.4/include/
-</src>
+```
 
 具体的路径还需看你的gcc版本以及位置而定。
 
-*** [[CategoryProgramming][CategoryProgramming]] / [[2012-03#p1][Permalink]] 
+#category Programming
 
 <!-- date: 2012-03-09T23:37:52+0800 -->
 
 
 
 #p0
-* 12年3月7日 周三 00:16
+#date 12年3月7日 周三 00:16
 
-** 游子心情
+## 游子心情
 
 以前没觉得家里面有那么多的矛盾，那时候是责任没到肩上，才没觉得。
 
@@ -97,7 +97,7 @@ export CPLUS_INCLUDE_PATH=/usr/lib/gcc/i486-linux-gnu/4.4/include-fixed/:/usr/li
 争而已。
 
 
-*** [[CategoryLife][CategoryLife]] / [[2012-03#p0][Permalink]] 
+#category Life
 
 <!-- date: 2012-03-07T00:16:57+0800 -->
 

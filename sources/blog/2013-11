@@ -1,9 +1,9 @@
 #title Archive for November, 2013
 
 #p2
-* 13年11月9日 周六 10:44
+#date 13年11月9日 周六 10:44
 
-** 生活中的值得与不值得
+## 生活中的值得与不值得
 
 时间轴往前移个 20 年，当年要是谁家有台老任的红白机，绝对让小伙伴们眼馋，
 谁不想玩上几把，作业神马的都忘在脑后，要是遇上放暑假，那些作业往往都压在
@@ -67,16 +67,16 @@
 己很特殊很渴望的一面，并不是每一个自己所有的渴望，区分自己内心的渴望与他
 人的渴望，这个度得把握好。
 
-*** [[CategoryLife][CategoryLife]] / [[2013-11#p2][Permalink]] 
+#category Life
 
 <!-- date: 2013-11-09T10:44:10+0800 -->
 
 
 
 #p1
-* 13年11月7日 周四 19:11
+#date 13年11月7日 周四 19:11
 
-** 新入 Noppoo Choc Mini 84
+## 新入 Noppoo Choc Mini 84
 
 前天心血来潮，觉得原来的 104 键盘太大了，右手边的小键盘区老是阻碍到鼠标
 的发挥，而小键盘区实际上使用率很低，然后就觉得很奇怪，为啥厂家们都不把
@@ -128,20 +128,20 @@ HKKB 也是按键偏小，而且静电电容键盘价格又高，大概 2k 以�
 
 好吧，先折腾一段时间，大概一个月再看看，有没有哭不出来的感觉。
 
-*** [[CategoryLife][CategoryLife]] / [[2013-11#p1][Permalink]] 
+#category Life
 
 <!-- date: 2013-11-07T19:11:43+0800 -->
 
 
 
 #p0
-* 13年11月2日 周六 23:19
+#date 13年11月2日 周六 23:19
 
-** Bash 下统计文件行数
+## Bash 下统计文件行数
 
 直接列代码了，用的 pattern 是 find 命令的。
 
-<src type="sh">
+```source
 linesInFilePattern() {
         sum=0
         for file in $(find . -name "$1"); do
@@ -151,9 +151,9 @@ linesInFilePattern() {
         done
         echo total is $sum
 }
-</src>
+```
 
-*** [[CategoryProgramming][CategoryProgramming]] / [[2013-11#p0][Permalink]] 
+#category Programming
 
 <!-- date: 2013-11-02T23:19:01+0800 -->
 

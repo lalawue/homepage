@@ -2,9 +2,9 @@
 #title Archive for June, 2006
 
 #p4
-* 6月28日 周三 21:43
+#date 6月28日 周三 21:43
 
-** All over
+## All over
 
 今晚验完了网络的课程设计，终于所有的课程设计都告一段落了。
 
@@ -16,16 +16,16 @@
 于等于 100b 左右时，也不会出错，真是奇怪了。还好老师赶时间，验收得很快，
 跟本管不到这些“小问题”，老师太稀缺了。
 
-*** [[CategoryLife][CategoryLife]] / [[2006-06#p4][Permalink]] 
+#category Life
 
 <!-- date: 2006-06-28T21:43:31+0800 -->
 
 
 
 #p3
-* 6月28日 周三 12:52
+#date 6月28日 周三 12:52
 
-** 无题
+## 无题
 
 课程设计终于做得差不多，将操作系统和编译原理的题目都验收过了，现在只剩下
 一个网络的课程设计还没验，不过代码已经完成，就等着实验室的开放了。
@@ -37,7 +37,7 @@
 
 编译原理做的是一个从句型推导画出语法分析树的题目，分析句型推导不难，难就
 难在画语法分析树上，先是在 win 下东挪西就 Dev-Cpp 的 Examples，搞出了一个
-简单的窗体，然后使用了三个 api 函数 ''''TextOut、''''LineTo 和 ''''MoveToEx 将分析树
+简单的窗体，然后使用了三个 api 函数 TextOut、LineTo 和 MoveToEx 将分析树
 画出来。还好老师没有刁难，也许是当时验收的人太多了，她也不想问得太细。
 
 网络做的是 rsa 加密解密，要使用大数库，选择了 gmp，这在 linux 下这么容易
@@ -50,16 +50,16 @@ MinGW，然后才能编译得到 gmp 的库，接着才能使用。也许是我�
 昨晚巴西对加纳的比赛，加纳的临门一脚跟巴西差的太远了，肥罗不是白混饭吃的，
 前锋很重要……
 
-*** [[CategoryLife][CategoryLife]] / [[2006-06#p3][Permalink]] 
+#category Life
 
 <!-- date: 2006-06-28T12:52:46+0800 -->
 
 
 
 #p2
-* 6月16日 周五 18:30
+#date 6月16日 周五 18:30
 
-** 无题
+## 无题
 
 《操作系统》的课程设计终于在周一完成了，可是接下来还有《编译原理》和《计
 算机网络》的课程设计，网络的作业要在下周搞定，可是这周有编译的考试，还有
@@ -67,46 +67,46 @@ MinGW，然后才能编译得到 gmp 的库，接着才能使用。也许是我�
 
 考完试一定要好好补一下……
 
-*** [[CategoryLife][CategoryLife]] / [[2006-06#p2][Permalink]] 
+#category Life
 
 <!-- date: 2006-06-16T18:30:50+0800 -->
 
 
 
 #p1
-* 6月11日 周日 15:32
+#date 6月11日 周日 15:32
 
-** FVWM <nop>SelectOnRelease</nop>
+## FVWM SelectOnRelease
 
-这里的 <nop>SelectOnRelease</nop> 是指跟 win 下 Alt-Tab 选择后可以自动转
+这里的 SelectOnRelease 是指跟 win 下 Alt-Tab 选择后可以自动转
 入相应的程序或窗口这样类似的功能，其实 FVWM 的 man 里也有说明。
 
 早先 FVWM 默认的 Alt-Tab 行为是只选择窗口，若是要真正跳到相应的程序或窗
 口，得用 RETURN 确认。这样很不方便，因为要选定并跳到另一个程序，得按好几
 下键盘，最麻烦的是最后一下得用 RETURN 确认，得多挪一个手来完成这件事情。
 
-而 <nop>SelectOnRelease</nop> 是在你松开某个键后就可以认为你选择了这个选
-项。具体的设置是在你的 <nop>MenuStyle</nop> 中在相应的菜单里加入
-<nop>SelectOnRelease</nop> <nop>KeyName</nop>，如下：
+而 SelectOnRelease> 是在你松开某个键后就可以认为你选择了这个选
+项。具体的设置是在你的 MenuStyle> 中在相应的菜单里加入
+SelectOnRelease KeyName，如下：
 
-<src type="conf">
+```source
 MenuStyle WindowList SelectOnRelease Alt_L, # other Style settings
-</src>
+```
 
-这里的 <nop>KeyName</nop> 是你机子上有定义的名字，可以用 $ xmodmap 来查
-看，这么说也应该可以定义自己的 <nop>KeyName</nop> 了，可惜我还不大懂，要
+这里的 KeyName 是你机子上有定义的名字，可以用 $ xmodmap 来查
+看，这么说也应该可以定义自己的 KeyName 了，可惜我还不大懂，要
 不然我也把那个 Windows 视窗键给用上。
 
-*** [[CategoryLinux][CategoryLinux]] / [[2006-06#p1][Permalink]] 
+#category Linux
 
 <!-- date: 2006-06-11T15:32:07+0800 -->
 
 
 
 #p0
-* 6月11日 周日 14:57
+#date 6月11日 周日 14:57
 
-** 沉闷
+## 沉闷
 
 操作系统的课程设计选了一个比较累人的题目，加上现在正处考试周，平常得非常
 努力地准备，而在电脑前的空闲，都用来编程了。
@@ -126,7 +126,7 @@ MenuStyle WindowList SelectOnRelease Alt_L, # other Style settings
 是巴拉圭运气太差，英格兰早被破门了。没有鲁尼的英格兰，前锋冲击力太差了，
 欧文不行。
 
-*** [[CategoryLife][CategoryLife]] / [[2006-06#p0][Permalink]] 
+#category Life
 
 <!-- date: 2006-06-11T14:57:30+0800 -->
 

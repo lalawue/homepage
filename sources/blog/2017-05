@@ -1,9 +1,9 @@
 #title Archive for May, 2017
 
 #p0
-* 17年5月7日 周日 10:36
+#date 17年5月7日 周日 10:36
 
-** 安装黑苹果 10.12 macOS Sierra
+## 安装黑苹果 10.12 macOS Sierra
 
 想想距离上次安装已经有一年多了，这次升级安装，原因是之前查到 10.11 下对
 GTX 1060 无法支持，这是个太大的硬伤。考虑到之前几次升级安装，也还算顺利，
@@ -24,7 +24,7 @@ GTX 1060 无法支持，这是个太大的硬伤。考虑到之前几次升级�
 还有，我之所以不用懒人版，还是担心安全性的问题。
 
 
-**** 一、安装前提
+### 一、安装前提
 
  - PC macOS 独立硬盘安装，支持 64 位的硬件，支持 UEFI 启动的主板
  - 需要设置 BIOS，需要插拔独立显卡
@@ -32,7 +32,7 @@ GTX 1060 无法支持，这是个太大的硬伤。考虑到之前几次升级�
    的同学，这里帮不了你了
 
 
-**** 二、需要的工具
+### 二、需要的工具
 
 下面列出需要的工具，但一些工具需要在 macOS 下运行，只有 Windows 的考虑下
 其他替代工具吧，需要的工具有：
@@ -52,7 +52,7 @@ GTX 1060 无法支持，这是个太大的硬伤。考虑到之前几次升级�
  - Secure Boot disable
  - AHCI enable
  - UEFI enable（可以选择 UEFI、legacy 都支持）
- - XHCI ''''SmartAuto
+ - XHCI SmartAuto
  - XHCI/EHCI handoff enable
  - 设置 U 盘启动优先级最高
 
@@ -65,7 +65,7 @@ GTX 1060 无法支持，这是个太大的硬伤。考虑到之前几次升级�
 统没有影响。
 
 
-**** 三、准备资源
+### 三、准备资源
 
 这里列一下大概需要准备的资源，创建硬件描述表 DSDT，准备安装用的 U 盘
 
@@ -73,7 +73,7 @@ GTX 1060 无法支持，这是个太大的硬伤。考虑到之前几次升级�
 
  - 最新版的 Clover，先给系统安装 U 盘创建 Clover 启动，务必在安装界面勾
    选自定（customize），选择安装启动引导以及 Drivers64UEFI 下
-   的''''OsxAptioFixDrv-64
+   的OsxAptioFixDrv-64
 
  - 使用 MaciASL.app 生成 DSDT，并编译，遇到编译不过的问题，将这一行或这
    一块删除，直到通过编译，保存为 AML 二进制文件
@@ -95,7 +95,7 @@ GTX 1060 无法支持，这是个太大的硬伤。考虑到之前几次升级�
  - 关闭保存 Clover Configurator.app 并推出 U 盘 EFI 分区
 
 
-**** 四、安装流程
+### 四、安装流程
 
 先说一下大概的流程，U 盘启动安装，遇到问题增添 U 盘 EFI 分区的 kext，安
 装后修复部分 SMBIOS 下的黑屏问题。
@@ -120,19 +120,19 @@ GTX 1060 无法支持，这是个太大的硬伤。考虑到之前几次升级�
     默认启动项请搜索其他吧
 
 有关 nvidiaweb 驱动的支持，需要使用文本编辑器编辑 config.plist，在
-''''SystemParameters key 下添加：
+SystemParameters key 下添加：
 
-<example>
+```source
 	<key>SystemParameters</key>
 	<dict>
                 ... 其他配置 ...
         	<key>NvidiaWeb</key>
         	<true/>
 	</dict>
-</example>
+```
 
 
-**** 五、kernel panic、黑屏问题
+### 五、kernel panic、黑屏问题
 
 这里的 kernel panic 出现在安装第 2. 步，我也遇到过，看看是什么 kext 引起
 的，将其更新或删除就好，一般有了 DSDT 后，对硬件的描述应该不成问题了。
@@ -144,15 +144,15 @@ Clover 可以修改启动参数，在 Option 里面，选择启动参数，enter
 看下面的英文参考资料。
 
 
-**** 六、参考资料
+### 六、参考资料
 
 参考外文资料比较好，比如 www.tonymacx86.com
 
- - [[https://www.tonymacx86.com/threads/good-news-for-x99-10-11-haswell-e-el-capitan.178425/page-4#post-1151520][Clover 设置及黑屏问题]]
- - [[https://www.tonymacx86.com/threads/black-screen-with-macpro-6-1-or-imac-15-or-imac-17-system-definition.183113/][Black Screen with MacPro 6,1 or iMac 15 or iMac 17 System Definition]]
+ - [Clover 设置及黑屏问题](https://www.tonymacx86.com/threads/good-news-for-x99-10-11-haswell-e-el-capitan.178425/page-4#post-1151520)
+ - [Black Screen with MacPro 6,1 or iMac 15 or iMac 17 System Definition](https://www.tonymacx86.com/threads/black-screen-with-macpro-6-1-or-imac-15-or-imac-17-system-definition.183113/)
 
 
-*** [[CategoryLinux][CategoryLinux]] / [[2017-05#p0][Permalink]] 
+#category Linux
 
 <!-- date: 2017-05-07T10:36:03+0800 -->
 

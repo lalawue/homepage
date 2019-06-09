@@ -1,9 +1,9 @@
 #title Archive for January, 2015
 
 #p2
-* 15年1月30日 周五 12:42
+#date 15年1月30日 周五 12:42
 
-** 有关 GLFW
+## 有关 GLFW
 
 这段时间做的项目是使用 GLFW 来做跨平台的播放器，大体上框架已经好了，音视
 频也同步了，大概花了快两周时间，然后也是今天才知道 cocos2dx 3.x 系列是用
@@ -20,16 +20,16 @@ OpenGL 2.x 系列的 API，实际上，现在都已经是 3.x 系列的 API 了�
 
 若是现在开始涉及到桌面 OpenGL 部分的，强烈推荐呀。
 
-*** [[CategoryProgramming][CategoryProgramming]] / [[2015-01#p2][Permalink]] 
+#category Programming
 
 <!-- date: 2015-01-30T12:42:25+0800 -->
 
 
 
 #p1
-* 15年1月15日 周四 01:34
+#date 15年1月15日 周四 01:34
 
-** 获取默认网卡的 IP 地址
+## 获取默认网卡的 IP 地址
 
 目前在做一个简单的服务端程序，需要客户端发现服务端的 IP 地址，然后请求链
 接。发现部分是用 UDP 的广播来做了，但是服务端获取 IP 地址部分，遇到了问
@@ -52,8 +52,8 @@ MacOS 下获取系统网络设备名称以及地址跟 Linux 下的相似，都�
 搜到了一篇中文介绍；然后获取系统默认网卡的信息，我是从 stackoverflow 上
 面搜到的。
 
- - [[http://www.cnblogs.com/sammei/p/3955679.html][getifaddrs]]
- - [[http://stackoverflow.com/questions/4872196/how-to-get-the-wifi-gateway-address-on-the-iphone][How to get the WIFI gateway address on the iPhone?]]
+ - [getifaddrs](http://www.cnblogs.com/sammei/p/3955679.html)
+ - [How to get the WIFI gateway address on the iPhone?](http://stackoverflow.com/questions/4872196/how-to-get-the-wifi-gateway-address-on-the-iphone)
 
 这样，bind 的时候仍然可以为 INADDR_ANY，客户端 UDP 广播请求的时候，服务
 端大方发送可连接的 IP 地址。扯远点，复杂点的情况，多个网卡，多个异构网络，
@@ -62,18 +62,18 @@ accept。
 
 大概就是这个意思了吧。
 
-*** [[CategoryProgramming][CategoryProgramming]] / [[2015-01#p1][Permalink]] 
+#category Programming
 
 <!-- date: 2015-01-15T01:34:41+0800 -->
 
 
 
 #p0
-* 15年1月3日 周六 11:19
+#date 15年1月3日 周六 11:19
 
-** HTTP Downloader
+## HTTP Downloader
 
-忙了两天多那个 [[https://github.com/lalawue/http_downloader][HTTP Downloader]]，原来只是想实现一个 keep-alive 的连接的
+忙了两天多那个 [HTTP Downloader](https://github.com/lalawue/http_downloader)，原来只是想实现一个 keep-alive 的连接的
 socket，当时也想到这个东西不会简单，因为一方面底层的是 low level 的
 socket，另外一方面呢，需要处理一层 http 协议，还有一个 dns。
 
@@ -111,7 +111,7 @@ cstring 过来的对象，因为本身 cstring 空间是不用释放的，这时
 不过呢，新建的 heap 多大才有用而又不至于浪费，那就又是另外一回事了，以及
 这个接口如何提供的问题，这个想法还得斟酌一下。
 
-*** [[CategoryProgramming][CategoryProgramming]] / [[2015-01#p0][Permalink]] 
+#category Programming
 
 <!-- date: 2015-01-03T11:19:57+0800 -->
 

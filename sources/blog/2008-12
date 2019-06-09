@@ -2,9 +2,9 @@
 #title Archive for December, 2008
 
 #p2
-* 12月20日 周六 11:53
+#date 12月20日 周六 11:53
 
-** Google Docs
+## Google Docs
 
 记得 google docs 也 beta 好长时间了，好久之前有用过，但当时对 opera 的支
 持我就不想说了，不过现在就不一样了。
@@ -20,35 +20,35 @@
 
 于是，将几份重要的 .doc 文档人肉处理中。
 
-*** [[CategoryMisc][CategoryMisc]] / [[2008-12#p2][Permalink]] 
+#category Misc
 
 <!-- date: 2008-12-20T11:53:05+0800 -->
 
 
 
 #p1
-* 12月19日 周五 01:25
+#date 12月19日 周五 01:25
 
-** 404 页面
+## 404 页面
 
 一时无聊，增加了一个 404 页面。
 
-*** [[CategoryThisSite][CategoryThisSite]] / [[2008-12#p1][Permalink]] 
+#category ThisSite
 
 <!-- date: 2008-12-19T01:25:14+0800 -->
 
 
 
 #p0
-* 12月14日 周日 18:29
+#date 12月14日 周日 18:29
 
-** Google Sitemap Generator
+## Google Sitemap Generator
 
 弄了个 bash 脚本来生成偶这个小网站的 google sitemap，巨简单，其实就一行
 find 语句，限于只用 find 的原因，固定了一些 sitemap 的属性，比如固定了各
 个页面的 priority，chagefreq，且只能为 &#42;.html 生成 sitemap，如下：
 
-<src type="sh">
+```source
 generate_goole_sitemap()
 {
     # generate google sitemap
@@ -61,11 +61,11 @@ generate_goole_sitemap()
     rm -f $sitemap.gz
     gzip $sitemap
 }
-</src>
+```
 
 为了使用上面的小函数，还需要设置下面的一些变量：
 
-<src type="sh">
+```source
 # htmlpub and sitemap relative location
 htmlpub=$HOME/workport/homesite/publish
 sitemap=$htmlpub/sitemap.txt
@@ -86,10 +86,10 @@ find_ptf_fmt="
   <changefreq>$changefreq</changefreq>\n
   <priority>$priority</priority>\n
  </url>\n"
-</src>
+```
 
-这里下载 [[code#generate_google_sitemap.tar.gz][Google Sitemap Generator]]，我是在 cygwin 下编写的，估计 MSYS 和
-''''UnixUtility 下也可以使用，生成的 sitemap 也通过了 google 那边的验证，当个
+这里下载 [Google Sitemap Generator](code#generate_google_sitemap.tar.gz)，我是在 cygwin 下编写的，估计 MSYS 和
+UnixUtility 下也可以使用，生成的 sitemap 也通过了 google 那边的验证，当个
 小玩具好了。
 
 这周加了整整一个礼拜的班，有强人相助，活干得不是一般地快，那小子效率至少
@@ -108,7 +108,7 @@ find_ptf_fmt="
 睛了，赶紧动手，把它买下来。可是说到假期，今年不如去年，只有十天左右的
 假，不甚爽，而且年休假传说是去年硬性放假都用完了。
 
-*** [[CategoryProgramming][CategoryProgramming]] / [[2008-12#p0][Permalink]] 
+#category Programming
 
 <!-- date: 2008-12-14T18:29:49+0800 -->
 

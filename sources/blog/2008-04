@@ -2,9 +2,9 @@
 #title Archive for April, 2008
 
 #p2
-* 4月13日 周日 01:43
+#date 4月13日 周日 01:43
 
-** Emacs-Wiki-Journal 更新
+## Emacs-Wiki-Journal 更新
 
 - 解决发布 Category 目录文件时产生日历及插入日历出错的问题
 - 为 Category 目录文件的最新条目加入月份标题
@@ -12,18 +12,18 @@
 - 可自定义日期标题，但需要一些 elisp 的知识（有例子程序）
 - 推荐配合 emacs-wiki-2.72 使用
 
-在 [[cs#EmacsWikiJournal]] 的下载介绍部分做了更新。
+在 [cs#EmacsWikiJournal](cs#EmacsWikiJournal) 的下载介绍部分做了更新。
 
-*** [[CategoryProgramming][CategoryProgramming]] / [[2008-04#p2][Permalink]] 
+#category Programming
 
 <!-- date: 2008-04-13T01:43:08+0800 -->
 
 
 
 #p1
-* 4月12日 周六 01:18
+#date 4月12日 周六 01:18
 
-** Emacs-Wiki-Journal with Emacs23
+## Emacs-Wiki-Journal with Emacs23
 
 最近将将 emacs 更新到了 version 23，但在和以前的一些旧软件配合的过程中遭
 遇了不小的问题，emacs-wiki-journal 在 emacs 23 上面需要 emacs-wiki-2.72
@@ -35,25 +35,25 @@
 句引起的，因为在发布的文件中恰好包含了 &#60;src&#62; tag，只要将这条语句
 comment 掉就可以了，具体的语句是：
 
-<src type="elisp">
+```source
 ;;      (search-forward "</pre>")
-</src>
+```
 
 文件中仅有的一条 search-forward 语句，在使用到 &#60;src&#62; 的时候会造成
 search 失败，后果是无法发布 index.html，整个发布过程就无法自动化了。
 
-这部分也在 [[cs#EmacsWikiJournal]] 做了更新。
+这部分也在 [cs#EmacsWikiJournal](cs#EmacsWikiJournal) 做了更新。
 
-*** [[CategoryProgramming][CategoryProgramming]] / [[2008-04#p1][Permalink]] 
+#category Programming
 
 <!-- date: 2008-04-12T01:18:36+0800 -->
 
 
 
 #p0
-* 4月9日 周三 00:11
+#date 4月9日 周三 00:11
 
-** SCENE: 24
+## SCENE: 24
 
 本以为清明可以放假，后来发现这只是一个小小的奢望，现实中的我被强制窝在某
 个地方听讲座去了。
@@ -64,7 +64,7 @@ search 失败，后果是无法发布 index.html，整个发布过程就无法�
 
 路还很长。
 
-*** [[CategoryLife][CategoryLife]] / [[2008-04#p0][Permalink]] 
+#category Life
 
 <!-- date: 2008-04-09T00:11:09+0800 -->
 

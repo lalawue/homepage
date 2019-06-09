@@ -1,9 +1,9 @@
 #title Archive for January, 2014
 
 #p4
-* 14年1月16日 周四 12:23
+#date 14年1月16日 周四 12:23
 
-** 设置服务器网络唤醒（WOL）
+## 设置服务器网络唤醒（WOL）
 
 我的破笔记本往服务器方向又迈了一大步，被我设置成网络唤醒了（Wake On Lan）。
 加上之前可以远程关闭的 expect 脚本，现在开关机都不需要手动按电源键，可以
@@ -20,23 +20,23 @@
 统一关闭，网卡的灯也不亮了。当然也无法网络唤醒。
 
 还好有 ubuntu，apt get 一个 ethtool 工具，按照这篇帖子的设置
-[[http://ubuntuforums.org/showthread.php?t=234588][HOWTO: Set your system up for Wake On LAN (WOL)]]，然后关闭的时候使用
+[HOWTO: Set your system up for Wake On LAN (WOL)](http://ubuntuforums.org/showthread.php?t=234588)，然后关闭的时候使用
 shutdown -P now 仅仅 poweroff 就好了。
 
 帖子里介绍的内容也挺简单，先 apt-get ethtool，然后往 /etc/init.d 放一个
 wakeonlanconfig 开机启动脚本，内容为：
 
-<src tyep="sh">
-#!/bin/bash
-ethtool -s eth0 wol g
-exit
-</src>
+~~~source
+ #!/bin/bash
+ ethtool -s eth0 wol g
+ exit
+~~~
 
 chmod a+x wakeonlanconfig，然后设置开机启动方式：
 
-<src type="sh">
+```source
 update-rc.d -f wakeonlanconfig defaults
-</src>
+```
 
 这两步手工运行一下，再使用上面的关机命令，可以发现系统关闭了，硬件指示灯
 也都不亮了，除了网卡灯和供电部分。
@@ -45,7 +45,7 @@ update-rc.d -f wakeonlanconfig defaults
 方式，只剩下电源连接处的灯是亮着的（估计这是一上电就亮，软件无法控制）；
 而 ubuntu 下的关机方式，网卡的灯还亮着。
 
-然后网上下一个 WOL 的程序，比如我下的这个 perl 脚本 [[http://gsd.di.uminho.pt/jpo/software/wakeonlan/][Wakeonlan]]，命令行下
+然后网上下一个 WOL 的程序，比如我下的这个 perl 脚本 [Wakeonlan](http://gsd.di.uminho.pt/jpo/software/wakeonlan/)，命令行下
 运行，后面跟网卡地址就可以唤醒了。
 
 如果发送唤醒命令的主机与被唤醒的主机不在一个子网内，估计要路由做 forward
@@ -56,16 +56,16 @@ update-rc.d -f wakeonlanconfig defaults
 
 这种远程控制开关机真的很好玩哈哈哈。
 
-*** [[CategoryLinux][CategoryLinux]] / [[2014-01#p4][Permalink]] 
+#category Linux
 
 <!-- date: 2014-01-16T12:23:08+0800 -->
 
 
 
 #p3
-* 14年1月11日 周六 14:16
+#date 14年1月11日 周六 14:16
 
-** 苹果折扣日买了个 iPad Air
+## 苹果折扣日买了个 iPad Air
 
 其实很早就想去 HK 了，要给家里人带奶粉。上一次去 HK 还以为在关口可以买到，
 当时奶粉还禁购，然后去澳门也没买，这次可不能忘。
@@ -103,40 +103,40 @@ update-rc.d -f wakeonlanconfig defaults
 
 还好一个汉堡加杯小可只要港币 21，其他真是糟糕透了。
 
-*** [[CategoryLife][CategoryLife]] / [[2014-01#p3][Permalink]] 
+#category Life
 
 <!-- date: 2014-01-11T14:16:39+0800 -->
 
 
 
 #p2
-* 14年1月7日 周二 04:14
+#date 14年1月7日 周二 04:14
 
-** 改成靠 Git''''Hub 托管了
+## 改成靠 GitHub 托管了
 
-[[https://help.github.com/categories/20/articles][GitHub Pages]] 真是个好东东，提供了静态网页的发布功能，本来是开放给开源工
+[GitHub Pages](https://help.github.com/categories/20/articles) 真是个好东东，提供了静态网页的发布功能，本来是开放给开源工
 程介绍页面的，不过我的主页也是完全开源的嘛，也可以借来托管了。
 
 空间足够，git 方式更新，还可以绑定域名，对于我是完全足够了。虽然我的虚拟
 主机还有近 7 个月才到期，价钱也不贵，而且之前才更新了上传脚本，这个工具
 还没用爽呢，没想到才过了 2 天就完全用不上了。
 
-因为 Git''''Hub Pages 需要以 username.github.io 来创建仓库，如果生成这些静态
+因为 GitHub Pages 需要以 username.github.io 来创建仓库，如果生成这些静态
 网页的源码也打算放到 github 托管，就像我是把整个主页都放到了 github 上，
-并使用 Emacs''''Wiki 在本地生成静态网页，如下的目录结构：
+并使用 EmacsWiki 在本地生成静态网页，如下的目录结构：
 
-<src>
+```source
 homepage +
          - publish
          - sources
-</src>
+```
 
 那么可以考虑将 publish 作为 homepage 的一个 submodule 关联起来：
 
-<src type="sh">
+```source
 $ cd homepage
 $ git submodule add git@github.com:username/username.github.io.git publish
-</src>
+```
 
 这样 homepage 也可以单独作为 github 的工程了，publish 以及 sources 目录
 可以互不干扰，大不了 homepage 下建立 .gitignore 屏蔽 publish 目录下的东
@@ -169,19 +169,19 @@ git 的使用如果只是发布的话，感觉了解 git push 就够了吧。
 标记语言，静态 html 页面的发布部分一点都不需要改，加上又是 git 的日常使
 用者，毫无压力。
 
-*** [[CategoryThisSite][CategoryThisSite]] / [[2014-01#p2][Permalink]] 
+#category ThisSite
 
 <!-- date: 2014-01-07T04:14:39+0800 -->
 
 
 
 #p1
-* 14年1月4日 周六 15:04
+#date 14年1月4日 周六 15:04
 
-** 更方便简洁的 Upload Script
+## 更方便简洁的 Upload Script
 
 我一直使用一个上传脚本更新这个网站，这个脚本始于 2005 年五一
-[[blog#2005-05#p2][Upload shell script v1.2]]，当时还使用什么 ncftpput 程序来对每一个更新过的
+[Upload shell script v1.2](blog#2005-05#p2)，当时还使用什么 ncftpput 程序来对每一个更新过的
 文件进行一次 ftp 连接传输。
 
 然后这个脚本我居然还一直使用到了昨天，横跨 Win、Mac、Linux 系统，甚至还
@@ -197,34 +197,34 @@ git 的使用如果只是发布的话，感觉了解 git push 就够了吧。
 
 贴一下核心部分就好了：
 
-<src type="sh">
-#!/bin/bash
-ftp -n << "___EOF__"
-open 192.168.33.88
-user FTP_USER FTP_PASS_WORD
-mkdir PATH_1_TO_CREATE
-mkdir PATH_2/TO_CREATE
-put LOCAL/PATH/FILE_1 REMOTE/PATH/FILE_1
-put LOCAL/PATH/FILE_2 REMOTE/PATH/FILE_2
-bye
-"___EOF__"
-</src>
+```source
+ #!/bin/bash
+ ftp -n << "___EOF__"
+ open 192.168.33.88
+ user FTP_USER FTP_PASS_WORD
+ mkdir PATH_1_TO_CREATE
+ mkdir PATH_2/TO_CREATE
+ put LOCAL/PATH/FILE_1 REMOTE/PATH/FILE_1
+ aput LOCAL/PATH/FILE_2 REMOTE/PATH/FILE_2
+ bye
+ "___EOF__"
+```
 
 将需要创建的目录、上传的文件替换上去就好了。目前我是生成一个临时脚本，然
 后运行上传命令。
 
-我把这个脚本扔到了这里 https://github.com/lalawue/shell_script_stuff 。
+我把这个脚本扔到了这里 <https://github.com/lalawue/shell_script_stuff>。
 
-*** [[CategoryProgramming][CategoryProgramming]] / [[2014-01#p1][Permalink]]
+#category Programming
 
 <!-- date: 2014-01-04T15:04:51+0800 -->
 
 
 
 #p0
-* 14年1月1日 周三 02:34
+#date 14年1月1日 周三 02:34
 
-** 快速关闭远程 server 的 expect 脚本
+## 快速关闭远程 server 的 expect 脚本
 
 我停掉了之前的阿里云服务器，而在自己液晶屏亮不起来的破笔记本上安装了
 ubuntu server，将 git server、nginx + wiki 都安装在了上面，反正 server
@@ -239,44 +239,44 @@ ssh 上去的 prompt，shell 下 power off 的命令，一些发行版可能是 
 
 按照惯例贴代码：
 
-<src type="sh">
-#!/usr/bin/expect
-#
-# create in 2013/12/31, by sucha in http://suchang.net
-#
-# Usage: halt_server host_ip
+```source
+ #!/usr/bin/expect
+ #
+ # create in 2013/12/31, by sucha in http://suchang.net
+ #
+ # Usage: halt_server host_ip
+ 
+ # prompt for root@host_ip
+ set serv_root_prompt "password"
+ set serv_halt_cmd "shutdown -h now"
+ set serv_halt_expect "halt"
+ 
+ set timeout 10
+ if { $argc != 1 } {
+ 	send_user "$argv0 \$HOST_IP\n"
+ 	exit
+ }
+ 
+ # get server ip
+ set host [lrange $argv 0 0]
+ 
+ # get root's passwd
+ stty -echo
+ send_user -- "Password for root@$host: "
+ expect_user -re "(.*)\n"
+ send_user "\n"
+ set pass $expect_out(1,string)
+ 
+ # login server and run halt
+ spawn ssh -2 root@$host
+ expect $serv_root_prompt
+ send $pass\r
+ send $serv_halt_cmd\r
+ expect $serv_halt_expect
+ exit
+```
 
-# prompt for root@host_ip
-set serv_root_prompt "password"
-set serv_halt_cmd "shutdown -h now"
-set serv_halt_expect "halt"
-
-set timeout 10
-if { $argc != 1 } {
-	send_user "$argv0 \$HOST_IP\n"
-	exit
-}
-
-# get server ip
-set host [lrange $argv 0 0]
-
-# get root's passwd
-stty -echo
-send_user -- "Password for root@$host: "
-expect_user -re "(.*)\n"
-send_user "\n"
-set pass $expect_out(1,string)
-
-# login server and run halt
-spawn ssh -2 root@$host
-expect $serv_root_prompt
-send $pass\r
-send $serv_halt_cmd\r
-expect $serv_halt_expect
-exit
-</src>
-
-*** [[CategoryProgramming][CategoryProgramming]] / [[2014-01#p0][Permalink]] 
+#category Programming
 
 <!-- date: 2014-01-01T02:34:43+0800 -->
 

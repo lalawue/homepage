@@ -2,9 +2,9 @@
 #title Archive for January, 2009
 
 #p0
-* 1月1日 周四 00:01
+#date 1月1日 周四 00:01
 
-** 俄罗斯方块游戏
+## 俄罗斯方块游戏
 
 新的一年又到了，遥想两年前的今天，我还在考研前的拼搏阶段，大家为了抢自习
 室的位子，都是早早的去占座。我们寝室占了一个一楼的小教室，那天刚好轮到我
@@ -20,9 +20,9 @@
 结果是写了个数据结构简单，但是控制超复杂的程序，勉强可以玩了，然后工作那
 边任务开始忙了。
 
-源码请在这里下载 [[code#tetris.tar.gz]]。
+源码请在这里下载 [code#tetris.tar.gz](code#tetris.tar.gz)。
 
-*** [[CategoryProgramming][CategoryProgramming]] / [[2009-01#p0][Permalink]] 
+#category Programming
 
 <!-- date: 2009-01-01T00:01:26+0800 -->
 

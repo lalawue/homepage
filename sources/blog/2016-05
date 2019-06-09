@@ -1,9 +1,9 @@
 #title Archive for May, 2016
 
 #p1
-* 16年5月8日 周日 20:36
+#date 16年5月8日 周日 20:36
 
-** 思绪
+## 思绪
 
 这思绪像风<br />
 有时温暖湿润<br />
@@ -13,18 +13,18 @@
 便眼睁睁地看着另外一个我<br />
 被它带到不知名的地方<br />
 
-*** [[CategoryLife][CategoryLife]] / [[2016-05#p1][Permalink]] 
+#category Life
 
 <!-- date: 2016-05-08T20:36:25+0800 -->
 
 
 
 #p0
-* 16年5月4日 周三 00:50
+#date 16年5月4日 周三 00:50
 
-** 稳定版的 m_tunnel
+## 稳定版的 m_tunnel
 
-之前的 [[https://github.com/lalawue/m_tunnel][m_tunnel]] 不稳定，有多个原因，最主要的，是由于只用一个 tcp 连接
+之前的 [m_tunnel](https://github.com/lalawue/m_tunnel) 不稳定，有多个原因，最主要的，是由于只用一个 tcp 连接
 local 跟 remote，免不了协议、数据分割，两边的 socket 状态不容易保证同步，
 比如 local 的关闭了，remote 的也要同步关闭，反过来也要保证一样。
 
@@ -55,7 +55,7 @@ socket 为非阻塞的之后，后面 accept 的 socket 也都是非阻塞的。
 再找找看有啥好玩的项目吧。
 
 
-*** [[CategoryProgramming][CategoryProgramming]] / [[2016-05#p0][Permalink]]
+#category Programming
 
 <!-- date: 2016-05-04T00:50:41+0800 -->
 

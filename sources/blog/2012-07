@@ -1,9 +1,9 @@
 #title Archive for July, 2012
 
 #p2
-* 12年7月25日 周三 22:57
+#date 12年7月25日 周三 22:57
 
-** 三体
+## 三体
 
 其实一直很少看科幻类的书，高中时候倒是还翻过卫斯里的，觉得是半天可以看完
 一本的快餐类，所以到现在连内容都忘了。
@@ -30,16 +30,16 @@
 的是还第三部。
 
 
-*** [[CategoryReading][CategoryReading]] / [[2012-07#p2][Permalink]] 
+#category Reading
 
 <!-- date: 2012-07-25T22:57:57+0800 -->
 
 
 
 #p1
-* 12年7月12日 周四 15:53
+#date 12年7月12日 周四 15:53
 
-** 有关 coLinux
+## 有关 coLinux
 
 主页重新开通后，又可以用以前自动上传的脚本了，可是脚本依赖 bash 及
 ncftpput 上传，在远离主页的日子里，Cygwin 已被我删掉。再说 Cygwin 是相当
@@ -62,20 +62,20 @@ Core 上，启动到 login 的 prompt 只要 8 秒钟。
 可以了，在 guest 这边被当成了磁盘，随意 mount 到哪个目录都可以，填到
 /etc/fstab 里面就自动化了。
 
-rootfs 挑的是 Arch''''Linux 发行版的，下载的压缩包 20M，解压后 260M。文档有点
+rootfs 挑的是 ArchLinux 发行版的，下载的压缩包 20M，解压后 260M。文档有点
 不足，比如配置文件里面默认将 rootfs 指定到 cobd[x] 设备，挂载上来的磁盘永
 远都是只读的，我是将其指定到 hda[x] 设备，才可以读写。
 
 这样以前 Cygwin 下的 $HOME 目录，重新被挂载到了 /root 下。
 
-然后又遇到了问题，这个 Arch''''Linux 的 rootfs 镜像，居然没有 tar，如今随便
+然后又遇到了问题，这个 ArchLinux 的 rootfs 镜像，居然没有 tar，如今随便
 一个嵌入式小系统的 busybox，都有 tar 了，这个镜像太坑爹了。
 
 于是到 gnu 的网站下 tar，新的版本还依赖 pthread 库，为避免依赖问题，下了
 一个很早之前的版本，tar-1.12，放到 VMware 这边编译了一下，还好可以用，真
 是足够老的软件了。
 
-之后是 ncftpput 的问题，这回是运行时出错，依赖 GLIBC_2.11，而 Arch''''Linux
+之后是 ncftpput 的问题，这回是运行时出错，依赖 GLIBC_2.11，而 ArchLinux
 镜像这边只有 GLIBC_2.7。nm 看了一下符号，其实只有一个函数是 GLIBC_2.11 下
 的，叫什么 __longjmp_chk，一个出错处理函数。
 
@@ -86,16 +86,16 @@ include 过来的，里面的 ifdef 看不懂啥含义，干脆 su 成 root 注�
 
 coLinux 真不错，就是有些 rootfs 太坑爹了，其实 260M 的体积也不小了。
 
-*** [[CategoryLinux][CategoryLinux]] / [[2012-07#p1][Permalink]] 
+#category Linux
 
 <!-- date: 2012-07-12T15:53:58+0800 -->
 
 
 
 #p0
-* 12年7月11日 周三 16:47
+#date 12年7月11日 周三 16:47
 
-** 主页重新开通
+## 主页重新开通
 
 寄宿网易轻博客的日子终于过去，今儿终于找到了一款比较便宜的海外虚拟主机，
 对于我等静态 HTML 完全够用，就等 A 记录生效了。
@@ -105,7 +105,7 @@ coLinux 真不错，就是有些 rootfs 太坑爹了，其实 260M 的体积也�
 
 古老的个人网站，继续走下去吧。
 
-*** [[CategoryThisSite][CategoryThisSite]] / [[2012-07#p0][Permalink]] 
+#category ThisSite
 
 <!-- date: 2012-07-11T16:47:29+0800 -->
 

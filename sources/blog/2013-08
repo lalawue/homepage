@@ -1,12 +1,12 @@
 #title Archive for August, 2013
 
 #p2
-* 13年8月27日 周二 23:47
+#date 13年8月27日 周二 23:47
 
-** Texture''''Packer 图片打包工具
+## TexturePacker 图片打包工具
 
 最近在做 2D 游戏开发，用到了图片打包工具，网上搜到的教程好多都是
-Texture''''Packer 的，于是就到官网下载试用了一下，因为只用到打包的功能，感觉
+TexturePacker 的，于是就到官网下载试用了一下，因为只用到打包的功能，感觉
 还是很简单的。
 
 下载后可以试用一周 pro 版的功能，免费版的功能目前不晓得是否足够支持开发。
@@ -15,7 +15,7 @@ Texture''''Packer 的，于是就到官网下载试用了一下，因为只用�
 说有自己博客并满足一定条件的就可以申请，然后写一片简短的博客做为回报便好。
 
 二话不说，就把自己的博客地址填上去了，然后作者还回信了，德国人真慷慨，给
-了 key 不说，还附送了一枚 Physics''''Editor 的 key，真谢谢他了，虽然暂时还用
+了 key 不说，还附送了一枚 PhysicsEditor 的 key，真谢谢他了，虽然暂时还用
 不到。
 
 于是就有了这篇 blog，in return。
@@ -26,18 +26,18 @@ Texture''''Packer 的，于是就到官网下载试用了一下，因为只用�
 
 以后要是用到高级功能，有心得的话再出教程吧。
 
-提供链接 http://www.codeandweb.com/texturepacker
+提供链接 <http://www.codeandweb.com/texturepacker>
 
-*** [[CategoryProgramming][CategoryProgramming]] / [[2013-08#p2][Permalink]] 
+#category Programming
 
 <!-- date: 2013-08-27T23:47:42+0800 -->
 
 
 
 #p1
-* 13年8月12日 周一 14:26
+#date 13年8月12日 周一 14:26
 
-** 在C/C++/Objc中快速定位当前文件内的函数
+## 在C/C++/Objc中快速定位当前文件内的函数
 
 同样是在昨天的那个帖子里面，列出了一些小函数，可以在 Xcode 的 Objc 文件里
 面快速跳转到函数、页面定义的成员、"#pragma mark -" Xcode 标签，非常方便
@@ -50,7 +50,7 @@ Texture''''Packer 的，于是就到官网下载试用了一下，因为只用�
 C/C++/Objc 中，这些匹配用的正则表达式是不完全的，还是可能会错漏的，不过对
 于大部分的情况，应该是够用了。
 
-<src type="elisp">
+```source
 ;; for Xcode pragma mark, and C/C++ functions
 (require 'anything)
 (require 'anything-config)
@@ -91,27 +91,27 @@ C/C++/Objc 中，这些匹配用的正则表达式是不完全的，还是可能
  (lambda ()
    (define-key c-mode-base-map (kbd "M-i") 'c-base-mode-headline)
 ))
-</src>
+```
 
-*** [[CategoryProgramming][CategoryProgramming]] / [[2013-08#p1][Permalink]] 
+#category Programming
 
 <!-- date: 2013-08-12T14:26:25+0800 -->
 
 
 
 #p0
-* 13年8月11日 周日 21:44
+#date 13年8月11日 周日 21:44
 
-** 在头文件与源代码之间快速跳转
+## 在头文件与源代码之间快速跳转
 
 今天忙着建立 Emacs 编写 objc 代码的环境，根据这个帖子
-[[http://roupam.github.io/blog/2012/10/07/emacs-for-xcode+ios-development/][Setup Emacs for XCode+iOS development]]，里面有说到一个快速跳转 objc 源文件与头
+[Setup Emacs for XCode+iOS development](http://roupam.github.io/blog/2012/10/07/emacs-for-xcode+ios-development/)，里面有说到一个快速跳转 objc 源文件与头
 文件的小函数。
 
 我稍微改了一下，可以适应于 C/C++/Objc 的代码，当然，可以再根据需要添加诸
 如 Java 语言的支持，反正改起来超简单。
 
-<src type="elisp">
+```source
 ;; jump between source and header file
 (defun c-base-mode-in-header-file ()
   (let* ((filename (buffer-file-name))
@@ -148,9 +148,9 @@ C/C++/Objc 中，这些匹配用的正则表达式是不完全的，还是可能
    (define-key c-mode-base-map (kbd "C-c t")
  'c-base-mode-jump-between-header-source)
 ))
-</src>
+```
 
-*** [[CategoryProgramming][CategoryProgramming]] / [[2013-08#p0][Permalink]] 
+#category Programming
 
 <!-- date: 2013-08-11T21:44:07+0800 -->
 

@@ -3,9 +3,9 @@
 
 
 #p4
-* 2004-10-31, 星期日
+#date 2004-10-31, 星期日
 
-** Lumaqq or OpenQ ?
+## Lumaqq or OpenQ ?
 
 这确实是一个比较难选择的问题，所以两个我都用了，呵~
 
@@ -17,28 +17,28 @@
 
 下面是 lumaqq，和腾迅 qq 真的是非常的像。
 
-&#32;[[../images/lumaqq.jpg]]
+&#32;![img](../images/lumaqq.jpg)
 
 还有 openq，大头像是不是很漂亮~
 
-&#32;[[../images/openq.jpg]]
+&#32;![img](../images/openq.jpg)
 
 偶尔我也用 xchat 上 IRC，不过用的不多。
 
-&#32;[[../images/xchat.jpg]]<br>
+&#32;![img](../images/xchat.jpg)<br>
 
 向为lumaqq和openq而努力的兄弟们致敬，是他们让我们用到了这么好的软件。
 
-*** CategoryLinux
+#category Linux
 
 <!-- date: 2004-10-31T21:20:15+0800 -->
 
 
 
 #p3
-* 2004-10-24, 星期四
+#date 2004-10-24, 星期四
 
-** Rss in Liferea
+## Rss in Liferea
 
 最近关注 blog 比较多，发现 rss 炒得挺火的。新华网和看天下都出了 rss 的阅读器，搞得我心理也痒痒地。看到 Linuxfire View 上介绍了 emacs 里实现 rss 的文章，便下了一个 newsticker 试试看。
 
@@ -46,9 +46,9 @@
 
 不服气，又 baidu 了一下，发现在 Linux 里的 rss 新闻阅读器还蛮多的，比如 Liferea……赶紧下了一个。安装等等都很简单，现在也能很好的使用了，只可惜在 Liferea 阅读嵌入的 html 或图片不能显示中文，不知道怎么才能搞好……
 
-&#32;[[../images/liferea.jpg]]
+&#32;![img](../images/liferea.jpg)
 
-*** CategoryLinux
+#category Linux
 
 <!-- date: 2004-10-24T21:20:15+0800 -->
 
@@ -56,11 +56,11 @@
 
 
 #p2
-* 2004-10-17, 星期日
+#date 2004-10-17, 星期日
 
-** 555~~~CS 比赛止步于四强
+## 555~~~CS 比赛止步于四强
 
-**** 组队
+### 组队
 
 国庆前吧，就知道了校内的电子竞技联盟(社团)要举办 CS、魔兽和星际的比赛。但是因为自觉技不如人，而且也没有太多的时间，再加上同寝室的也一直犹豫不决（我们寝室的很厉害的～），所以一直没有报名。寝室里面也没有太多的谈论。
 
@@ -71,7 +71,7 @@
 所以连续几天，我们一直在宿舍楼里面开 Serve，组队挑楼里的散兵。这招还蛮有成效，不仅对地图熟悉了（他们悟性很高的～），而且增强了自信……呵呵。
 
 
-**** 比赛
+### 比赛
 
 比赛 17 号开始，一共有 24 个参赛队（在这个地方，已经很不错了～）。共分 6 个小组，第一名出线。然后是两败制――对手不同，输够了两场就下，不够的继续，直到剩下四强――有两名是直接出线的“老牌强队”。
 
@@ -89,89 +89,89 @@ CS 高手就不要往下看了，很％￥×◎＃的。
 
 因为实在是打得太差（精力都～），输得很惨。八强的情况还是不说了罢。不仅是枪法，还是扔雷（被闪雷闪怕了，呵～）――八强和小组赛水平明显不同。而且我们也是后面才知道，原本说好的参赛队伍中的队员必须来自同一个院系，但实际上主办方默认了不同院系的也可以自由组队，而我们所败给的对手都～认了吧…… 
 
-**** 八强?!!!
+### 八强?!!!
 
 本来只准备随随便便地去逛一圈，没想到却进了八强。呵呵，算意外的收获吧……<br>
 今天，实在是太累了……
 
-*** CategoryLife
+#category Life
 
 <!-- date: 2004-10-17T21:20:15+0800 -->
 
 
 
 #p1
-* 2004-10-16, 星期六
+#date 2004-10-16, 星期六
 
-** alsa 确实是个好东西 -- Intel 845 PEI ac97 出声了~~~
+## alsa 确实是个好东西 -- Intel 845 PEI ac97 出声了~~~
 
 
-**** 今天之前……
+### 今天之前……
 
 Slackware 装好以后，声音一直出不来。当初因为要搞桌面，这方面也没有怎么在意。随着桌面进入了一个阶段，声音渐渐成了一个问题……
 
 在今天成功之前，alsa 已经装过了，但声音一直出不来。最近一直很忙，时间太紧了，事情又担搁了下来。恰好今天有时间了，看准了，慢慢来……
 
-**** ac 97驱动的安装
+### ac 97驱动的安装
 
 alsa 安装需要内核源码包，首先确定 /usr/src/ 里面有了诸如 linux-2.4.26 这样的文件夹，不然的话还得找原来的安装盘(我是菜鸟，自然用 full 安装，东西只会多，不会少的^_^)。先确定自己的主板用的是什么声音芯片，比如我，是 Intel845PEI 的板子，声音芯片是 realtek ALC202A，那么可以上驱动之家下载 ALC202A for linux 的驱动。
 
 解压缩 alsa-driver，进入 driver 目录。
-<src type="conf">
+```source
 #./configure
 #make intall
 #./snddevices
-</src>
+```
 
 然后是修改 /etc/modules.conf (有的是 conf.modules )，具体看 driver 里有什么就到 /etc/ 下修改什么……然后重启……
 
 Intel 主板版载 ac 97 的安装过程细节在 Linuxsir 搜索下面的参考帖子。
 
-**** To me
+### To me
 
 因为我以前已经安装过 alsa 的驱动--我在 redhat 下成功发出声音的版本(包括 alsadriver，alsaconf)，后面又装了 ALC202A 的版本。所以我也不知道到底那个起了作用，参考了 Linuxsir 上某一个帖子，具体的我忘了。在终端下 man -k alsa，这些帮助足够了。然后用 root 执行 alsaconf。alsa 会执行搜索，然后列出机子上可供选择的声卡。差不多一路 ok 就可以了。甚至不用 重启。
 
 xmms 已经在播放了，还没有声音？--在 Linux 下面是默认全部静音的，在终端下执行 aumix，自己调调看，出声音了吧？
 
-**** 启动加载声音设置
+### 启动加载声音设置
 
 有没有注意到，每次启动的时候都得使用 aumix 调声音。因为启动的时候没有加载 aumix，也就不可能 load 声音配置文件。如果每次都这样，人就会被郁闷死……下面给出 Fvwm 下用 aumix 启动加载声音设置的方法。
 
-首先设置保存声音设置。先调出 aumix，然后设置好自己需要的声音大小，保存，在 ～/ 目录下会生成一个 .aumixrc 的声音配置文件。由 #aumix --help 可以知道，#aumix －L 是 load 用户 ~/.aumixrc 的声音设置（如果在 ~/ 没有 .aumixrc,则 load  /etc 下的系统配置文件）。那么我们在 ~/.fvwm/.fvwm2rc 上面的 StartF''''unction 加上下面一行，启动 Fvwm 的时候加载声音设置：
-<src typ="conf">
+首先设置保存声音设置。先调出 aumix，然后设置好自己需要的声音大小，保存，在 ～/ 目录下会生成一个 .aumixrc 的声音配置文件。由 #aumix --help 可以知道，#aumix －L 是 load 用户 ~/.aumixrc 的声音设置（如果在 ~/ 没有 .aumixrc,则 load  /etc 下的系统配置文件）。那么我们在 ~/.fvwm/.fvwm2rc 上面的 StartFunction 加上下面一行，启动 Fvwm 的时候加载声音设置：
+```source
 + I Exec exec aumix -L
-</src>
+```
 
 这样就不用每次启动后都得用 aumix 设置声音了……
 
-**** P.S
+### P.S
 
-参考了 Linuxsir.org 上：[[http://www.linuxsir.org/bbs/showthread.php?s=&threadid=4598&highlight=redhat7.3][在redhat7.3下驱动 intel 845主板ac97的经历]]
+参考了 Linuxsir.org 上：[在redhat7.3下驱动 intel 845主板ac97的经历](http://www.linuxsir.org/bbs/showthread.php?s=&threadid=4598&highlight=redhat7.3)
 
-*** CategoryLinux
+#category Linux
 
 <!-- date: 2004-10-16T21:20:15+0800 -->
 
 
 
 #p0
-* 2004-10-13, 星期三
+#date 2004-10-13, 星期三
 
-** Netscape 的 bug ?
+## Netscape 的 bug ?
 
-**** Blog 无法“更改”了
+### Blog 无法“更改”了
 
 在 Netscape 里面（其实 mozilla 也一样的），在 blog 上发表文章以后，如果要修改，只能重新写过，没有办法接着上次写过的继续。因为一旦发表，按下修改的按钮，浏览器的输入栏就会变空白，不知道为什么。搞得每次在 Linux 下我要是想修改 blog 里面的东西，都得从新打过，累死了。
 
 而以 IE 为内核的浏览器就没有这样的问题（比如我现在用的 MyIE2）。所以很多修改的工作都得放到 windows 下面来完成，而且这样转换来转换去也太麻烦了，不知道有什么方法可以解决。 
 
-**** 欣慰
+### 欣慰
 
 到现在为止，还没有碰到过 Netscape 无法浏览的网页。最主要的是我所喜爱的网站 Netscape 都可以很好地浏览，小小庆贺一下。
 
-<font color=seagreen>Wo''''Wo~~~</font>
+<font color=seagreen>WoWo~~~</font>
 
-*** CategoryLinux
+#category Linux
 
 <!-- date: 2004-10-13T21:20:15+0800 -->
 

@@ -1,9 +1,9 @@
 #title Archive for December, 2017
 
 #p1
-* 17年12月2日 周六 11:56
+#date 17年12月2日 周六 11:56
 
-** Emacs 升级到了 25.3.1
+## Emacs 升级到了 25.3.1
 
 Emacs 升级到了 25.3.1，因为许久没有写这个 blog，忘记了应该用什么命令来加
 入 entry，还以为是 emacs-wiki-journal 用不了了，不兼容了，开始杞人忧天。
@@ -17,26 +17,22 @@ Emacs，之前一直觉得蛮需要这个的。
 
 不过 Emacs 总算跟上了新的版本，记录一下吧。
 
-
-
-
-
-*** [[CategoryMisc][CategoryMisc]] / [[2017-12#p1][Permalink]] 
+#category Misc
 
 <!-- date: 2017-12-02T11:56:07+0800 -->
 
 
 
 #p0
-* 17年12月2日 周六 11:49
+#date 17年12月2日 周六 11:49
 
-** More Than Human
+## More Than Human
 
-​​这几天接连看了几个机器人相关的报道，比如后空翻的 [[https://cn.engadget.com/2017/11/17/boston-dynamics-atlas-robot-backflip/][这个]]，以及[[https://cn.engadget.com/2017/11/14/boston-dynamics-spotmini/][机器狗]]，不得
+​​这几天接连看了几个机器人相关的报道，比如后空翻的 [这个](https://cn.engadget.com/2017/11/17/boston-dynamics-atlas-robot-backflip/)，以及[机器狗](https://cn.engadget.com/2017/11/14/boston-dynamics-spotmini/)，不得
 不感叹就机体性能而言，这个进化速度实在太快了，如果再考虑能量效率，就更不
 用说。
 
-想起前一阵子看的[[https://movie.douban.com/review/8888093/][《银翼杀手2049》]]，复制人K随着故事不断推进逐渐丰满，最后
+想起前一阵子看的[《银翼杀手2049》](https://movie.douban.com/review/8888093/)，复制人K随着故事不断推进逐渐丰满，最后
 让我隐约觉得某种意义上他比人类更像人类。
 
 在现实中，随着软（硬）件行业不断重新规范整个人类社会，机器能接受、处理信
@@ -68,7 +64,7 @@ Emacs，之前一直觉得蛮需要这个的。
 在任何一个方面，人家可根本不把我们看在眼里。​​​​​
 
 
-*** [[CategoryReading][CategoryReading]] / [[2017-12#p0][Permalink]] 
+#category Reading
 
 <!-- date: 2017-12-02T11:49:07+0800 -->
 

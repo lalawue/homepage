@@ -1,13 +1,13 @@
 #title Archive for September, 2015
 
 #p0
-* 15年9月15日 周二 23:40
+#date 15年9月15日 周二 23:40
 
-** Cross platform HTTP server
+## Cross platform HTTP server
 
 
 这个开源的跨平台的小型 HTTP 服务端已经正式用在了公司内部产品上，地址是
-https://github.com/lalawue/m_http_server.
+<https://github.com/lalawue/m_http_server>.
 
 支持浏览器端通过 HTTP 访问设备上面的内容，上传下载都是现成的。
 
@@ -32,7 +32,7 @@ block，相当致命，实在是完全不应该用来开发应用程序了。C �
 从 socket、select 开始搭建系统，蛮开心的。
 
 
-*** [[CategoryProgramming][CategoryProgramming]] / [[2015-09#p0][Permalink]] 
+#category Programming
 
 <!-- date: 2015-09-15T23:40:10+0800 -->
 

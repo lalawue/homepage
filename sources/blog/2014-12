@@ -1,13 +1,13 @@
 #title Archive for December, 2014
 
 #p6
-* 14年12月29日 周一 10:22
+#date 14年12月29日 周一 10:22
 
-** My First Mac App - ''''TcBrowserMac
+## My First Mac App - TcBrowserMac
 
 开始练习 Mac App 的编写，与 iOS App 有许多不同，昨天花了一天时间，山寨了
-一个 ''''TcBrowser，一个筛选算法题目的小软件，作者博客页面
-[[http://zh.lucida.me/blog/top-code-offline-browser/][Top Coder算法题目浏览器]]。
+一个 TcBrowser，一个筛选算法题目的小软件，作者博客页面
+[Top Coder算法题目浏览器](http://zh.lucida.me/blog/top-code-offline-browser/)。
 
 也许是我没有深入开发的原因，感觉不再像 iOS 一样，需要多个 View
 Controller 了，使得我一开始就考虑模块划分的问题，虽然这个软件是个小工具
@@ -17,11 +17,11 @@ Controller 了，使得我一开始就考虑模块划分的问题，虽然这个
 是打包成 bundle 来跑的，界面上的 app 其实是个文件夹，所以我之前整的方法
 都不对，需要通过 [[NSBundle mainBundle] bundlePath] 来获取。
 
-然后 ''''StoryBoard 方面，由于软件是个窗口，所以大小是可变的，一开始就得考虑
+然后 StoryBoard 方面，由于软件是个窗口，所以大小是可变的，一开始就得考虑
 自动布局的问题，Apple 文档那边对于自动布局长篇大论不说，还有一个用于自动
 布局的 DSL，足够复杂了，昨天时间有限，我是没有看透。
 
-实际是用 ''''StoryBoard 点击 nib 后 Editor -> Resolve Auto Layout Issues 上
+实际是用 StoryBoard 点击 nib 后 Editor -> Resolve Auto Layout Issues 上
 面的 Add Missing Constraints 来做的，每添加一个控件，就要 Add 一次。
 
 然后感觉还跟控件添加的顺序有关系，Xcode 会猜测这个控件到底是对齐那一边，
@@ -31,7 +31,7 @@ superview 无限扩展，可是如果给弄成右对齐就改不了了，反正�
 所以我只好把 constraints 删除又添加一遍。
 
 然后是 tableview，与 iOS 也有些不同，没有了 cell 的概念，取而代之的是
-NSView，没有了 index，而是一个 ''''NSTableColumn 的结构，table column 的
+NSView，没有了 index，而是一个 NSTableColumn 的结构，table column 的
 identifier 可以设置，重用时也是依据这些 identifier。不过 column 的
 header title 我折腾了不少时间，然后是宽度也是通过 column 设置的。
 
@@ -42,10 +42,10 @@ numberOfRowsInTableView，一个是 viewForTableColumn。
 原因。我是想要 Dock 上面自定义图标，谷歌到的方法也只是动态设置的而已，关
 闭的时候很明显会显示回默认的那个。
 
-实际上呢，需要设置的方法在 [[https://developer.apple.com/library/mac/documentation/GraphicsAnimation/Conceptual/HighResolutionOSX/Optimizing/Optimizing.html#//apple_ref/doc/uid/TP40012302-CH7-SW3][Apple Doc - Optimizing for High Resolution]]，
+实际上呢，需要设置的方法在 [Apple Doc - Optimizing for High Resolution](https://developer.apple.com/library/mac/documentation/GraphicsAnimation/Conceptual/HighResolutionOSX/Optimizing/Optimizing.html#//apple_ref/doc/uid/TP40012302-CH7-SW3)，
 具体是需要下面几个大小的图标，然后放到 icon_name.iconset 这个文件夹下面
 
-<example>
+```example
 icon_16x16.png
 icon_16x16@2x.png
 icon_32x32.png
@@ -56,29 +56,27 @@ icon_256x256.png
 icon_256x256@2x.png
 icon_512x512.png
 icon_512x512@2x.png
-</example>
+```
 
 终端下使用命令
 
-<src type="sh">
+```source
 $ iconutil -c icns icon_name.iconset
-</src>
+```
 
  来生成，然后拖到工程文件里面就好了，默认就是那个图标了，这个也折腾了不
- 少时间 ，第一个 Mac App 终于完成了，地址在这里 [[http://pan.baidu.com/s/1sjv3gNN][TcBrowserMac]]，密码是宇宙终极答案。
+ 少时间 ，第一个 Mac App 终于完成了，地址在这里 [TcBrowserMac](http://pan.baidu.com/s/1sjv3gNN)，密码是宇宙终极答案。
 
-
-
-*** [[CategoryProgramming][CategoryProgramming]] / [[2014-12#p6][Permalink]] 
+#category Programming
 
 <!-- date: 2014-12-29T10:22:03+0800 -->
 
 
 
 #p5
-* 14年12月27日 周六 17:58
+#date 14年12月27日 周六 17:58
 
-** ObjC Animation
+## ObjC Animation
 
 其实去年在做那个 App 的时候就有使用过简单的动画，接口是 UIView 的
 animateWithDuration，只是平移了一下 view。
@@ -104,33 +102,33 @@ presentation 是专门用来显示动画的，结束后就被设成了 model 的
 的每一帧间隔里面做的。
 
 cocos2dx 的底层部分也是通过 display link 来驱动实现每一帧的画图与计算，
-然后用户的输入是通过 UIView 的 ''''UIKeyInput delegate 来做的，而不像这个例
+然后用户的输入是通过 UIView 的 UIKeyInput delegate 来做的，而不像这个例
 子通过手势控件 recognizer 来做的， cocos2dx 的方式更灵活一些，不过两者对
 于动画显示、操作最底层的部分是相似的。
 
 没想到两者后底层部分的驱动结构其实是一样的，display link 与 run loop。
 
-*** [[CategoryProgramming][CategoryProgramming]] / [[2014-12#p5][Permalink]] 
+#category Programming
 
 <!-- date: 2014-12-27T17:58:25+0800 -->
 
 
 
 #p4
-* 14年12月25日 周四 22:16
+#date 14年12月25日 周四 22:16
 
-** ObjC Core Data
+## ObjC Core Data
 
 Core Data 市面上的文章太多，不管是中文还是英文，所以打算以自己的理解从简
 描述。
 
 先从上到下、从大到小理解概念。关键的概念其实只有 4 个：
 
- - ''''NSManagedModel：数据模型，数据的结构
- - ''''NSManagedModelContext：具体存取增删数据的接口
- - ''''NSPersistentStoreCoordinator：连接 context 与 persistent store 的中间
+ - NSManagedModel：数据模型，数据的结构
+ - NSManagedModelContext：具体存取增删数据的接口
+ - NSPersistentStoreCoordinator：连接 context 与 persistent store 的中间
    件
- - ''''NSPersistentStore：数据库，具体的文件
+ - NSPersistentStore：数据库，具体的文件
 
 如果还要简约，那概念上只需要关注 model 跟 store 就可以了，一个是 schema，
 模型结构，比如一张表，另一个是数据库，具体到文件。
@@ -139,10 +137,10 @@ Core Data 市面上的文章太多，不管是中文还是英文，所以打算�
 的 SDK下，一个 context 对应一个 model 和一个 coordinator，一个
 coordinator 可以连接多个 store，相互的关系可以脑补了吧。
 
-下面的代码只要建立一个 ''''TestCoreData 的头文件调用一下最下面的 test 就可以
+下面的代码只要建立一个 TestCoreData 的头文件调用一下最下面的 test 就可以
 编译跑了，粗看有点多，其实分开函数看就好了，函数名很直白了。
 
-<src type="objc">
+```source
 @interface UserInfo : NSManagedObject
 @property (nonatomic,copy) NSString *name;
 @property (nonatomic,copy) NSNumber *uid;
@@ -289,23 +287,23 @@ coordinator 可以连接多个 store，相互的关系可以脑补了吧。
     return true;
 }
 @end
-</src>
+```
 
 更具体细节的东西，比如 Predicates、搜索结果的缓存，可以需要的时候再细查
 了，有了重要概念、框架的支撑，往下往细里面走就好办了吧。
 
 明天玩玩新的东西。
 
-*** [[CategoryProgramming][CategoryProgramming]] / [[2014-12#p4][Permalink]] 
+#category Programming
 
 <!-- date: 2014-12-25T22:16:40+0800 -->
 
 
 
 #p3
-* 14年12月24日 周三 15:29
+#date 14年12月24日 周三 15:29
 
-** NSThread、''''NSRunLoop、GCD、__block
+## NSThread、NSRunLoop、GCD、__block
 
 因为想求职 Objective-C 开发的原因，被问到了一些很基础的问题，而我做 iOS
 App 已经是一年以前的事情，且也没有那么系统地学习过，所以就慢慢把这些补齐。
@@ -315,16 +313,16 @@ App 已经是一年以前的事情，且也没有那么系统地学习过，所�
 
 建立多线程是为了同步做一些事情，不影响界面的响应等等，这些事情要么是纯计
 算的，要么是各种事件的处理，对于这些事件的检测以及处理，Objective-C 是放
-到 ''''NSRunLoop 里面去的，感觉跟满足了 select 以及 epoll 条件下的大括号块差
+到 NSRunLoop 里面去的，感觉跟满足了 select 以及 epoll 条件下的大括号块差
 不多吧。
 
-''''NSRunLoop 就是一个内部循环的结构，一定是从属于某个线程的，要么是属于主线
+NSRunLoop 就是一个内部循环的结构，一定是从属于某个线程的，要么是属于主线
 程，要么是属于自己创建的线程。
 
-下面的例子是建立了一个 ''''NSRunLoop 响应一秒一次的 NSTimer，这个 ''''NSRunLoop
+下面的例子是建立了一个 NSRunLoop 响应一秒一次的 NSTimer，这个 NSRunLoop
 是跑在一个单独的线程（非主线程）里的。
 
-<src type="objc">
+```source
 - (void)timer_entry:(NSTimer*)t
 {
     NSLog(@"timer is main thread %d", [NSThread isMainThread]);
@@ -359,19 +357,19 @@ static int _newThreadAborted;
     NSThread *t = [[NSThread alloc] initWithTarget:self selector:@selector(thread_entry:) object:nil];
     [t start];
 }
-</src>
+```
 
-上面的例子 ''''NSRunLoop 添加了一个 NSTimer 事件源，同样的可以添加其他的事件
-源，比如鼠标、键盘的，这样就可以在某个线程的 ''''NSRunLoop 里面处理具体的事
+上面的例子 NSRunLoop 添加了一个 NSTimer 事件源，同样的可以添加其他的事件
+源，比如鼠标、键盘的，这样就可以在某个线程的 NSRunLoop 里面处理具体的事
 情了，且不影响主线程。
 
-如果 ''''NSRunLoop 里面 while 了一个死循环，这个线程就做不了其他事情了。如果
-这个 ''''NSRunLoop 是在主线程里面，界面就会卡住，一个 NSThread 里面只能有一
-个 ''''NSRunLoop，新建立的线程会在调用获取 ''''NSRunLoop 的时候创建。
+如果 NSRunLoop 里面 while 了一个死循环，这个线程就做不了其他事情了。如果
+这个 NSRunLoop 是在主线程里面，界面就会卡住，一个 NSThread 里面只能有一
+个 NSRunLoop，新建立的线程会在调用获取 NSRunLoop 的时候创建。
 
 而 GCD （Grand Central Dispatch） 我觉得中文网络上面的信息挺不错的，也许
 也是因为自己之前已经使用了不少了吧，也因为使用的简单，所以当时的项目里面
-也让我不需要去关注 NSThread 跟 ''''NSRunLoop 了。
+也让我不需要去关注 NSThread 跟 NSRunLoop 了。
 
 具体的使用其实就是构建一个闭包函数，跟 Lua 里面的闭包效果一样，所以这样
 的函数也可以作为值传递了。
@@ -390,69 +388,69 @@ static int _newThreadAborted;
 
 对了，其实还有全局区的闭包，我觉得只要区别不是栈上的闭包就好了。
 
-*** [[CategoryProgramming][CategoryProgramming]] / [[2014-12#p3][Permalink]] 
+#category Programming
 
 <!-- date: 2014-12-24T15:29:33+0800 -->
 
 
 
 #p2
-* 14年12月10日 周三 21:47
+#date 14年12月10日 周三 21:47
 
-** OpenGL 3.3 under MacOS (2)
+## OpenGL 3.3 under MacOS (2)
 
 终于查明原因了，并不是 GLFW 不堪用的问题，而是需要在 glGenBuffers 之前，
 先跑下面：
 
-<src type="cpp">
+```source
     glGenVertexArrays(1, &vaoHandle);
     glBindVertexArray(vaoHandle);
-</src>
+```
 
 当然，那些诸如 &#60;Learning Modern 3D Graphics Programming&#62; 的书上面是没有
 这两句代码的。
 
 蛋疼呀。
 
-*** [[CategoryProgramming][CategoryProgramming]] / [[2014-12#p2][Permalink]] 
+#category Programming
 
 <!-- date: 2014-12-10T21:47:14+0800 -->
 
 
 
 #p1
-* 14年12月9日 周二 19:42
+#date 14年12月9日 周二 19:42
 
-** OpenGL 3.3 under MacOS
+## OpenGL 3.3 under MacOS
 
 其实我想说的是在黑苹果下的情况，一般阿婆是只打开 OpenGL 2.1 而已的，用
 X11 XQuartz 或者 GLEW，都无法使用 OpenGL 3.3 的，对于我这个初学者来说，
 想从 Modern OpenGL 入门，痛苦不堪。
 
 首先，还是先确认黑苹果在硬件上能够支持的 OpenGL API 版本吧，App Store 上
-下载 OpenGL Extensions Viewer 来确认硬件情况，比如我的是 ''''GeForce 310，是
+下载 OpenGL Extensions Viewer 来确认硬件情况，比如我的是 GeForce 310，是
 能够支持到 OpenGL 3.3 Core 的。
 
 剩下的就是驱动问题了，谷歌得到的结果是建议用新的 GLFW 而不是 GLUT 或者
 GLEW 来做，GLFW 在 MacOS 下默认也只打开 OpenGL 2.1 而已，听说要这样才能
 打开 3.3 的 Core：
 
-<src type="c">
+```source
 static void using_opengl_version_330(void) {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 }
-</src>
+```
 
 设置完之后，我就按教程走了，但是，又出现了意外的情况，在我的黑苹果上面，
-''''#version 330 的 shader 源码都编译链接过了，但就是没有显示，窗口里面都是
+#version 330 的 shader 源码都编译链接过了，但就是没有显示，窗口里面都是
 黑的。总之 OpenGL 2.1 可以，3.3 就是不行。即便 glClear 颜色显示 OK，loop
 循环也有走。
 
 又不甘心使用 OpenGL 2.1 呢，只好救助于 Apple 原生的系统接口看看了，还好
-谷歌查到了不错的东西 [[https://developer.apple.com/library/mac/samplecode/GLEssentials/Introduction/Intro.html][GLEssentials]]，是官方提供的 Objective-C 使用 OpenGL
+谷歌查到了不错的东西 [GLEssentials](https://developer.apple.com/library/mac/samplecode/GLEssentials/Introduction/Intro.html)，是官方提供的 Objective-C 使用 OpenGL
 3.3 API 编程的例子。
 
 立马左上角的 "Download Sample Code"，XCode 打开工程瞬间编译完成，看了一
@@ -461,19 +459,19 @@ static void using_opengl_version_330(void) {
 
 之前依靠跨平台各种库、以及过时的库起步，加上黑苹果的原因吧，缓慢起步。
 
-*** [[CategoryProgramming][CategoryProgramming]] / [[2014-12#p1][Permalink]] 
+#category Programming
 
 <!-- date: 2014-12-09T19:42:30+0800 -->
 
 
 
 #p0
-* 14年12月1日 周一 22:53
+#date 14年12月1日 周一 22:53
 
-** 实践了一个 JPEG 解码器
+## 实践了一个 JPEG 解码器
 
 为了更好地了解 JPEG 的解码过程，实践了一个 JPEG 解码器，放到个人 github
-上面了，http://github.com/lalawue/jpeg_dec.
+上面了，<http://github.com/lalawue/jpeg_dec>.
 
 参考了不少中英文资料，更多的是中文的，marker 的部分倒是看了 itu-81 的图表。
 
@@ -511,9 +509,9 @@ restart interval 问题等等。
 前人也总结了太多有关 JPEG 结构、解码所需要的知识，这里不重复了，评论下看
 到的一些源码吧。
 
-首先目前自己实现的是一个仅支持 Baseline DCT、H1V1 chroma sampling、''''YCbCr
+首先目前自己实现的是一个仅支持 Baseline DCT、H1V1 chroma sampling、YCbCr
 色彩的 JPEG decoder。其实绝大部分的 JPEG 都是 Baseline、H1V1 的，Gray
-Scale 其实要比 ''''YCbCr 的简单，再看看后续要不要加上。
+Scale 其实要比 YCbCr 的简单，再看看后续要不要加上。
 
 nanojpeg 为了实现的简单，资源都全部先申请，包括输出的图片缓冲，亮点是为
 了霍夫曼解码的方便，每个霍夫曼表开了个 1^16 条目的数组，将最多 256 个实
@@ -538,7 +536,7 @@ jpgd c++ 的最大亮点，在于将 YUV 转 RGB 的部分，做了 LUT。这个
 的 LUT，目前霍夫曼编码部分是完全按照位数长度从小到大顺序检测的，非常非常
 耗时，只是作为一个样例来理解的话，倒还好。
 
-*** [[CategoryProgramming][CategoryProgramming]] / [[2014-12#p0][Permalink]]
+#category Programming
 
 <!-- date: 2014-12-01T22:53:41+0800 -->
 

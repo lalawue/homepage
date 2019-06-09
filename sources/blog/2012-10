@@ -1,9 +1,9 @@
 #title Archive for October, 2012
 
 #p1
-* 12年10月3日 周三 12:42
+#date 12年10月3日 周三 12:42
 
-** XP 下的硬链接工具 Junction
+## XP 下的硬链接工具 Junction
 
 回到了家，三分钟就搭好了以 Emacs 为中心的工作平台、博客平台，得益于
 yun.io 的文件系统层面云，还有我在 github 上的 emacs 配置文件，将基本的东
@@ -24,16 +24,16 @@ mac 下跟 linux 很像，也就是建立一个软链接或者硬链接就好了
 
 任何系统有关的东东，暂存在 CategoryLinux 下好了。
 
-*** [[CategoryLinux][CategoryLinux]] / [[2012-10#p1][Permalink]] 
+#category Linux
 
 <!-- date: 2012-10-03T12:42:24+0800 -->
 
 
 
 #p0
-* 12年10月3日 周三 11:59
+#date 12年10月3日 周三 11:59
 
-** Emacs 的正则表达式替换
+## Emacs 的正则表达式替换
 
 买了 kindle 4 之后，最喜欢的还是纯文本类的格式，6 寸的屏幕显示格式化后的
 段落，也还是很方便的，不过即便是如此低的要求，有时还是得花费很多时间来处
@@ -54,9 +54,9 @@ mac 下跟 linux 很像，也就是建立一个软链接或者硬链接就好了
 
 这回硬着头皮上吧，先给出需要处理的文本段落的例子：
 
-<example>
+```example
 INTERVIEWER: xxx...SIMONYI: xxx...INTERVIEWER: xxx...SIMONYI: ...
-</example>
+```
 
 如上，INTERVIEWER 和 SIMONYI 都要单独分段，手上已有的文本小说处理工具决
 计搞不定。
@@ -64,22 +64,22 @@ INTERVIEWER: xxx...SIMONYI: xxx...INTERVIEWER: xxx...SIMONYI: ...
 Emacs 的处理过程为，先打开文件，然后 M-x replace-regexp，输入匹配的正则
 表达式：
 
-<src type="elisp">
+```source
 "\([A-Z]:\)"
-</src>
+```
 
 
 替换成字符串：
 
-<src type="elisp">
+```source
 "
 
 \1"
-</src>
+```
 
 处理后的文本例子是：
 
-<example>
+```example
 INTERVIEWER: xxx...
 
 SIMONYI: xxx...
@@ -87,7 +87,7 @@ SIMONYI: xxx...
 INTERVIEWER: xxx...
 
 SIMONYI: ...
-</example>
+```
 
 使用 replace-regexp，替换字符串含有换行符啥的，都是 plain text，单单为这
 个问题，也花了不少时间。我是临时绑定一个 C-1 给 (newline)，要不直接RET 就
@@ -98,7 +98,7 @@ eval 了，多不靠谱呀。
 最后，POSIX、Lua、Emacs 中的正则表达式标准应该是都不一样的，所以，手边带
 着工具书往前走比较靠谱。
 
-*** [[CategoryProgramming][CategoryProgramming]] / [[2012-10#p0][Permalink]] 
+#category Programming
 
 <!-- date: 2012-10-03T11:59:04+0800 -->
 

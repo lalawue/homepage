@@ -2,16 +2,16 @@
 #title Archive for June, 2008
 
 #p1
-* 6月8日 周日 22:40
+#date 6月8日 周日 22:40
 
-** GTAGS 和 company-mode
+## GTAGS 和 company-mode
 
 xcscope.el 的搜索实在是太慢了，慢到我用 grep 都可以立马定位到的东西，它却
 还要搜索半天，在定位匹配到的 buffer 里，几乎是看着它一条一条打印出来的，
 而我要搜索的代码，又哪里算是大工程。
 
 与 xcscope.el 相反的是，gtags.el 的搜索是相当快的，之前我也有说过
-[[2008-03#p0][CSCOPE 和 GTAGS]] 相比较的问题，当时对 gtags.el 的感觉就是使用太不人性化
+[CSCOPE 和 GTAGS](blog#2008-03#p0) 相比较的问题，当时对 gtags.el 的感觉就是使用太不人性化
 了，在搜索结果的条目里面，我总要 C-e 才能看到上下文，对我来说是太不方便
 了，但是它的性能我是觉得很满意的。
 
@@ -19,7 +19,7 @@ xcscope.el 的搜索实在是太慢了，慢到我用 grep 都可以立马定位
 择，它有着 xcscope.el 界面，但却使用 gtags 做 tag 搜索引擎，兼顾
 xcscope.el 的界面人性化和 gtags.el 的效率。
 
-[[http://home.tiscali.de/mgidde/Emacs.html][xgtags.el 的主页]] [1]
+[xgtags.el 的主页](http://home.tiscali.de/mgidde/Emacs.html) [1](#fn1)
 
 
 接着我把当年呼出 xcscope 的按键绑定都移到了 xgtags 上。一部分定义在
@@ -50,7 +50,7 @@ c-mode-base-map 中，另外一部分定义在 xgtags-mode-map 中，要不然�
  - M-p 跳转到最初查找的地方
  - SPC 在下面大窗中查看更多的上下文
 
-<src type="elisp">
+```source
 (require 'xgtags)
 
 (add-hook
@@ -107,12 +107,12 @@ t)
   (delete-other-windows)
   (split-window-vertically 12)
   (switch-to-buffer "*xgtags*"))
-</src>
+```
 
 
 还对 xgtags 的界面做了一些设置，突出匹配的 tag 上下文。
 
-<src type="elisp">
+```source
 (custom-set-faces
 
  ;; xgtags faces
@@ -126,16 +126,16 @@ t)
  '(xgtags-line-selected-face ((t (:foreground "yellow2" :weight bold))))
  '(xgtags-line-number-selected-face ((t (:foreground "maroon2" :weight bold))))
 )
-</src>
+```
 
 贴完了配置代码，不得不提一下 company-mode，非常炫的补全前端，
 
-建议访问一下[[http://nschum.de/src/emacs/company-mode/][company-mode 的主页]]，点击“preview demo”观看演示视频。作为一个
+建议访问一下[company-mode 的主页](http://nschum.de/src/emacs/company-mode/)，点击“preview demo”观看演示视频。作为一个
 补全前端，它可以利用诸如 dabbrev、elisp、semanticdb、或是其他自建的分析后
 端作为当前缓冲区搜索补全的引擎，我在我的 c-mode 或c++-mode 中，设置使用
 xgtags 生成的 completes-list 作为 company-mode 的后端。
 
-请访问 [[http://www.emacswiki.org/cgi-bin/emacs-en/CompanyMode][emacs-wiki 中利用 gtags 作为 company-mode 的后端]]，将这部分拷贝作为
+请访问 [emacs-wiki 中利用 gtags 作为 company-mode 的后端](http://www.emacswiki.org/cgi-bin/emacs-en/CompanyMode)，将这部分拷贝作为
 文件，命名为 company-gtags-completions.el，放在 emacs 的 load-path 中，可
 以和 company-mode 的文件放在一起，我就是这样做的。
 
@@ -147,7 +147,7 @@ xgtags 生成的 completes-list 作为 company-mode 的后端。
  - M-SPC 匹配尽可能多的东西，不是全部
  - M-RET 匹配当前项，选择当前项
 
-<src type="elisp">
+```source
 ;; company mode, better completion
 ;; 
 (add-to-list 'load-path
@@ -185,25 +185,25 @@ t)
 (define-key company-mode-map [(backtab)] 'company-expand-common)
 (define-key company-mode-map (kbd "M-SPC") 'company-expand-anything)
 (define-key company-mode-map [(meta return)] 'company-expand-common) 
-</src>
+```
 
 company-mode 的主页上说需要使用 emacs22，实际上 company-mode 在 emacs23
 中也是可以使用的，至少我也是这样用的。在使用 emacs 的过程中，当有新的想
 法，或出现问题的时候，除了 google，TheEmacsWiki 也应该是最先考虑的，毕竟
 里面货多啊。
 
-[1] 是 xgtags.el 的主页，不是 xcscope.el 的，2008/06/17
+[1](#fn1) 是 xgtags.el 的主页，不是 xcscope.el 的，2008/06/17
 
-*** [[CategoryProgramming][CategoryProgramming]] / [[2008-06#p1][Permalink]] 
+#category Programming
 
 <!-- date: 2008-06-08T22:40:48+0800 -->
 
 
 
 #p0
-* 6月2日 周一 23:23
+#date 6月2日 周一 23:23
 
-** 无题
+## 无题
 
 地震过去一段时间了，只感觉能做的非常有限，仅仅是捐了力所能及的钱物。说起
 地震的那天，在福州是一点感觉都没有，那时因为上班时间，忙着弄手头的事情，
@@ -213,7 +213,7 @@ company-mode 的主页上说需要使用 emacs22，实际上 company-mode 在 em
 成都、西安的同学在短信联系的时候还睡在操场上，但听到他们平安的消息，心里
 稍稍安定下来。之后是上网看新闻以及视频报道，看得夜深了都睡不着……
 
-前段时间在福州感觉到了一次[[http://news.163.com/08/0306/22/46CSHN3U0001124J.html][地震]]，那时我正在洗澡，突然间头晕目眩，有那么一
+前段时间在福州感觉到了一次[地震](http://news.163.com/08/0306/22/46CSHN3U0001124J.html)，那时我正在洗澡，突然间头晕目眩，有那么一
 两秒的时间，当时我以为自己晕掉了，怀疑是上班太累，平常睡得太晚，身体憔悴
 所致，之后我甚至自己晃了几下，都未能重复之前的感觉，那种怪怪的味道。直到
 第二天，在公司听他们说起昨晚的地震，才联系起来。
@@ -221,7 +221,7 @@ company-mode 的主页上说需要使用 emacs22，实际上 company-mode 在 em
 地震似乎是不可预测的，在地震发生期间那么短的时间里，人的反应、人的思考，
 能做的很有限，或者只能期望于预防性的建筑设计了，否则都只是事后的事情。
 
-*** [[CategoryLife][CategoryLife]] / [[2008-06#p0][Permalink]] 
+#category Life
 
 <!-- date: 2008-06-02T23:23:33+0800 -->
 

@@ -2,9 +2,9 @@
 #title Archive for January, 2006
 
 #p11
-* 1月28日 周六 16:52
+#date 1月28日 周六 16:52
 
-** 我的老家
+## 我的老家
 
 刚刚从老家回来，那边早已不住人，年久失修，最近又发现被盗贼光顾，原来惨淡的状况更加破落。大家都在一起商量对策，但暂时也不知如何是好。
 
@@ -16,16 +16,16 @@
 
 堂哥当时就看到大门外边有好多断了一截的小玻璃管，告诉我们说，那些就是吸毒者用的工具。原来，是些不要命的家伙……由于老家都不住人了，平常大家也很少来这里，所以就越来越破败，盗贼也就肆无忌惮起来了，真不知如何是好。
 
-*** [[CategoryLife][CategoryLife]] / [[2006-01#p11][Permalink]] 
+#category Life
 
 <!-- date: 2006-01-28T16:52:12+0800 -->
 
 
 
 #p10
-* 1月28日 周六 13:51
+#date 1月28日 周六 13:51
 
-** 旺才年, 来福年
+## 旺才年, 来福年
 
 今天是除夕，马上就要过春节了，炮仗早已准备了一箩筐，准备待会儿好好吃完一顿之后，大干一场~
 
@@ -35,16 +35,16 @@
 
 还没过跨过马路，突然心血来潮，何不先去看看南江移动行货 QD 要价多少。快到年了，柜台旁都挤满了人，相比火暴的人气，行货 QD 的价格也让我不得不仰视，￥1780，我猜实价大概也至少在 ￥1650 左右。怪不得水货 QD 那么多人捧，钱多也得看准地方才砸吧。
 
-*** [[CategoryLife][CategoryLife]] / [[2006-01#p10][Permalink]] 
+#category Life
 
 <!-- date: 2006-01-28T13:51:36+0800 -->
 
 
 
 #p9
-* 1月27日 周五 00:14
+#date 1月27日 周五 00:14
 
-** Mp3 播放器 && QD
+## Mp3 播放器 && QD
 
 今天可真是够累的。
 
@@ -60,16 +60,16 @@
 
 不过也郁闷，早上才入手 mp3 播放器，若是真的有了 QD，不免重复投资。好在从网上搜得若用 QD 播放 mp3，音质能折腾人，于是心里稍稍放宽。嘎说行货 QD 要一千五左右，不过能 GPRS 上网，他的水货差就差在这一点。一千五和一千，差距蛮大，GPRS 上网和 20 元包月，诱惑蛮大……算了，暂时不去想这些，早早睡了吧，ZZZzzzzzz.....
 
-*** [[CategoryLife][CategoryLife]] / [[2006-01#p9][Permalink]] 
+#category Life
 
 <!-- date: 2006-01-27T00:14:01+0800 -->
 
 
 
 #p8
-* 1月25日 周三 17:33
+#date 1月25日 周三 17:33
 
-** 搞定了 fcitx
+## 搞定了 fcitx
 
 最近为了一个中文输入法搞得头晕脑胀。先是试着安装了 SCIM，程序可以运行，但就是呼不出来。看看设置，都符合要求，以为是键盘原因，但是键盘上的每个键都很正常，或许因为软件版本太新？然后换回了 1.2.2 版，还是不照，这回可真的郁闷了。
 
@@ -79,16 +79,16 @@
 
 或许这和 slackware-current 版本有关，自从装上了 swaret，就一直不忘升级。升级也极为简便，每次只需 # swaret --update，# swaret --upgrade，就可以了，过几天装个 2.6 的 kernel 试试，不知道会有什么别样的感觉。
 
-*** [[CategoryLinux][CategoryLinux]] / [[2006-01#p8][Permalink]] 
+#category Linux
 
 <!-- date: 2006-01-25T17:33:58+0800 -->
 
 
 
 #p7
-* 1月23日 周一 22:02
+#date 1月23日 周一 22:02
 
-** Keep Current
+## Keep Current
 
 Recently i set up swaret to make my Slackware keeping current, but i
 make a mistake at first -- upgrading all of the software in runlevel 3
@@ -100,56 +100,56 @@ boot. Finally i had to remove the most */bin and */lib, re-install
 them to cover it.
 
 Today i get in runlevel 1 ahead, then upgrade them like
-[[2005-06#p1][upgrade from iso image]], first glibc, then sed...Well done, no
+[upgrade from iso image](blog#2005-06#p1), first glibc, then sed...Well done, no
 panic, no missing libs, except imiagemagick, but i can use xv instead.
 
 But SCIM and fcitx couldn't work. i try many times, it lanched,
 started, but couldn't invoke, so only en i can use now.
 
-*** [[CategoryLinux][CategoryLinux]] / [[2006-01#p7][Permalink]] 
+#category Linux
 
 <!-- date: 2006-01-23T22:02:12+0800 -->
 
 
 
 #p6
-* 1月20日 周五 01:08
+#date 1月20日 周五 01:08
 
-** 剪枝
+## 剪枝
 
 上面的比喻，是用来形容这个近似混乱无章的主页。事实上状况也慢慢地朝这个方向发展，虽然我也很努力，但是我知道，最后还是会如此。
 
-其实我早就对 [[cs#index]] 这个页面很是不爽，虽然我编程也不照，但是用更加糟糕的页面来衬托，就是错上加错了。当时的页面有多乱，无法形容，可惜我也一直找不到更好的办法来对付，我的审美观影响了我，限制了我，自然也只能如此而已。
+其实我早就对 [cs#index](cs#index) 这个页面很是不爽，虽然我编程也不照，但是用更加糟糕的页面来衬托，就是错上加错了。当时的页面有多乱，无法形容，可惜我也一直找不到更好的办法来对付，我的审美观影响了我，限制了我，自然也只能如此而已。
 
 后来决定进行剪枝，把更多的说明文字压缩到了标题下面，顿时清爽了很多，现在我对清爽这个词有好感，都是以前过于努力的结果。剪枝的目的，当然是要主次分明，重点突出。现在已治好了外伤，剩下的都是内伤了。
 
-*** [[CategoryThisSite][CategoryThisSite]] / [[2006-01#p6][Permalink]] 
+#category ThisSite
 
 <!-- date: 2006-01-20T01:08:41+0800 -->
 
 
 
 #p5
-* 1月19日 周四 15:01
+#date 1月19日 周四 15:01
 
-** New uploadscript
+## New uploadscript
 
-早上将 [[cs#UploadScript][upload script]] 大刀阔斧地修改了一遍，除了用于递归地遍历目录的函数没有改，其他的全都变了。
+早上将 [upload script](cs#UploadScript) 大刀阔斧地修改了一遍，除了用于递归地遍历目录的函数没有改，其他的全都变了。
 
 新的函数不再使用 ls -l，以及大量的临时文件来找到已经修改、更新过的文件，而是使用 find 命令，和一个用于记录程序上次运行时间的记录文件（文件内容无关紧要，主要使用其修改时间），来找到已经修改、更新过的文件。
 
 之前没想到有这么好用的命令，而且当时也不懂。修改过后程序运行快多了，简单的程序，错误也容易得到控制。其实这个小函数完全不必那样大惊小怪的，只是它对我的整个网站实在太过重要，再说它也慢慢地成长到 1.3 版了……
 
-*** [[CategoryProgramming][CategoryProgramming]] / [[2006-01#p5][Permalink]] 
+#category Programming
 
 <!-- date: 2006-01-19T15:01:21+0800 -->
 
 
 
 #p4
-* 1月18日 周三 20:23
+#date 1月18日 周三 20:23
 
-** ADSL 触网了
+## ADSL 触网了
 
 回到家这几天一直被 ADSL 的问题困扰着，到了今天，水落石出，原来 ADSL 的密码早已换掉，怪不得我的 Linux 系统上不了网呢，原来如此！
 
@@ -157,21 +157,23 @@ started, but couldn't invoke, so only en i can use now.
 
 于是又重温了一下在 SLK 下建立 ADSL 连接的过程：
 
-1. # netconfig，选 DHCP，论坛上的说法是好让服务商给你个动态 IP，如今的静态 IP 很贵的
-2. # adsl-setup(10.2 的系统改成了 # pppoe-setup )，username、password 肯定不能错，但还有更重要的就是　DNS，最好能填你在　XP下用的那个，可在命令行模式下用 ipconfig /all 得到，最后的一步是 # adsl-start(pppoe-start)
+
+1. $ netconfig，选 DHCP，论坛上的说法是好让服务商给你个动态 IP，如今的静态 IP 很贵的
+2. $ adsl-setup(10.2 的系统改成了 # pppoe-setup )，username、password 肯定不能错，但还有更重要的就是　DNS，最好能填你在　XP下用的那个，可在命令行模式下用 ipconfig /all 得到
+3. $ adsl-start(pppoe-start)，最后的一步
 
 由于是包月上网，自然我就将 pppoe-start 写进了 /etc/rc.d/rc.local，让它开机自己启动，真是爽呆了。过会儿升级下系统，然后工作可以正常进行了，:)
 
-*** [[CategoryLinux][CategoryLinux]] / [[2006-01#p4][Permalink]] 
+#category Linux
 
 <!-- date: 2006-01-18T20:23:56+0800 -->
 
 
 
 #p3
-* 1月17日 周二 23:11
+#date 1月17日 周二 23:11
 
-** 在玉林的三天
+## 在玉林的三天
 
 15 号就回到了玉林，今天已经是第三天了。之所以拖到现在才上 blog，完全不像我的风格，是因为不想为了一篇日记顽得太累，不过现在的状况是再累都没办法挽回了，如今在家 Linux 竟也上不了网，够郁闷的，也不清楚是怎么回事，只是觉得自己已经没有精力再去解决这些问题了，所以也只做了些小小的尝试，希望会好起来，但是现在看看，似乎不大可能。记得系统是没有动过的啊，搞不清楚是为什么……
 
@@ -185,16 +187,16 @@ started, but couldn't invoke, so only en i can use now.
 
 玉林变化好大，大府园被推平了，东门口（六路口）也被推平了，那里正在建设着什么，昨天本想到移动大厅给安徽的卡交费，免得回到学校面对诸多繁杂事物心中不爽，可是到了踏浪对面的大厅，她告诉我要到金城对面的大厅办理，到了金城那边，又推辞说外省的卡无法交费，看来所谓的漫游，也只局限于本地，可是在本地漫游——实在太没意思了。
 
-*** [[CategoryLife][CategoryLife]] / [[2006-01#p3][Permalink]] 
+#category Life
 
 <!-- date: 2006-01-17T23:11:21+0800 -->
 
 
 
 #p2
-* 1月11日 周三 20:35
+#date 1月11日 周三 20:35
 
-** Alldone
+## Alldone
 
 计组今天下午验收，貌似严格的检查到了最后其实很容易过，大概是因为 06 年的学校检查，所以老师也不会太为难人，可谓皆大欢喜。
 
@@ -212,16 +214,16 @@ started, but couldn't invoke, so only en i can use now.
 
 还好，微机原理课程设计已经在周二 PASS，这个学期的主要任务终于全部完成，接下来得好好睡一觉，想起考完了试还没有认真放松过呢，现在终于舒一口气了……
 
-*** [[CategoryLife][CategoryLife]] / [[2006-01#p2][Permalink]] 
+#category Life
 
 <!-- date: 2006-01-11T20:35:35+0800 -->
 
 
 
 #p1
-* 1月9日 周一 18:22
+#date 1月9日 周一 18:22
 
-** 暂时解脱
+## 暂时解脱
 
 下午的马哲终于结束，连续的三天四考，让我头昏脑胀，对外部的刺激渐渐失去知觉。本来考完试后应该像往常那样的欢呼雀跃，但是现在根本兴奋不起来。一方面，这几天的应考十分不爽，先是概率，接着是昨晚的马经，让我很是狼狈，每每想到，心里总是沉沉的。
 
@@ -229,16 +231,16 @@ started, but couldn't invoke, so only en i can use now.
 
 现在算是暂时的解脱，晚上到自习室去看看课程设计该怎么搞，如果能够快点 PASS，就能早点回家了。
 
-*** [[CategoryLife][CategoryLife]] / [[2006-01#p1][Permalink]] 
+#category Life
 
 <!-- date: 2006-01-09T18:22:24+0800 -->
 
 
 
 #p0
-* 1月7日 周六 11:59
+#date 1月7日 周六 11:59
 
-** 向前看
+## 向前看
 
 今早上概率终于考完了，给我的最强烈的感觉，就是： **不爽**，真的很不爽。上次电路考试是那样，这次考试也是那样，总是有那么一两题很 BT。算了一下分数，危险！心情又一次地低落……
 
@@ -248,6 +250,6 @@ started, but couldn't invoke, so only en i can use now.
 
 虽说现在情况很不妙，但事实就是如此，只能祈祷着向前看了。
 
-*** [[CategoryLife][CategoryLife]] / [[2006-01#p0][Permalink]] 
+#category Life
 
 <!-- date: 2006-01-07T11:59:09+0800 -->

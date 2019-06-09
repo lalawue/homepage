@@ -2,9 +2,9 @@
 #title Archive for November, 2008
 
 #p2
-* 11月19日 周三 22:54
+#date 11月19日 周三 22:54
 
-** 差佬现身
+## 差佬现身
 
 “差佬”是传说中的 LV 同学，之前他只是来电话说过几天可能会到厦门，然后来福
 州，我是怕请不到假，希望他能提前一两天说一下计划，我也好准备一下。另外，
@@ -30,24 +30,24 @@
 
 晚上七点多的火车，把一个老同学送上了车，跟他说了半天玉林话，又想家了。
 
-*** [[CategoryLife][CategoryLife]] / [[2008-11#p2][Permalink]] 
+#category Life
 
 <!-- date: 2008-11-19T22:54:34+0800 -->
 
 
 
 #p1
-* 11月16日 周日 22:19
+#date 11月16日 周日 22:19
 
-** Emacs 高亮
+## Emacs 高亮
 
 常常需要在看代码的时候高亮某个变量，查看其变化，之前用的
-[[http://www.emacswiki.org/emacs/LambdaExpression][lambda expression]] 如下：
+[lambda expression](http://www.emacswiki.org/emacs/LambdaExpression) 如下：
 
-<src type="elisp">
+```source
 (lambda () (interactive) 
   (highlight-phrase (current-word) 'hi-blue))
-</src>
+```
 
 然后发现，高亮的单词是亮了，但是怎么别的单词也部分亮了，比如我只想高亮变
 量 i，但上面的 lambda 弄得 index 的 i 也亮了，iNode 的 i 也亮了，满屏都亮
@@ -57,20 +57,20 @@
 完整的单词。这样的话，用 highlight-regexp 就好了，只是需要将匹配单词的
 regexp 给它，如下的 lambda expression，我习惯将其绑定到 F8 上。
 
-<src type="elisp"> 
+```source
 (global-set-key [(f8)] (lambda () (interactive)
                          (highlight-regexp 
                           (concat "\\b" (current-word) "\\b")
                           'hi-blue)))
- </src>
+```
 
 接下来是将高亮取消的 lambda expression，我绑定到了 C-F8 上。
 
-<src type="elisp">
+```source
 (global-set-key [(control f8)] (lambda ()
                                  (interactive)
                                  (hi-lock-mode nil)))
-</src>
+```
 
 上面高亮用的淡蓝色在我这里感觉比较适中，不会很惹眼。
 
@@ -78,25 +78,25 @@ regexp 给它，如下的 lambda expression，我习惯将其绑定到 F8 上。
 惜的是还未能在我的虚拟机里面配置出来，现在是在 win 下看出效果了。之前一直
 用的是 Courier New。
 
-看由 Livecn 翻译的[[http://livecn.huasing.org/tao_of_programming.htm][《编程之道》]][71]，灰常搞笑，灰常有趣，但却又不得不承认
+看由 Livecn 翻译的[《编程之道》](http://livecn.huasing.org/tao_of_programming.htm)[71](#fn71)，灰常搞笑，灰常有趣，但却又不得不承认
 那是事实，至少从我不多的工作经验看来，从我身边发生的事情看来，确实就是如
 此。
 
-[71] *Tao of Programming*，作者是 Geoffrey James。
+[71](#fn71) *Tao of Programming*，作者是 Geoffrey James。
 
-*** [[CategoryProgramming][CategoryProgramming]] / [[2008-11#p1][Permalink]] 
+#category Programming
 
 <!-- date: 2008-11-16T22:19:03+0800 -->
 
 
 
 #p0
-* 11月12日 周三 23:23
+#date 11月12日 周三 23:23
 
-** 《C 和指针》
+## 《C 和指针》
 
 闲了一个星期，然后看了一个星期的书，在阿闹豆瓣的主页上看到了这本《C 和指
-针》[111]，刚好可以拿来温习一下。
+针》[111](#fn111)，刚好可以拿来温习一下。
 
 记得第一次看到函数指针是在应聘的考场上，大概题目是这样，说有一个 0 地址，
 让用 C 写出调用地址在此处的函数来，当时就头晕了，SKIP，继续下一题……还有，
@@ -112,9 +112,9 @@ regexp 给它，如下的 lambda expression，我习惯将其绑定到 F8 上。
 究生，在课上讲了巨多的细节，我是记不住又无法理解，最后完全是自己摸索着入
 门，当然考试也 PASS 了，寒呀。。。
 
-[111] 《C 和指针》，作者是 Kenneth A.Reek。
+[111](#fn111) 《C 和指针》，作者是 Kenneth A.Reek。
 
-*** [[CategoryReading][CategoryReading]] / [[2008-11#p0][Permalink]] 
+#category Reading
 
 <!-- date: 2008-11-12T23:23:25+0800 -->
 

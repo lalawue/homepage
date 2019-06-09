@@ -2,9 +2,9 @@
 #title Archive for August, 2005
 
 #p10
-* 8月31日 周三 16:58
+#date 8月31日 周三 16:58
 
-** "修复" emacs-wiki-journal-category-alist 函数
+## "修复" emacs-wiki-journal-category-alist 函数
 
 不知道是不是我的 emacs-wiki-journal 初始化文件有错误，当我使用 emacs-wiki-journal-add-entry 函数写 blog 的题目时，我无法使用像 readline 一样的功能去补全程序要求的 Category（分类），而只能一个一个字母地把我的 category 打上去，太不方便了，而我觉得程序本身应该提供。于是我查了一下源代码，发现程序是这样工作的：
 
@@ -13,7 +13,7 @@
 据我的观察，错误就出在 file-alist 里，而这个数据是由 emacs-wiki-journal-category-alist 函数得到的。
 
 此函数如下：
-<src type="elisp">
+```source
 (defun emacs-wiki-journal-category-alist (&optional no-check-p)
   "Return possible category index Wikis in
   `emacs-wiki-journal-directory'. 
@@ -32,32 +32,31 @@ re-read the disk."
              (setq category-alist (cons file category-alist))))
        file-alist))
     category-alist))
-</src>
+```
 
 我看了一下，但还是搞不懂它的 NO-CHECK-P 是什么意思，似乎并没有用到。而且如果只是实现简单的功能（返回具有 category 前缀的文件清单），则完全不需要这么长的代码。
 
 如下面我的代码，是能够返回具有 category 前缀的 file-alist 的:
-<src type="elisp">
+```source
  (directory-files emacs-wiki-journal-directory 
         	  nil
 		  emacs-wiki-journal-category-regexp
 		  'true)
-</src>
+```
 
 实话说，改写后这个程序实现了原有的功能，能够从简单的敲击下补全应有的字母了，省了不少力气。郁闷的是虽然搞清楚了程序的想法，但是具体的函数还是看得不大懂，只能等到出了问题再说了。
 
 
-
-*** [[CategoryProgramming][CategoryProgramming]] / [[2005-08#p10][Permalink]] 
+#category Programming
 
 <!-- date: 2005-08-31T16:58:15+0800 -->
 
 
 
 #p9
-* 8月26日 周五 19:59
+#date 8月26日 周五 19:59
 
-** 懒惰的后果
+## 懒惰的后果
 
 今天实在是太忙了，早上为了办银行卡，不得不走了趟明珠广场的农行，但是挂失卡号却需要身份证复印件。就为了这个复印件，让我走了趟新区，花了 N 多时间去复印才搞定。
 
@@ -69,16 +68,16 @@ re-read the disk."
 
 然后是销号，我还以为销号和办号是两不误的，问了才知道不行，如果想马上用，就得用原来那个。可是原来那个已经欠费 75RMB，真是气人，不过也没有办法，要不是自己懒惰，就不会如此下场了。
 
-*** [[CategoryLife][CategoryLife]] / [[2005-08#p9][Permalink]] 
+#category Life
 
 <!-- date: 2005-08-26T19:59:46+0800 -->
 
 
 
 #p8
-* 8月24日 周三 20:30
+#date 8月24日 周三 20:30
 
-** 大三, 南区
+## 大三, 南区
 
 终于大三了，来到了南区这个陌生的地方。
 
@@ -88,16 +87,16 @@ re-read the disk."
 
 今天终于买了电脑桌，架起了电脑，在这个忙乱的世界中，开始我的大三旅程，:)
 
-*** [[CategoryLife][CategoryLife]] / [[2005-08#p8][Permalink]] 
+#category Life
 
 <!-- date: 2005-08-24T20:30:27+0800 -->
 
 
 
 #p7
-* 8月21日 周日 12:42
+#date 8月21日 周日 12:42
 
-** W3m and emacs-w3m
+## W3m and emacs-w3m
 
 到了学校，上外国网站始终是个问题，好不容易才找到了一个不错的代理，费力装好了 Linux 下有名的文本浏览器 w3m 和 w3m 的 emacs 前端 emacs-w3m。
 
@@ -107,16 +106,16 @@ W3m 确实快，就像它自己说的那样，启动要比 lynx 快。而且 lyn
 
 Emacs-w3m 是 emacs 上的文本浏览器，w3m 的前端，速度也是非常快，浏览我的主页没有问题，一切正常，但是浏览 Sir 却不能正常显示汉字，也许是因为 Sir 的网页编码是 GBK 的缘故，反正刚刚试过浏览 163 编码为 gb2312 的也没有问题。不过我用 emacs-w3m 主要还是想浏览外文网页或本地的外文资料，配合之前配置好的 dict，浏览的时候遇到不懂的单词可以直接查找含义，哈哈哈，太爽了。
 
-*** [[CategoryLinux][CategoryLinux]] / [[2005-08#p7][Permalink]] 
+#category Linux
 
 <!-- date: 2005-08-21T12:42:08+0800 -->
 
 
 
 #p6
-* 8月20日 周六 17:36
+#date 8月20日 周六 17:36
 
-** 新进 - 微软极动鲨
+## 新进 - 微软极动鲨
 
 昨天鼠标出了问题，左键坏了，在浏览网页的时候发现的，根本打不开链接，复制东西也不行。因为一开始启动的是我的 SLK，还以为是系统问题，毕竟隔了两个月才第一次动这个系统，难说被谁碰过了什么东西，反正心里疑问重重。没想到重启上了 Windows，还是这个问题，而且明朗化了，因为在那里不用鼠标可不行。
 
@@ -126,16 +125,16 @@ Emacs-w3m 是 emacs 上的文本浏览器，w3m 的前端，速度也是非常�
 
 最后敲定了买微软极动鲨，换换口味，160RMB 的价格，在一个小店购买的，不算便宜了，不过 2 年包换，可以安全度过大学四年了。
 
-*** [[CategoryLife][CategoryLife]] / [[2005-08#p6][Permalink]] 
+#category Life
 
 <!-- date: 2005-08-20T17:36:59+0800 -->
 
 
 
 #p5
-* 8月19日 周五 20:01
+#date 8月19日 周五 20:01
 
-** 36 小时后
+## 36 小时后
 
 从玉林再到广州，然后合肥，整整 36 个小时，累死了。睡了一个下午，才感觉好一些。
 
@@ -143,16 +142,16 @@ Emacs-w3m 是 emacs 上的文本浏览器，w3m 的前端，速度也是非常�
 
 想起昨晚上也蛮心寒的，空调硬座，好冷。我没有夏天乘坐的经验，短袖短裤顶了一个晚上，别人都是长衫，还有的拿出了专门的御寒衣物。好伤人心啊，这种经验，一次就够了。
 
-*** [[CategoryLife][CategoryLife]] / [[2005-08#p5][Permalink]] 
+#category Life
 
 <!-- date: 2005-08-19T20:01:56+0800 -->
 
 
 
 #p4
-* 8月17日 周三 14:01
+#date 8月17日 周三 14:01
 
-** 收假
+## 收假
 
 今晚的车，先到广州，然后直上合肥。开学大三了，要搬到“男”校区，所以不得不早点离开，到那里打点东西做准备。
 
@@ -162,16 +161,16 @@ Emacs-w3m 是 emacs 上的文本浏览器，w3m 的前端，速度也是非常�
 
 反正就是这样浪费时间，因为到了学校，就没有那种让你惆怅的环境了。
 
-*** [[CategoryLife][CategoryLife]] / [[2005-08#p4][Permalink]] 
+#category Life
 
 <!-- date: 2005-08-17T14:01:09+0800 -->
 
 
 
 #p3
-* 8月16日 周二 23:28
+#date 8月16日 周二 23:28
 
-** 第三十九级台阶
+## 第三十九级台阶
 
 快收假了，家里人老是督促快看书快看书，毕竟有些课程还放不下。可是哪有心情啊，好不容易回趟家，可不能仅仅为了功课，再说放假目的不就是为了躲功课嘛～
 
@@ -185,58 +184,58 @@ Emacs-w3m 是 emacs 上的文本浏览器，w3m 的前端，速度也是非常�
 
 今天有去刚搬好家的图书城，兴奋的是看到了不少计算机类的书籍，Linux 的也不少；失望的是转了大半圈，竟然没有英文原著，一两本摆摆样子都好啊，除了那些类似课堂练习的英文读物，别的什么都没有，什么都没有……
 
-*** [[CategoryReading][CategoryReading]] / [[2005-08#p3][Permalink]] 
+#category Reading
 
 <!-- date: 2005-08-16T23:28:59+0800 -->
 
 
 
 #p2
-* 8月14日 周日 16:23
+#date 8月14日 周日 16:23
 
-** 开始提供 Emacs''''WikiJournal 下载
+## 开始提供 EmacsWikiJournal 下载
 
-昨天晚上才将 Emacs''''WikiJournal 的配置文件整理得差不多，然后开始写配置过程。具体的跟原来的 Emacs''''WikiJournal 没什么大的差别，相对来说只需要增加一些用户自定义——用于产生 RSS 种子的文件头，blog 地址等等。
+昨天晚上才将 EmacsWikiJournal 的配置文件整理得差不多，然后开始写配置过程。具体的跟原来的 EmacsWikiJournal 没什么大的差别，相对来说只需要增加一些用户自定义——用于产生 RSS 种子的文件头，blog 地址等等。
 
-同时还需要在相应的页眉或页脚为页面增加日历和存档连接做好准备。如果你对配置 Emacs''''Wiki 或 Emacs''''WikiJournal 很熟悉，就几乎不用作什么改变，虽然许多原来 Emacs''''WikiJournal 的变量都用不到了，但是留着它们也没有大碍。李宇维护的 [[http://liyu2000.nease.net/webpage/EmacsWikiZh.html][EmacsWiki 中文站]]中有非常多 Emacs''''Wiki 的资源，他提供的配置模板对刚接触 Emacs''''Wiki 的新用户非常有帮助，所以我的配置过程是紧接着他模板的屁股后面开始的，由于相同的部分太多，所以不再一一累赘，具体的请看 [[../website/EmacsWikiJournal.html][EmacsWikiJournal]]。
+同时还需要在相应的页眉或页脚为页面增加日历和存档连接做好准备。如果你对配置 EmacsWiki 或 EmacsWikiJournal 很熟悉，就几乎不用作什么改变，虽然许多原来 EmacsWikiJournal 的变量都用不到了，但是留着它们也没有大碍。李宇维护的 [EmacsWiki 中文站](http://liyu2000.nease.net/webpage/EmacsWikiZh.html)中有非常多 EmacsWiki 的资源，他提供的配置模板对刚接触 EmacsWiki 的新用户非常有帮助，所以我的配置过程是紧接着他模板的屁股后面开始的，由于相同的部分太多，所以不再一一累赘，具体的请看 [EmacsWikiJournal](cs#EmacsWikiJournal)。
 
 由于原程序是 GPL 授权，所以修改过后的版本也仍然是 GPL 授权，而各个人贡献者都拥有自己相应的版权（我没说错吧？）。按照 GPL 的定义，你可以任意查看源代码，分发或作为了需要作相应的修改，不过请注意要在 GPL 允许的范围内。
 
-*** [[CategoryMisc][CategoryMisc]] / [[2005-08#p2][Permalink]] 
+#category Misc
 
 <!-- date: 2005-08-14T16:23:06+0800 -->
 
 
 
 #p1
-* 8月12日 周五 00:39
+#date 8月12日 周五 00:39
 
-** 修改 Blog 版面
+## 修改 Blog 版面
 
 Hack 完了 emacs-wiki-journal，生成了导航栏，多了日历等等的其他东西。于是简单的 journal 摇身一变，成了 blog。为此很多元素都得重新调整，新生成的元素还得给它腾出位子来。
 
-我手中的 emacs-wiki-journal 所拥有的特性，大部分都来自于 [[http://www.sfu.ca/~gswamina/][Ganesh Swami]] 的版面（对他的版面很是赞赏啊～），他编写的 [[http://www.sfu.ca/~gswamina/EmacsWikiBlog.html][emacs-wiki-blog]] 也给了我很多帮助，特别对于是 calendar 的生成，需要用到 Emacs 的 calendar 的包，我很不熟悉，这些都是看了他的程序，才慢慢了解的。
+我手中的 emacs-wiki-journal 所拥有的特性，大部分都来自于 [Ganesh Swami](http://www.sfu.ca/~gswamina/) 的版面（对他的版面很是赞赏啊～），他编写的 [emacs-wiki-blog](http://www.sfu.ca/~gswamina/EmacsWikiBlog.html) 也给了我很多帮助，特别对于是 calendar 的生成，需要用到 Emacs 的 calendar 的包，我很不熟悉，这些都是看了他的程序，才慢慢了解的。
 
 现在程序已基本完成，在处理页面时，我还是第一个想到了他的 blog。于是“东挪西就”别人的 css。老实说是参考，颜色搭配方面肯定都是我自己处理（有意见？），但是字体大小等等方面太过麻烦，我自已用的是 Opera，但是我相信现阶段大部分的人都还在用IE，我自己本身并不是 Web 标准 的研究者，要调和这两方面实在是很麻烦。再说我已经用 emacs-wiki 搭建好了主页，所以 blog 怎么说都已经有了很大的限制了。
 
 现在 blog 页面的 css 只抄袭了关于 div 位置关系的部分，还有参考了下别人的字体搭配，其他都是自己的，看起来还好了。
 
-我 hack 的 emacs-wiki-journal 来自日本 [[http://www15.ocn.ne.jp/~rodinia/][Yamagata Yoriyuki]] 的包，和上面说到的 emacs-wiki-blog 都是 GPL 授权，可以很方便地查看源代码，不过对软件所作的修改都必须以 GPL 限制的方式提供出来，所以我肯定要 GPL hack 过的 emacs-wiki-journal 了，不过这还需要一些时间，因为很多东西都还没有准 备好。
+我 hack 的 emacs-wiki-journal 来自日本 [Yamagata Yoriyuki](http://www15.ocn.ne.jp/~rodinia/) 的包，和上面说到的 emacs-wiki-blog 都是 GPL 授权，可以很方便地查看源代码，不过对软件所作的修改都必须以 GPL 限制的方式提供出来，所以我肯定要 GPL hack 过的 emacs-wiki-journal 了，不过这还需要一些时间，因为很多东西都还没有准 备好。
 
-除了 emacs-wiki-blog、emacs-wiki-journal 提供使用 Emacs 来构建 blog 的写作环境，另外还有功能更为强大的 planner 等等；除了以 Emacs 为平台构建，如果你的服务器支持 PHP 和 MySOL，还可以使用大名鼎鼎的 [[http://wordpress.org/][WordPress]]；还有仅仅需要命令行的 [[http://nanoblogger.sourceforge.net/][nanoblogger]]；还有……
+除了 emacs-wiki-blog、emacs-wiki-journal 提供使用 Emacs 来构建 blog 的写作环境，另外还有功能更为强大的 planner 等等；除了以 Emacs 为平台构建，如果你的服务器支持 PHP 和 MySOL，还可以使用大名鼎鼎的 [WordPress](http://wordpress.org/)；还有仅仅需要命令行的 [nanoblogger](http://nanoblogger.sourceforge.net/)；还有……
 
 非常多的选择，看你的需要，看你的喜欢了……
 
-*** [[CategoryThisSite][CategoryThisSite]] / [[2005-08#p1][Permalink]] 
+#category ThisSite
 
 <!-- date: 2005-08-12T00:39:22+0800 -->
 
 
 
 #p0
-* 8月9日 周二 22:32
+#date 8月9日 周二 22:32
 
-** Hack emacs-wiki-journal.el
+## Hack emacs-wiki-journal.el
 
 花了将近一个星期，将 emacs-wiki-journal.el hack 得“千疮百孔”，看现在这个样子，应该叫做 emacs-wiki-blosxom.el 更好一些：
 
@@ -246,10 +245,10 @@ Hack 完了 emacs-wiki-journal，生成了导航栏，多了日历等等的其�
  - 可以生成当月的日历，Calendar，哪天做了记录，一目了然
  - 对应最近月份的存档，生成一个类似 welcome page 的固定页面，用于静态页面的链接
 
-非常感谢 emacs-wiki 以及 emacs-wiki-journal 的创建者以及贡献者们，没有他们的努力，根本就没有我 hack 的基础，：）同时还得感谢 [[http://www.sfu.ca/~gswamina/][Ganesh Swami]]，他的 [[http://www.sfu.ca/~gswamina/EmacsWikiBlog.html][emacs-wiki-blog]] 给了我很多帮助，我是看了他用自己写的 emacs-wiki-blog 创建的站点后才萌生了想法的。本来只是想修改一下 emacs-wiki-journal 缺乏时间逻辑的文件管理，但是后来变得一发不可收拾——只怪暑假太长了……
+非常感谢 emacs-wiki 以及 emacs-wiki-journal 的创建者以及贡献者们，没有他们的努力，根本就没有我 hack 的基础，：）同时还得感谢 [Ganesh Swami](http://www.sfu.ca/~gswamina/)，他的 [emacs-wiki-blog](http://www.sfu.ca/~gswamina/EmacsWikiBlog.html) 给了我很多帮助，我是看了他用自己写的 emacs-wiki-blog 创建的站点后才萌生了想法的。本来只是想修改一下 emacs-wiki-journal 缺乏时间逻辑的文件管理，但是后来变得一发不可收拾——只怪暑假太长了……
 
 对 emacs-wiki-journal 改动得太多，除了 publish 这一方面没有修改，其他的地方几乎都做了修改，有些东西去掉了，更多的东西增添了上去。现在它勉勉强强地运行了。对于我这样刚接触 elisp 的 newbie，不能希望（奢望）代码有多好，只是希望能运行就够了，现在正寻找 bug 及不断修改中。
 
-*** [[CategoryProgramming][CategoryProgramming]] / [[2005-08#p0][Permalink]] 
+#category Programming
 
 <!-- date: 2005-08-09T22:32:58+0800 -->
