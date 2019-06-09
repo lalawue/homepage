@@ -504,7 +504,7 @@ end
 -- config for MarkdownProjectCompositor
 -- 
 local config = {
-   source = "source",
+   source = "sources",
    build = "publish",
    suffix = ".html",
    program = "cmark-gfm",
