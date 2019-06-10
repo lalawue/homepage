@@ -509,7 +509,7 @@ end
 -- 
 local config = {
    source = "sources",
-   build = "publish",
+   publish = "publish",
    suffix = ".html",
    program = "cmark-gfm",
    params = " -t html --unsafe --github-pre-lang ",
@@ -522,7 +522,7 @@ local config = {
 config.projs = {
    {
       res = true,               -- resouces dir, no build
-      dir = "images",           -- dir under build path
+      dir = "images",           -- dir under publish path
    },
    {
       res = true,
