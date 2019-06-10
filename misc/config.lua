@@ -227,13 +227,16 @@ function user.blogCollectCategory( config, proj, filename, content )
    end
    local categoryTable = {}      
    local anchorName = content:gmatch("\n#(p%d+)")
-   local dateName = content:gmatch("#date%s+([^%c]+)")
-   local titleName = content:gmatch("##%s+([^%c]+)")
-   local categoryName = content:gmatch("#category%s*(%a*)")
+   local dateName = content:gmatch("\n#date%s+([^%c]+)")
+   local titleName = content:gmatch("\n##%s+([^%c]+)")
+   local categoryName = content:gmatch("\n#category%s*(%a*)")
 
    while true do
+      local aname = anchorName()
+      local dname = dateName()
+      local tname = titleName()
       local cname = categoryName()
-      if cname then
+      if cname and tname and dname and aname then
          local tbl = categoryTable[cname]
          if not tbl then
             tbl = {}
@@ -241,8 +244,8 @@ function user.blogCollectCategory( config, proj, filename, content )
             local year, month = filename:match("(%d+)%-(%d+)")
             tbl[#tbl + 1] = string.format("\n## %s.%s", year, month)
          end
-         tbl[#tbl + 1] = string.format("- %s [%s](%s%s#%s)", dateName(),
-                                       titleName(), filename, config.suffix, anchorName())
+         tbl[#tbl + 1] = string.format("- %s [%s](%s%s#%s)",
+                                       dname, tname, filename, config.suffix, aname)
       else
          break
       end
