@@ -36,8 +36,9 @@ function user.mdGetTitle( config, proj, filename )
    -- '#title title', for <title> or <h1> tag
    local path = config.source .. "/" .. proj.dir .. "/" .. filename
    local content = config.user.readFile( path )
+   content = content:len() > 1 and content or config.user.blogTempContent[filename]
    if content then
-      local name = content:match("#title ([^\n]+)\n")
+      local name = content:match("#title%s+([^\n]+)")
       if name then
          return name
       else
