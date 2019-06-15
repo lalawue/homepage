@@ -1,9 +1,28 @@
 
 #title Archive for June, 2019
 
+#p2
+#date 19年6月15日 周六 13:18
+
+## WelcomePage 的生成
+
+之前博客首页 WelcomePage 的生成，是在 proj 的 prepare 阶段，通过获取最新月份数据，动态产生内容，之后通过 body 函数提供给 [cmark-gfm](https://github.com/github/cmark-gfm) 来生成最终的 html。
+
+这里带来的问题是，对应的 Permalink 是不准确的，指向到首页去了。
+
+为了解决这个问题，只好在全部内容生成之后，再搜集首页需要的数据；另外一种解决的办法，是用在语法上对首页的 Permalink 做特别处理，但这样太复杂了。
+
+最后，是给 [MarkdownProjectCompositor](https://github.com/lalawue/MarkdownProjectCompositor) 中每个 proj 处理完所有 files 后，增加一个 after 处理函数，可以在最后，对生成内容做采集。
+
+这样，首页的 Permalink 指向才是准确的。
+
+还有，现在用 [markdown-editor](https://github.com/jbt/markdown-editor) 来写感觉很不错啊，[有图为例](images#markdown_editor.jpg)。
+
+#category Programming
+
 
 #p1
-#date 18年6月10日 周一 22:26
+#date 19年6月10日 周一 22:26
 
 ## MarkdownProjectCompositor
 
@@ -133,7 +152,7 @@ return config
 
 
 #p0
-#date 18年6月09日 周日 23:59
+#date 19年6月09日 周日 23:59
 
 ## 更换 Markdown Engine 为 cmark-gfm
 
