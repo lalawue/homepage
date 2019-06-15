@@ -32,6 +32,15 @@ function user.readFile( path )
    end
 end
 
+function user.findDivClass( content, className, index )
+   assert(type(content) == "string")
+   assert(type(className) == "string")   
+   if content:len() > 0 and className:len() > 0 then
+      local match = string.format("<div%%s+class=\"%s\".-div>", className)
+      return content:find(match, index)
+   end
+end
+
 function user.mdGetTitle( config, proj, filename )
    -- '#title title', for <title> or <h1> tag
    local path = config.source .. "/" .. proj.dir .. "/" .. filename
@@ -41,11 +50,9 @@ function user.mdGetTitle( config, proj, filename )
       local name = content:match("#title%s+([^\n]+)")
       if name then
          return name
-      else
-         return filename
       end
    end
-   return ""
+   return filename
 end
 
 function user.mdGenContentDesc( config, proj, content )
@@ -271,17 +278,17 @@ function user.blogGenWelcomePage( config, proj )
       return
    end
    local entries = {}   
-   local sourcePath = config.source .. "/" .. proj.dir .. "/"
+   local publishPath = config.publish .. "/" .. proj.dir .. "/"
    -- generate welcome page
    for i=1, count, 1 do
-      local content = config.user.readFile( sourcePath .. blogYearMonthFiles[i] )
+      local content = config.user.readFile( publishPath .. blogYearMonthFiles[i] .. config.suffix )
 
       local as, ae, cs, ce = 0, 0, 0, 0
       repeat
-         as, ae = content:find("\n(#p[^%c]+)", ce + 1)
-         cs, ce = content:find("\n(#category[^%c]+)", ce + 1)
+         ds, de = config.user.findDivClass( content, "date", ce + 1 )
+         cs, ce = config.user.findDivClass( content, "category", ce + 1 )
          if as and ae and cs and ce then
-            entries[#entries + 1] = content:sub(as, ce)
+            entries[#entries + 1] = content:sub(ds, ce + 1)
          else
             break
          end
@@ -292,9 +299,13 @@ function user.blogGenWelcomePage( config, proj )
       end
    end
    if #entries > 0 then
-      config.user.blogTempContent["index"] =
-         "\n#title Welcome\n" .. table.concat(entries, "\n")
-      proj.files[#proj.files + 1] = "index"
+      local header = config.user.blogHeader( config, proj, "Welcome" )
+      local title = "<h1>Sucha's Blog ~ Welcome</h1>"
+      local body = table.concat(entries, "\n")
+      local footer = config.user.blogFooter( config, proj, "" )
+      local indexPath = publishPath ..  "index" .. config.suffix
+      config.user.writeFile( indexPath, header .. title .. body .. footer )
+      print(string.format("output: %s", indexPath))
    end
 end
 
@@ -341,7 +352,6 @@ function user.siteHeader( config, proj, filename )
     <meta name="description" content="Sucha's homepage and blog" />
     <link rel="shortcut icon" href="../images/ico.png" />
     <link rel="stylesheet" type="text/css" href="../styles/site.css" />
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="../blog/rss.xml" />
     <!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="../styles/ie.css" /><![endif]-->
   </head>
   <body>
@@ -400,8 +410,7 @@ end
 function user.blogPrepare( config, proj )
    config.user.sitePrepare( config, proj )
    config.user.blogSortFiles( config, proj )
-   config.user.blogGenArchiveLinks( config, proj )   
-   config.user.blogGenWelcomePage( config, proj )   
+   config.user.blogGenArchiveLinks( config, proj )
 end
 
 function user.blogBody( config, proj, filename, content )
@@ -504,6 +513,10 @@ function user.blogFooter( config, proj, filename )
    return part1 .. part2 .. part3
 end
 
+function user.blogAfter( config, proj )
+   config.user.blogGenWelcomePage( config, proj )
+end
+
 --
 -- config for MarkdownProjectCompositor
 -- 
@@ -581,6 +594,7 @@ config.projs = {
       body = user.blogBody,
       header = user.blogHeader,
       footer = user.blogFooter,
+      after = user.blogAfter,
    }
 }
 
