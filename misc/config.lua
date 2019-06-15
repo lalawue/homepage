@@ -10,7 +10,7 @@ local user = {
    blogYearMonthFiles = nil,     -- blog YYYY-MM files
    isBlogSortFiles = false,      -- blog sorted YYYY-MM files   
    blogArchiveLinkContent = nil, -- blog archive links content
-   blogTempContent = {},         -- index, category files
+   blogTempContent = {},         -- category files
 }
 
 function user.writeFile( path, content )
