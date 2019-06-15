@@ -7,10 +7,9 @@
 -- 
 local user = {
    projNames = nil,              -- table [projName][FileName]
-   blogYearMonthFiles = nil,     -- blog YYYY-MM files
-   isBlogSortFiles = false,      -- blog sorted YYYY-MM files   
+   blogYearMonthFiles = nil,     -- blog sorted YYYY-MM files
    blogArchiveLinkContent = nil, -- blog archive links content
-   blogTempContent = {},         -- category files
+   blogTempContent = {},         -- category dynamic file content
 }
 
 function user.writeFile( path, content )
