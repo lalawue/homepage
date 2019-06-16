@@ -2,6 +2,8 @@
 -- by lalawue, 2019/06/02
 --
 
+local envReadAll = (_VERSION:sub(5) < "5.3") and "*a" or "a"
+
 -- 
 -- user defined function
 -- 
@@ -23,7 +25,7 @@ end
 function user.readFile( path )
    local f = io.open(path, "r")
    if f then
-      local content = f:read("a")
+      local content = f:read( envReadAll )
       f:close(f)
       return content
    else
