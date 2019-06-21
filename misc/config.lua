@@ -365,7 +365,7 @@ end
 function user.siteFooter( config, proj, filename )
    return [[<!-- Page published by cmark-gfm ends here -->
       <div id="foot">
-	2004-<script language="javascript">var d = new
+	2004-<script type="text/javascript">var d = new
 	Date();document.write(d.getFullYear())</script> &copy;
 	Sucha. Powered by MarkdownProjectCompositor.
       </div><!-- foot -->
@@ -377,7 +377,6 @@ function user.siteFooter( config, proj, filename )
 	  <li><a href="index.html">Front</a></li>
 	  <li><a href="../scratch/ThisSite.html">This Site</a></li>
 	  <li><a href="../live/AboutMe.html">About Me</a></li>
-	  <li><a href="../scratch/EmacsWiki.html">Emacs Wiki</a></li>
 	</ul>
 	<p class="header">Categories</p>
 	<ul>
@@ -454,7 +453,7 @@ end
 
 function user.blogFooter( config, proj, filename )
    local part1 = [[<!-- Page published by cmark-gfm ends here -->
-<div id="foot">2004-<script language="javascript">var d = new
+<div id="foot">2004-<script type="text/javascript">var d = new
 	Date();document.write(d.getFullYear())</script> &copy;
 	Sucha. Powered by MarkdownProjectCompositor.
 </div>
@@ -466,7 +465,6 @@ function user.blogFooter( config, proj, filename )
         <li><a href="index.html">Front</a></li>
         <li><a href="../scratch/ThisSite.html">This Site</a></li>
         <li><a href="../live/AboutMe.html">About Me</a></li>
-        <li><a href="../cs/EmacsWikiJournal.html">Emacs Wiki Journal</a></li>
       </ul>
 
       <p class="header">Search</p><!-- Bing Search -->

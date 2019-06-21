@@ -1,35 +1,39 @@
 
-#title Emacs wiki
+#title Wiki & Markdown
 
-## Emacs-wiki
+什么是 [Wiki](http://baike.baidu.com/view/737.htm)，什么是 [Markdown](https://baike.baidu.com/item/markdown)？
 
-什么是 [Wiki](http://baike.baidu.com/view/737.htm) ？
-
-而 EmacsWiki 则是建立在 Wiki 语法基础之上的一个文档发布工具，它除了可以进行普通的文档编辑之外，还可以很方便的基于 wiki 的文法在各个文档之间建立连接，并生成多种文档发布格式，比如 html 之类的等等。
-
-它的主页地址是 [EmacsWiki](https://www.emacswiki.org/emacs/EmacsWikiMode)，跟 EmacsWiki 相似但是功能更为强大的文档管理发布工具是[EmacsMuse](https://www.emacswiki.org/emacs/EmacsMuse)，它们的维护者是同一个人。
-
-### 使用 emacs-wiki 建立网站
-
-如果你想编写网页或是 html 文件，并符合以下几点：
-
-- 仅仅编写简单的文字，不需要复杂的效果
-- 比较高效地管理这些文件，简单地实现对文件的添加、修改等
-
-如果满足以上两点，用 Emacs + EmacsWiki 建站或管理自己的 html 文件对你来说蛮合适。
-
-Emacs-wiki 用了很简单的语法来实现简单 html 的编写，特别适合需要编写相对大量文字的用户（如果是软件文档，显然 DocBook 更为合适）。
-
-想象一下，输入 html 里的分段、连接图象、外部连接、内部连接等等这些元素有多麻烦。这些东西虽然不复杂，但是当我们思考问题的时候，却花了很多的时间来处理这些琐碎的事情，是很折腾人的。
-
-借助于 emacs-wiki 简单的语法，我们可以花更多的时间来思考我们所真正关心的
-东西。
-
-### 截图 2018 under macOS
-
-&#32; ![2018](../images/emacs-wiki-2018.png)
+Markdown 最初的语法，都来自于 JOHN GRUBER 在 2004 年的 [Markdown: Syntax](https://daringfireball.net/projects/markdown/syntax)。
 
 
-### 截图 2004 under Linux
+## CommonMark
 
-&#32; ![2004](../images/emacs-wiki.png)
+继续介绍的 [CommonMark](http://commonmark.org/) 是一种 Markdown 标准，已经发展多年，相比下面年久失修的 EmacsWiki 方言，更为成熟稳定。
+而本站在 2019 年 06 月之后，改为使用 GitHub 版本的 CommonMark 方言 [cmark-gfm](https://github.com/github/cmark-gfm) 来维护。
+
+
+## EmacsWiki
+
+回到上面说的 EmacsWiki，则是建立在 Wiki 语法基础之上的一个文档发布工具，它除了可以进行普通的文档编辑之外，
+还可以很方便的基于 wiki 的文法在各个文档之间建立连接，并生成多种文档发布格式，比如 html 之类的等等。
+
+不过 EmacsWikiMode 早已经年久失修，没有人维护了，我留了一个具有纪念意义的[版本](https://github.com/lalawue/emacs-wiki-mode)。
+
+
+### cmark-gfm 2019 截图 under macOS
+
+有时候用 [markdown-editor](https://github.com/jbt/markdown-editor) 来写，有时候用 Emacs 来写
+
+ - [使用 markdown-editor 的截图](images#markdown_editor.jpg)
+
+ - [使用 Emacs 的截图](images#md_cmark_syntax.jpg)
+ 
+
+### EmacsWiki 2018 截图 under macOS
+
+&#32; ![2018](images#emacs-wiki-2018.png)
+
+
+### EmacsWiki 2004 截图 under Linux
+
+&#32; ![2004](images#emacs-wiki.png)
