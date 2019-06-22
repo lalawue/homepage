@@ -1,6 +1,20 @@
 
 #title Archive for June, 2019
 
+#p3
+#date 19年6月22日 周六 13:05
+
+## 更新 ThisSite 描述
+
+[scratch#ThisSite](scratch#ThisSite) 写于网站搭建的第一天，蛮有纪念意义的，虽然 UI 未变，但换了 rendering 工具后，相关描述也得添加进去，当初围绕 Emacs 构建的一整套知识管理工具（因为当时 Emacs 确实好玩），现在慢慢的变成 IDE 不再重要了。
+
+不过本站中，我最喜欢的页面，当然还是 [muse#haha](../muse/haha.html)，-.-
+
+#category ThisSite
+
+
+
+
 #p2
 #date 19年6月15日 周六 13:18
 
@@ -19,6 +33,9 @@
 还有，现在用 [markdown-editor](https://github.com/jbt/markdown-editor) 来写感觉很不错啊，[有图为例](images#markdown_editor.jpg)。
 
 #category Programming
+
+
+
 
 
 #p1
@@ -148,6 +165,8 @@ return config
 ```
 
 #category Programming
+
+
 
 
 
