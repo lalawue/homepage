@@ -342,14 +342,14 @@ end
 function user.siteHeader( config, proj, filename )
    local part1 = [[<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" xml:lang="zh-CN">
   <head>
     <title>Sucha's Homepage - ]]
    local part2 = config.user.mdGetTitle( config, proj, filename )
    local part3 = [[</title>
-    <meta http-equiv="Content-Type" content=" text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="author" content="Sucha" />
-    <meta name="keywords" content="suchang, programming, GNU, Linux, Emacs" />
+    <meta name="keywords" content="suchang, programming, GNU, Linux, Emacs, Lua" />
     <meta name="description" content="Sucha's homepage and blog" />
     <link rel="shortcut icon" href="../images/ico.png" />
     <link rel="stylesheet" type="text/css" href="../styles/site.css" />
@@ -429,15 +429,15 @@ end
 function user.blogHeader( config, proj, filename )
    local part1 = [[<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" xml:lang="zh-CN">
   <head>
     <title>Sucha's Blog - ]]
    local part2 = config.user.mdGetTitle( config, proj, filename )
    local part3 = [[</title>
     <meta name="generator" content="MarkdownProjectCompositor.lua" />
-    <meta http-equiv="Content-Type" content=" text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="author" content="Sucha" />
-    <meta name="keywords" content="suchang, programming, GNU, Linux, Emacs, elisp" />
+    <meta name="keywords" content="suchang, programming, GNU, Linux, Emacs, Lua" />
     <meta name="description" content="Sucha's blog" />
     <link rev="made" href="mailto:suchaaa@gmail.com" />
     <link rel="shortcut icon" href="../images/ico.png" />
@@ -496,11 +496,10 @@ function user.blogFooter( config, proj, filename )
 
       <p class="header">Links</p>
       <ul>
-      <li><a href="http://blog.csdn.net/g9yuayon/">G9</a></li>
-        <li><a href="http://mrjamie.cc/">Jamie</a></li>
+        <li><a href="http://blog.csdn.net/g9yuayon/">G9</a></li>
         <li><a href="http://www.ftchinese.com/column/007000002">朝九晚五</a></li>
         <li><a href="http://blog.codingnow.com/">CloudWu</a></li>
-        <li><a href="http://ditu.google.cn/maps?hl=zh-CN&ll=22.626687,110.186691&spn=0.101883,0.15398&t=h&brcurrent=3,0x36adc425dfd47083:0xd77004f2b5f175d6,0,0x36adb6981be5ba57:0xbb22df1016a0dd2e%3B5,0,0&z=13">Yulin in Google Maps</a></li>
+        <li><a href="http://www.google.cn/maps/@22.6273208,110.1513288,15540m/data=!3m1!1e3?hl=zh-CN">Yulin City</a></li>
       </ul>
 
       <p class="header">Archives</p>]]
