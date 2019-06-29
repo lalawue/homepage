@@ -1,11 +1,13 @@
 
-* 完善 EMACS 的编程环境
+#title Emacs Programming Environment
+
+## 完善 EMACS 的编程环境
 
 最近更新：2014-01-12
 
-<contents depth="3">
+#contents 3
 
-** 简介
+### 简介
 
 与许多使用 emacs 的童鞋一样，我也喜欢折腾并不断完善围绕 emacs 的工作、编
 程环境，尝试一些新鲜的 elisp 包，根据需要选择纳入自己的 load-path 里。
@@ -25,11 +27,11 @@ fiplr 用来模糊搜索工程目录的文件，它会从当前目录一直搜�
 的顶层目录，对于需要定位工程文件却又不知道其具体位置的时候非常有用。
 
 
-*** direx 以及 popwin 的配置
+#### direx 以及 popwin 的配置
 
 direx 可以跟 popwin 结合起来，这也是作者推荐的，
 
-<src type="elisp">
+```source
 (require 'popwin)
 (popwin-mode 1)
 ;; (setq popwin:popup-window-position 'right)
@@ -40,7 +42,7 @@ direx 可以跟 popwin 结合起来，这也是作者推荐的，
      popwin:special-display-config)
 
 (global-set-key (kbd "C-x C-j") 'direx:jump-to-directory-other-window)
-</src>
+```
 
 上面的配置是使用 C-x C-j 将目录树窗口开在左边，30 个字符宽度，C-g 就可以
 关闭。
@@ -60,16 +62,16 @@ direx 的优缺点我感觉挺明显的，优点是可以一目了然地看到�
 这个时候我只能求助于 dired 模式，不过 dired 模式中 i 展开子目录后收不回
 来，且平铺的方式模块关系不明显。目前是两个一起使用。
 
-popwin、direx 可以从作者的 github 主页上下载 https://github.com/m2ym，
+popwin、direx 可以从作者的 github 主页上下载 <https://github.com/m2ym>，
 popwin 下还有不少相关插件，有需要的童鞋可以看看，这里不做介绍了。
 
 
-*** fiplr 的配置
+#### fiplr 的配置
 
 fiplr 依赖 grizzl 包来做底层的模糊搜索引擎，不过我们不需要对 grizzl 做配
 置，只需要配置 fiplr：
 
-<src type="elisp">
+```source
 (require 'fiplr)
 (setq fiplr-root-markers '(".git" ".svn"))
 (setq fiplr-ignored-globs 
@@ -77,7 +79,7 @@ fiplr 依赖 grizzl 包来做底层的模糊搜索引擎，不过我们不需要
       (files ("*.jpg" "*.png" "*.zip" "*~"))))
 
 (global-set-key (kbd "C-x f") 'fiplr-find-file)
-</src>
+```
 
 设置搜索到顶层目录，遇到拥有 .git 或 .svn 的目录时停止，忽略
 .jpg、.png、.zip 以及后缀有 ~ 的文件，忽略 .git、.svn 目录，并绑定 "C-x
@@ -87,19 +89,19 @@ fiplr 命令启动后会对所有工程文件做一次 cache，然后底部弹�
 入需要搜索的文件名，并实时显示匹配结果；如果新添了文件需要更新 cache，
 C-c r 清空一下当前 cache 就好了。
 
-grizzl 请访问这里下载，https://github.com/d11wtq/grizzl
-fiplr 请访问这里下载，https://github.com/d11wtq/fiplr
+- grizzl 请访问这里下载，<https://github.com/d11wtq/grizzl>
+- fiplr 请访问这里下载，<https://github.com/d11wtq/fiplr>
 
 
-*** 其他有关编程环境的设置
+#### 其他有关编程环境的设置
 
 除了以上的配置包，我还有不少其他编程环境相关的配置，感觉平时挺有用的，这
 些都是我从一些个人博客、论坛或者 emacswiki.org 等地方搜刮来的，具体出处
 已经无法提供了。
 
-- 同目录下的头文件与源文件的快速跳转，适用于 C/C++/ObjC，我将其绑定在 M-[ 以及 M-]。
+**1.** 同目录下的头文件与源文件的快速跳转，适用于 C/C++/ObjC，我将其绑定在 M-[ 以及 M-]。
 
-<src type="elisp">
+```source
 ;; jump between source and header file
 (defun c-base-mode-in-header-file ()
   (let* ((filename (buffer-file-name))
@@ -134,11 +136,11 @@ fiplr 请访问这里下载，https://github.com/d11wtq/fiplr
    (define-key c-mode-base-map (kbd "M-[") 'c-base-mode-jump-between-header-source)
    (define-key c-mode-base-map (kbd "M-]") 'c-base-mode-jump-between-header-source))
 t)
-</src>
+```
 
-- 列出当前 buffer 下的所有函数，使用正则表达式匹配的，也许需要配合你对函数名的书写习惯做更改（如 C 中返回类型与函数名不同行），下面的配置适合 C/C++/ObjC/Lua，其实可以很方便地扩充到支持别的语言。
+**2.** 列出当前 buffer 下的所有函数，使用正则表达式匹配的，也许需要配合你对函数名的书写习惯做更改（如 C 中返回类型与函数名不同行），下面的配置适合 C/C++/ObjC/Lua，其实可以很方便地扩充到支持别的语言。
 
-<src type="elisp">
+```source
 ;; for Xcode pragma mark, and C/C++ functions
 (require 'anything)
 (require 'anything-config)
@@ -187,23 +189,23 @@ t)
  (lambda ()
    (define-key c-mode-base-map (kbd "M-i") 'major-mode-headline))
 t)
-</src>
+```
 
-- 当对窗口进行分割时（我经常这么做），下面的快捷键可以很方便地调整窗口的大小，(control -) 调整上下窗口的高度，(meta -)调整左右窗口的宽度，感觉挺好用的。
+**3.** 当对窗口进行分割时（我经常这么做），下面的快捷键可以很方便地调整窗口的大小，(control -) 调整上下窗口的高度，(meta -)调整左右窗口的宽度，感觉挺好用的。
 
-<src type="elisp">
+```source
 (global-set-key [(control -)] 'shrink-window)
 (global-set-key [(control =)] (lambda () (interactive) (shrink-window -1)))
 
 (global-set-key [(control meta -)] 'shrink-window-horizontally)
 (global-set-key [(control meta =)] (lambda () (interactive)
                                      (shrink-window-horizontally -1)))
-</src>
+```
 
 这两个小函数我将其扔在 https://gist.github.com/lalawue 维护，大家有更新
 的东西不妨去修改一下。
 
-** 问题及建议
+### 问题及建议
 
 配置或使用上有问题可以联系我 suchaaa 谷歌，或者给作者的 github 提 issue。
 

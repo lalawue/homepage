@@ -1,109 +1,51 @@
 
-#title Program Stuff
+#title Program Lab
 
-自己虽然学的是计算机，但在编程方面实在太~~~<br />
-家丑不宜外扬。下面这些都是自己编的小程序，虽然编得不太好，但蛮有用的，就放上来吧。
-
-软件若无特别的版权声明，采用 [GNU 通用公共许可证](slack#GPLcn)，简称 GPL 的授权形式。
+学的是 CS，但数学渣，大学期间沉迷于 Linux、Emacs 这些玩意儿...  
+好奇心重且编程想法多，各种都想了解一点，涉猎虽广但深度堪忧，无奈半桶水走江湖，>_<
 
 
 
 ## Tips &#38; Tricks
 
-这是我使用 Emacs 编写 C/C++/ObjC 搜集到的 TipsAndTricks，希望也能让你日
-常的工作更方便快捷。
-
-
-
-
-## Scripts
-
-最近正在学着使用，so cool……
-
-
-### Upload Script
-
-[UploadScript](UploadScript) 是一个用于将新增，或被修改过的文件、目录通过 ftp 命令更新到
-服务端的脚本，我用它来更新这个网站。
-
-
-### Rss generator
-
-一个由 emacs-wiki-journal 的文本文件来[产生 RSS 源的小脚本](RssGenerator)，可惜如今已不适
-用于最新的 emacs-wiki-journal，得看具体的情况作一些修改后才行，但我现在已
-不再使用它。你可以看看下面我修改过的 [emacs-wiki-journal](EmacsWikiJournal)。
-
-
-### Tiny script stuff
-
-这里放置的都是一些[零零碎碎的小函数](ScriptStuff)，干的都是零工，或许对你有用，:)
-
-
-
-
-## Elisp
-
-Lisp 的方言，用以扩展 Emacs 功能的强大工具……
-
-
-### Simple journal
-
-这是一个简单的日记本函数。由于 Emacs 自带的 todo 和 diary 实在是不好用{其
-实是不懂得如何使用，:)}，而我只希望得到一个简单的日记本函数，于是游荡于
-emacs-wiki-jounal 的源代码之中，东拼西凑得到了这个。事实上我对 elisp 简直
-就是一头雾水……姑且让我叫它[ simple-journal](SimpleJournal) 吧。
-
-
-### Emacs Wiki Journal
-
-[Emacs Wiki Journal](EmacsWikiJournal) 是一个利用 Emacs wiki 实现的 weblog 系统。原程序不是我
-写的，我只是作了一次大修改，使得程序满足我的需要：按月分类文件，为每个文
-件生成当月的日历，生成所有记录月份文件的存档连接，生成最新月份的 RSS 种
-子……当然，相对于真正的 blog 系统，功能是很有限的。
-
-### SQLite mode
-
-[SQLite mode](SQLiteMode) 是用来与 SQLite 数据库交互的小型前端，拥有命令回顾，语法高亮
-的简单功能。程序虽简单，功能不多，但是用来与 SQLite 交互挺方便的。
+- [使用 Emacs 作为 IDE](EmacsProgrammingEnv): Emacs 的编程环境设置。
+- [TipsAndTricks](TipsAndTricks): Emacs 编写 C/C++/ObjC 的一些快捷操作。
 
 
 
 ## C &#38; C++
 
-自己的 C &#38; C++ 学得很差，考试虽然没问题，但编东西的时候就很郁闷了……
+当年课堂上没听懂老师教的 C &#38; C++，都是后来跳坑自学的。还是觉得 C++ 坑太多，自愚跳不完，索性放下，不学了～
+
+- [JPEG 解码器](blog#2014-12#p0): 当年面试 163 后被问到，那就填充到简历里面去吧。
+- [俄罗斯方块游戏](Tetris)： 纯属无聊时的作品。
+- [小型 Unix 磁盘文件系统](SmallUnixFilesystem): 大三下的课程设计作业，纯模拟性质，当时选择这个题目是为了更好地理解 Unix 的文件系统，了解其对空闲磁盘和文件的管理。
+- [五子棋游戏](FiveInArow): 在大一时编的，趁脸皮厚先放上来，算法绘图什么别想了，bug 又如何，当年老爸放水，我棋连挡 8 招，:-)
 
 
-### 五子棋游戏 in M$
 
-这个[五子棋游戏](FiveInArow)是在大一时编的，想了一下，还是把它放了上来。感觉在绘图方面
-还好，但在五子棋算法方面的表现就太差了。Bug 多多，不过还可以唬我老爸 8
-招，:-)
+## Bash
 
-### 小型 Unix 磁盘文件系统
+Are you bash shell today？
 
-这个纯模拟性质的[小型 Unix 磁盘文件系统](SmallUnixFilesystem)是大三下的课程设计作业，当时选择这
-个题目是为了更好地理解 Unix 的文件系统，了解其对空闲磁盘和文件的管理。
-
-### 俄罗斯方块游戏
-
-这个[俄罗斯方块游戏](Tetris)纯属无聊时的作品。
+- [UploadScript](UploadScript): 将新增、修改过的文件、目录通过 ftp 命令更新到服务端的脚本。自从托管到 GitHub 后，就不再用啦。
+- [RssGenerator](RssGenerator): 根据 emacs-wiki-journal 生成的文本文件来产生 RSS 源的小脚本。早已废弃不用。
+- [Tiny script stuff](ScriptStuff): 一些零零碎碎的小函数。
 
 
-### JPEG 解码器
 
-为了更好地了解 JPEG 解码过程，[实践了一个 JPEG 解码器](blog#2014-12#p0)。 
+## Elisp
 
+Lisp 的古老方言，用以扩展 Emacs 功能的强大工具。但多年来使用的机会不多，只会一丢丢的配置了。
+
+- [Simple journal](SimpleJournal): 简单的日记本函数，当年就是不喜欢使用 Emacs 自带的 todo 和 diary 来记，直到现在也一样...
+- [Emacs Wiki Journal](EmacsWikiJournal): 基于 [EmacsWiki](scratch#EmacsWiki) 实现的 blog 系统，在别人基础上改的。目前已[更换 Markdown Engine 为 cmark-gfm](blog#2019-06#p0) 了。
+- [SQLite mode](SQLiteMode): 是用来与 SQLite 数据库交互的小型前端，拥有命令回顾，语法高亮的简单功能。
 
 
 
 ## Assembly
 
-大三才开始学汇编，而且是简单的 8086 系列，可以说是刚刚入门。虽说汇编足够
-精炼，但是用这个东西去编程实在是麻烦，太花时间，而且通用性肯定不好。
+大三才开始学汇编，而且是简单的 8086 系列，可以说是刚刚入门。虽说汇编足够精炼，但是用这个东西去编程实在是麻烦，太花时间，而且通用性肯定不好。
 
-
-### Shot game
-
-一个[指法练习程序](ShotGame)，跟以前 DOS 下的 TT 打字游戏很象。字符在屏幕上一个一个
-地往下掉，若敲中相应的键，对应的字符就消失。可调字符颜色，下落速度以及响
-铃模式等等，非常简单的一个小游戏，但是编它却很花时间。
+- [指法练习程序](ShotGame): 没错，仿以前 DOS 下的 TT 打字游戏。字符在屏幕上一个一个地往下掉，若敲中相应的键，对应的字符就消失。可调字符颜色，下落速度以及响铃模式等等，非常简单的一个小游戏，但是编它却很花时间。
