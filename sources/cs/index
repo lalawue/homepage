@@ -17,10 +17,22 @@
 
 当年课堂上没听懂老师教的 C &#38; C++，都是后来跳坑自学的。还是觉得 C++ 坑太多，自愚跳不完，索性放下，不学了～
 
+- [m_net](blog#2017-09#p0): 跨平台的小型网络库，支持 Linux／MacOS／FreeBSD／Windows
 - [JPEG 解码器](blog#2014-12#p0): 当年面试 163 后被问到，那就填充到简历里面去吧。
 - [俄罗斯方块游戏](Tetris)： 纯属无聊时的作品。
 - [小型 Unix 磁盘文件系统](SmallUnixFilesystem): 大三下的课程设计作业，纯模拟性质，当时选择这个题目是为了更好地理解 Unix 的文件系统，了解其对空闲磁盘和文件的管理。
 - [五子棋游戏](FiveInArow): 在大一时编的，趁脸皮厚先放上来，算法绘图什么别想了，bug 又如何，当年老爸放水，我棋连挡 8 招，:-)
+
+
+
+## Lua
+
+当初学 Lua 是因为要开发游戏，但后来发现这个脚本语言，跟 C 一样的命令式语法，性能还行，又不用考虑内存管理，方便得很。
+
+- [MarkdownProjectCompositor](blog#2019-06#p1): 目前用来构建主页和博客，相比之前的 EmacsWiki 少了一些功能，但稳定性、可维护性高了太多。
+- [app_scheduler](https://github.com/lalawue/app_scheduler): 一个监控进程存活、CPU、内存占用的管理程序，基于 'ps u -p PID1 -p PID2' 来实现。
+- [lua-web](https://github.com/lalawue/lua-web): 基于上面 m_net 以及 [hyperparser](https://github.com/lalawue/hyperparser)
+等实现的 http web framework 基础框架，基本上只是个玩具。
 
 
 
