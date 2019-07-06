@@ -1,0 +1,163 @@
+
+#title Archive for July, 2019
+
+#p0
+#date 19年7月06日 周六 23:55
+
+## LuaJIT FFI Library
+
+学习使用大数库，比如 [GMP](https://gmplib.org/)，只是使用起来很糟心，比如大整数运算，先要 mpz_init() 最后回收时是 mpz_clear()，没错就是跟 malloc() 和 free() 一样的。就想着能不能稍微改善下易用性，用 C++ 是可以达到目的的，只是牛刀杀鸡，要走编译才能跑的还是太重了，而且 C++ 我也不熟。
+
+就想着不如用 Lua 将其封装起来，之前的经验，是得自己写一个跟 Lua 虚拟机交互数据的接口，一个先进后出塞参数的栈，如果是要凑 table，还要复杂些。但如果使用 LuaJIT 的 FFI 库，就方便多了，具体在 BSD 这边是通过 dlsym 打开共享库，在 LuaJIT 脚本声明 C 接口后，通过 FFI 库直接调用。
+
+能够支持各种 C 的函数接口，比如可变参数，以及各种数据类型，包括可变长度 struct 数据，甚至还有支持 Lua 侧的 gc 对于创建的 cdata 进行 finalizer，让 Lua 的 gc 只管理虚拟机这一侧 C 指针生命周期，API 文档是 <http://luajit.org/ext_ffi_api.html>。
+
+### 基本使用
+
+具体点的例子，比如声明并调用函数，创建一个 struct 结构，以及申请、释放内存的官方例子：
+
+```source
+local ffi = require("ffi")
+
+ffi.cdef[[
+int printf(const char *fmt, ...); //声明并调用标准 C 库函数
+typedef struct { uint8_t red, green, blue, alpha; } rgba_pixel; //struct 结构声明
+]]
+
+ffi.C.printf("Hello %s!", "world")
+
+//栈上 struct 结构
+local img = ffi.new("rgbg_pixel[?]", 3)
+img[0].green = 1
+
+-- 创建、并释放外部内存对象
+local p = ffi.gc(ffi.C.malloc(n), ffi.C.free)
+...
+p = nil -- Last reference to p is gone.
+-- GC will eventually run finalizer: ffi.C.free(p)
+```
+
+### 调用自定义库
+
+如果是自定义库，库路径需加入 LuaJIT 的 package.cpath 中，使用前 ffi.load('myffi') 一下，比如下面的例子看下 ffi.gc 是不是真的有用：
+
+```source
+//#include "stdio.h"
+//#include "stdlib.h"
+void* test_malloc(int n) {
+   void *p = malloc(n);
+   printf("test_malloc %p:%d\n", p, n);
+   return p;
+}
+
+void test_free(void *p) {
+   printf("test_free %p\n", p);
+   free(p);
+}
+```
+
+先在本目录生成一个共享库：
+
+```source
+clang -g -o libmyffi.dylib -fpic -shared myffi.c
+```
+
+在 LuaJIT 脚本侧这样使用：
+
+```source
+local ffi = require("ffi")
+local myffi = ffi.load("myffi")
+ffi.cdef[[
+void* test_malloc(int n);
+void test_free(void *p);
+]]
+local p = ffi.gc(myffi.test_malloc(10), myffi.test_free)
+print( p )
+p = nil
+```
+
+会这样输出：
+
+```example
+test_malloc 0x7f9962c027c0:10
+cdata<void *>: 0x7f9962c027c0
+test_free 0x7f9962c027c0
+```
+
+### 使用 GMP 的例子
+
+先试一下 GMP 提供的大整数接口：
+
+```source
+local ffi = require("ffi")
+local gmp = ffi.load("gmp")
+
+ffi.cdef[[
+int printf(const char *fmt, ...);
+
+typedef unsigned long long int	mp_limb_t;
+
+typedef struct
+{
+  int _mp_alloc;		/* Number of *limbs* allocated and pointed
+				   to by the _mp_d field.  */
+  int _mp_size;			/* abs(_mp_size) is the number of limbs the
+				   last field points to.  If _mp_size is
+				   negative this is a negative number.  */
+  mp_limb_t *_mp_d;		/* Pointer to the limbs.  */
+} __mpz_struct;
+
+typedef const __mpz_struct *mpz_srcptr;
+typedef __mpz_struct *mpz_ptr;
+typedef __mpz_struct mpz_t[1];
+
+void __gmpz_init(mpz_ptr);
+int __gmpz_set_str(mpz_ptr, const char *, int);
+void __gmpz_mul(mpz_ptr, mpz_srcptr, mpz_srcptr);
+
+void __gmpz_clear(mpz_ptr);
+int __gmp_printf (const char *, ...);
+]]
+
+ffi.C.printf("input n1 x %s:\n", "n2")
+
+local arg1, arg2 = ...
+if not arg or not arg2 then
+   os.exit(0)
+end
+
+local n1 = ffi.new("mpz_t")
+local n2 = ffi.new("mpz_t")
+local n3 = ffi.new("mpz_t")
+
+gmp.__gmpz_init(n1)
+gmp.__gmpz_init(n2)
+gmp.__gmpz_init(n3)
+
+gmp.__gmpz_set_str(n1, arg1, 10)
+gmp.__gmpz_set_str(n2, arg2, 10)
+
+gmp.__gmpz_mul(n3, n1, n2)
+
+gmp.__gmp_printf("n1 = %Zd\n", n1)
+gmp.__gmp_printf("n2 = %Zd\n", n2)
+gmp.__gmp_printf("n1 * n2 = %Zd\n", n3)
+
+gmp.__gmpz_clear(n1)
+gmp.__gmpz_clear(n2)
+gmp.__gmpz_clear(n3)
+```
+
+输出是：
+
+```example
+$ luajit test_ffi.lua 11111111111111111111111 99999999999999999999999999999999
+input n1 x n2:
+n1 = 11111111111111111111111
+n2 = 99999999999999999999999999999999
+n1 * n2 = 1111111111111111111111099999999988888888888888888888889
+```
+
+后面再看下怎么封装 GMP 的接口，毕竟这么使用，只是少了一次编译的时间，接口函数还是太复杂。
+
+#category Programming
