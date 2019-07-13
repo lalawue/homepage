@@ -1,6 +1,60 @@
 
 #title Archive for July, 2019
 
+#p1
+#date 19年7月13日 周六 23:34
+
+## gmp_ffi.lua
+
+上周考虑的 GMP LuaJIT FFI 绑定，最后将 GMP 的绝大部分函数接口导了出来变成了 [gmp_ffi](https://github.com/lalawue/gmp_ffi)，包括整数、浮点、有理数、随机数，以及格式化输出，除了那些 C 直接输出文件包含 FILE * 的部分，后续也可以考虑将标准 C 库的文件操作函数也一并导出来。
+
+另外，还将相关的初始化函数，通过 ffi.gc() 跟 finalizer 关联了起来，就不需要自己做相关的清理工作了。
+
+还有，GMP 的 C 接口，其内部实现，都是带 __gmp 这样前缀的，即便通过 FFI 使用，也很不方便，所以 gmp_ffi 库，将这些接口都重新做了绑定，重命名为类似 mpz_mul() 这样的函数，跟 gmp.h 上通过 C 宏定义出来的接口一样使用。
+
+有了上面的铺垫，一些好玩的东西可以搞起来，比如粗糙的计算素数的程序 [test_prime.lua](https://github.com/lalawue/gmp_ffi/blob/master/test_prime.lua)，比如温习一下 RSA 加解密 [test_rsa.lua](https://github.com/lalawue/gmp_ffi/blob/master/test_rsa.lua)，当前的实现是到处抄的，遥望大学时虽有做这个的大习题，但早就忘了，-.-
+
+贴一下 gmp_ffi.lua 使用的例子吧：
+
+```source
+local gmp = require("gmp_ffi")
+
+function gmpffi_test()
+   local a = gmp.mpz(11111111111)
+   local b = gmp.mpz("999999999999999999999999999999999")
+   local c = gmp.mpz("99999")
+   gmp.mpz_mul(a, a, b)
+   --gmp.mpz_set_ui(c, 1)
+   gmp.printf("mpz: a:%Zd, c sign:", a)
+   print(string.format("%d, odd:%s", gmp.mpz_sgn(c), gmp.mpz_odd(c)))
+   a = gmp.mpz("ff", 16)
+   gmp.printf("mpz: value base %Zx\n", a)
+
+   a = gmp.mpf(111111111.111111111)
+   b = gmp.mpf("999999999999999999999999999.99999999999999999999999999999999999")
+   c = gmp.mpf("9999")
+   gmp.mpf_mul(a, a, b)
+   gmp.printf("mpf: %Ff, c sign:", a)
+   print(gmp.mpf_sgn(c))
+
+   a = gmp.mpq(111111111, 111111111)
+   b = gmp.mpq("9999999999999999999999999999999/99999999999999999999999999999999999999")
+   c = gmp.mpq(0)
+   gmp.mpq_div(a, a, b)
+   gmp.printf("mpq: %Qx, c sign:", a)
+   print(gmp.mpq_sgn(c))
+
+   local rt = gmp.randinit()
+   local cs = gmp.cstring(64)
+   gmp.sprintf(cs, "random: %u", gmp.urandomb_ui(rt, 9999999))
+   print(gmp.tostring(cs))
+end
+
+gmpffi_test()
+```
+
+#category Programming
+
 #p0
 #date 19年7月06日 周六 23:55
 
