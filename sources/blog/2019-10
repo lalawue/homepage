@@ -1,6 +1,17 @@
 
 #title Archive for October, 2019
 
+#p1
+#date 19年10月16日 周日 23:32
+
+## 新浪图床
+
+从 weibo 里面拷贝 URL 出来，实际上是不能直接访问的，因为需要账号的 cookie 信息，但奇怪的是，来自于这个网址 https://www.bitu.net/ 介绍，新浪图床只要将前缀 wx + 数字，替换为 tva1 就可了，亲测，有效，：)
+
+#category Programming
+
+
+
 #p0
 #date 19年10月15日 周日 23:15
 
