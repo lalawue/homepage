@@ -1,6 +1,121 @@
 
 #title Archive for December, 2019
 
+#p1
+#date 19年12月28日 周六 22:09
+
+## LWTheme theme/skin manager for iOS8+
+
+[LWTheme](https://github.com/lalawue/LWTheme) 是一个支持 iOS8+ 的主题管理库，目前支持诸如以下 UI 元素的属性如颜色、字体随着主题替换而动态更改：
+
+- UIView 背景色
+- CALayer border、shadow CGColor
+- CAGradientLayer 开始、结束颜色
+- UILabel 字体 family:size、attributed string 前/背景色
+- UIImageView imageNamed、tint image color
+- UIButton title color、font family:size、image/backgroundImage tingColor
+
+其他的 UI 元素也可以通过统一的底层接口，以及相关工具类，很容易为其添加相关主题管理属性，为已有的设置项增加换肤功能（其实就其底层提供的数据存储、通知能力来说，完全可以扩展到其他方面，不仅仅是换肤啦）。
+
+### 起因
+
+这个想法，起始于一个支持 iOS13 的 Dark mode 工作中，使用到的一款换肤库真的很不好用，需要花一些时间学习如何为不同的主题属性做设置，注意这里的主题属性居然可以有多个设置入口，另外虽然通过 plist 管理但实际使用时却需要通过一个中间工具来映射 key。一开始使用时，只是有点绕脑，后面觉得其接口设计，以及底层存储通知也许可以用更直接的方式。只是相关工作已经接近尾声，而我还需要更多的时间来实验。
+
+实验的结果，是输出了这个主题管理库，另外为了学习 Swift，专门弄了个 Swift 版本，只不过纯 Swift 其实不支持在 extend 中动态添加存储属性，最后还是得用 @objc 来处理。
+
+上面说到的这款换肤库，也许是 [SwiftTheme](https://github.com/wxxsw/SwiftTheme) 的 ObjC 版本。
+
+### 接口改进
+
+说下 [LWTheme](https://github.com/lalawue/LWTheme) 的接口改进：：
+
+设置颜色等主题属性，其实是设置一个不同主题下的映射 key，比如
+
+- 设置主题背景色，接口描述是 UIView.lw_backgroundColor = @"ViewBackgroundThemeColorKey"
+- 设置主题图片名，接口描述是 UIImageView.lw_imageNamed:@"ImageViewThemeImageNamedKey"
+- 设置主题字体，接口描述是 UILabel.lw_font = @"LabelThemeFontKey" 
+- 设置 UIButton 的 image tint color ，接口描述是 UIButton lw_setImage:image tintColor:@"ButtonThemeTintColorKey" forState:UIControlStateNormal
+- 设置 Attributed String 的前/背景色，为相关的 NSAttributedStringKey 配置颜色 key 就好，是类似的
+
+而换主题，或者说换肤时，接口是
+
+```
+LWThemeManager.sharedInstance useMode:LWThemeMode_Light withThemeMap:(NSDictionary *)themeMap
+```
+
+仅仅提供一个设置 NSDictionary 的接口就够了，用户可以自己添加更多的 mode 来区分不同的主题，只是用于业务区分而已，一旦更新 themeMap，就会触发主题替换通知，跟 mode 没有关系。
+
+仅仅提供设置 NSDictionary 的接口，是因为读取 plist 或者网络数据、或者其他格式序列化数据，比如 KeyArchived 不是这个库的功能，它只管换肤，至于数据来源，跟它一点关系都没有，就应该剥离。
+
+
+### 主题字典定义
+
+各个主题下具体对应的背景色、图片、字体描述，dictionary 记录的格式，或者说内容，大概是这样：
+
+**Light Mode**
+
+```
+{
+    @"Color" : {
+                    @"ViewBackgroundThemeColorKey" : @"#FF0000",
+                    @"ButtonThemeTintColorKey" : @"FF0000".
+    },
+    @"Image" : {
+                    @"ImageViewThemeImageNamedKey" : "light_image.png",
+    },
+    @"Font" : {
+                    @"LabelThemeFontKey" : @"_:22",
+    }
+}
+```
+
+**Dark Mode**
+
+```
+{
+    @"Color" : {
+                   @"ViewBackgroundThemeColorKey" : @"#00FF00",
+                   @"ButtonThemeTintColorKey" : @"0000FF".
+    },
+    @"Image" : {
+                   @"ImageViewThemeImageNamedKey" : "dark_image.png",
+    },
+    @"Font" : {
+                   @"LabelThemeFontKey" : @"bold:22",
+    }
+}
+```
+
+会区分颜色、图片名、字体在不同的子 dictionary 下，另外字体的定义是 family:size，下划线表示用 regular，bold、italic、以及其他的font family，需要指定。
+
+### 底层存储、通知实现
+
+比如设置 lw_backgroundColor，通过 colorKey 拿到实际的 UIColor 后，会设置到 UIVIew.backgroundColor 中，然后调用下面这个底层接口：
+
+```
+- (void)lw_storeValue:(id)value forSetter:(SEL)setter;
+```
+
+这个接口描述了当主题变化时，会通过 setter 回调，传递 value，一个主题属性对应一个 setter。这样就完成了主题替换重新设置主题属性的功能。因此，实在不理解为何需要一个中间工具来映射，也许其精妙我还 get 不到吧。
+
+另外，对于 UIButton 这样，设置字体颜色及 state 配对的属性，value 的的取值有考究，比如可以是一个以 state 为 key 的 Dictionary；而诸如设置 UIButton 的 image tint color 接口，会复杂一些，考虑到 color 可以有 alpha channel，这里需要区分 state 保存原来的 image，colorKey，当主题替换时，需要取当前 colorKey 对应的 UIColor 来 tint 原来的 image，避免当前 image 被带 alpha 的 UIColor 污染后，无法复原。
+
+下面这个接口可以获取 UI 元素存储的主题属性：
+
+```
+- (id)lw_valueForSetter:(SEL)setter;
+```
+
+### 核心及扩展
+
+可以看到，库的核心是底层的存储、通知实现，这样就支持了 UI 元素为不同的主题属性，仅仅暴露了一个配置主题命名 key 的接口。这两个部分，在主题替换这个前提下，是可以不变的。
+
+变化的部分是，为不同的 UI 元素，或者同一个 UI 元素，添加主题属性。比如把 CALayer 的 cornerRadius 作为主题属性，当主题变化时，配置不同的 cornerRadius，当然容易就可以实现。
+
+结语是，只在模拟器上面跑了一下，应该没啥问题吧，:)
+
+#category Programming
+
 #p0
 #date 19年12月08日 周日 12:37
 
