@@ -1,6 +1,6 @@
 #title Archive for January, 2020
 
-#p1
+#p0
 #date 20年01月24日 周五 01:24
 
 ## MarkdownProjectCompositor 支持 Win 7
@@ -33,6 +33,3 @@ MingW 环境编译的程序只依赖 Windows 原生库，所以蛮小的。接�
 最后把这半天的成果，windows 下的 cmark-gfm、luajit、lfs_ffi.lua，还有一个一键生成脚本，打了一个 zip 包，作为一个 release 发出去了，毕竟不是专业 windows 下的开发，也许以后再换一个 windows 环境，可真的折腾不来了。
 
 #category Programming
-
-#p0
-#date 19年12月08日 周日 12:37
