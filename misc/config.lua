@@ -15,7 +15,7 @@ local user = {
 }
 
 function user.writeFile( path, content )
-   local f = io.open(path, "w")
+   local f = io.open(path, "wb")
    if f then
       f:write( content )
       f:close()
@@ -23,7 +23,7 @@ function user.writeFile( path, content )
 end
 
 function user.readFile( path )
-   local f = io.open(path, "r")
+   local f = io.open(path, "rb")
    if f then
       local content = f:read( envReadAll )
       f:close(f)
@@ -525,6 +525,7 @@ local config = {
    program = "cmark-gfm",
    params = " -t html --unsafe --github-pre-lang ",
    tmpfile = "/tmp/MarkdownProjectCompositorTempFile",
+   dos2unix = true,
    projs = {},
    user = user,
 }
