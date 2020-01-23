@@ -1,0 +1,38 @@
+#title Archive for January, 2020
+
+#p1
+#date 20年01月24日 周五 01:24
+
+## MarkdownProjectCompositor 支持 Win 7
+
+给家人换了一台性能更好的老笔记本，之前的上网本自然就归我了，赛扬 N3150 4核 4GB 其实不算差，至少现在开着 Chrome 写 Markdown 是很流畅的，然后想着怎么废物利用，比如用来做下载机，但其实我没啥可下载的，用来搞点 Windows 环境下的编程，写点 Markdown 倒是不错。
+
+然后就想着怎么把之前的工程搬到 Windows 上面来，网络部分的先算了，没有 IOCP 也没啥意思，看来看去，LuaJIT 加上 [MarkdownProjectCompositor](https://github.com/lalawue/MarkdownProjectCompositor) 是个不错的入口。
+
+即便如此，这次适配也吃了苦头，赛扬 4G 我是不想用 Visual Studio 了，不管是 2012 还是 2015，下个几 G 编译个几百 K，不值得。就搞了个 MingW64，然后下载了一个 Git。
+
+依赖有 cmark-gfm 和 LuaJIT，lfs_ffi.lua 看了一下是支持 Windows 的。可是 cmark-gfm 不能直接在 MingW64 下编译，需要 cmake，搞了一个 win 下的 cmake，可不是随随便便就能生成 makefile 了，MingW 环境下需要这样：
+
+```source
+mkdir build
+cd build
+cmake -G "MinG Makefiles" ..
+make
+```
+
+你没看错，需要指定生成 MingW 下的 makefile，而且冒号内的关键字不能错哦，这一步浪费了我好几个小时。后面的 make 就很顺利了，虽然赛扬 4G 马力明显不足，磕磕碰碰的最后还是给捣出来了。
+
+MingW 环境编译的程序只依赖 Windows 原生库，所以蛮小的。接下来的 LuaJIT 编译有了前面的铺垫，很顺利就生成了。
+
+后面的 2 个小时，浪费在了 compositor 拼接 source 以及生成 html 的过程中，因为在 lua 里面 io.open() 文件时，没有带 b 用二进制的方式，使得在 windows 下换行是 CRLF 的。因为我的 config.lua 也很复杂，WelcomePage 是根据生成的 html 最后做拼接的，这里也要指定用 binary 的方式读写。
+
+最后我还在 compositor 里面加入了去掉 CRLF 以及 CR 的 dos2unix 开关，把原来 Markdown 里面的多余 CR 都去掉了，毕竟 CR 没啥用，会被 HTML 的 tag 忽略的。这段是确保 MacOS 下生成的 HTML 跟 Windows 下生成的一模一样。
+
+再搞了一个 publish_html.bat 脚本，配置好 config.lua 以及目录后，一键生成，就可以看着赛扬 4核慢吞吞地做转换了。
+
+最后把这半天的成果，windows 下的 cmark-gfm、luajit、lfs_ffi.lua，还有一个一键生成脚本，打了一个 zip 包，作为一个 release 发出去了，毕竟不是专业 windows 下的开发，也许以后再换一个 windows 环境，可真的折腾不来了。
+
+#category Programming
+
+#p0
+#date 19年12月08日 周日 12:37
