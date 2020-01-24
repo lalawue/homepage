@@ -64,7 +64,7 @@ Transfer rate:          945.55 [Kbytes/sec] received
 ```source
 mkdir build
 cd build
-cmake -G "MinG Makefiles" ..
+cmake -G "MinGW Makefiles" ..
 make
 ```
 
