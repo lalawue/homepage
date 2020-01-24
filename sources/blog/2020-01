@@ -1,5 +1,53 @@
 #title Archive for January, 2020
 
+#p2
+#date 20年01月24日 周五 12::53
+
+## 庆祝在 Windows 下更新本站
+
+受益于[MarkdownProjectCompositor 支持 Win 7](blog#2020-01#p0)，有了 generator、compositor 的准备，包括 Win 下 Git 的支持，加上我的编辑器是一个浏览器端单文件编辑器，现在可以比较顺利地在 Win 下写 Markdown，并更新博客了。
+
+老早之前，用 Emacs 做 Markdown 编辑器 + 生成器的时候，也是能够支持 Win 的，当时是用 FTP 上传到网站，改换成 cmark-gfm 后，终于又实现了一次。
+
+#category ThisSite
+
+#p1
+#date 20年01月24日 周五 12:22
+
+## m_net 支持 pull-style API
+
+[m_net](https://github.com/lalawue/m_net) 之前只支持设置 callback 方式回调通知，最近的修改是开始支持 pull-style API。弃用 callback 是为了配合 LuaJIT 的使用，因为 LuaJIT 在 C 层 callback Lua，性能非常不好，[LuaJIT FFI callback performence](https://stackoverflow.com/questions/12329128/luajit-ffi-callback-performance/12435278#12435278) 有说明，大体上有 x27 slower。
+
+LuaJIT 官网的相关介绍，也是不推荐 C 层 callback Lua，因为 callback 函数是临时分配生成的，性能不好，而推荐用 pull-style API。
+
+所谓 pull-style API，就是一个同步操作的含义，call 一次就拿一次数据这样。
+
+m_net 的修改，是将 callback 这一层，从 C 移到了 Lua 层，Lua 层从 C 层获取事件通知的多个 chann 及其 message，之后在 Lua 层面做 callback，算是避开了从 C callback Lua 这个坑。
+
+这样子修改之后，跟原来提供非 JIT 的 Lua 接口不一致了，考虑到非 JIT Lua 可选用网络通信模型挺多的，比如老一辈的 LuaSocket，比如 Luvit 之类的，索性我就去掉了非 JIT Lua 的接口支持。
+
+修改完后，做了一个简单的压测，对所有 accept 的 chann，发送一个 HTML 包裹的 hello，world，设置了 backlog 100，ab 100 个实例 5000 次试验的结果：
+
+```source
+# ab -c 100 -n 5000 http://127.0.0.1:8080/empty
+
+Concurrency Level:      100
+Time taken for tests:   0.547 seconds
+Complete requests:      5000
+Failed requests:        0
+Total transferred:      530000 bytes
+HTML transferred:       65000 bytes
+Requests per second:    9134.39 [#/sec] (mean)
+Time per request:       10.948 [ms] (mean)
+Time per request:       0.109 [ms] (mean, across all concurrent requests)
+Transfer rate:          945.55 [Kbytes/sec] received
+
+```
+
+感觉还可以。
+
+#category Programming
+
 #p0
 #date 20年01月24日 周五 01:24
 
