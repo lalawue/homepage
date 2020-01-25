@@ -1,5 +1,40 @@
 #title Archive for January, 2020
 
+#p3
+#date 20年01月25日 周六 21:30
+
+## Babun 和 VSCode git.path
+
+时光轮流转，现在常用的是 Unix Like 的环境，Win 环境反而是少用了，所以 CatetoryLinux 也用来记录 Win 下的东东吧。
+
+话说过年回家收了家人的 Win7 赛扬四核上网本后，我也不知道哪里来的兴趣（也许是键盘真的要比 13 寸的 MBP 好太多），搭建了发布主页的环境，当时就安装了 Git For Windows，配合 VSCode 设置了 git.path 后，用得好好的。
+
+然后觉得 MinGW64 的 shell 太一般了（其实就是指定了 Path 的 cmd），Git For Windows 自带的 Bash 也真的不好用，就开始搜索 Win 下好用的 shell 环境。PowerShell 是先考虑的，但是看到依赖 NetFramework 4.x 我就想算了，养不起。
+
+然后看到了 [BaBun](http://babun.github.io/)，虽然是基于 Cygwin 的再次开发，但自动化安装后，用得很不错。配置部分我现在是很少弄了，安装好后，看到自带了 zsh 和 oh-my-zsh 的配置，不得不说很赞。另外就是操作速度要比之前的 Git Bash 好太多，颜色搭配也相当好看，如下图：
+
+![babun](https://tva1.sinaimg.cn/mw1024/6f6cc1c0gy1gb94u3o57lj20m80ch414.jpg)
+
+但是不好的地方，在于毕竟依赖了 Cygwin，而 VSCode 无法直接使用 Cygwin 下的 git 来做版本控制，也许是依赖 cygwin dll 的关系吧。
+
+VSCode 团队回复这种情况，说已经对 Git For Windows 做了支持，这种 Cygwin 环境下的不考虑了。其实大家装了 Cygwin 后，是不想再装一个 Git For Windows 了，几乎做同样的事情，太浪费。
+
+不得不说有的人脑洞奇特（没错，是日本人，无贬义），想着将 Cygwin 下的 git 包一层给 VSCode 使用，重点说一下思路，这种封装依赖的思想。
+
+首先建立一个验证环境的逻辑，VSCode 对于版本控制 git 程序的依赖，跟 Win 下普通 cmd 操作 git 是一样的，如果 Win 下普通 cmd 在不知道 Cygwin 环境时，能够正常使用一个类似 git 的工具完成 git 的功能，可以认为这个工具就是 git（版本控制工具）。
+
+这个思路，其实就是封装环境，将 Cygwin 下的 git 及其依赖，封装到这个工具内部。
+
+这里需要选择工具链，需要生成仅仅依赖 Win 下系统原生 dll 的工具链，比如之前已经用过的 MinGW64。我们把 Cygwin 的依赖，环境描述，写到一个 C 源文件里，在源文件里面，调用了 Cygwin 的 bash，跑一个脚本，这个脚本，大概是整理输入的参数并传递给真正 Cygwin 下的 git。Cygwin 的环境，在 bash 拉起脚本的时候，已经建立完成。
+
+这里可以确保在系统的任何地方，调用这个 C 生成的程序，拉起的 Cygwin 环境都是正常的，然后跑脚本里面的 Cygwin 下的 git 操作，就很顺理成章了。
+
+贴一下仓库地址吧：[https://github.com/nukata/cyg-git](https://github.com/nukata/cyg-git)
+
+话说这种想法感觉跟容器化的想法类似，将依赖封装到一起；跟编程语言里面的闭包思想也类似，将 upvalue 带入到闭包里面。只是头大后碰到了这样的解决办法，佩服之余，也思考学习一下。
+
+#category Linux
+
 #p2
 #date 20年01月24日 周五 12::53
 
