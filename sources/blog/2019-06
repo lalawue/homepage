@@ -171,7 +171,7 @@ return config
 
 
 #p0
-#date 19年6月09日 周日 23:59
+#date 19年6月9日 周日 23:59
 
 ## 更换 Markdown Engine 为 cmark-gfm
 
