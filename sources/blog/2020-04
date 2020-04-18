@@ -1,0 +1,43 @@
+#title Archive for April, 2020
+
+#p0
+#date 20年4月18日 周六 23:48
+
+## m_mnet 支持 pull style API 以及 timer
+
+意外的是 3 月份居然没写任何东西，那 4 月份就吹吹水吧。
+
+### pull style API
+
+先说 [m_net](https://github.com/lalawue/m_net) 为了在跟 LuaJIT 配合使用，改成了 pull style API，因为道听途说 stackoverflow 上的文章 [LuaJIT FFI callback performance
+](https://stackoverflow.com/questions/12329128/luajit-ffi-callback-performance), 从 C 到 LuaJIT 的 callback 性能有很大的损失，大概会慢 27x 倍。
+
+有了这个指标，修改为 pull style API 也不是难事，只是还想着同时支持 callback style API 来的。因为 pull style 在每个 mnet_poll() 循环，只能有一个事件抛出，但实际上就 socket 的事件来说，是可以多个的。
+
+比如 chann 有数据读，但同时可写，这两个状态是可以同时存在的。那意味着这次 poll 中可以同时 callback 这两个事件。但在 pull style API 里面无法做到，这个是 API 的限制，但为了在 LuaJIT 中有更好的表现，这个特性只能放弃了。
+
+### timer
+
+记得之前多次提过 timer，比如
+
+- [Timer、FastLZ & Erasure Codec](blog#2018-06#p1)
+- [有关 m_net 跨平台的小型网络库](blog#2017-09#p0)
+
+当然是更早时候看到了 rxi 的 [dyad](https://github.com/rxi/dyad)，念念不忘。早先对 timer 需求没有那么大，甚至因为不是简单的 timer 需求，我将 timer 做到了更底层，将时间单位剥离，仅仅认为是一个数值关系、排序的库，虽然名字是叫 timer。
+
+但一方面，不是所有的 timer 需求都那么复杂，另外，timer 单独出来有时候也很不方便，所以最后，同时因为有了之前实现某种 timer 的经验，我在 m_net 里面内置了一个，当然做了一些限制。
+
+- 一个 chann 只能带一个 repeat 类型的 timer，单位是 micro seconds
+- timer 事件的优先级最高，这个是因为 pull style API 的限制
+
+限制 timer 跟 chann 相关，是因为最终要将 timer 的回调做成 chann 的事件回调，或者 pull style API 里面的一个事件源，限制一个的原因也类似，不好在回调里面表示多个，没有那么复杂的需求需要多个，如果有需要，单靠这个 API 其实也是能实现的，比如分割成更小的单位。
+
+第二个限制，timer 的优先级最高，是因为 mnet_poll() 拉取事件的时候，pull style API 只能有一个事件，这里其实不希望 timer 被调用得很频繁，但如果是被调用，一定不会被其他事件吃掉。
+
+timer 具体的实现，其实是 skiplist，之前短暂尝试过 array 以及 qsort 配合，但是觉得内存使用上效率不大好，每次 timer fire 时间更新后，都需要做一次排序，array + qsort 的消耗，相比 skiplist 要大。
+
+github 上拷贝了其他人 MIT LICENSE 的 skiplist，实现也只比 array + qsort 多 60 行而已，何乐而不为呢。
+
+有了 skiplist 的加持，一个 timer 的更新，消耗只有 O (logn)，感觉还可以了。
+
+#category Programming
