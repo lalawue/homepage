@@ -42,5 +42,5 @@ Documentation License".(http://www.fsf.org/licensing/licenses/fdl.html)
 
 This website was **powered** by:
 
-[GitHub](http://www.github.com), [GNU Emacs](http://www.gnu.org/software/emacs), [markdown-editor](https://github.com/jbt/markdown-editor)
+[GitHub](http://www.github.com), <del>[GNU Emacs](http://www.gnu.org/software/emacs)</del>, [markdown-editor](https://github.com/jbt/markdown-editor)
  and [MarkdownProjectCompositor](https://github.com/lalawue/MarkdownProjectCompositor).
