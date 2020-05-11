@@ -14,6 +14,14 @@ local user = {
    blogTempContent = {},         -- category dynamic file content
 }
 
+function user.filename(f)
+   if f:find("%.md") then
+      return f:sub(1, f:len() - 3)
+   else
+      return f
+   end
+end
+
 function user.writeFile( path, content )
    local f = io.open(path, "wb")
    if f then
@@ -44,7 +52,7 @@ end
 
 function user.mdGetTitle( config, proj, filename )
    -- '#title title', for <title> or <h1> tag
-   local path = config.source .. "/" .. proj.dir .. "/" .. filename
+   local path = config.source .. "/" .. proj.dir .. "/" .. filename .. ".md"
    local content = config.user.readFile( path )
    content = content:len() > 1 and content or config.user.blogTempContent[filename]
    if content then
@@ -187,9 +195,12 @@ end
 function user.blogSortFiles( config, proj )
    if not config.user.blogYearMonthFiles then
       local fileList = {}
+      local orgFileList = {}
       for _, filename in ipairs(proj.files) do
          if filename:match("(%d+)%-(%d+)") then
-            fileList[#fileList + 1] = filename
+            local f = user.filename(filename)
+            orgFileList[f] = filename
+            fileList[#fileList + 1] = f
          end
       end
       table.sort(fileList, function(s1, s2)
@@ -201,7 +212,9 @@ function user.blogSortFiles( config, proj )
                        return tonumber(y1) > tonumber(y2)
                     end
       end)
-      proj.files = fileList
+      for i=1, #fileList, 1 do
+         proj.files[i] = orgFileList[fileList[i]]
+      end
       config.user.blogYearMonthFiles = fileList
    end
 end
@@ -254,7 +267,7 @@ function user.blogCollectCategory( config, proj, filename, content )
             tbl[#tbl + 1] = string.format("\n## %s.%s", year, month)
          end
          tbl[#tbl + 1] = string.format("- %s [%s](%s%s#%s)",
-                                       dname, tname, filename, config.suffix, aname)
+                                       dname, tname, filename, ".html", aname)
       else
          break
       end
@@ -282,7 +295,7 @@ function user.blogGenWelcomePage( config, proj )
    local publishPath = config.publish .. "/" .. proj.dir .. "/"
    -- generate welcome page
    for i=1, count, 1 do
-      local content = config.user.readFile( publishPath .. blogYearMonthFiles[i] .. config.suffix )
+      local content = config.user.readFile( publishPath .. blogYearMonthFiles[i] .. ".html" )
 
       local as, ae, cs, ce = 0, 0, 0, 0
       repeat
@@ -304,7 +317,7 @@ function user.blogGenWelcomePage( config, proj )
       local title = "<h1>Sucha's Blog ~ Welcome</h1>"
       local body = table.concat(entries, "\n")
       local footer = config.user.blogFooter( config, proj, "" )
-      local indexPath = publishPath ..  "index" .. config.suffix
+      local indexPath = publishPath ..  "index.html"
       config.user.writeFile( indexPath, header .. title .. body .. footer )
       print(string.format("output: %s", indexPath))
    end
@@ -321,6 +334,7 @@ function user.sitePrepare( config, proj )
             if proj.res then
                projNames[proj.dir][f] = f
             else
+               f = user.filename(f)
                projNames[proj.dir][f] = f .. ".html"
             end
          end
@@ -340,6 +354,7 @@ function user.siteBody( config, proj, filename, content )
 end
 
 function user.siteHeader( config, proj, filename )
+   filename = user.filename(filename)
    local part1 = [[<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" xml:lang="zh-CN">
@@ -414,6 +429,7 @@ function user.blogPrepare( config, proj )
 end
 
 function user.blogBody( config, proj, filename, content )
+   filename = user.filename(filename)
    content = content or config.user.blogTempContent[filename]
    if content then
       config.user.blogCollectCategory( config, proj, filename, content )
@@ -427,6 +443,7 @@ function user.blogBody( config, proj, filename, content )
 end
 
 function user.blogHeader( config, proj, filename )
+   filename = user.filename(filename)   
    local part1 = [[<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" xml:lang="zh-CN">
@@ -521,11 +538,13 @@ end
 local config = {
    source = "sources",
    publish = "publish",
-   suffix = ".html",
    program = "cmark-gfm",
    params = " -t html --unsafe --github-pre-lang ",
    tmpfile = "/tmp/MarkdownProjectCompositorTempFile",
    dos2unix = true,
+   destname = function(f)
+      return user.filename(f) .. ".html"
+   end,
    projs = {},
    user = user,
 }
