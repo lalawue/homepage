@@ -540,7 +540,7 @@ local config = {
    publish = "publish",
    program = "cmark-gfm",
    params = " -t html --unsafe --github-pre-lang ",
-   tmpfile = "/tmp/MarkdownProjectCompositorTempFile",
+   tmpfile = nil,
    dos2unix = true,
    destname = function(f)
       return user.filename(f) .. ".html"
