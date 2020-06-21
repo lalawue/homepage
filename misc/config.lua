@@ -180,9 +180,9 @@ function user.blogGenCategory( config, proj, filename, content )
    if not s then
       return content
    end
-   -- '#p[0-9]+' is fixed title anchor for every entry
-   local anchorName = content:gmatch("\n#(p%d+)")
-   local categoryLink = function(mark)
+      -- '#p[0-9]+' is fixed title anchor for every entry
+      local anchorName = content:gmatch("\n#(p%d+)")
+      local categoryLink = function(mark)
       local name = mark:match("#category%s*(%a*)")
       local clink = string.format("<a href=\"Category%s.html\">Category%s</a>", name, name)
       local plink = string.format("<a href=\"%s.html#%s\">Permalink</a>", filename, anchorName())
@@ -247,7 +247,7 @@ function user.blogCollectCategory( config, proj, filename, content )
    if not s then
       return
    end
-   local categoryTable = {}      
+   local categoryTable = {}
    local anchorName = content:gmatch("\n#(p%d+)")
    local dateName = content:gmatch("\n#date%s+([^%c]+)")
    local titleName = content:gmatch("\n##%s+([^%c]+)")
@@ -506,15 +506,16 @@ function user.blogFooter( config, proj, filename )
         <li><a href="CategoryLinux.html">GNU/Linux</a></li>
         <li><a href="CategoryProgramming.html">Programming</a></li>
         <li><a href="CategoryLife.html">Life &#38; essay</a></li>
+        <li><a href="CategoryStatistics.html">Statistics</a></li>
         <li><a href="CategoryReading.html">Reading</a></li>
-	<li><a href="CategoryThisSite.html">This Site</a></li>
+	     <li><a href="CategoryThisSite.html">This Site</a></li>
         <li><a href="CategoryMisc.html">Misc</a></li>
       </ul>
 
       <p class="header">Links</p>
       <ul>
         <li><a href="http://blog.csdn.net/g9yuayon/">G9</a></li>
-        <li><a href="http://www.ftchinese.com/column/007000002">朝九晚五</a></li>
+        <li><a href="http://www.ruanyifeng.com/blog/">阮一峰的网络日志</a></li>
         <li><a href="http://blog.codingnow.com/">CloudWu</a></li>
         <li><a href="http://www.google.cn/maps/@22.6273208,110.1513288,15540m/data=!3m1!1e3?hl=zh-CN">Yulin City</a></li>
       </ul>
