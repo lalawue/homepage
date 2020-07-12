@@ -31,8 +31,6 @@
 
 - [MarkdownProjectCompositor](blog#2019-06#p1): 目前用来构建主页和博客，相比之前的 EmacsWiki 少了一些功能，但稳定性、可维护性高了太多。
 - [app_scheduler](https://github.com/lalawue/app_scheduler): 一个监控进程存活、CPU、内存占用的管理程序，基于 'ps u -p PID1 -p PID2' 来实现。
-- [lua-web](https://github.com/lalawue/lua-web): 基于上面 m_net 以及 [hyperparser](https://github.com/lalawue/hyperparser)
-等实现的 http web framework 基础框架，基本上只是个玩具。
 
 
 
