@@ -22,12 +22,18 @@ Markdown 最初的语法，都来自于 JOHN GRUBER 在 2004 年的 [Markdown: S
 
 ### cmark-gfm 2019 截图 under macOS
 
-有时候用 [markdown-editor](https://github.com/jbt/markdown-editor) 来写，有时候用 Emacs 来写
+最开始用 Emacs 或 [markdown-editor](https://github.com/jbt/markdown-editor) 来写，后来都用 VSCode 的 [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one) 来写了。
+
+ - [使用 VSCode 的截图](images#vscode_markdown_all_in_one.jpg)
 
  - [使用 markdown-editor 的截图](images#markdown_editor.jpg)
 
  - [使用 Emacs 的截图](images#md_cmark_syntax.jpg)
- 
+
+
+### VSCode 2020 截图 under macOS
+
+&#32; ![2020](images#vscode_markdown_all_in_one.jpg)
 
 ### EmacsWiki 2018 截图 under macOS
 

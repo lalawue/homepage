@@ -29,6 +29,7 @@
 
 当初学 Lua 是因为要开发游戏，但后来发现这个脚本语言，跟 C 一样的命令式语法，性能还行，又不用考虑内存管理，方便得很。
 
+- [Cincau](blog#2020-08#p0): 小型化的 MVC web 框架，支持 mnet 或者 nginx，采用 [etlua](https://github.com/leafo/etlua) 为模版引擎。
 - [MarkdownProjectCompositor](blog#2019-06#p1): 目前用来构建主页和博客，相比之前的 EmacsWiki 少了一些功能，但稳定性、可维护性高了太多。
 - [app_scheduler](https://github.com/lalawue/app_scheduler): 一个监控进程存活、CPU、内存占用的管理程序，基于 'ps u -p PID1 -p PID2' 来实现。
 
