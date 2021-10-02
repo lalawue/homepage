@@ -289,16 +289,11 @@ function user.blogGenSideBarJS( config, proj )
      <li><a href="http://www.google.cn/maps/@22.6273208,110.1513288,15540m/data=!3m1!1e3?hl=zh-CN">Yulin City</a></li>
    </ul>
    <p class="header">Archives</p>]]
-   config.user.writeFile(config.publish .. "/js/blog_sidebar.js", [[
-      function generate_sidebar() {
-         const content = `]] ..
-         part_top ..
-         part_archives ..
-         [[`
-         document.getElementById("sidebar").innerHTML = content
-      }
-      generate_sidebar()
-   ]])
+   config.user.writeFile(config.publish .. "/js/blog_sidebar.js",
+      'document.getElementById("sidebar").innerHTML = `' ..
+      part_top ..
+      part_archives ..
+      '`')
 end
 
 function user.blogCollectCategory( config, proj, filename, content )
