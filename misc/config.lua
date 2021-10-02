@@ -505,7 +505,7 @@ function user.blogFooter( config, proj, filename )
   </div><!-- text -->
   <div id="sidebar">
   </div><!-- sidebar -->
-  <script src="../js/blog_sitebar.js"></script>
+  <script src="../js/blog_sidebar.js"></script>
   </div> <!-- body -->
 </body>
 </html>]]
