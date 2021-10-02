@@ -1,8 +1,21 @@
--- 
+--
 -- by lalawue, 2019/06/02
 --
 
 local envReadAll = (_VERSION:sub(5) < "5.3") and "*a" or "a"
+
+local type = type
+local print = print
+local assert = assert
+local tonumber = tonumber
+local pairs = pairs
+local ipairs = ipairs
+local ioOpen = io.open
+local strFormat = string.format
+local tableSort = table.sort
+local tableRemove = table.remove
+local tableConcat = table.concat
+local mathMin = math.min
 
 -- 
 -- user defined function
@@ -23,7 +36,7 @@ function user.filename(f)
 end
 
 function user.writeFile( path, content )
-   local f = io.open(path, "wb")
+   local f = ioOpen(path, "wb")
    if f then
       f:write( content )
       f:close()
@@ -31,7 +44,7 @@ function user.writeFile( path, content )
 end
 
 function user.readFile( path )
-   local f = io.open(path, "rb")
+   local f = ioOpen(path, "rb")
    if f then
       local content = f:read( envReadAll )
       f:close(f)
@@ -45,7 +58,7 @@ function user.findDivClass( content, className, index )
    assert(type(content) == "string")
    assert(type(className) == "string")   
    if content:len() > 0 and className:len() > 0 then
-      local match = string.format("<div%%s+class=\"%s\".-div>", className)
+      local match = strFormat("<div%%s+class=\"%s\".-div>", className)
       return content:find(match, index)
    end
 end
@@ -99,19 +112,19 @@ function user.mdGenContentDesc( config, proj, content )
                         while lastNum > num and #lastStack > 0 do
                            lastNum = lastNum - 1
                            desc = desc .. lastStack[#lastStack]
-                           table.remove(lastStack)
+                           tableRemove(lastStack)
                         end
                      end
                      local title = mark:match("#+%s+([^%c]+)")
-                     desc = desc .. string.format("<dt class=\"contents\"><a href=\"#sec-%d\">%s</a></dt>",
+                     desc = desc .. strFormat("<dt class=\"contents\"><a href=\"#sec-%d\">%s</a></dt>",
                                                   index, title)
-                     local ret = string.format("<a id=\"sec-%d\"></a>\n%s", index, mark)
+                     local ret = strFormat("<a id=\"sec-%d\"></a>\n%s", index, mark)
                      index = index + 1                           
                      return ret
    end)
    while #lastStack > 0 do
       desc = desc .. lastStack[#lastStack]
-      table.remove(lastStack)
+      tableRemove(lastStack)
    end
    return pre .. desc .. "\n" .. sub
 end
@@ -123,9 +136,9 @@ function user.mdReplaceTag( config, proj, content )
                              local name, fntag = mark:match("%[(.-)%]%(%#([^%)]-)%)")
                              if fntag and not tags[fntag] then
                                 tags[fntag] = fntag
-                                return string.format("<sup><a href=\"#%s\">%s</a></sup>", fntag, name)
+                                return strFormat("<sup><a href=\"#%s\">%s</a></sup>", fntag, name)
                              else
-                                return string.format("<sup>&lsqb;<a id=\"%s\">%s</a>&rsqb;</sup>", fntag, name)
+                                return strFormat("<sup>&lsqb;<a id=\"%s\">%s</a>&rsqb;</sup>", fntag, name)
                              end
    end)
    local projNames = config.user.projNames
@@ -140,26 +153,26 @@ function user.mdReplaceTag( config, proj, content )
                           local name, tag = mark:match("%[([^%]]+)%]%(([^%)]+)%)")
                           local ptag, ftag, atag = tag:match("([^#]+)#([^#]+)#([^%c]+)")
                           if ptag and ftag and atag then
-                             return string.format("[%s](../%s/%s.html#%s)", name, ptag, ftag, atag)
+                             return strFormat("[%s](../%s/%s.html#%s)", name, ptag, ftag, atag)
                           end
                           local ptag, ftag = tag:match("([^#]+)#([^%c#]+)")
                           if ptag and ftag then
                              if projNames[ptag] and projNames[ptag][ftag] then
                                 ftag = projNames[ptag][ftag]
-                                return string.format("[%s](../%s/%s)", name, ptag, ftag)
+                                return strFormat("[%s](../%s/%s)", name, ptag, ftag)
                              end
                           end
                           local projFile = projNames[proj.dir][tag]
                           if projFile then
-                             return string.format("[%s](%s)", name, projFile)
+                             return strFormat("[%s](%s)", name, projFile)
                           end
-                          return string.format("[%s](%s)", name, tag)
+                          return strFormat("[%s](%s)", name, tag)
    end)
 end
 
 function user.mdGenAnchor( config, proj, content )
    return content:gsub("\n#([^#%s%c]+)", function(mark)
-                             return string.format("<a id=\"%s\"></a>\n", mark)
+                             return strFormat("<a id=\"%s\"></a>\n", mark)
    end)
 end
 
@@ -170,7 +183,7 @@ function user.blogGenDateTime( config, proj, content )
    end
    content = content:gsub("\n(#date%s*[^%c]*)", function(mark)
                              local date = mark:match("#date%s*([^%c]*)")
-                             return string.format("\n<div class=\"date\">%s</div>", date)
+                             return strFormat("\n<div class=\"date\">%s</div>", date)
    end)
    return content
 end
@@ -184,45 +197,43 @@ function user.blogGenCategory( config, proj, filename, content )
       local anchorName = content:gmatch("\n#(p%d+)")
       local categoryLink = function(mark)
       local name = mark:match("#category%s*(%a*)")
-      local clink = string.format("<a href=\"Category%s.html\">Category%s</a>", name, name)
-      local plink = string.format("<a href=\"%s.html#%s\">Permalink</a>", filename, anchorName())
-      return string.format("\n<div class=\"category\">%s / %s</div>\n", clink, plink)
+      local clink = strFormat("<a href=\"Category%s.html\">Category%s</a>", name, name)
+      local plink = strFormat("<a href=\"%s.html#%s\">Permalink</a>", filename, anchorName())
+      return strFormat("\n<div class=\"category\">%s / %s</div>\n", clink, plink)
    end
    content = content:gsub("\n(#category%s*[^%c]*)", categoryLink)
    return content
 end
 
 function user.blogSortFiles( config, proj )
-   if not config.user.blogYearMonthFiles then
-      local fileList = {}
-      local orgFileList = {}
-      for _, filename in ipairs(proj.files) do
-         if filename:match("(%d+)%-(%d+)") then
-            local f = user.filename(filename)
-            orgFileList[f] = filename
-            fileList[#fileList + 1] = f
-         end
-      end
-      table.sort(fileList, function(s1, s2)
-                    local y1, m1 = s1:match("(%d+)%-(%d+)")
-                    local y2, m2 = s2:match("(%d+)%-(%d+)")
-                    if tonumber(y1) == tonumber(y2) then
-                       return tonumber(m1) > tonumber(m2)
-                    else
-                       return tonumber(y1) > tonumber(y2)
-                    end
-      end)
-      for i=1, #fileList, 1 do
-         proj.files[i] = orgFileList[fileList[i]]
-      end
-      config.user.blogYearMonthFiles = fileList
+   if config.user.blogYearMonthFiles then
+      return
    end
+   local fileList = {}
+   local orgFileList = {}
+   for _, filename in ipairs(proj.files) do
+      if filename:match("(%d+)%-(%d+)") then
+         local f = user.filename(filename)
+         orgFileList[f] = filename
+         fileList[#fileList + 1] = f
+      end
+   end
+   tableSort(fileList, function(s1, s2)
+                  local y1, m1 = s1:match("(%d+)%-(%d+)")
+                  local y2, m2 = s2:match("(%d+)%-(%d+)")
+                  if tonumber(y1) == tonumber(y2) then
+                     return tonumber(m1) > tonumber(m2)
+                  else
+                     return tonumber(y1) > tonumber(y2)
+                  end
+   end)
+   for i=1, #fileList, 1 do
+      proj.files[i] = orgFileList[fileList[i]]
+   end
+   config.user.blogYearMonthFiles = fileList
 end
 
-function user.blogGenArchiveLinks( config, proj )
-   if config.user.blogArchiveLinkContent then
-      return config.user.blogArchiveLinkContent
-   end
+function user.blogGenSideBarJS( config, proj )
    local nameList = {
       [1]="January", [2]="February", [3]="March", [4]="April",
       [5]="May", [6]="June", [7]="July", [8]="August",
@@ -232,14 +243,62 @@ function user.blogGenArchiveLinks( config, proj )
    for _, filename in ipairs(config.user.blogYearMonthFiles) do
       local year, month = filename:match("(%d+)%-(%d+)")
       if year and month then
-         tbl[#tbl+1] = string.format("<li><a href=\"%s.html\">%s %s</a></li>",
+         tbl[#tbl+1] = strFormat("<li><a href=\"%s.html\">%s %s</a></li>",
                                      filename, nameList[tonumber(month)],
                                      year)
       end
    end
-   config.user.blogArchiveLinkContent =
-      "<div class=\"archive_links\"><ul>" .. table.concat(tbl) .. "</ul></div>"
-   return config.user.blogArchiveLinkContent
+   local part_archives = '<div class="archive_links"><ul>' .. tableConcat(tbl) .. '</ul></div>'
+   -- generate sidebar
+   local part_top = [[<p class="header">Here</p>
+   <ul>
+     <li><a href="../index.html">Home</a></li>
+     <li><a href="index.html">Front</a></li>
+     <li><a href="../scratch/ThisSite.html">This Site</a></li>
+     <li><a href="../live/AboutMe.html">About Me</a></li>
+   </ul>
+   <p class="header">Search</p><!-- Bing Search -->
+   <form id="searchform" method="get" action="http://cn.bing.com/search" >
+   <p><input id="searchtext" type="text" name="q" value="" /></p>
+   <p><input type="hidden" name="ie" value="utf-8" /></p>
+   <p><input type="hidden" name="oe" value="utf-8" /></p>
+   <p><input type="hidden" name="hl" value="zh-CN" /></p>
+   <p><input type="hidden" name="domains" value="suchang.net" /></p>
+   <p><input name="si" type="hidden" value="suchang.net" /></p>
+   <p><input type="hidden" name="sitesearch" value="suchang.net" /></p>
+   </form>
+   <p class="header">Contact</p>
+   <ul>
+      <li><a href="mailto:suchaaa@gmail.com">Mail me</a></li>
+   </ul>
+   <p class="header">Categories</p>
+   <ul>
+     <li><a href="CategoryLinux.html">GNU/Linux</a></li>
+     <li><a href="CategoryProgramming.html">Programming</a></li>
+     <li><a href="CategoryLife.html">Life &#38; essay</a></li>
+     <li><a href="CategoryStatistics.html">Statistics</a></li>
+     <li><a href="CategoryReading.html">Reading</a></li>
+     <li><a href="CategoryThisSite.html">This Site</a></li>
+     <li><a href="CategoryMisc.html">Misc</a></li>
+   </ul>
+   <p class="header">Links</p>
+   <ul>
+     <li><a href="http://blog.csdn.net/g9yuayon/">G9</a></li>
+     <li><a href="http://www.ruanyifeng.com/blog/">阮一峰的网络日志</a></li>
+     <li><a href="http://blog.codingnow.com/">CloudWu</a></li>
+     <li><a href="http://www.google.cn/maps/@22.6273208,110.1513288,15540m/data=!3m1!1e3?hl=zh-CN">Yulin City</a></li>
+   </ul>
+   <p class="header">Archives</p>]]
+   config.user.writeFile(config.publish .. "/js/blog_sidebar.js", [[
+      function generate_sidebar() {
+         const content = `]] ..
+         part_top ..
+         part_archives ..
+         [[`
+         document.getElementById("sidebar").innerHTML = content
+      }
+      generate_sidebar()
+   ]])
 end
 
 function user.blogCollectCategory( config, proj, filename, content )
@@ -264,9 +323,9 @@ function user.blogCollectCategory( config, proj, filename, content )
             tbl = {}
             categoryTable[cname] = tbl
             local year, month = filename:match("(%d+)%-(%d+)")
-            tbl[#tbl + 1] = string.format("\n## %s.%s", year, month)
+            tbl[#tbl + 1] = strFormat("\n## %s.%s", year, month)
          end
-         tbl[#tbl + 1] = string.format("- %s [%s](%s%s#%s)",
+         tbl[#tbl + 1] = strFormat("- %s [%s](%s%s#%s)",
                                        dname, tname, filename, ".html", aname)
       else
          break
@@ -277,17 +336,17 @@ function user.blogCollectCategory( config, proj, filename, content )
       local name = "Category" .. cname
       local content = config.user.blogTempContent[name]
       if not content then
-         content = string.format("\n#title Category %s\n", cname)
+         content = strFormat("\n#title Category %s\n", cname)
          proj.files[#proj.files + 1] = name
       end
-      content = content .. table.concat(tbl, "\n")
+      content = content .. tableConcat(tbl, "\n")
       config.user.blogTempContent[name] = content
    end
 end
 
 function user.blogGenWelcomePage( config, proj )
    local blogYearMonthFiles = config.user.blogYearMonthFiles
-   local count = math.min(#blogYearMonthFiles, 11)
+   local count = mathMin(#blogYearMonthFiles, 11)
    if count <= 0 then
       return
    end
@@ -299,7 +358,7 @@ function user.blogGenWelcomePage( config, proj )
 
       local as, ae, cs, ce = 0, 0, 0, 0
       repeat
-         ds, de = config.user.findDivClass( content, "date", ce + 1 )
+         local ds, de = config.user.findDivClass( content, "date", ce + 1 )
          cs, ce = config.user.findDivClass( content, "category", ce + 1 )
          if as and ae and cs and ce then
             entries[#entries + 1] = content:sub(ds, ce + 1)
@@ -315,11 +374,11 @@ function user.blogGenWelcomePage( config, proj )
    if #entries > 0 then
       local header = config.user.blogHeader( config, proj, "Welcome" )
       local title = "<h1>Sucha's Blog ~ Welcome</h1>"
-      local body = table.concat(entries, "\n")
+      local body = tableConcat(entries, "\n")
       local footer = config.user.blogFooter( config, proj, "" )
       local indexPath = publishPath ..  "index.html"
       config.user.writeFile( indexPath, header .. title .. body .. footer )
-      print(string.format("output: %s", indexPath))
+      print(strFormat("output: %s", indexPath))
    end
 end
 
@@ -368,7 +427,6 @@ function user.siteHeader( config, proj, filename )
     <meta name="description" content="Sucha's homepage and blog" />
     <link rel="shortcut icon" href="../images/ico.png" />
     <link rel="stylesheet" type="text/css" href="../styles/site.css" />
-    <!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="../styles/ie.css" /><![endif]-->
   </head>
   <body>
     <div id="body">
@@ -386,37 +444,8 @@ function user.siteFooter( config, proj, filename )
       </div><!-- foot -->
       </div><!-- text -->
       <div id="sidebar">
-	<p class="header">Here</p>
-	<ul>
-	  <li><a href="../index.html">Home</a></li>
-	  <li><a href="index.html">Front</a></li>
-	  <li><a href="../scratch/ThisSite.html">This Site</a></li>
-	  <li><a href="../live/AboutMe.html">About Me</a></li>
-	</ul>
-	<p class="header">Categories</p>
-	<ul>
-	  <li><a href="../blog/index.html">Blog</a></li>
-	  <li><a href="../live/index.html">Life</a></li>
-	  <li><a href="../cs/index.html">Lab</a></li>
-	  <li><a href="../slack/index.html">Slackware</a></li>
-	  <li><a href="../muse/index.html">Muse</a></li>
-	  <li><a href="../scratch/index.html">Scratch</a></li>
-	</ul>
-	<p class="header">Search</p><!-- Bing Search -->
-	<form id="searchform" method="get" action="http://cn.bing.com/search" >
-	  <p><input id="searchtext" type="text" name="q" value="" /></p>
-          <p><input type="hidden" name="ie" value="utf-8" /></p>
-	  <p><input type="hidden" name="oe" value="utf-8" /></p>
-	  <p><input type="hidden" name="hl" value="zh-CN" /></p>
- 	  <p><input type="hidden" name="domains" value="suchang.net" /></p>
-          <p><input name="si" type="hidden" value="suchang.net" /></p>
-          <p><input type="hidden" name="sitesearch" value="suchang.net" /></p>
-	</form>
-	<p class="header">Contact</p>
-	<ul>
-	  <li><a href="mailto:suchaaa@gmail.com">Email Me</a></li>
-	</ul>
       </div><!-- sidebar -->
+      <script src="../js/site_sidebar.js"></script>
     </div><!-- body -->
   </body>
 </html>]]
@@ -425,7 +454,7 @@ end
 function user.blogPrepare( config, proj )
    config.user.sitePrepare( config, proj )
    config.user.blogSortFiles( config, proj )
-   config.user.blogGenArchiveLinks( config, proj )
+   config.user.blogGenSideBarJS( config, proj )
 end
 
 function user.blogBody( config, proj, filename, content )
@@ -459,74 +488,28 @@ function user.blogHeader( config, proj, filename )
     <link rev="made" href="mailto:suchaaa@gmail.com" />
     <link rel="shortcut icon" href="../images/ico.png" />
     <link rel="stylesheet" type="text/css" href="../styles/blog.css" />
-    <!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="../styles/ie.css" /><![endif]-->
   </head>
   <body>
     <div id="body">
       <div id="text">
-	<!-- Page published by cmark-gfm begins here -->]]
-      return part1 .. part2 .. part3
+	   <!-- Page published by cmark-gfm begins here -->]]
+   return part1 .. part2 .. part3
 end
 
 function user.blogFooter( config, proj, filename )
-   local part1 = [[<!-- Page published by cmark-gfm ends here -->
-<div id="foot">2004-<script type="text/javascript">var d = new
+   local content = [[<!-- Page published by cmark-gfm ends here -->
+  <div id="foot">2004-<script type="text/javascript">var d = new
 	Date();document.write(d.getFullYear())</script> &copy;
 	Sucha. Powered by MarkdownProjectCompositor.
-</div>
-</div><!-- sidebar -->
+  </div>
+  </div><!-- text -->
   <div id="sidebar">
-      <p class="header">Here</p>
-      <ul>
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="index.html">Front</a></li>
-        <li><a href="../scratch/ThisSite.html">This Site</a></li>
-        <li><a href="../live/AboutMe.html">About Me</a></li>
-      </ul>
-
-      <p class="header">Search</p><!-- Bing Search -->
-      <form id="searchform" method="get" action="http://cn.bing.com/search" >
-	<p><input id="searchtext" type="text" name="q" value="" /></p>
-	<p><input type="hidden" name="ie" value="utf-8" /></p>
-	<p><input type="hidden" name="oe" value="utf-8" /></p>
-	<p><input type="hidden" name="hl" value="zh-CN" /></p>
-	<p><input type="hidden" name="domains" value="suchang.net" /></p>
-	<p><input name="si" type="hidden" value="suchang.net" /></p>
-	<p><input type="hidden" name="sitesearch" value="suchang.net" /></p>
-      </form>
-
-      <p class="header">Contact</p>
-        <ul>
-          <li><a href="mailto:suchaaa@gmail.com">Mail me</a></li>
-        </ul>
-
-      <p class="header">Categories</p>
-
-      <ul>
-        <li><a href="CategoryLinux.html">GNU/Linux</a></li>
-        <li><a href="CategoryProgramming.html">Programming</a></li>
-        <li><a href="CategoryLife.html">Life &#38; essay</a></li>
-        <li><a href="CategoryStatistics.html">Statistics</a></li>
-        <li><a href="CategoryReading.html">Reading</a></li>
-	     <li><a href="CategoryThisSite.html">This Site</a></li>
-        <li><a href="CategoryMisc.html">Misc</a></li>
-      </ul>
-
-      <p class="header">Links</p>
-      <ul>
-        <li><a href="http://blog.csdn.net/g9yuayon/">G9</a></li>
-        <li><a href="http://www.ruanyifeng.com/blog/">阮一峰的网络日志</a></li>
-        <li><a href="http://blog.codingnow.com/">CloudWu</a></li>
-        <li><a href="http://www.google.cn/maps/@22.6273208,110.1513288,15540m/data=!3m1!1e3?hl=zh-CN">Yulin City</a></li>
-      </ul>
-
-      <p class="header">Archives</p>]]
-   local part2 = config.user.blogGenArchiveLinks( config, proj )
-   local part3 = [[</div><!-- sidebar -->
-   </div> <!-- body -->
-  </body>
+  </div><!-- sidebar -->
+  <script src="../js/blog_sitebar.js"></script>
+  </div> <!-- body -->
+</body>
 </html>]]
-   return part1 .. part2 .. part3
+   return content
 end
 
 function user.blogAfter( config, proj )
@@ -609,7 +592,7 @@ config.projs = {
    {
       dir = "blog",
       files = {},
-      prepare = user.blogPrepare,  
+      prepare = user.blogPrepare,
       body = user.blogBody,
       header = user.blogHeader,
       footer = user.blogFooter,
