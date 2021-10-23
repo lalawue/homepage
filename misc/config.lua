@@ -440,7 +440,7 @@ function user.siteFooter( config, proj, filename )
       </div><!-- text -->
       <div id="sidebar">
       </div><!-- sidebar -->
-      <script src="../js/site_sidebar.js"></script>
+      <script type="text/javascript" src="../js/site_sidebar.js"></script>
     </div><!-- body -->
   </body>
 </html>]]
@@ -500,7 +500,7 @@ function user.blogFooter( config, proj, filename )
   </div><!-- text -->
   <div id="sidebar">
   </div><!-- sidebar -->
-  <script src="../js/blog_sidebar.js"></script>
+  <script type="text/javascript" src="../js/blog_sidebar.js"></script>
   </div> <!-- body -->
 </body>
 </html>]]
