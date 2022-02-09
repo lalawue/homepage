@@ -23,13 +23,24 @@
 - [小型 Unix 磁盘文件系统](SmallUnixFilesystem): 大三下的课程设计作业，纯模拟性质，当时选择这个题目是为了更好地理解 Unix 的文件系统，了解其对空闲磁盘和文件的管理。
 - [五子棋游戏](FiveInArow): 在大一时编的，趁脸皮厚先放上来，算法绘图什么别想了，bug 又如何，当年老爸放水，我棋连挡 8 招，:-)
 
+## ObjC &#38; Swift
 
+ObjC 和 Swift 都是吃饭的家伙，虽然又渐渐用上了安卓手机，但系统已经习惯 MacOS 了，对苹果是又爱又恨。
+
+- [PinStackView](blog#2021-07#p0): 基于 [PinLayout](https://github.com/layoutBox/PinLayout) 的 StackView，特点是基于 Frame 计算，但是也保留了 UIStackView 的 distribution equal，已经用在正式环境上了。
+
+## Go
+
+Go 语言很早就火了，我没有赶上那个时候，话说 The Language 读了大概有 2、3 遍，直到遇到了合适的项目，才能说学会了一点。
+
+- [MoocHelper](blog#2022-01#p0): [MoonCake](blog#2021-06#p0) 在 vscode 上的 LSP，修改自 [LuaHelper](https://github.com/Tencent/LuaHelper)，有了它，对 MoocScript 的修修补补可太方便了。
 
 ## Lua
 
 当初学 Lua 是因为要开发游戏，但后来发现这个脚本语言，跟 C 一样的命令式语法，性能还行，又不用考虑内存管理，方便得很。
 
-- [Cincau](blog#2020-08#p0): 小型化的 MVC web 框架，支持 mnet 或者 nginx，采用 [etlua](https://github.com/leafo/etlua) 为模版引擎。
+- [Cincau](blog#2020-08#p0): 小型化的 MVC web 框架，支持 mnet 或者 nginx，已在公网支撑起了不知名站点。
+- [MoonCake](blog#2021-06#p0): 一个类似 Swift 的 Lua 方言（也可以叫 MoocScript），最终编译为 Lua，起因是我不大喜欢 Lua 充满 then、end 关键字的语法。
 - [MarkdownProjectCompositor](blog#2019-06#p1): 目前用来构建主页和博客，相比之前的 EmacsWiki 少了一些功能，但稳定性、可维护性高了太多。
 - [app_scheduler](https://github.com/lalawue/app_scheduler): 一个监控进程存活、CPU、内存占用的管理程序，基于 'ps u -p PID1 -p PID2' 来实现。
 
