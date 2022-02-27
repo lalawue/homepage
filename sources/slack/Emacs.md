@@ -38,7 +38,7 @@ Makefile 的时候并不多，而 Emacs 原配的 compile 命令对于小小的�
 下面的函数可以根据预设的文件类型选用不同的编译器编译当前正在编辑的文件，
 对于做题等等非常有帮助，省了不少力气。还可以很方便地如法炮制不同的匹配。
 
-```source
+```lisp
 ;; C-f5, 设置编译命令，用 Emacs 原来的 compile 
 ;; f5, 保存当前窗口并选用不同的编译器编译，可如法往上添加匹配
 (defun sucha-smart-compile ()
@@ -70,7 +70,7 @@ Makefile 的时候并不多，而 Emacs 原配的 compile 命令对于小小的�
 
 Emacs 本身就提供了许多代码浏览的工具，对我来说，Emacs + Speedbar + TAGS 就已经很好用了。下面是一些方便查找、跳转 TAGS 的函数和快捷键。
 
-```source
+```lisp
 ;; 生成 TAGS, adong 提供 (in LinuxForum GNU Emacs/XEmacs)
 ;; find -name "*.[ch]*" | xargs etags -a
 
@@ -109,7 +109,7 @@ Emacs 本身就提供了许多代码浏览的工具，对我来说，Emacs + Spe
 
 而 Speedbar 根本不用设置，我个人只是不大喜欢它默认使用 image 的方式和过快的更新速度，只要重新设置一下就可以了。Speedbar 里面也提供很好用的快捷键，C-h m 就可以看到很多说明。
 
-```source
+```lisp
 (setq speedbar-update-speed 3)
 (setq speedbar-use-images nil)  ;; clear face, :)
 ```
@@ -142,7 +142,7 @@ functions-list 这个变量里各个函数的顺序来进行尝试性扩展的�
 ”要比 dabbrev-expand 大得多，除了尝试 dabbrev-&#42; 系列，还可以自定义其
 他方面，下面是我从 LinuxForum 上面抄过来的设置：
 
-```source
+```lisp
 ;; 定义你的 hippie-expend-try－functions-list
 (setq hippie-expand-try-functions-list
       '( ;;senator-complete-symbol

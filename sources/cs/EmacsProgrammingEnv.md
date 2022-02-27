@@ -31,7 +31,7 @@ fiplr 用来模糊搜索工程目录的文件，它会从当前目录一直搜�
 
 direx 可以跟 popwin 结合起来，这也是作者推荐的，
 
-```source
+```lisp
 (require 'popwin)
 (popwin-mode 1)
 ;; (setq popwin:popup-window-position 'right)
@@ -71,7 +71,7 @@ popwin 下还有不少相关插件，有需要的童鞋可以看看，这里不�
 fiplr 依赖 grizzl 包来做底层的模糊搜索引擎，不过我们不需要对 grizzl 做配
 置，只需要配置 fiplr：
 
-```source
+```lisp
 (require 'fiplr)
 (setq fiplr-root-markers '(".git" ".svn"))
 (setq fiplr-ignored-globs 
@@ -101,7 +101,7 @@ C-c r 清空一下当前 cache 就好了。
 
 **1.** 同目录下的头文件与源文件的快速跳转，适用于 C/C++/ObjC，我将其绑定在 M-[ 以及 M-]。
 
-```source
+```lisp
 ;; jump between source and header file
 (defun c-base-mode-in-header-file ()
   (let* ((filename (buffer-file-name))
@@ -140,7 +140,7 @@ t)
 
 **2.** 列出当前 buffer 下的所有函数，使用正则表达式匹配的，也许需要配合你对函数名的书写习惯做更改（如 C 中返回类型与函数名不同行），下面的配置适合 C/C++/ObjC/Lua，其实可以很方便地扩充到支持别的语言。
 
-```source
+```lisp
 ;; for Xcode pragma mark, and C/C++ functions
 (require 'anything)
 (require 'anything-config)
@@ -193,7 +193,7 @@ t)
 
 **3.** 当对窗口进行分割时（我经常这么做），下面的快捷键可以很方便地调整窗口的大小，(control -) 调整上下窗口的高度，(meta -)调整左右窗口的宽度，感觉挺好用的。
 
-```source
+```lisp
 (global-set-key [(control -)] 'shrink-window)
 (global-set-key [(control =)] (lambda () (interactive) (shrink-window -1)))
 

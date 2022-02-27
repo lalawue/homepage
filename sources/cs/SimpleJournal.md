@@ -27,7 +27,7 @@
 
 如果文件已经存在，则只插入日期、时间和标题。
 
-```source
+```lisp
 (defun sucha-simple-journal-add-entries  (heading)
   "Open the local diary file and add entries today."
 
@@ -59,7 +59,7 @@
 
 下面是一个从 mini-buffer 读取用户日记标题的函数，并将读取到的函数传递到上面的函数中。如果你不想要标题，留空就行了。
 
-```source
+```lisp
 (defun sucha-simple-journal-add-heading ()
   "Get the local journal heading from minibuffer."
   (interactive)
@@ -68,7 +68,7 @@
 ```
 
 我希望随时使用它，所以最好把它绑定到一个按键上。比如下面的f11。
-```source
+```lisp
 (global-set-key [(f11)] 'sucha-simple-journal-add-heading)
 ```
 

@@ -52,7 +52,7 @@ Fetchmail 启动后，以daemon 的形式运行（也可以不做 daemon），�
 ### 安装过程
 
 Mutt 和 fetchmail 在一般的发行版里都有了，我们只需要下载配置 esmtp。如果是 SLK 的用户，这里有个好消息，royce 兄已经为我们这些 slacker 准备好了现成的 esmtp，地址是 <http://download.linuxsir.org/royce/email.tar.gz>，不过要注意，若使用这个包，在 .fetchmailrc 中加入 esmtp 时要将地址改为
-```source
+```shell
 /usr/local/bin/esmtp
 ```
 就可以了。其他发行版的用户可以到它的主页上去看看，或许有你要的资源。地址是 <http://esmtp.sourceforge.net/>，注意 esmtp 还需要 libESMTP 这个库。
@@ -128,7 +128,7 @@ mda "/usr/bin/procmail -d %T"
 [Download mutt.tar.gz](doc#mutt.tar.gz)
 
 使用方法很简单，如下：
-```source
+```shell
  $ mv mutt.tar.gz ~/
  $ cd ~/
  $ tar xzvf mutt.tar.gz && rm mutt.tar.gz

@@ -422,6 +422,7 @@ function user.siteHeader( config, proj, filename )
     <meta name="description" content="Sucha's homepage and blog" />
     <link rel="shortcut icon" href="../images/ico.png" />
     <link rel="stylesheet" type="text/css" href="../styles/site.css" />
+    <link rel="stylesheet" type="text/css" href="../styles/prism.min.css" />
   </head>
   <body>
     <div id="body">
@@ -441,6 +442,7 @@ function user.siteFooter( config, proj, filename )
       <div id="sidebar">
       </div><!-- sidebar -->
       <script type="text/javascript" src="../js/site_sidebar.js"></script>
+      <script type="text/javascript" src="../js/prism.min.js"></script>
     </div><!-- body -->
   </body>
 </html>]]
@@ -483,6 +485,7 @@ function user.blogHeader( config, proj, filename )
     <link rev="made" href="mailto:suchaaa@gmail.com" />
     <link rel="shortcut icon" href="../images/ico.png" />
     <link rel="stylesheet" type="text/css" href="../styles/blog.css" />
+    <link rel="stylesheet" type="text/css" href="../styles/prism.min.css" />
   </head>
   <body>
     <div id="body">
@@ -501,6 +504,7 @@ function user.blogFooter( config, proj, filename )
   <div id="sidebar">
   </div><!-- sidebar -->
   <script type="text/javascript" src="../js/blog_sidebar.js"></script>
+  <script type="text/javascript" src="../js/prism.min.js"></script>
   </div> <!-- body -->
 </body>
 </html>]]
