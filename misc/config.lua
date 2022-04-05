@@ -258,14 +258,10 @@ function user.blogGenSideBarJS( config, proj )
      <li><a href="../live/AboutMe.html">About Me</a></li>
    </ul>
    <p class="header">Search</p><!-- Bing Search -->
-   <form id="searchform" method="get" action="http://cn.bing.com/search" >
-   <p><input id="searchtext" type="text" name="q" value="" /></p>
-   <p><input type="hidden" name="ie" value="utf-8" /></p>
-   <p><input type="hidden" name="oe" value="utf-8" /></p>
-   <p><input type="hidden" name="hl" value="zh-CN" /></p>
-   <p><input type="hidden" name="domains" value="suchang.net" /></p>
-   <p><input name="si" type="hidden" value="suchang.net" /></p>
-   <p><input type="hidden" name="sitesearch" value="suchang.net" /></p>
+   <form>
+      <input id="searchtext" type="text" />
+      <input type="text" class="form-control" style="display:none" />
+      <a style="text-decoration: none;" href="javascript:"onclick="onPageSearch();">🔍</a>
    </form>
    <p class="header">Contact</p>
    <ul>
@@ -286,10 +282,16 @@ function user.blogGenSideBarJS( config, proj )
      <li><a href="http://blog.csdn.net/g9yuayon/">G9</a></li>
      <li><a href="http://www.ruanyifeng.com/blog/">阮一峰的网络日志</a></li>
      <li><a href="http://blog.codingnow.com/">CloudWu</a></li>
-     <li><a href="http://www.google.cn/maps/@22.6273208,110.1513288,15540m/data=!3m1!1e3?hl=zh-CN">Yulin City</a></li>
+     <li><a href="https://github.com/lalawue/">My GitHub</a></li>
+     <li><a href="https://map.baidu.com/search/%E7%8E%89%E6%9E%97%E5%B8%82/@12263703.582905954,2572316.510483823,13.94z/maptype%3DB_EARTH_MAP">Yulin City</a></li>
    </ul>
    <p class="header">Archives</p>]]
    config.user.writeFile(config.publish .. "/js/blog_sidebar.js",
+      [[var onPageSearch = function() {
+         var value = document.getElementById("searchtext").value
+         window.open('https://cn.bing.com/search?q=site:suchang.net+'+value,'_blank');
+      }
+      ]] ..
       'document.getElementById("sidebar").innerHTML = `' ..
       part_top ..
       part_archives ..
