@@ -5,9 +5,9 @@
 
 因为各种原因，这里只能展现这个小城市的一小部分了，而且大部分是近几年的建筑。很多蛮有地方色彩的小巷，阁楼（本地曰“骑楼”），现在在 google 上找不到，要回到家再想办法了。不爽的是这些有意思的东西正在慢慢消失，旧时的记忆怕以后再也找不回了……
 
-## Google Map 上的玉林
+## 地图
 
-这是从 Google Maps 上搜集到的，[Google Map 上的玉林](http://www.google.cn/maps/@22.6273208,110.1513288,15540m/data=!3m1!1e3?hl=zh-CN)。
+[Baidu 地图上的玉林城](https://map.baidu.com/search/%E7%8E%89%E6%9E%97%E5%B8%82/@12263703.582905954,2572316.510483823,13.94z/maptype%3DB_EARTH_MAP)
 
 
 ### 云天宫 
@@ -80,4 +80,4 @@
 
 &#32;![img](../images/yugao7.jpg)
 
-**P.S**:  图片大部分来自[玉林在线](http://bbs.ylyl.net)，其他的来自 [google](http://www.google.com)。
+**P.S**:  图片大部分来自[玉林在线](http://bbs.ylyl.net)，其他的来自 [baidu](https://baidu.com)
