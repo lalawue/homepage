@@ -444,7 +444,7 @@ function user.siteFooter( config, proj, filename )
       <div id="sidebar">
       </div><!-- sidebar -->
       <script type="text/javascript" src="../js/site_sidebar.js"></script>
-      <script type="text/javascript" src="../js/prism.min.js"></script>
+      <script type="text/javascript" src="../js/prism.min.js" async></script>
     </div><!-- body -->
   </body>
 </html>]]
@@ -506,7 +506,7 @@ function user.blogFooter( config, proj, filename )
   <div id="sidebar">
   </div><!-- sidebar -->
   <script type="text/javascript" src="../js/blog_sidebar.js"></script>
-  <script type="text/javascript" src="../js/prism.min.js"></script>
+  <script type="text/javascript" src="../js/prism.min.js" async></script>
   </div> <!-- body -->
 </body>
 </html>]]
