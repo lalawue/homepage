@@ -30,7 +30,7 @@ generate_google_sitemap()
         echo "Usage: generate_google_sitemap PATH_TO_SITEMAP_DIR"
 	exit 0
     fi 
-    echo "generate google sitemap for " $loc " in $htmlpub" 
+    echo "generate google sitemap for " $loc " in $htmlpub"
 
     echo '<?xml version="1.0" encoding="UTF-8"?>' > $sitemap
     echo '<urlset
@@ -38,8 +38,9 @@ generate_google_sitemap()
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-      <!-- created with shell script in https://www.suchang.net/cs/ScriptStuff.html -->' >>  $sitemap
+      <!-- created with shell script in https://suchang.net/cs/ScriptStuff.html -->' >>  $sitemap
 
+    i=1
     for file in $(find $htmlpub -name "$suffix" -type f -print)
     do
         del=$((${#htmlpub} + 2))
@@ -57,6 +58,8 @@ generate_google_sitemap()
         echo "<changefreq>"$changefreq"</changefreq>" >> $sitemap
         echo "<priority>"$pri"</priority>" >> $sitemap
         echo "</url>" >> $sitemap
+        echo ".done $i $file"
+        i=$(($i + 1))
     done
     echo '</urlset>' >> $sitemap
 }
