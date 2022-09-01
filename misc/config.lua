@@ -17,9 +17,9 @@ local tableRemove = table.remove
 local tableConcat = table.concat
 local mathMin = math.min
 
--- 
+--
 -- user defined function
--- 
+--
 local user = {
    projNames = nil,              -- table [projName][FileName]
    blogYearMonthFiles = nil,     -- blog sorted YYYY-MM files
@@ -56,7 +56,7 @@ end
 
 function user.findDivClass( content, className, index )
    assert(type(content) == "string")
-   assert(type(className) == "string")   
+   assert(type(className) == "string")
    if content:len() > 0 and className:len() > 0 then
       local match = strFormat("<div%%s+class=\"%s\".-div>", className)
       return content:find(match, index)
@@ -119,7 +119,7 @@ function user.mdGenContentDesc( config, proj, content )
                      desc = desc .. strFormat("<dt class=\"contents\"><a href=\"#sec-%d\">%s</a></dt>",
                                                   index, title)
                      local ret = strFormat("<a id=\"sec-%d\"></a>\n%s", index, mark)
-                     index = index + 1                           
+                     index = index + 1
                      return ret
    end)
    while #lastStack > 0 do
@@ -142,10 +142,10 @@ function user.mdReplaceTag( config, proj, content )
                              end
    end)
    local projNames = config.user.projNames
-   -- 
+   --
    -- replace [Desc](WikiTag) as really links, WikiTag may contain
    -- '#' as project/source/anchor seperator, for example:
-   -- 
+   --
    -- 1. [Desc](ProjectSourceName)
    -- 2. [Desc](OtherProject#SourceName)
    -- 3. [Desc](OtherProject#SourceName#Anchor)
@@ -263,10 +263,6 @@ function user.blogGenSideBarJS( config, proj )
       <input type="text" class="form-control" style="display:none" />
       <a style="text-decoration: none;" href="javascript:"onclick="onPageSearch();">🔍</a>
    </form>
-   <p class="header">Contact</p>
-   <ul>
-      <li><a href="mailto:suchaaa@gmail.com">Mail me</a></li>
-   </ul>
    <p class="header">Categories</p>
    <ul>
      <li><a href="CategoryLinux.html">GNU/Linux</a></li>
@@ -347,7 +343,7 @@ function user.blogGenWelcomePage( config, proj )
    if count <= 0 then
       return
    end
-   local entries = {}   
+   local entries = {}
    local publishPath = config.publish .. "/" .. proj.dir .. "/"
    -- generate welcome page
    for i=1, count, 1 do
@@ -471,7 +467,7 @@ function user.blogBody( config, proj, filename, content )
 end
 
 function user.blogHeader( config, proj, filename )
-   filename = user.filename(filename)   
+   filename = user.filename(filename)
    local part1 = [[<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" xml:lang="zh-CN">
@@ -519,7 +515,7 @@ end
 
 --
 -- config for MarkdownProjectCompositor
--- 
+--
 local config = {
    source = "sources",
    publish = "publish",
@@ -549,7 +545,7 @@ config.projs = {
       res = true,
       dir = "code",
       files = {},
-   },   
+   },
    {
       dir = "scratch",
       files = {},
