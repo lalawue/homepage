@@ -199,7 +199,8 @@ function user.blogGenCategory( config, proj, filename, content )
       local name = mark:match("#category%s*(%a*)")
       local clink = strFormat("<a href=\"Category%s.html\">Category%s</a>", name, name)
       local plink = strFormat("<a href=\"%s.html#%s\">Permalink</a>", filename, anchorName())
-      return strFormat("\n<div class=\"category\">%s / %s</div>\n", clink, plink)
+      local dlink = '<a href="https://github.com/lalawue/homepage/discussions/categories/blog" target="_blank">Discussion</a>'
+      return strFormat("\n<div class=\"category\">%s / %s / %s</div>\n", clink, plink, dlink)
    end
    content = content:gsub("\n(#category%s*[^%c]*)", categoryLink)
    return content
@@ -250,7 +251,7 @@ function user.blogGenSideBarJS( config, proj )
    end
    local part_archives = '<div class="archive_links"><ul>' .. tableConcat(tbl) .. '</ul></div>'
    -- generate sidebar
-   local part_top = [[<p class="header">Here</p>
+   local part_top = [[<p class="header">Navi</p>
    <ul>
      <li><a href="../index.html">Home</a></li>
      <li><a href="index.html">Front</a></li>
@@ -407,16 +408,16 @@ end
 
 function user.siteHeader( config, proj, filename )
    filename = user.filename(filename)
-   local part1 = [[<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" xml:lang="zh-CN">
+   local part1 = [[<!DOCTYPE html>
+<html>
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Sucha's Homepage - ]]
    local part2 = config.user.mdGetTitle( config, proj, filename )
    local part3 = [[</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="author" content="Sucha" />
-    <meta name="keywords" content="suchang, programming, GNU, Linux, Emacs, Lua" />
+    <meta name="keywords" content="suchang, programming, Linux, Lua" />
     <meta name="description" content="Sucha's homepage and blog" />
     <link rel="shortcut icon" href="../images/ico.png" />
     <link rel="stylesheet" type="text/css" href="../styles/site.css" />
@@ -439,8 +440,8 @@ function user.siteFooter( config, proj, filename )
       </div><!-- text -->
       <div id="sidebar">
       </div><!-- sidebar -->
-      <script type="text/javascript" src="../js/site_sidebar.js"></script>
-      <script type="text/javascript" src="../js/prism.min.js" async></script>
+      <script type="text/javascript" src="../js/site_sidebar.js" async="async"></script>
+      <script type="text/javascript" src="../js/prism.min.js" async="async"></script>
     </div><!-- body -->
   </body>
 </html>]]
@@ -468,17 +469,18 @@ end
 
 function user.blogHeader( config, proj, filename )
    filename = user.filename(filename)
-   local part1 = [[<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" xml:lang="zh-CN">
+   local part1 = [[<!DOCTYPE html>
+<html>
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Sucha's Blog - ]]
    local part2 = config.user.mdGetTitle( config, proj, filename )
    local part3 = [[</title>
     <meta name="generator" content="MarkdownProjectCompositor.lua" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="author" content="Sucha" />
-    <meta name="keywords" content="suchang, programming, GNU, Linux, Emacs, Lua" />
+    <meta name="keywords" content="suchang, programming, Linux, Lua" />
     <meta name="description" content="Sucha's blog" />
     <link rev="made" href="mailto:suchaaa@gmail.com" />
     <link rel="shortcut icon" href="../images/ico.png" />
@@ -501,8 +503,8 @@ function user.blogFooter( config, proj, filename )
   </div><!-- text -->
   <div id="sidebar">
   </div><!-- sidebar -->
-  <script type="text/javascript" src="../js/blog_sidebar.js"></script>
-  <script type="text/javascript" src="../js/prism.min.js" async></script>
+  <script type="text/javascript" src="../js/blog_sidebar.js" async="async"></script>
+  <script type="text/javascript" src="../js/prism.min.js" async="async"></script>
   </div> <!-- body -->
 </body>
 </html>]]
