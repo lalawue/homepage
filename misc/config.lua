@@ -412,10 +412,11 @@ function user.siteHeader( config, proj, filename )
 <html>
   <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=0.5">
     <title>Sucha's Homepage - ]]
    local part2 = config.user.mdGetTitle( config, proj, filename )
    local part3 = [[</title>
+    <meta name="generator" content="MarkdownProjectCompositor.lua" />
     <meta name="author" content="Sucha" />
     <meta name="keywords" content="suchang, programming, Linux, Lua" />
     <meta name="description" content="Sucha's homepage and blog" />
@@ -473,16 +474,14 @@ function user.blogHeader( config, proj, filename )
 <html>
   <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=0.5">
     <title>Sucha's Blog - ]]
    local part2 = config.user.mdGetTitle( config, proj, filename )
    local part3 = [[</title>
     <meta name="generator" content="MarkdownProjectCompositor.lua" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="author" content="Sucha" />
     <meta name="keywords" content="suchang, programming, Linux, Lua" />
     <meta name="description" content="Sucha's blog" />
-    <link rev="made" href="mailto:suchaaa@gmail.com" />
     <link rel="shortcut icon" href="../images/ico.png" />
     <link rel="stylesheet" type="text/css" href="../styles/blog.css" />
     <link rel="stylesheet" type="text/css" href="../styles/prism.min.css" />
