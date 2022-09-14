@@ -409,7 +409,7 @@ end
 function user.siteHeader( config, proj, filename )
    filename = user.filename(filename)
    local part1 = [[<!DOCTYPE html>
-<html>
+<html lang="zh-cn">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=0.5">
@@ -434,15 +434,15 @@ end
 function user.siteFooter( config, proj, filename )
    return [[<!-- Page published by cmark-gfm ends here -->
       <div id="foot">
-	2004-<script type="text/javascript">var d = new
+	2004-<script>var d = new
 	Date();document.write(d.getFullYear())</script> &copy;
 	Sucha. Powered by MarkdownProjectCompositor.
       </div><!-- foot -->
       </div><!-- text -->
       <div id="sidebar">
       </div><!-- sidebar -->
-      <script type="text/javascript" src="../js/site_sidebar.js" async="async"></script>
-      <script type="text/javascript" src="../js/prism.min.js" async="async"></script>
+      <script src="../js/site_sidebar.js" async="async"></script>
+      <script src="../js/prism.min.js" async="async"></script>
     </div><!-- body -->
   </body>
 </html>]]
@@ -471,7 +471,7 @@ end
 function user.blogHeader( config, proj, filename )
    filename = user.filename(filename)
    local part1 = [[<!DOCTYPE html>
-<html>
+<html lang="zh-cn">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=0.5">
@@ -495,15 +495,15 @@ end
 
 function user.blogFooter( config, proj, filename )
    local content = [[<!-- Page published by cmark-gfm ends here -->
-  <div id="foot">2004-<script type="text/javascript">var d = new
+  <div id="foot">2004-<script>var d = new
 	Date();document.write(d.getFullYear())</script> &copy;
 	Sucha. Powered by MarkdownProjectCompositor.
   </div>
   </div><!-- text -->
   <div id="sidebar">
   </div><!-- sidebar -->
-  <script type="text/javascript" src="../js/blog_sidebar.js" async="async"></script>
-  <script type="text/javascript" src="../js/prism.min.js" async="async"></script>
+  <script src="../js/blog_sidebar.js" async="async"></script>
+  <script src="../js/prism.min.js" async="async"></script>
   </div> <!-- body -->
 </body>
 </html>]]
