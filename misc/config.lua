@@ -260,8 +260,8 @@ function user.blogGenSideBarJS( config, proj )
    </ul>
    <p class="header">Search</p><!-- Bing Search -->
    <form>
-      <input id="searchtext" type="text" />
-      <input type="text" class="form-control" style="display:none" />
+      <input id="searchtext" type="text">
+      <input type="text" class="form-control" style="display:none">
       <a style="text-decoration: none;" href="javascript:"onclick="onPageSearch();">🔍</a>
    </form>
    <p class="header">Categories</p>
@@ -276,9 +276,9 @@ function user.blogGenSideBarJS( config, proj )
    </ul>
    <p class="header">Links</p>
    <ul>
-     <li><a href="http://blog.csdn.net/g9yuayon/">G9</a></li>
-     <li><a href="http://www.ruanyifeng.com/blog/">阮一峰的网络日志</a></li>
-     <li><a href="http://blog.codingnow.com/">CloudWu</a></li>
+     <li><a href="https://blog.csdn.net/g9yuayon/">G9</a></li>
+     <li><a href="https://www.ruanyifeng.com/blog/">阮一峰的网络日志</a></li>
+     <li><a href="https://blog.codingnow.com/">CloudWu</a></li>
      <li><a href="https://github.com/lalawue/">My GitHub</a></li>
      <li><a href="https://map.baidu.com/search/%E7%8E%89%E6%9E%97%E5%B8%82/@12263703.582905954,2572316.510483823,13.94z/maptype%3DB_EARTH_MAP">Yulin City</a></li>
    </ul>
@@ -416,13 +416,13 @@ function user.siteHeader( config, proj, filename )
     <title>Sucha's Homepage - ]]
    local part2 = config.user.mdGetTitle( config, proj, filename )
    local part3 = [[</title>
-    <meta name="generator" content="MarkdownProjectCompositor.lua" />
-    <meta name="author" content="Sucha" />
-    <meta name="keywords" content="suchang, programming, Linux, Lua" />
-    <meta name="description" content="Sucha's homepage and blog" />
-    <link rel="shortcut icon" href="../images/ico.png" />
-    <link rel="stylesheet" type="text/css" href="../styles/site.css" />
-    <link rel="stylesheet" type="text/css" href="../styles/prism.min.css" />
+    <meta name="generator" content="MarkdownProjectCompositor.lua">
+    <meta name="author" content="Sucha">
+    <meta name="keywords" content="suchang, programming, Linux, Lua">
+    <meta name="description" content="Sucha's homepage and blog">
+    <link rel="shortcut icon" href="../images/ico.png">
+    <link rel="stylesheet" type="text/css" href="../styles/site.css">
+    <link rel="stylesheet" type="text/css" href="../styles/prism.min.css">
   </head>
   <body>
     <div id="body">
@@ -478,13 +478,13 @@ function user.blogHeader( config, proj, filename )
     <title>Sucha's Blog - ]]
    local part2 = config.user.mdGetTitle( config, proj, filename )
    local part3 = [[</title>
-    <meta name="generator" content="MarkdownProjectCompositor.lua" />
-    <meta name="author" content="Sucha" />
-    <meta name="keywords" content="suchang, programming, Linux, Lua" />
-    <meta name="description" content="Sucha's blog" />
-    <link rel="shortcut icon" href="../images/ico.png" />
-    <link rel="stylesheet" type="text/css" href="../styles/blog.css" />
-    <link rel="stylesheet" type="text/css" href="../styles/prism.min.css" />
+    <meta name="generator" content="MarkdownProjectCompositor.lua">
+    <meta name="author" content="Sucha">
+    <meta name="keywords" content="suchang, programming, Linux, Lua">
+    <meta name="description" content="Sucha's blog">
+    <link rel="shortcut icon" href="../images/ico.png">
+    <link rel="stylesheet" type="text/css" href="../styles/blog.css">
+    <link rel="stylesheet" type="text/css" href="../styles/prism.min.css">
   </head>
   <body>
     <div id="body">
