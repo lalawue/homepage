@@ -406,6 +406,12 @@ function user.siteBody( config, proj, filename, content )
    end
 end
 
+function user.sitePost( config, proj, filename, content )
+   if content then
+      return content:gsub(' />', '>') -- remove close tag
+   end
+end
+
 function user.siteHeader( config, proj, filename )
    filename = user.filename(filename)
    local part1 = [[<!DOCTYPE html>
@@ -465,6 +471,12 @@ function user.blogBody( config, proj, filename, content )
       content = config.user.mdReplaceTag( config, proj, content )
       content = config.user.mdGenAnchor( config, proj, content )
       return content
+   end
+end
+
+function user.blogPost( config, proj, filename, content )
+   if content then
+      return content:gsub(' />', '>') -- remove close tag
    end
 end
 
@@ -552,6 +564,7 @@ config.projs = {
       files = {},
       prepare = user.sitePrepare,
       body = user.siteBody,
+      post = user.sitePost,
       header = user.siteHeader,
       footer = user.siteFooter,
    },
@@ -560,6 +573,7 @@ config.projs = {
       files = {},
       prepare = user.sitePrepare,
       body = user.siteBody,
+      post = user.sitePost,
       header = user.siteHeader,
       footer = user.siteFooter,
    },
@@ -568,6 +582,7 @@ config.projs = {
       files = {},
       prepare = user.sitePrepare,
       body = user.siteBody,
+      post = user.sitePost,
       header = user.siteHeader,
       footer = user.siteFooter,
    },
@@ -576,6 +591,7 @@ config.projs = {
       files = {},
       prepare = user.sitePrepare,
       body = user.siteBody,
+      post = user.sitePost,
       header = user.siteHeader,
       footer = user.siteFooter,
    },
@@ -584,6 +600,7 @@ config.projs = {
       files = {},
       prepare = user.sitePrepare,
       body = user.siteBody,
+      post = user.sitePost,
       header = user.siteHeader,
       footer = user.siteFooter,
    },
@@ -592,6 +609,7 @@ config.projs = {
       files = {},
       prepare = user.blogPrepare,
       body = user.blogBody,
+      post = user.blogPost,
       header = user.blogHeader,
       footer = user.blogFooter,
       after = user.blogAfter,
