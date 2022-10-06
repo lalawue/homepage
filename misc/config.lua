@@ -63,6 +63,41 @@ function user.findDivClass( content, className, index )
    end
 end
 
+-- gmatch ignore code block
+function user.gmatch( content, pattern)
+   return content:gsub([[`+[^`]+`+]], ''):gmatch(pattern)
+end
+
+-- gsub ignore clode block
+function user.gsub( content, pattern, func )
+   local hit_tbl = {}
+   local s, e = 0, 0
+   while true do
+      s, e = content:find([[`+[^`]-`+]], e + 1)
+      if s == nil then
+         break
+      end
+      hit_tbl[#hit_tbl + 1] = { s, e }
+   end
+   if #hit_tbl <= 0 then
+      return content:gsub(pattern, func)
+   end
+   e = 0
+   return content:gsub(pattern, function(mark)
+      local ss, se = content:find(pattern, e + 1)
+      if ss == nil then
+         return false
+      end
+      e = se
+      for _, v in ipairs(hit_tbl) do
+         if ss > v[1] and se < v[2] then
+            return false
+         end
+      end
+      return func(mark)
+   end)
+end
+
 function user.mdGetTitle( config, proj, filename )
    -- '#title title', for <title> or <h1> tag
    local path = config.source .. "/" .. proj.dir .. "/" .. filename .. ".md"
@@ -94,7 +129,7 @@ function user.mdGenContentDesc( config, proj, content )
    local firstNum = 0
    local index = 1
    local desc = ""
-   sub = sub:gsub("\n(#+%s+[^%c]+)", function( mark )
+   sub = config.user.gsub(sub, "\n(#+%s+[^%c]+)", function( mark )
                      local num = mark:find("%s")
                      if lastNum > 0 and num > depth then
                         return mark
@@ -171,8 +206,8 @@ function user.mdReplaceTag( config, proj, content )
 end
 
 function user.mdGenAnchor( config, proj, content )
-   return content:gsub("\n#([^#%s%c]+)", function(mark)
-                             return strFormat("<a id=\"%s\"></a>\n", mark)
+   return config.user.gsub(content, "\n#([^#%s%c]+)", function(mark)
+      return strFormat("\n<a id=\"%s\"></a>", mark)
    end)
 end
 
@@ -181,9 +216,9 @@ function user.blogGenDateTime( config, proj, content )
    if not s then
       return content
    end
-   content = content:gsub("\n(#date%s*[^%c]*)", function(mark)
-                             local date = mark:match("#date%s*([^%c]*)")
-                             return strFormat("\n<div class=\"date\">%s</div>", date)
+   content = config.user.gsub(content, "\n(#date%s*[^%c]*)", function(mark)
+      local date = mark:match("#date%s*([^%c]*)")
+      return strFormat("\n<div class=\"date\">%s</div>", date)
    end)
    return content
 end
@@ -193,16 +228,16 @@ function user.blogGenCategory( config, proj, filename, content )
    if not s then
       return content
    end
-      -- '#p[0-9]+' is fixed title anchor for every entry
-      local anchorName = content:gmatch("\n#(p%d+)")
-      local categoryLink = function(mark)
+   -- '#p[0-9]+' is fixed title anchor for every entry
+   local anchorName = config.user.gmatch(content, "\n#(p%d+)")
+   local categoryLink = function(mark)
       local name = mark:match("#category%s*(%a*)")
       local clink = strFormat("<a href=\"Category%s.html\">Category%s</a>", name, name)
       local plink = strFormat("<a href=\"%s.html#%s\">Permalink</a>", filename, anchorName())
       local dlink = '<a href="https://github.com/lalawue/homepage/discussions/categories/blog" target="_blank">Discussion</a>'
       return strFormat("\n<div class=\"category\">%s / %s / %s</div>\n", clink, plink, dlink)
    end
-   content = content:gsub("\n(#category%s*[^%c]*)", categoryLink)
+   content = config.user.gsub(content, "\n(#category%s*[^%c]*)", categoryLink)
    return content
 end
 
@@ -301,10 +336,10 @@ function user.blogCollectCategory( config, proj, filename, content )
       return
    end
    local categoryTable = {}
-   local anchorName = content:gmatch("\n#(p%d+)")
-   local dateName = content:gmatch("\n#date%s+([^%c]+)")
-   local titleName = content:gmatch("\n##%s+([^%c]+)")
-   local categoryName = content:gmatch("\n#category%s*(%a*)")
+   local anchorName = config.user.gmatch(content, "\n#(p%d+)")
+   local dateName = config.user.gmatch(content, "\n#date%s+([^%c]+)")
+   local titleName = config.user.gmatch(content, "\n##%s+([^%c]+)")
+   local categoryName = config.user.gmatch(content, "\n#category%s*(%a*)")
 
    while true do
       local aname = anchorName()
