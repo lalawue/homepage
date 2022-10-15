@@ -294,11 +294,9 @@ function user.blogGenSideBarJS( config, proj )
      <li><a href="../live/AboutMe.html">About Me</a></li>
    </ul>
    <p class="header">Search</p><!-- Bing Search -->
-   <form>
-      <input id="searchtext" type="text">
-      <input type="text" class="form-control" style="display:none">
-      <a style="text-decoration: none;" href="javascript:"onclick="onPageSearch();">🔍</a>
-   </form>
+   <ul>
+      <li><a href="../pagefind.html">search ➟</a></li>
+   </ul>
    <p class="header">Categories</p>
    <ul>
      <li><a href="CategoryLinux.html">GNU/Linux</a></li>
