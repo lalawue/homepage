@@ -4,4 +4,4 @@
 lua MarkdownProjectCompositor.lua config.lua ..
 
 # generate pagefind source
-pagefind --bundle-dir ../publish/_pagefind --source ../publish --force-language zh --verbose
+pagefind --bundle-dir ../publish/pagefind --source ../publish --force-language zh --verbose
