@@ -338,9 +338,10 @@ function changeTheme(key) {
    site_theme = sk;
    document.cookie = "site_theme=" + sk + "; path=/; max-age=2147483647;"
    if (site_theme == 'light') {
-      DarkReader.disable();
+      document.getElementById('site_theme').innerHTML = ``;
    } else {
-      DarkReader.enable({ brightness: 100, contrast: 90, sepia: 10 });
+      document.getElementById('site_theme').innerHTML =
+      `html { background-color: #e7e7e7; filter: invert(1) hue-rotate(180deg); } img, .code-toolbar { filter: invert(1) hue-rotate(180deg); }`;
    }
 }
 changeTheme('@@@');
@@ -485,6 +486,7 @@ function user.siteHeader( config, proj, filename )
     <link rel="shortcut icon" href="../images/ico.png">
     <link rel="stylesheet" type="text/css" href="../styles/site.css">
     <link rel="stylesheet" type="text/css" href="../styles/prism.min.css">
+    <style id="site_theme"></style>
   </head>
   <body>
     <div id="body">
@@ -504,7 +506,6 @@ function user.siteFooter( config, proj, filename )
       <div id="sidebar">
       </div><!-- sidebar -->
       <script src="../js/prism.min.js" async="async"></script>
-      <script src="/js/darkreader.min.js"></script>
       <script src="../js/site_sidebar.js"></script>
     </div><!-- body -->
   </body>
@@ -554,6 +555,7 @@ function user.blogHeader( config, proj, filename )
     <link rel="shortcut icon" href="../images/ico.png">
     <link rel="stylesheet" type="text/css" href="../styles/blog.css">
     <link rel="stylesheet" type="text/css" href="../styles/prism.min.css">
+    <style id="site_theme"></style>
   </head>
   <body>
     <div id="body">
@@ -572,7 +574,6 @@ function user.blogFooter( config, proj, filename )
   <div id="sidebar">
   </div><!-- sidebar -->
   <script src="../js/prism.min.js" async="async"></script>
-  <script src="/js/darkreader.min.js"></script>
   <script src="../js/blog_sidebar.js"></script>
   </div> <!-- body -->
 </body>
