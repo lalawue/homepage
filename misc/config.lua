@@ -475,7 +475,6 @@ function user.siteHeader( config, proj, filename )
 <html lang="zh-cn">
   <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=0.5">
     <title>Sucha's Homepage - ]]
    local part2 = config.user.mdGetTitle( config, proj, filename )
    local part3 = [[</title>
@@ -544,7 +543,6 @@ function user.blogHeader( config, proj, filename )
 <html lang="zh-cn">
   <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=0.5">
     <title>Sucha's Blog - ]]
    local part2 = config.user.mdGetTitle( config, proj, filename )
    local part3 = [[</title>
