@@ -40,4 +40,4 @@ do
 end
 
 --generate pagefind source
-os.execute([[pagefind --bundle-dir ../publish/pagefind --source ../publish --force-language zh --verbose]])
+os.execute([[pagefind_extended --bundle-dir ../publish/pagefind --source ../publish --force-language zh --verbose]])
