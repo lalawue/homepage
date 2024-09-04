@@ -3,7 +3,7 @@
 
 ## 此主页的介绍
 
-这个主页是用 [MarkdownProjectCompositor](blog#2019-06#p0) 来维护的，而早期用的是 [Emacs + Emacs Wiki](EmacsWiki)。
+这个主页是用 [MarkdownProjectCompositor + cmark-gfm](blog#2019-06#p0) 来维护的，而早期用的是 [Emacs + Emacs Wiki](EmacsWiki)。
 
 这些年对主页的改版，都列在了 [blog#CategoryThisSite](../blog/CategoryThisSite.html) 中，还是蛮喜欢当年手写的 CSS，哈哈哈～
 
